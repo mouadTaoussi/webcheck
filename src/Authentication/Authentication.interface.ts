@@ -1,4 +1,4 @@
-import { Request,Response } from 'express';
+import { Request,Response, NextFunction } from 'express';
 
 type websiteType = {
 	website  : string;
@@ -6,6 +6,7 @@ type websiteType = {
 }
 
 interface UserInterface {
+	_id      : string |  undefined;
 	name     : string;
 	email    : string;
 	password : string;
@@ -16,7 +17,7 @@ interface AuthenticationControllerInterface {
 	loginUser      (request:Request,response:Response)  : any;
 	registerUser   (request:Request,response:Response)  : any;
 	changePassword (request:Request,response:Response)  : any; 
-	Authenticated? (request:Request,response:Response)  : any;
+	Authenticated? (request:Request,response:Response,next:NextFunction)  : any;
 };
 
 interface AuthenticationServiceInterface {

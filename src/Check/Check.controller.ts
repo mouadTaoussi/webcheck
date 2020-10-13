@@ -13,14 +13,18 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 	}
 	
 	public websiteLogs(request:Request,response:Response) {
+		// Get user id and website_id to show thier logs
+		// Send the response back
 		response.json({message : 'it works!'});
 	}
 	public checkEveryWebsiteExists(){
 		// Get all users
 		// Loop
 			// get first user
+			// Loop
 			// check thier websites
-				// if one website down
+				// axios
+				// if one of the websites is down
 					// send a notification and email
 					// nodemailer + webpush
 					// push a log to the database 
