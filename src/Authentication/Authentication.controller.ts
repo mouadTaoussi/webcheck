@@ -2,7 +2,7 @@ import AuthenticationService from './Authentication.service';
 import { AuthenticationControllerInterface } from './Authentication.interface';
 import { sign, verify, decode } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import { Request,Response } from 'express';
+import { Request,Response, NextFunction } from 'express';
 
  
 class AuthenticationController implements AuthenticationControllerInterface{
@@ -10,7 +10,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 	private userService: any;
 
 	constructor(){
-		this.userService = new AuthenticationService();;
+		this.userService = new AuthenticationService();
 	}
 
 	public loginUser(request:Request,response:Response) {
