@@ -1,6 +1,6 @@
 import UserModel from './Authentication.model';
 import { AuthenticationServiceInterface } from './Authentication.interface'
-
+ 
 class AuthenticationService implements AuthenticationServiceInterface{
 
 	private usermodel:any;

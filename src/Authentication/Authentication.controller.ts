@@ -4,7 +4,7 @@ import { sign, verify, decode } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { Request,Response } from 'express';
 
-
+ 
 class AuthenticationController implements AuthenticationControllerInterface{
 
 	private userService: any;

@@ -2,7 +2,7 @@ import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface } from './Check.interface';
 import axios from 'axios';
 import { Request,Response } from 'express';
-
+ 
 
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 

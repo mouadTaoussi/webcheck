@@ -6,5 +6,5 @@ const authentication_router = Router();
 authentication_router.get('/',(request,response)=>{
 	response.json({ message: 'it works!' })
 })
-
+ 
 export default authentication_router;

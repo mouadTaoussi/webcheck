@@ -1,7 +1,7 @@
 interface WebsiteModelInterface {
 
 };
-
+ 
 interface CheckWebsiteControllerInterface {
 
 };

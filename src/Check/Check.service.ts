@@ -1,6 +1,6 @@
 import { CheckWebsiteServiceInterface } from './Check.interface';
 import WebsiteLogModel from './Check.model';
-
+ 
 class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 	private websitelogmodel:any;

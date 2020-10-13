@@ -1,7 +1,7 @@
 interface UserInterface {
 
 };
-
+ 
 interface AuthenticationControllerInterface {
 
 };
