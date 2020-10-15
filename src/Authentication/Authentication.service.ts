@@ -9,7 +9,7 @@ class AuthenticationService implements AuthenticationServiceInterface{
 		this.usermodel = UserModel;
 	}
 
-	public findUser() {
+	public findUserById() {
 
 	}
 	public updateUser(){

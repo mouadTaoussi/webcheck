@@ -1,4 +1,5 @@
 import { CheckWebsiteServiceInterface, ServerStatusCodesType } from './Check.interface';
+import { websiteType } from '.././Authentication/Authentication.interface';
 import WebsiteLogModel from './Check.model';
 import { v4, v5 } from 'uuid';
 import {  } from 'moment';
@@ -20,11 +21,15 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			{ code : 506, description : "Variant Also Negotiates (RFC 2295): Transparent content negotiation for the request results in a circular reference." },
 			{ code : 507, description : "Insufficient Storage (WebDAV; RFC 4918): The server is unable to store the representation needed to complete the request." },
 			{ code : 509, description : "Loop Detected (WebDAV; RFC 5842): The server detected an infinite loop while processing the request (sent instead of 208 Already Reported)." },
-			{ code : 510, description : "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it." }
+			{ code : 510, description : "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it." },
 			{ code : 511, description : "Network Authentication Required (RFC 6585)." }
 		]
 	}
 
+	addWebsite(website: websiteType) {
+		// Get website data
+		// Save it !!!
+	}
 	public pushLog( status_code:number, user_id:string, website_id:string ){
 		// Get to know the reasons
 		// Push

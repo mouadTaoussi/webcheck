@@ -1,6 +1,8 @@
 import { Request,Response } from 'express'
+import { websiteType } from '.././Authentication/Authentication.interface';
  
 interface CheckWebsiteControllerInterface {
+	addWebsite(request:Request,response:Response)   : any
 	websiteLogs(request:Request,response:Response)  : any
 };
 
@@ -10,6 +12,7 @@ interface CheckWebsiteServiceInterface {
 	*/
 	// websitelogmodel                                                  : any
 	// statusCodes                                                      : ServerStatusCodesType<string>
+	addWebsite(website: websiteType)                                 :any
 	pushLog( status_code:number, user_id:string, website_id:string ) : any
 	getLogs( user_id:string, website_id:string )                     : any
 	deleteLogs( user_id:string, website_id:string )                  : any

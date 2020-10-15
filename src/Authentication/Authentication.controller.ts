@@ -1,11 +1,11 @@
 import AuthenticationService from './Authentication.service';
 import { AuthenticationControllerInterface } from './Authentication.interface';
 import { sign, verify, decode } from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
+import { createTransport } from 'nodemailer';
 import { Request,Response, NextFunction } from 'express';
 import { genSalt, compare, hash } from 'bcrypt';
 
- 
+
 class AuthenticationController implements AuthenticationControllerInterface{
 
 	private userService: any;
@@ -20,6 +20,8 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		// Find email if possible
 			// if found then
 				// compare password
+				// Load hash from your password DB.
+				// const matched = await compare(password, user.password);
 					// if compared then
 						// sign a token
 							// send it back to the frontend
@@ -35,6 +37,9 @@ class AuthenticationController implements AuthenticationControllerInterface{
 				// tell the user that email already taken
 			// if not then
 				// Hash the password
+				// Hash the password
+				// const salt = await bcrypt.genSalt(10);
+				// const hashed_password = await bcrypt.hash(password,salt);
 				// Store new user in the database
 				// sign a token
 					// send it back to the frontend	
@@ -61,3 +66,20 @@ class AuthenticationController implements AuthenticationControllerInterface{
 }
 
 export default AuthenticationController;
+
+// Create transporter object with credentials
+// var transporter = nodemailer.createTransport({
+// 	service :'gmail',
+// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+// });
+// // Check the language the user set in the app to send the email appropriated to his language
+// let mailTemplate;
+
+// // send it!
+// transporter.sendMail({
+// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
+//     to: email,
+//     subject: 'Reset password request',
+//     text: 'Hey there, it’s your link to change your password below ;) ', 
+//     html: mailTemplate
+// });
