@@ -4,9 +4,8 @@
 		<div class=" local-navbar-content-grid poppins local-text-white">
 			<div class='left-side'>
 				<p class="text-left">
-					ddffdfbfbfbbf
-				</p>
-				
+					WebCheck
+				</p>	
 			</div>
 			<div class='right-side'>
 				<p class="text-right" style="cursor:pointer;">Log out</p>

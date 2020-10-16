@@ -29,16 +29,38 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	addWebsite(website: websiteType) {
 		// Get website data
 		// Save it !!!
+		try {
+
+		}
+		catch(error:any) {
+			
+		}
 	}
 	public pushLog( status_code:number, user_id:string, website_id:string ){
 		// Get to know the reasons
 		// Push
+		try {
+
+		}
+		catch(error:any) {
+			
+		}
 	}
 	public getLogs( user_id:string, website_id:string ){
+		try {
 
+		}
+		catch(error:any) {
+			
+		}
 	}
 	public deleteLogs( user_id:string, website_id:string ){
+		try {
 
+		}
+		catch(error:any) {
+			
+		}
 	}
 	// public getLog( user_id:string, website_id:string ){
 		

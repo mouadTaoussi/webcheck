@@ -9,7 +9,7 @@
 
 <style>
 :root {
-  --primary : #05c46b;
+  --primary : #008272;
 }
 
 #app {

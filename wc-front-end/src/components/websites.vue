@@ -28,30 +28,29 @@
 		</div>
 
 		<div class="websites-area">
-			<div class="first-website website-component local-my-2">
-
-			</div>
-			<div class="second-website website-component local-my-2">
-
-			</div>
-			<div class="third-website website-component local-my-2">
-
-			</div>
+			<website></website>
+			<website></website>
+			<website></website>
 		</div>
 	</section>
 </template>
 
 <script>
-export default {
+	import website from './website.vue';
 
-  name: 'websites',
+	export default {
 
-  data () {
-    return {
+	  name: 'websites',
+	  components: {
+	  	website
+	  }
 
-    }
-  }
-}
+	  data () {
+	    return {
+	    	limit : 3
+	    }
+	  }
+	}
 </script>
 
 <style lang="css" scoped>
@@ -60,11 +59,6 @@ export default {
 		display: grid;
 		grid-template-columns: 2fr 2fr 2fr;
 		grid-gap: 10px;
-	}
-	.website-component {
-		background-color: white;
-		border: .2px solid rgba(0,0,0,.2);
-		height: 120px
 	}
 	.add-website {
 		width: 100%;
