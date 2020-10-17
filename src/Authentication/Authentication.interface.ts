@@ -10,9 +10,9 @@ type websiteType = {
 } 
 type userWebsites = [
 
-		websiteType | 
-		websiteType, websiteType | 
-		websiteType, websiteType, websiteType
+	websiteType | 
+	websiteType, websiteType | 
+	websiteType, websiteType, websiteType
 
 ] // User should put just 3 websites ! ! !
 

@@ -113,9 +113,9 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// tell the user that email is not exists
 	}
 
-	public async Authenticated?(request:Request,response:Response,next:NextFunction){
+	public async Authenticated?(request:Request | any,response:Response,next:NextFunction){
 		// Get the token in the query
-		const token: {token: string} = request.query.token;
+		const token = request.query.token;
 
 		// Ckecking...
 		if (!token) { 

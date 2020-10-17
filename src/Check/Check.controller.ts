@@ -12,13 +12,13 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		this.websitesLogService = new CheckWebsitesService();
 	}
 
-	public addWebsite(request:Request,response:Response) {
+	public addWebsite(request:Request | any,response:Response) {
 		// Get body data
 		// Service
 		// Send the response back
 		response.json({message : 'it works!'});
 	}
-	public websiteLogs(request:Request,response:Response) {
+	public websiteLogs(request:Request | any,response:Response) {
 		// Get user id to show thier websites logs
 		// Service
 		// Send the response back

@@ -43,7 +43,7 @@
 	  name: 'websites',
 	  components: {
 	  	website
-	  }
+	  },
 
 	  data () {
 	    return {
