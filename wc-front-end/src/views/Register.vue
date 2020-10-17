@@ -2,8 +2,8 @@
 	<div class="register-forms">
 		<div class="steps-area">
 			<div class="steps local-mb-4">
-				<div class="step-two current-step">1</div>
-				<div class="step-one">2</div>
+				<div class="step-one current-step">1</div>
+				<div class="step-two">2</div>
 			</div>
 			<!-- <div class="line-trough"></div> -->
 		</div>
