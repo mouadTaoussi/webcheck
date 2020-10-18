@@ -20,14 +20,14 @@
 			<router-link 
 				to='/register'
 				tag="p" 
-				style="display: inline; font-size: 12px;cursor:pointer;" 
-				class="local-mr-4"
+				style="display: inline-block; font-size: 12px;cursor:pointer;" 
+				class="local-mr-4 text-left"
 			>Forgot your password?</router-link>
 			<router-link 
 				to='/register'
 				tag="p" 
-				style="display: inline; font-size: 12px;cursor:pointer;" 
-				class="local-ml-4"
+				style="display: inline-block; font-size: 12px;cursor:pointer;" 
+				class="local-ml-4 text-right"
 			>Need an account?</router-link>
 		</div>
 	</div>

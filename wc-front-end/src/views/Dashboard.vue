@@ -4,7 +4,7 @@
 		<br>
 		<div class="row list-group-dashboard local-container-8">
 		  <div class="col-3">
-		    <div class="list-group" id="list-tab" role="tablist">
+		    <div class="list-group poppins" id="list-tab" role="tablist">
 		      <a 
 			      class="list-group-item list-group-item-action active text-left" 
 			      id="list-websites-list" 

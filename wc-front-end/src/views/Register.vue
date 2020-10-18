@@ -2,8 +2,8 @@
 	<div class="register-forms">
 		<div class="steps-area">
 			<div class="steps local-mb-4">
-				<div class="step-one current-step">1</div>
-				<div class="step-two">2</div>
+				<div v-on:click='backToRegisterForm()' class="step-one current-step">1</div>
+				<div v-on:click='nextToAddWebsite()' class="step-two">2</div>
 			</div>
 			<!-- <div class="line-trough"></div> -->
 		</div>
@@ -85,13 +85,13 @@
 				
 				</p>
 				<button 
-					style="width: 50%" 
+					style="width: 100%" 
 					class="local-btn local-btn-dark local-mb-2 local-text-white"
 					v-on:click='backToRegisterForm()'
 				>Go Back</button>
 				<button 
 					id="register-btn"
-					style="background-color: var(--primary);width: 50%" 
+					style="background-color: var(--primary);width: 100%" 
 					class="local-btn local-mb-2 local-text-white"
 					v-on:click='registerUser()'
 				>Register</button><br>
@@ -130,10 +130,10 @@ export default {
   	nextToAddWebsite : function (){
   		// Validating 
   		const validate = this.validateUserInputs();
-  		// Sign the step-two circle
-  		document.querySelector('.step-two').classList.add('current-step');
 
   		if (validate == true){
+  			// Sign the step-two circle
+  			document.querySelector('.step-two').classList.add('current-step');
   			// Going to the next step
   			document.querySelector('.register-form').id = "prev-form";
   		}  		
@@ -191,6 +191,7 @@ export default {
   		}
   	},
   	validateUserWebsite : function(){
+
   		if (this.userWebsite.name === "") {
   			document.querySelector('#website_name').style.borderColor = "red";
   			return false;
@@ -203,17 +204,19 @@ export default {
   			document.querySelector('#website').style.borderColor = "red";
   			return false;
   		}
-  		else if ( this.userWebsite.website.includes('http://') == false ) {
-  			document.querySelector('.website_error_message')
-  			.innerHTML = "Enter a valid Url that includes http:// or https://";
-  			return false;
-  		}
-  		else if ( this.userWebsite.website.includes('https://') == false ) {
-  			document.querySelector('.website_error_message')
-  			.innerHTML = "Enter a valid Url that includes http:// or https://";
-  			return false;
-  		}
+  		else if ( 
+  			!this.userWebsite.website.includes('http://') 
+  		) {
+  			if (!this.userWebsite.website.includes('https://')){
 
+  				document.querySelector('.website_error_message')
+	  			.innerHTML = "Enter a valid Url that includes http:// or https://";
+	  			return false;
+  			}
+  			else {
+  				return true;
+  			}
+  		}
   		else {
   			return true;
   		}	
@@ -240,6 +243,7 @@ export default {
 		color: white;
 		font-size: 16px;
 		justify-self : center;
+		cursor: pointer;
 	}
 	.current-step {
 		background-color: var(--primary)!important;
