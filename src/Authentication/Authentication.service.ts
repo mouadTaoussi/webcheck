@@ -83,6 +83,9 @@ class AuthenticationService implements AuthenticationServiceInterface {
 
 			// Change password
 			user.password = password;
+			
+			// then save it!
+			await user.save();
 
 			return {
 				changed : true,

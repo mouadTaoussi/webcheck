@@ -1,14 +1,14 @@
 <template>
 	<!-- Header -->
-	<div class="local-navbar-2 local-p-2 shadow">
-		<div class=" local-navbar-content-grid poppins local-text-white">
+	<div class="local-navbar-2 local-px-2">
+		<div class="local-navbar-content-grid poppins local-text-white">
 			<div class='left-side'>
-				<p class="text-left">
+				<p class="header-elements-brand text-left">
 					WebCheck
 				</p>	
 			</div>
 			<div class='right-side'>
-				<p class="text-right" style="cursor:pointer;">Log out</p>
+				<p class="header-elements-logout  text-right" style="cursor:pointer;">Log out</p>
 			</div>
 		</div>
 	</div>
@@ -31,4 +31,11 @@ export default {
 .local-navbar-2 {
 	background-color: var(--primary);
 }
+/*.local-navbar-content-grid {
+	align-items: center;	
+}*/
+.header-elements-brand, .header-elements-logout {
+	margin-top: 12px;
+}
+
 </style>

@@ -39,17 +39,19 @@ interface UserInterface {
 };
  
 interface AuthenticationControllerInterface {
-	loginUser      (request:Request, response:Response)  : any;
-	registerUser   (request:Request, response:Response)  : any;
-	resetPassword  (request:Request, response:Response)  : any; 
-	Authenticated? (request:Request, response:Response, next:NextFunction)  : any;
+	loginUser      (request:any, response:Response)                   : any;
+	registerUser   (request:any, response:Response)                   : any;
+	resetPassword  (request:any, response:Response)                   : any; 
+	updateUser     (request:any, response:Response)                   : any;
+	deleteUser     (request:any, response:Response)                   : any;
+	Authenticated  (request:any, response:Response, next:NextFunction): any;
 };
 
 interface AuthenticationServiceInterface {
-	addUser      (body : UserBody)                                                      
-	findUser     (options : {id:string | undefined, email:string | undefined})                                                           : any;
-	updateUser   (user_id:string, body: { name:string, email:string, active: boolean }) 
-	deleteUser   (user_id:string)                                     
+	addUser    (body : UserBody)                                                      :any;                                                    
+	findUser   (options : {id:string | undefined, email:string | undefined})          :any;                                                        : any;
+	updateUser (user_id:string, body: { name:string, email:string, active: boolean }) :any;
+	deleteUser (user_id:string)                                                       :any;                        
 };
 
 export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody };

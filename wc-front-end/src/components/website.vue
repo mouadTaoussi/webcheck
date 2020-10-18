@@ -70,7 +70,7 @@ export default {
 	}
 	.is_active , .is_down{
 		position: absolute;
-		top: 10px;
+		top: 12px;
 		right: 25px;
 		font-size: 12px;
 	}

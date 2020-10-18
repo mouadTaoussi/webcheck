@@ -16,7 +16,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 	// 	this.await userService = new AuthenticationService();
 	// }
 
-	public async loginUser(request:Request,response:Response) {
+	public async loginUser(request:any,response:Response) {
 		// Get body data
 		const body: { email:string, password:string } = request.body;
 
@@ -45,7 +45,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}	
 	}	
 		
-	public async registerUser(request:Request,response:Response) {
+	public async registerUser(request:any,response:Response) {
 
 		// Get body data
 		const body: UserBody = request.body;
@@ -78,7 +78,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}
 	}
 
-	public async resetPassword(request:Request,response:Response) {
+	public async resetPassword(request:any,response:Response) {
 		// Get body data
 		const body: { email: string } = request.body;
 
@@ -97,6 +97,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 
 			// Update it with forgotten one
 			const updatePassword = await userService.changePassword(body.email, hashed_password);
+
 			// then send it to the user's inbox via email
 			response.json({
 				sent : true,
@@ -112,8 +113,14 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		// if not then
 			// tell the user that email is not exists
 	}
+	public async updateUser(request:any,response:Response){
+		response.json(request.user)
+	} 
+	public async deleteUser(request:any,response:Response){
 
-	public async Authenticated?(request:Request | any,response:Response,next:NextFunction){
+	} 
+
+	public async Authenticated(request:Request | any,response:Response,next:NextFunction){
 		// Get the token in the query
 		const token = request.query.token;
 
