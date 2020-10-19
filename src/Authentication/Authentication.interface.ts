@@ -34,6 +34,8 @@ interface UserInterface {
 	email         : string;
 	password      : string | undefined;
 	active        : boolean;
+	receivingEmail: boolean;
+	displayTheme  : string;
 	websitesCount : number;
 	websites      : userWebsites | [];
 };

@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="login local-card shadow border local-p-4">
+	<div class="login-page">
+		<div class="login local-card shadow local-p-4">
 			<h1 class="text-left local-mb-4">Log in</h1>
 			<input 
 				type="text" 
@@ -9,7 +9,7 @@
 				autofocus="true"
 				class="form-control local-input my-2">
 			<input 
-				type="text" 
+				type="password" 
 				name="password" 
 				placeholder="Enter Your Password" 
 				class="form-control local-input my-2">
@@ -47,6 +47,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	.login-page {
+		padding-top: 70px;
+		height: 100vh;
+		background-image: url('../assets/login&registerBackground.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
 	.login {
 		width: 400px;
 		margin: 100px auto;

@@ -1,0 +1,48 @@
+<template>
+	<section>
+		<!-- <br><br> -->
+		<p class="text-left">Name:</p>
+		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Name">
+		<p class="text-left">Email:</p>
+		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Email">
+		<p class="text-left">Receiving emails:</p>
+		<select class="form-control local-input local-mb-2">
+			<option value="true">Enabled</option>
+			<option value="false">Disabled</option>
+		</select>
+		<p class="text-left">Choose theme:</p>
+		<select class="form-control local-input local-mb-2">
+			<option value="light">Light</option>
+			<option value="dark">Dark</option>
+		</select>
+		<div class="local-mt-4">
+			<button v-on:click="saveChanges()" style="float: right" class="local-btn local-ml-2 local-btn-primary">Save changes</button>
+			<button v-on:click="deleteAccount()" style="float: right" class="local-btn local-ml-2 local-btn-danger">Delete account</button>
+		</div>
+	</section>
+</template>
+
+<script>
+export default {
+
+  name: 'useraccount',
+
+  data () {
+    return {
+
+    }
+  },
+  methods : {
+  	saveChanges : function(){
+  		alert('Saved!');
+  	},
+  	deleteAccount : function(){
+  		// Password required
+  		confirm('Sure you want to delete this account!');
+  	},
+  }
+}
+</script>
+
+<style lang="css" scoped>
+</style>

@@ -26,8 +26,18 @@
   					<path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
 				</svg>
 				<div class='dropdown'>
-					<p v-on:click="deleteWebsite()" class="text-left dropdown-item">Delete Site</p>
-					<p class="text-left dropdown-item">Visit Site</p>
+					<p v-on:click="deleteWebsite()" class="text-left dropdown-item">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+						  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+						</svg>
+						Delete Site</p>
+					<p class="text-left dropdown-item">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill ="currentColor" xmlns="http://www.w3.org/2000/svg">
+						  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+						  <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+						</svg>
+						Visit Site</p>
 				</div>
 			</section>
 
@@ -88,7 +98,7 @@ export default {
 		position: absolute;
 		right: 20px;
 		border:.2px solid rgba(0,0,0,.2);
-		padding: 0px 0px 0px 0px;
+		padding: 10px 0px 10px 0px;
 		transition: all .2s ease-out;
 		transform: scaleY(0);
 		/*-ms-transform: scaleY(0);*/

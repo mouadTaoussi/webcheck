@@ -1,5 +1,5 @@
 <template>
-	<div class="register-forms">
+	<div class="register-page">
 		<div class="steps-area">
 			<div class="steps local-mb-4">
 				<div v-on:click='backToRegisterForm()' class="step-one current-step">1</div>
@@ -7,7 +7,7 @@
 			</div>
 			<!-- <div class="line-trough"></div> -->
 		</div>
-		<div class="register local-card shadow border local-p-4">
+		<div class="register local-card shadow local-p-4">
 			<section id="" class="single-form register-form">
 				<h1 class="text-left local-mb-4">Register</h1>
 				<input 
@@ -27,7 +27,7 @@
 					class="form-control local-input my-2">
 				<input 
 					id="password"
-					type="text" 
+					type="password" 
 					name="password" 
 					placeholder="Enter Your Password" 
 					v-model="userInfo.password"
@@ -37,7 +37,7 @@
 				</p>
 				<input 
 					id="password2"
-					type="text" 
+					type="password" 
 					name="password" 
 					placeholder="Confirm Your Password" 
 					v-model="userInfo.password2"
@@ -54,7 +54,7 @@
 					to='/login'
 					tag="p" 
 					style="display: inline; font-size: 12px;cursor:pointer;" 
-					class="local-mr-4 text-center"
+					class="local-mr-4 text-left"
 				>Have an account?</router-link>
 			</section>
 			<section id="" class="single-form addwebsite-form">
@@ -226,8 +226,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-	.register-forms {
-		margin: 70px;
+	.register-page {
+		padding-top: 70px;
+		height: 100vh;
+		background-image: url('../assets/login&registerBackground.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
 	}
 	.steps {
 		display: grid;

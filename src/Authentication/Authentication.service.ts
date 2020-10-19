@@ -1,5 +1,6 @@
 import UserModel from './Authentication.model';
-import { AuthenticationServiceInterface, UserBody } from './Authentication.interface'
+import WebsiteLogSchema from '../Check/Check.model'.
+import { AuthenticationServiceInterface, UserBody, UserInterface } from './Authentication.interface'
  
 class AuthenticationService implements AuthenticationServiceInterface {
 
@@ -101,8 +102,16 @@ class AuthenticationService implements AuthenticationServiceInterface {
 	}
 	public async deleteUser(user_id: string){
 		try {
+			// Remove user
 			const user = await UserModel.findById(user_id).remove();
 			// Delete thier logs
+			// Delete thier logs
+			const logs = await WebsiteLogSchema.find({user_id: user_id});
+
+			for (var i = 0; logs.length > i; i++) {
+				await logs[i].remove();
+			}
+
 			return {
 				deleted : true,
 				message : 'user deleted successfully'
