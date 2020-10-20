@@ -12,7 +12,7 @@ const UserSchema = new Schema({
 	email         : { type: String,  required: true },
 	password      : { type: String,  required: true },
 	active        : { type: Boolean, required: true }, // if he would to check his websites
-	receivingEmail: { type: Boolean, required: true }, // if he would to send emails to him
+	receivingEmail: { type: Boolean, default:  true ,  required: true }, // if he would to send emails to him
 	displayTheme  : { type: String,  default: "light", required: true  },  // display theme he prefer
 	websitesCount : { type: Number,  required: true }, // How many websites put: increment whenever added a website, decrement when a website got deleted
 	websites      : [       userWebsiteSchema       ]  // user's websites

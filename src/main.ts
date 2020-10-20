@@ -17,7 +17,7 @@ application.use(helmet());
 application.use(bodyParser.json());
 
 connect(application_config.mongodb_connection,
-	{ useNewUrlParser: true, useUnifiedTopology: true }
+	{ useNewUrlParser: true, useUnifiedTopology: false }
 	,(error:any)=>{
 	if (error){
 		console.log(error);

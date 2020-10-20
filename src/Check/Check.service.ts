@@ -33,7 +33,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 		}
 		catch(error:any) {
-			
+			return {
+				status  : 500, 
+				message : "Something went wrong!"
+			}
 		}
 	}
 	public pushLog( status_code:number, user_id:string, website_id:string ){
@@ -43,7 +46,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 		}
 		catch(error:any) {
-			
+			return {
+				status  : 500, 
+				message : "Something went wrong!"
+			}
 		}
 	}
 	public getLogs( user_id:string, website_id:string ){
@@ -51,7 +57,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 		}
 		catch(error:any) {
-			
+			return {
+				status  : 500, 
+				message : "Something went wrong!"
+			}
 		}
 	}
 	public deleteLogs( user_id:string, website_id:string ){
@@ -59,7 +68,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 		}
 		catch(error:any) {
-			
+			return {
+				status  : 500, 
+				message : "Something went wrong!"
+			}
 		}
 	}
 	// public getLog( user_id:string, website_id:string ){

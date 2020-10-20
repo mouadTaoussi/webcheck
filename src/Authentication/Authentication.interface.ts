@@ -50,10 +50,11 @@ interface AuthenticationControllerInterface {
 };
 
 interface AuthenticationServiceInterface {
-	addUser    (body : UserBody)                                                      :any;                                                    
-	findUser   (options : {id:string | undefined, email:string | undefined})          :any;                                                        : any;
-	updateUser (user_id:string, body: { name:string, email:string, active: boolean }) :any;
-	deleteUser (user_id:string)                                                       :any;                        
+	addUser        (body : UserBody)                                                      :any;                                                    
+	findUser       (options : {id:string | undefined, email:string | undefined})          :any;                                                        : any;
+	updateUser     (user_id:string, body: { name:string, email:string, active: boolean }) :any;
+	changePassword (id: string, password: string)                                         :any;                    
+	deleteUser     (user_id:string)                                                       :any;    
 };
 
 export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody };

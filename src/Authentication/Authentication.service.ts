@@ -1,5 +1,5 @@
 import UserModel from './Authentication.model';
-import WebsiteLogSchema from '../Check/Check.model'.
+import WebsiteLogSchema from '../Check/Check.model';
 import { AuthenticationServiceInterface, UserBody, UserInterface } from './Authentication.interface'
  
 class AuthenticationService implements AuthenticationServiceInterface {
@@ -9,102 +9,101 @@ class AuthenticationService implements AuthenticationServiceInterface {
 	constructor(){
 		this.usermodel = UserModel;
 	}
-	public async addUser(body : UserBody) {
+
+	public async addUser(body : UserBody): Promise<{status:number, saved:boolean,user:any,message:string | null}> {
 		try {
 			const init_new_user = new UserModel(body);
 			const new_user = await init_new_user.save();
-
+		
 			return {
-				found : false,
-				user : new_user
-			}
+			status : 200, saved : true, message : null, user : new_user }
 		}
 		catch(error) {
+			console.log(error)
 			return {
-				found : false,
-				message  : 'something went wrong! Try again.',
-				user : null
-			}
+			status : 500, saved : false, message  : 'something went wrong! Try again.', user : null }
 		}
 	}
 
-	public async findUser(options : {id:string | undefined, email:string | undefined}) {
+	public async findUser(options : {id:string | undefined, email:string | undefined})
+	:Promise<{status:number, found:boolean, message:string | null, user:any}> 
+	{
 		try {
 			if (options.id == undefined && options.email != undefined) {
 
 				const user = await UserModel.findOne({email: options.email});
 
-				if (user == null ) return { found : false, message : "user doesn't exists!" };
+				if (user == null ) return {
+				status : 404, found : false, message : "user doesn't exists!", user: null };
 
-				return { found : true, user  : user }
+				return {
+				status : 200, found : true, message: null, user  : user }
 			}
 			else if (options.id != undefined && options.email == undefined) {
 
 				const user = await UserModel.findById(options.id);
 
-				if (user == null ) return { found : false, message : "user doesn't exists!" };
+				if (user == null ) return {
+				status : 404, found : false, message : "user doesn't exists!", user: null };
 
-				return { found : true, user  : user }
+				return {
+				status : 200, found : true, message: null, user  : user }
 			}
 			else {  
-				return { found : false, message: 'something went wrong! Try again.' }
-			 }
+				return {
+				status : 404, found : false, message: 'something went wrong! Try again.',user: null }
+			}
 		}
 		catch(error) {
+			console.log(error)
 			return {
-				found : false,
-				message  : 'something went wrong! Try again.'
+				status : 500, found : false, 
+				message  : 'something went wrong! Try again.', user : null
 			}
 		}
 	}
-	public async updateUser(user_id: string, body: { name:string, email:string, active: boolean }){
+
+	public async updateUser(user_id: string, body: { name:string, email:string, active: boolean })
+	:Promise<{status:number, updated:boolean,message:string}> 
+	{
 		try {
-			const user = await UserModel.findById(user_id);
+			const user = await UserModel.findByIdAndUpdate(user_id, body);
 
-			// Updating
-			user.name    = body.name;
-			user.email   = body.email;
-			user.active  = body.active;
-
-			// then save the user
-			await user.save();
-
-			return {updated : true, message: 'user updated successfully!' }
+			return { status : 200, updated : true, message: 'user updated successfully!' }
 
 		}
 		catch(error) {
-			return {
+			console.log(error)
+
+			return { status : 500,
 				updated : false, message: 'something went wrong! Try again.' 
 			}			
 		}
 	}
-	public async changePassword(email: string, password: string){
+
+	public async changePassword(id: string, password: string)
+	:Promise<{status:number, changed:boolean,message:string}>
+	{
 		try {
-			const user = await UserModel.findOne({email: email});
-
-			// Change password
-			user.password = password;
+			const user = await UserModel.findByIdAndUpdate(id,{ password: password });
 			
-			// then save it!
-			await user.save();
-
 			return {
-				changed : true,
-				message : 'password changed successfully!'
+				status : 200, changed : true, message : 'password changed successfully!'
 			}
 		}
 		catch(error) {
-			return {
-				changed : false,
-				message : 'something went wrong! Try again.'
-			}
+			console.log(error)
+
+			return { status : 500, changed : false, message : 'something went wrong! Try again.' }
 		}
 	}
-	public async deleteUser(user_id: string){
+
+	public async deleteUser(user_id: string)
+	:Promise<{status:number, deleted: boolean,message: string}>
+	{
 		try {
 			// Remove user
 			const user = await UserModel.findById(user_id).remove();
-			// Delete thier logs
 			// Delete thier logs
 			const logs = await WebsiteLogSchema.find({user_id: user_id});
 
@@ -112,16 +111,12 @@ class AuthenticationService implements AuthenticationServiceInterface {
 				await logs[i].remove();
 			}
 
-			return {
-				deleted : true,
-				message : 'user deleted successfully'
-			}
+			return { status : 200, deleted : true, message : 'user deleted successfully' }
 		}
 		catch(error) {
-			return {
-				deleted : false,
-				message : 'something went wrong! Try again.'
-			}
+			console.log(error)
+
+			return { status : 500, deleted : false, message : 'something went wrong! Try again.' }
 		}
 	}
 }

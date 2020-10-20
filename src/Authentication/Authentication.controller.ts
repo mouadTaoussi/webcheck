@@ -27,21 +27,21 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		if (userEmail.found == true) {
 			// compare password
 			// Load hash from your password DB.
-			const matched = await compare(body.password, userEmail.user.password);
+			const matched: boolean = await compare(body.password, userEmail.user.password);
 
 			// if compared then
-			if (matched != true) {response.json({ message: "credentials aren't correct!" })}
+			if (matched != true) {response.status(404).send({ message: "credentials aren't correct!" })}
 			else {
 				// sign a token
 				const user_token:string = sign({id:userEmail.user._id, email: userEmail.user.email} ,'bgfgngf');
 
 				// send it back to the frontend
-				response.json({ loggedin : true, message : "Logged in!", user_token : user_token })
+				response.status(userEmail.status).send({ loggedin : true, message : "Logged in!", user_token : user_token })
 			}
 		}
 		else {
 			// if not then
-			response.json({ loggedin : false, message : "Incorrect credentials!", }) 
+			response.status(userEmail.status).send({ loggedin : false, message : "Incorrect credentials!", }) 
 		}	
 	}	
 		
@@ -55,7 +55,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		
 		// if true then
 		// tell the user that email already taken
-		if (emailExists.found == true) {response.json({registered : false,message : 'email already exists'})}
+		if (emailExists.found == true) {response.status(404).send({registered : false,message : 'email already exists'})}
 		else {
 			// if not then
 			// Hash the password
@@ -69,12 +69,22 @@ class AuthenticationController implements AuthenticationControllerInterface{
 
 			// Store new user in the database
 			const new_user = await userService.addUser(body);
+			// Check whether saved or not
+			if (new_user.saved == true) {
+
+				const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,'bgfgngf');
+
+				// send it back to the frontend	
+				response.status(new_user.status).send({ registered : true, message: "Registered successfully!", user_token:user_token  })
+
+			}
+			else {
+				response.status(new_user.status).send({
+					message : "Something went wrong!"
+				})
+			}
 
 			// sign a token
-			const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,'bgfgngf');
-
-			// send it back to the frontend	
-			response.json({ registered : true, message: "Registered successfully!", user_token:user_token  })
 		}
 	}
 
@@ -96,52 +106,37 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			const hashed_password = await hash(password, salt);
 
 			// Update it with forgotten one
-			const updatePassword = await userService.changePassword(body.email, hashed_password);
+			const updatePassword:{ 
+				status:number,changed:boolean, message:string 
+			} = await userService.changePassword(user.user._id, hashed_password);
 
-			// then send it to the user's inbox via email
-			// Create transporter object with credentials
-			// var transporter = nodemailer.createTransport({
-			// 	service :'gmail',
-			// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
-			// });
-			// // Check the language the user set in the app to send the email appropriated to his language
-			// let mailTemplate;
-
-			// // send it!
-			// transporter.sendMail({
-			// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
-			//     to: email,
-			//     subject: 'Reset password request',
-			//     text: 'Hey there, it’s your link to change your password below ;) ', 
-			//     html: mailTemplate
-			// });
-			
-			response.json({
+			response.status(updatePassword.status).send({
 				sent : true,
 				message : "email sent to your inbox!",
 			})
 		}
 		else {
-			response.json({
+			response.status(404).send({
 				message : "Make sure to put a correct email!",
 				sent    : false
 			})
 		}
-		// if not then
-			// tell the user that email is not exists
 	}
 	public async updateUser(request:any,response:Response){
 		// Get the user by its token
-		const user:{ iat:string, email:string, id:string } = request.user;
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
 
 		// Get body data
-		const body: { name: string, email: string, active: boolean } = request.body;
+		const body: { 
+			name: string, email: string, active: boolean } = request.body;
 
 		// Update user
-		const updating: { updated:boolean,message:string } = await userService.updateUser(user.id,body);
+		const updating: { 
+			status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
 
 		// Response back
-		response.json({
+		response.status(updating.status).send({
 			updated : updating.updated,
 			message : updating.message
 		})
@@ -152,6 +147,8 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		// Get the password to authorize user to change his credentials
 		const password: { password: string } = request.body.password;
 
+		if (!password) {response.status(400).send({message:"no password prvided!"}); response.end()};
+
 		// Find user by its token
 		const user: any = await userService.findUser({ email: undefined ,id: request.user.id});
 
@@ -159,27 +156,24 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		if (user.found == true) {
 			// compare password
 			// Load hash from your password DB.
-			const matched: boolean = await compare(password, user.password);
+			const matched: boolean = await compare(password, user.user.password);
+
 			// Check if the passwords matched
 			if (matched) {
 				// Delete user
-				const user: { deleted:boolean,message:string } = await userService.deleteUser(request.user.id);
+				const user: { 
+					status:number,deleted:boolean,message:string } = await userService.deleteUser(request.user.id);
 				// Delete thier logs
-				response.json({
-					deleted : user.deleted,
-					message : user.message
+				response.status(user.status).send({
+					deleted : user.deleted, message : user.message
 				})
 			}
 			else {
-				response.status(401).send({
-					message : 'Not authorized'
-				})
+				response.status(401).send({ message : 'Not authorized' })
 			}
 		}
 		else {
-			response.status(401).send({
-				message : 'Not authorized'
-			})
+			response.status(401).send({ message : 'Not authorized' })
 		}
 	} 
 
@@ -204,3 +198,20 @@ class AuthenticationController implements AuthenticationControllerInterface{
 }
 
 export default AuthenticationController;
+// then send it to the user's inbox via email
+// Create transporter object with credentials
+// var transporter = nodemailer.createTransport({
+// 	service :'gmail',
+// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+// });
+// // Check the language the user set in the app to send the email appropriated to his language
+// let mailTemplate;
+
+// // send it!
+// transporter.sendMail({
+// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
+//     to: email,
+//     subject: 'Reset password request',
+//     text: 'Hey there, it’s your link to change your password below ;) ', 
+//     html: mailTemplate
+// });
