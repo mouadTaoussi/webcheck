@@ -26,51 +26,100 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		]
 	}
 
-	addWebsite(website: websiteType) {
+	public async addWebsite(website: websiteType)
+	:Promise<{status:number,message:string | null,data:any | null}> 
+	 {
 		// Get website data
 		// Save it !!!
 		try {
-
+			return {
+				status  : 200, 
+				message : null,
+				data : null
+			}
 		}
-		catch(error:any) {
+		catch(error) {
 			return {
 				status  : 500, 
-				message : "Something went wrong!"
+				message : "Something went wrong!",
+				data : null
+			}
+		}
+
+	}
+	public async deleteWebsite(website_id: string)
+	:Promise<{status:number,message:string | null,data:any | null}> 
+	 {
+		// Get website data
+		// Save it !!!
+		try {
+			return {
+				status  : 200, 
+				message : null,
+				data : null
+			}
+		}
+		catch(error) {
+			return {
+				status  : 500, 
+				message : "Something went wrong!",
+				data : null
 			}
 		}
 	}
-	public pushLog( status_code:number, user_id:string, website_id:string ){
+	public async pushLog( status_code:number, user_id:string, website_id:string )
+	:Promise<{status:number,message:string | null,data:any | null}> 
+	{
 		// Get to know the reasons
 		// Push
 		try {
-
+			return {
+				status  : 200, 
+				message : null,
+				data : null
+			}
 		}
-		catch(error:any) {
+		catch(error) {
 			return {
 				status  : 500, 
-				message : "Something went wrong!"
+				message : "Something went wrong!",
+				data : null
 			}
 		}
 	}
-	public getLogs( user_id:string, website_id:string ){
+	public async getLogs( user_id:string, website_id:string )
+	:Promise<{status:number,message:string | null,data:any | null}> 
+	{
 		try {
-
+			return {
+				status  : 200, 
+				message : null,
+				data : null
+			}
 		}
-		catch(error:any) {
+		catch(error) {
 			return {
 				status  : 500, 
-				message : "Something went wrong!"
+				message : "Something went wrong!",
+				data : null
 			}
 		}
 	}
-	public deleteLogs( user_id:string, website_id:string ){
+	public async deleteLogs( user_id:string, website_id:string | undefined )
+	:Promise<{status:number,message:string | null,data:any | null}> 
+	{
 		try {
-
+			return {
+				status  : 200, 
+				message : null,
+				data : null
+			}
 		}
-		catch(error:any) {
+		catch(error) {
 			return {
 				status  : 500, 
-				message : "Something went wrong!"
+				message : "Something went wrong!",
+				data : null
 			}
 		}
 	}

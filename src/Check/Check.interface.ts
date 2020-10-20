@@ -3,7 +3,10 @@ import { websiteType } from '.././Authentication/Authentication.interface';
  
 interface CheckWebsiteControllerInterface {
 	addWebsite(request:Request,response:Response)   : any
+	deleteWebsite(request:any,response:Response)    : any
 	websiteLogs(request:Request,response:Response)  : any
+	deleteWebsiteLogs(request:Request,response:Response)  : any
+	checkEveryWebsiteExists()                             : any
 };
 
 interface CheckWebsiteServiceInterface {
@@ -12,10 +15,11 @@ interface CheckWebsiteServiceInterface {
 	*/
 	// websitelogmodel                                                  : any
 	// statusCodes                                                      : ServerStatusCodesType<string>
-	addWebsite(website: websiteType)                                 :any
+	addWebsite(website: websiteType)                                 : any
+	deleteWebsite(website_id: string)                                : any
 	pushLog( status_code:number, user_id:string, website_id:string ) : any
 	getLogs( user_id:string, website_id:string )                     : any
-	deleteLogs( user_id:string, website_id:string )                  : any
+	deleteLogs( user_id:string, website_id:string | undefined )      : any
 };
 
 type ServerStatusCodesType<GenericType> = [

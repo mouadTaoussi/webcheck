@@ -12,17 +12,26 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		this.websitesLogService = new CheckWebsitesService();
 	}
 
-	public addWebsite(request:any | any,response:Response) {
+	public async addWebsite(request:any,response:Response):Promise<void> {
 		// Get body data along side owner 
 		// Service
 		// Send the response back
 		response.json({message : 'it works!'});
 	}
-	public websiteLogs(request:any | any,response:Response) {
+	public async deleteWebsite(request:any,response:Response):Promise<void> {
+		// Get body data along side owner 
+		// Service
+		// Send the response back
+		response.json({message : 'it works!'});
+	}
+	public async websiteLogs(request:any,response:Response):Promise<void> {
 		// Get user id to show thier websites logs
 		// Service
 		// Send the response back
 		response.json({message : 'it works!'});
+	}
+	public async deleteWebsiteLogs(request:Request,response:Response):Promise<void> {
+		
 	}
 	public checkEveryWebsiteExists(){
 		// Get all users

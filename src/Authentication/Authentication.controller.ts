@@ -16,7 +16,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 	// 	this.await userService = new AuthenticationService();
 	// }
 
-	public async loginUser(request:any,response:Response) {
+	public async loginUser(request:any,response:Response):Promise<void>  {
 		// Get body data
 		const body: { email:string, password:string } = request.body;
 
@@ -45,7 +45,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}	
 	}	
 		
-	public async registerUser(request:any,response:Response) {
+	public async registerUser(request:any,response:Response):Promise<void> {
 
 		// Get body data
 		const body: UserBody = request.body;
@@ -88,7 +88,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}
 	}
 
-	public async resetPassword(request:any,response:Response) {
+	public async resetPassword(request:any,response:Response):Promise<void> {
 		// Get body data
 		const body: { email: string } = request.body;
 
@@ -122,7 +122,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			})
 		}
 	}
-	public async updateUser(request:any,response:Response){
+	public async updateUser(request:any,response:Response):Promise<void> {
 		// Get the user by its token
 		const user: { 
 			iat:string, email:string, id:string } = request.user;
@@ -142,7 +142,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		})
 
 	} 
-	public async deleteUser(request:any,response:Response){
+	public async deleteUser(request:any,response:Response):Promise<void> {
 		// Require password to change user data
 		// Get the password to authorize user to change his credentials
 		const password: { password: string } = request.body.password;
@@ -177,7 +177,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}
 	} 
 
-	public async Authenticated(request:Request | any,response:Response,next:NextFunction){
+	public async Authenticated(request:Request | any,response:Response,next:NextFunction):Promise<void> {
 		// Get the token in the query
 		const token = request.query.token;
 
