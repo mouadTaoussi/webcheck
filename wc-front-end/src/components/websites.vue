@@ -22,8 +22,12 @@
 			  </div>
 			</div>
 			<!-- Button trigger modal -->
-			<button type="button" class="local-btn local-btn-primary add-website-btn" data-toggle="modal" data-target="#exampleModal">
-			  Add Website
+			<button 
+				type="button" 
+				class="local-btn add-website-btn" 
+				data-toggle="modal" 
+				data-target="#exampleModal">
+			  	Add Website
 			</button>
 		</div>
 
@@ -66,10 +70,27 @@
 		height:50px;
 	}
 	.add-website-btn {
+		background-color: var(--primary-app);
 		position: absolute;
 		top: 0;
 		right: 0;
+		color: white;
 	}
+	@media only screen and (max-width: 600px) {
+		.websites-area {
+			display: grid;
+			grid-template-columns: 100%;
+			grid-column-gap: 10px;
+		}
+		.add-website-btn {
+			background-color: var(--primary-app);
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: white;
+		}
+	}
+
 /*	.add-website-modal {
 		background-color: white;
 		height: 500px;

@@ -1,5 +1,5 @@
 import AuthenticationService from './Authentication.service';
-import { AuthenticationControllerInterface, UserBody, UserInterface } from './Authentication.interface';
+import { AuthenticationControllerInterface, UserBody, UserInterface, UserUpdate } from './Authentication.interface';
 import { sign, verify, decode } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 import { Request,Response, NextFunction } from 'express';
@@ -107,7 +107,9 @@ class AuthenticationController implements AuthenticationControllerInterface{
 
 			// Update it with forgotten one
 			const updatePassword:{ 
+
 				status:number,changed:boolean, message:string 
+				
 			} = await userService.changePassword(user.user._id, hashed_password);
 
 			response.status(updatePassword.status).send({
@@ -128,8 +130,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			iat:string, email:string, id:string } = request.user;
 
 		// Get body data
-		const body: { 
-			name: string, email: string, active: boolean } = request.body;
+		const body: UserUpdate = request.body;
 
 		// Update user
 		const updating: { 

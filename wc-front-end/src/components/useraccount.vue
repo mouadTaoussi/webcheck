@@ -10,14 +10,26 @@
 			<option value="true">Enabled</option>
 			<option value="false">Disabled</option>
 		</select>
+		<p class="text-left">Check your websites:</p>
+		<select class="form-control local-input local-mb-2">
+			<option value="true">Enabled</option>
+			<option value="false">Disabled</option>
+		</select>
 		<p class="text-left">Choose theme:</p>
 		<select class="form-control local-input local-mb-2">
 			<option value="light">Light</option>
 			<option value="dark">Dark</option>
 		</select>
 		<div class="local-mt-4">
-			<button v-on:click="saveChanges()" style="float: right" class="local-btn local-ml-2 local-btn-primary">Save changes</button>
-			<button v-on:click="deleteAccount()" style="float: right" class="local-btn local-ml-2 local-btn-danger">Delete account</button>
+			<button  
+				v-on:click="saveChanges()" 
+				class="local-btn local-ml-2 save-changes-btn"
+			>Save changes</button>
+			<button 
+				v-on:click="deleteAccount()" 
+				style="float: right" 
+				class="local-btn local-ml-2 local-btn-danger">
+			Delete account</button>
 		</div>
 	</section>
 </template>
@@ -27,13 +39,19 @@ export default {
 
   name: 'useraccount',
 
-  data () {
+  data : () => {
     return {
-
+    	name           : null, 
+		email          : null, 
+		receivingEmail : null,
+		active         : null, 
+		displayTheme   : null,
     }
   },
   methods : {
   	saveChanges : function(){
+
+  		// Validate function
   		alert('Saved!');
   	},
   	deleteAccount : function(){
@@ -44,5 +62,11 @@ export default {
 }
 </script>
 
+
 <style lang="css" scoped>
+	.save-changes-btn {
+		background-color: var(--primary-app);
+		color: white;
+		float: right;
+	}
 </style>

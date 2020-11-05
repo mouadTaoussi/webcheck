@@ -1,6 +1,6 @@
 <template>
 	<div class="d-flex justify-content-center">
-	  <div style="color: var(--primary);" class="spinner-border" role="status">
+	  <div style="color: var(--primary-app);" class="spinner-border" role="status">
 	    <span class="sr-only">Loading...</span>
 	  </div>
 	</div>

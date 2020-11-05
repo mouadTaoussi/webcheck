@@ -101,6 +101,7 @@ export default {
 		padding: 10px 0px 10px 0px;
 		transition: all .2s ease-out;
 		transform: scaleY(0);
+		z-index: 999;
 		/*-ms-transform: scaleY(0);*/
 	}
 	.dropdown-item {

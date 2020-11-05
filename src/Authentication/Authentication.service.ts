@@ -1,6 +1,6 @@
 import UserModel from './Authentication.model';
 import WebsiteLogSchema from '../Check/Check.model';
-import { AuthenticationServiceInterface, UserBody, UserInterface } from './Authentication.interface'
+import { AuthenticationServiceInterface, UserBody, UserInterface, UserUpdate } from './Authentication.interface'
  
 class AuthenticationService implements AuthenticationServiceInterface {
 
@@ -63,7 +63,7 @@ class AuthenticationService implements AuthenticationServiceInterface {
 		}
 	}
 
-	public async updateUser(user_id: string, body: { name:string, email:string, active: boolean })
+	public async updateUser(user_id: string, body: UserUpdate)
 	:Promise<{status:number, updated:boolean,message:string}> 
 	{
 		try {
@@ -75,8 +75,8 @@ class AuthenticationService implements AuthenticationServiceInterface {
 		catch(error) {
 			console.log(error)
 
-			return { status : 500,
-				updated : false, message: 'something went wrong! Try again.' 
+			return { 
+				status : 500, updated : false, message: 'something went wrong! Try again.' 
 			}			
 		}
 	}

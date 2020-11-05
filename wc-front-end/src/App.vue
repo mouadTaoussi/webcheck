@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      
-    </div> -->
+ 
     <router-view/>
   </div>
 </template>
 
 <style>
 :root {
-  --primary : #008272;
+  --primary-app : #008272;
 }
 
 #app {

@@ -1,5 +1,6 @@
 <template>
 	<div class="register-page">
+		<div class="brand"></div>
 		<div class="steps-area">
 			<div class="steps local-mb-4">
 				<div v-on:click='backToRegisterForm()' class="step-one current-step">1</div>
@@ -46,7 +47,7 @@
 				
 				</p>
 				<button 
-					style="background-color: var(--primary);width: 100%" 
+					style="background-color: var(--primary-app);width: 100%" 
 					class="local-btn local-my-2 local-text-white"
 					v-on:click='nextToAddWebsite()'
 				>Next step</button>
@@ -91,7 +92,7 @@
 				>Go Back</button>
 				<button 
 					id="register-btn"
-					style="background-color: var(--primary);width: 100%" 
+					style="background-color: var(--primary-app);width: 100%" 
 					class="local-btn local-mb-2 local-text-white"
 					v-on:click='registerUser()'
 				>Register</button><br>
@@ -227,12 +228,21 @@ export default {
 
 <style lang="css" scoped>
 	.register-page {
-		padding-top: 70px;
+		padding-top: 20px;
 		height: 100vh;
 		background-image: url('../assets/login&registerBackground.svg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
+	}
+	.brand {
+		background-image: url('.././assets/logo_light.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 270px;
+		height: 120px;
+		margin: 0 auto;
 	}
 	.steps {
 		display: grid;
@@ -251,7 +261,7 @@ export default {
 		cursor: pointer;
 	}
 	.current-step {
-		background-color: var(--primary)!important;
+		background-color: var(--primary-app)!important;
 	}
 	.register {
 		margin: 0 auto;

@@ -40,6 +40,16 @@ interface UserInterface {
 	websites      : userWebsites | [];
 };
  
+// Used body user to update his profile
+interface UserUpdate { 
+	name: string, 
+	email: string, 
+	receivingEmail:string 
+	active: boolean, 
+	displayTheme:string,
+}
+
+// Interface used to describe authentication controller methods ! ! !
 interface AuthenticationControllerInterface {
 	loginUser      (request:any, response:Response)                   : any;
 	registerUser   (request:any, response:Response)                   : any;
@@ -49,6 +59,7 @@ interface AuthenticationControllerInterface {
 	Authenticated  (request:any, response:Response, next:NextFunction): any;
 };
 
+// Interface used to describe authentication service methods
 interface AuthenticationServiceInterface {
 	addUser        (body : UserBody)                                                      :any;                                                    
 	findUser       (options : {id:string | undefined, email:string | undefined})          :any;                                                        : any;
@@ -57,4 +68,4 @@ interface AuthenticationServiceInterface {
 	deleteUser     (user_id:string)                                                       :any;    
 };
 
-export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody };
+export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate };

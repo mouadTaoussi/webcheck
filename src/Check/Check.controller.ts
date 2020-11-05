@@ -1,9 +1,9 @@
 import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface } from './Check.interface';
 import axios from 'axios';
-import { generateVAPIDKeys } from 'web-push';
+import { generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
- 
+ // setVapidDetails()
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
 	private  websitesLogService  : any;

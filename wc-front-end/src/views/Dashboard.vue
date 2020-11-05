@@ -2,8 +2,8 @@
 	<div>
 		<headercomponent></headercomponent>
 		<br>
-		<div class="row list-group-dashboard local-container-8">
-		  <div class="col-3">
+		<div class="dashboard-row list-group-dashboard local-container-8">
+		  <div class="dashboard-column">
 		    <div class="list-group poppins" id="list-tab" role="tablist">
 		      <a 
 			      class="list-group-item list-group-item-action active text-left" 
@@ -59,7 +59,7 @@
 		  Settings</a>
 		    </div>
 		  </div>
-		  <div class="col-9">
+		  <div class="dashboard-column">
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show active" id="list-websites" role="tabpanel" aria-labelledby="list-websites-list">
 		      	<h3 class="text-left local-mb-4">Your Websites</h3>
@@ -120,6 +120,8 @@ export default {
 
 <style lang="css" scoped>
 	.dashboard {
+	}
+	.dashboard-row {
 		display:  grid;
 		grid-template-columns: 1.2fr 4fr;
 		grid-gap: 20px;
@@ -133,5 +135,12 @@ export default {
 	.list-group-dashboard {
 		position: sticky!important;
 		top: 20px;
+	}
+	@media only screen and (max-width: 800px) {
+		.dashboard-row {
+			display:  grid;
+			grid-template-columns: 100%;
+			grid-column-gap: 20px;
+		}
 	}
 </style>
