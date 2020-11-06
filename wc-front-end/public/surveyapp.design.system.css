@@ -404,6 +404,10 @@
 	color: white;
 
 }
+/* Modal */ 
+.local-modal {
+	border-radius: 0!important;
+}
  /************************* Layouts *****************************/
 /** Margin & Padding  **/
 .local-m-2 {margin: 10px;}

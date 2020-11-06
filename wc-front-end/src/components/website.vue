@@ -5,7 +5,7 @@
 			<p class="text-left website_name"><strong>HelloWorld</strong></p>
 
 			<div class="activity_status">
-				<p v-if="1 == 1" class="is_active text-success">
+				<p v-if="2 == 1" class="is_active text-success">
 					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 					  <circle cx="8" cy="8" r="8"/>
 					</svg>
@@ -26,12 +26,12 @@
   					<path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
 				</svg>
 				<div class='dropdown'>
-					<p v-on:click="deleteWebsite()" class="text-left dropdown-item">
+					<p v-on:click="delete_website()" class="text-left dropdown-item">
 						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 						  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 						</svg>
-						Delete Site</p>
+						Delete Site</p><br><br>
 					<p class="text-left dropdown-item">
 						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill ="currentColor" xmlns="http://www.w3.org/2000/svg">
 						  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -46,7 +46,7 @@
 	</section>
 </template>
 
-<script>
+<script>	
 export default {
 
   name: 'website',
@@ -54,15 +54,20 @@ export default {
 
   data () {
     return {
-
+    	websiteInfo : {
+    		name : "",
+    		description : "",
+    		website : ""
+    	}
     }
   },
   methods : {
-  	deleteWebsite: ()=>{
+  	delete_website: function(){
   		// Hide the showed dropdowns
   		document.querySelectorAll(".dropdown").forEach((dropdown)=>{
   			dropdown.style.transform = 'scaleY(0)';
   		})
+  		this.$emit('deleteOne',"ffff")
   	}
   }
 }

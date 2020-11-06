@@ -9,8 +9,17 @@
 			<!-- <div class="line-trough"></div> -->
 		</div>
 		<div class="register local-card shadow local-p-4">
+			<!-- Personel info -->
 			<section id="" class="single-form register-form">
+				<!-- Brand for smaller devices -->
+				<div width="100px"  height="50px" class="brand-small-sevices"></div>
 				<h1 class="text-left local-mb-4">Register</h1>
+				<!-- Alert -->
+				<alert 
+					v-bind:style="'display:' + alertStatus.display" 
+					v-bind:type="alertStatus.type" 
+					v-bind:Message="alertStatus.message"
+				></alert>
 				<input 
 					id="user_name"
 					type="text" 
@@ -53,13 +62,18 @@
 				>Next step</button>
 				<router-link 
 					to='/login'
-					tag="p" 
+					tag="a" 
 					style="display: inline; font-size: 12px;cursor:pointer;" 
 					class="local-mr-4 text-left"
 				>Have an account?</router-link>
 			</section>
+			<!-- Website info -->
 			<section id="" class="single-form addwebsite-form">
+				<!-- Brand for smaller devices -->
+				<div width="100px"  height="50px" class="brand-small-sevices"></div>
 				<h1 class="text-left local-mb-4">Add your first Website</h1>
+				<!-- Alert -->
+				<div class="local-alert local-text-left danger">Email or password is not correct</div>
 				<input 
 					id="website_name"
 					type="text" 
@@ -98,7 +112,7 @@
 				>Register</button><br>
 				<router-link 
 					to='/login'
-					tag="p" 
+					tag="a" 
 					style="display: inline; font-size: 12px;cursor:pointer;" 
 					class="local-mr-4 text-center"
 				>Have an account?</router-link>
@@ -108,12 +122,21 @@
 </template>
 
 <script>
+import alert from '.././components/alert.vue';
 export default {
 
   name: 'Register',
+  components: {
+  	alert
+  },
 
   data () {
     return {
+    	alertStatus : {
+	    	message: "Fuck you boi!!",
+	    	type : "info",
+	    	display : "none"
+    	},
     	userInfo : {
     		name : "",
     		email : "",
@@ -244,6 +267,15 @@ export default {
 		height: 120px;
 		margin: 0 auto;
 	}
+	.brand-small-sevices {
+		background-image: url('.././assets/logo_light.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 120px;
+		height: 60px;
+		display: none;
+	}
 	.steps {
 		display: grid;
 		grid-template-columns: repeat(2,80px);
@@ -281,5 +313,28 @@ export default {
 	}
 	#prev-prev-form {
 		display: none;
+	}
+	@media only screen and (max-width: 600px) {
+		.register-page {
+			padding: 0;
+		}
+	/*	.single-form {
+			width: 400px;
+			margin-right: 150px;
+		}
+		/*/.brand {
+			display :none;
+		}
+		.register {
+			height: 100vh; 
+			margin: 0 auto;
+		}	
+		.brand-small-sevices {
+			display: block;
+		}
+		.steps-area {
+			display: none;	
+		}
+
 	}
 </style>

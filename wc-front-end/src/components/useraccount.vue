@@ -5,6 +5,9 @@
 		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Name">
 		<p class="text-left">Email:</p>
 		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Email">
+		<p class="text-left text-danger website_error_message" style='font-size: 12px'>
+	   	Must be http:// or https://
+		</p>
 		<p class="text-left">Receiving emails:</p>
 		<select class="form-control local-input local-mb-2">
 			<option value="true">Enabled</option>
@@ -35,9 +38,13 @@
 </template>
 
 <script>
+import alert from './alert.vue';
 export default {
 
   name: 'useraccount',
+  components: {
+  	alert
+  },
 
   data : () => {
     return {

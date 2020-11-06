@@ -2,57 +2,134 @@
 	<section>
 		<div  class="add-website">
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Add new Website</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        ...
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="local-btn local-btn-secondary" data-dismiss="modal">Close</button>
-			        <button type="button" class="local-btn local-btn-primary">Add this Website</button>
-			      </div>
-			    </div>
+			<div id="add-website-modal" class="local-modal modal">
+			  <div style="border-radius: 0" class="local-modal modal-background"></div>
+			  <div class="modal-card">
+			    <header class="modal-card-head">
+			      <p class="modal-card-title">Add new website</p>
+			      <button 
+			      	class="delete" 
+			      	aria-label="close" 
+			      	v-on:click="toggleModal()"
+			      ></button>
+			    </header>
+			    <section class="modal-card-body">
+			    	<!-- Alert -->
+				<!-- 	<alert 
+						v-bind:style="'display:' + alertStatus.display" 
+						v-bind:type="alertStatus.type" 
+						v-bind:Message="alertStatus.message"
+					></alert> -->
+			      <!-- Content ... -->
+				   <input 
+				   	id="website_name"
+				   	class="local-input form-control local-my-2"
+				   	placeholder="Your website name" 
+				   	name="name" 
+				   	type="text"
+				   >
+				   <textarea
+				   	id="description"
+				   	class="local-input form-control local-my-2"
+				   	placeholder="Your website description" 
+				   	name="description" 
+				   	type="text"
+				   ></textarea> 
+				   <input 
+				   	id="website"
+				   	class="local-input form-control local-my-2"
+				   	placeholder="Your website Url" 
+				   	name="website_url" 
+				   	type="text"
+				   >
+				   <p class="text-left text-danger website_error_message" style='font-size: 12px'>
+				   	Must be http:// or https://
+					</p>
+
+			    </section>
+			    <footer class="modal-card-foot">
+			      <button 
+			      class="local-btn local-btn-success is-success local-mr-2"
+			      v-on:click="addWebsite()"
+			      >Add Website</button>
+			      <button 
+			      	class="local-btn local-btn-dark" 
+			      	v-on:click="toggleModal()">
+			  		Cancel</button>
+			    </footer>
 			  </div>
 			</div>
 			<!-- Button trigger modal -->
 			<button 
-				type="button" 
+				type="button"
 				class="local-btn add-website-btn" 
-				data-toggle="modal" 
-				data-target="#exampleModal">
-			  	Add Website
+				data-toggle="modal" 				
+				data-target="#shareMethodsModal"
+				v-on:click="toggleModal()"
+			  	>Add Website
 			</button>
 		</div>
 
 		<div class="websites-area">
-			<website></website>
-			<website></website>
-			<website></website>
+			<website v-on:deleteOne="deleteWebsite($event)" ></website>
+			<website v-on:deleteOne="deleteWebsite($event)" ></website>
+			<website v-on:deleteOne="deleteWebsite($event)" ></website>
 		</div>
 	</section>
 </template>
 
 <script>
 	import website from './website.vue';
+	// import alert from './alert.vue';
 
 	export default {
 
 	  name: 'websites',
 	  components: {
-	  	website
+	  	website,
+	  	// alert
 	  },
 
 	  data () {
 	    return {
+	    	// alertStatus : {
+		    // 	message: "Fuck you boi!!",
+		    // 	type : "danger",
+		    // 	display : "none"
+	    	// },
 	    	limit : 3
 	    }
+	  },
+	  mounted(){
+	  	alert('it works!')
+	  	// this.$http({
+	  	// 	method :'GET',
+	  	// 	url : `https://surveyapp1.herokuapp.com/api/v1/get/surveys?limit=2&api_key=VMHDH92PQEMSN5QR7VXRD044RXKT`
+	  	// })
+	  	// .then((response)=>{
+	  	// 	console.log(response);
+	  	// })
+	  	// .catch((error)=>{
+	  	// 	console.log(error);
+	  	// })
+	  },
+	  methods : {
+		toggleModal : ()=>{
+			const modal = document.querySelector('#add-website-modal');
+
+			if (modal.classList.contains('is-active')) {
+				modal.classList.remove('is-active')
+			}
+			else if (!modal.classList.contains('is-active')){
+				modal.classList.add('is-active')	
+			}
+		},
+		addWebsite : ()=>{
+			// Validate website url
+		},
+		deleteWebsite : (website_id)=>{
+			alert('Delete Website fired!'+website_id);
+		}
 	  }
 	}
 </script>
@@ -75,6 +152,9 @@
 		top: 0;
 		right: 0;
 		color: white;
+	}
+	.local-modal {
+		border-radius: 0!important;
 	}
 	@media only screen and (max-width: 600px) {
 		.websites-area {

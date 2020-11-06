@@ -1,18 +1,38 @@
 <template>
-	<div>Reset Password</div>
+	<section>
+		<div>Reset Password</div>
+		<!-- Alert -->
+		<alert 
+			v-bind:style="'display:' + alertStatus.display" 
+			v-bind:type="alertStatus.type" 
+			v-bind:Message="alertStatus.message"
+		></alert>
+	</section>
 </template>
 
 <script>
-export default {
+	import alert from '.././components/alert.vue';
 
-  name: 'ResetPassword',
+	export default {
 
-  data () {
-    return {
+	  name: 'ResetPassword',
+	  components: {
+	  	alert
+	  },
 
-    }
-  }
-}
+	  data () {
+	    return {
+	    	alertStatus : {
+		    	message: "Fuck you boi!!",
+		    	type : "info",
+		    	display : "none"
+	    	},
+	    	userInfo : {
+
+	    	}
+	    }
+	  }
+	}
 </script>
 
 <style lang="css" scoped>
