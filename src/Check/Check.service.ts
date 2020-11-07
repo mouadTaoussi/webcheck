@@ -47,6 +47,26 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		}
 
 	}
+	public async userWebsites(user_id: string)
+	:Promise<{status:number,message:string | null,data:any | null}>  
+	{
+		try {
+			return {
+				status  : 200, 
+				message : null,
+				data    : null
+			}
+			// if (user == null ) return {
+			// status : 404, found : false, message : "user doesn't exists!", user: null };
+		}
+		catch(error) {
+			return {
+				status  : 500, 
+				message : "Something went wrong!",
+				data    : null
+			}
+		}
+	}
 	public async deleteWebsite(website_id: string)
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	 {

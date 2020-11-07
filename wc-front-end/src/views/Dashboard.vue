@@ -93,11 +93,11 @@
 </template>
 
 <script>
-import headercomponent from '@/components/header.vue';
-import websites from '@/components/websites';
-import websitelogs from '.././components/websitelogs.vue';
-import useraccount from '.././components/useraccount.vue';
-import settings from '.././components/settings.vue';
+import headercomponent from '@/components/dashboard/header.vue';
+import websites from '@/components/dashboard/websites';
+import websitelogs from '@/components/dashboard/websitelogs.vue';
+import useraccount from '@/components/dashboard/useraccount.vue';
+import settings from '@/components/dashboard/settings.vue';
 
 export default {
 

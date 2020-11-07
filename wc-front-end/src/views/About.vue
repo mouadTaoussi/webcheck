@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-	import homepageheader from '@/components/homepageheader.vue';
+	import homepageheader from '@/components/homepage/homepageheader.vue';
 	export default {
 		components: {
 			homepageheader

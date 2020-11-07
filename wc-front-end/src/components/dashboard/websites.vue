@@ -71,9 +71,27 @@
 		</div>
 
 		<div class="websites-area">
-			<website v-on:deleteOne="deleteWebsite($event)" ></website>
-			<website v-on:deleteOne="deleteWebsite($event)" ></website>
-			<website v-on:deleteOne="deleteWebsite($event)" ></website>
+			<website 
+				websiteID="123"
+				websiteName="myBlog1" 
+				websiteDescription="this is my blog baby!!" 
+				websiteUrl="https://myblog.com"
+				v-bind:isActive="false"
+				v-on:deleteOne="deleteWebsite($event)" ></website>
+			<website 
+				websiteID="123"
+				websiteName="myBlog" 
+				websiteDescription="this is my blog baby!!" 
+				websiteUrl="https://myblog.com"
+				v-bind:isActive="true"
+				v-on:deleteOne="deleteWebsite($event)" ></website>
+			<website 
+				websiteID="123"
+				websiteName="myBlog" 
+				websiteDescription="this is my blog baby!!" 
+				websiteUrl="https://myblog.com"
+				v-bind:isActive="true"
+				v-on:deleteOne="deleteWebsite($event)" ></website>
 		</div>
 	</section>
 </template>
@@ -92,26 +110,18 @@
 
 	  data () {
 	    return {
-	    	// alertStatus : {
-		    // 	message: "Fuck you boi!!",
-		    // 	type : "danger",
-		    // 	display : "none"
-	    	// },
-	    	limit : 3
+	    	limit : 3,
+	    	userWebsites: [],
+	    	addWebsite : {
+	    		websiteName: null,
+	    		websiteDescription : null,
+	    		websiteUrl: null
+	    	}
 	    }
 	  },
 	  mounted(){
-	  	alert('it works!')
-	  	// this.$http({
-	  	// 	method :'GET',
-	  	// 	url : `https://surveyapp1.herokuapp.com/api/v1/get/surveys?limit=2&api_key=VMHDH92PQEMSN5QR7VXRD044RXKT`
-	  	// })
-	  	// .then((response)=>{
-	  	// 	console.log(response);
-	  	// })
-	  	// .catch((error)=>{
-	  	// 	console.log(error);
-	  	// })
+	  	// alert('it works!')
+		// Fetch user websites by its token
 	  },
 	  methods : {
 		toggleModal : ()=>{
@@ -126,9 +136,10 @@
 		},
 		addWebsite : ()=>{
 			// Validate website url
+			// Send a request to the server using this.$http
 		},
 		deleteWebsite : (website_id)=>{
-			alert('Delete Website fired!'+website_id);
+			alert('Delete Website fired!'+ website_id);
 		}
 	  }
 	}

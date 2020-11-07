@@ -37,7 +37,7 @@ export default {
 }
 .header-elements-brand {
 	float: left;
-	background-image: url('.././assets/logo_green.svg');
+	background-image: url('../.././assets/logo_green.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;

@@ -20,7 +20,7 @@
 <script>
 import websitelog from './websitelog.vue';
 import chartlogs from './chartlogs.vue';
-import loadingspinner from './loadingspinner.vue';
+import loadingspinner from '.././loadingspinner.vue';
 
 export default {
 

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import alert from './alert.vue';
+import alert from '.././alert.vue';
 export default {
 
   name: 'useraccount',

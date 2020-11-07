@@ -51,21 +51,21 @@ interface UserUpdate {
 
 // Interface used to describe authentication controller methods ! ! !
 interface AuthenticationControllerInterface {
-	loginUser      (request:any, response:Response)                   : any;
-	registerUser   (request:any, response:Response)                   : any;
-	resetPassword  (request:any, response:Response)                   : any; 
-	updateUser     (request:any, response:Response)                   : any;
-	deleteUser     (request:any, response:Response)                   : any;
-	Authenticated  (request:any, response:Response, next:NextFunction): any;
+	loginUser      (request:any, response:Response)                   : Promise<void>
+	registerUser   (request:any, response:Response)                   : Promise<void>
+	resetPassword  (request:any, response:Response)                   : Promise<void> 
+	updateUser     (request:any, response:Response)                   : Promise<void>
+	deleteUser     (request:any, response:Response)                   : Promise<void>
+	Authenticated  (request:any, response:Response, next:NextFunction): Promise<void>
 };
 
 // Interface used to describe authentication service methods
 interface AuthenticationServiceInterface {
-	addUser        (body : UserBody)                                                      :any;                                                    
-	findUser       (options : {id:string | undefined, email:string | undefined})          :any;                                                        : any;
-	updateUser     (user_id:string, body: { name:string, email:string, active: boolean }) :any;
-	changePassword (id: string, password: string)                                         :any;                    
-	deleteUser     (user_id:string)                                                       :any;    
+	addUser        (body : UserBody)                                                      :Promise<{status:number, saved:   boolean, user:any,message:string | null}>;                                                    
+	findUser       (options : {id:string | undefined, email:string | undefined})          :Promise<{status:number, found:   boolean, message:string | null, user:any}>;
+	updateUser     (user_id:string, body: { name:string, email:string, active: boolean }) :Promise<{status:number, updated: boolean, message:string}> ;
+	changePassword (id: string, password: string)                                         :Promise<{status:number, changed: boolean, message:string}>;                    
+	deleteUser     (user_id:string)                                                       :Promise<{status:number, deleted: boolean, message: string}>;    
 };
 
 export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate };
