@@ -33,7 +33,7 @@ export default {
 <style lang="css" scoped>
 	.landingpage {
 		background-color: #f9f9f9;
-		height: 650px;
+		height: 550px;
 		padding-top: 170px;
 		border-top: .2px solid rgba(0,0,0,.3);
 		border-bottom: .2px solid rgba(0,0,0,.3)

@@ -1,13 +1,15 @@
 <template>
 	<section>
-		Footer
+		<div class="local-container-8 bg-light">
+			Footer
+		</div>
 	</section>
 </template>
 
 <script>
 export default {
 
-  name: 'footer',
+  name: 'homepagefooter',
 
   data () {
     return {
@@ -18,4 +20,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	section {
+		height: 200px;
+		width: 100%;
+		background: black;	
+	}
 </style>

@@ -5,8 +5,10 @@
     <homepageheader></homepageheader>
     <landingpage></landingpage>
     <cards></cards>
-    <featuressection></featuressection>
-    <footer></footer>
+    <div class="undisplayable">
+      <featuressection></featuressection>
+    </div>
+    <homepagefooter></homepagefooter>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import homepageheader from '@/components/homepage/homepageheader.vue';
 import landingpage from '@/components/homepage/landingpage.vue';
 import cards from '@/components/homepage/cards.vue';
 import featuressection from '@/components/homepage/featuressection.vue';
-import footer from '@/components/homepage/footer.vue';
+import homepagefooter from '@/components/homepage/homepagefooter.vue';
 
 export default {
   name: 'Home',
@@ -27,7 +29,14 @@ export default {
     landingpage,
     cards,
     featuressection,
-    footer
+    homepagefooter
   }
 }
 </script>
+<style scoped>
+  @media only screen and (max-width: 800px) {
+    .undisplayable {
+      display: none!important;
+    }
+  }
+</style>

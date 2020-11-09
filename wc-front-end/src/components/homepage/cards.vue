@@ -87,4 +87,13 @@ export default {
 		margin-bottom: 40px;
 
 	}
+	@media only screen and (max-width: 800px) {
+		.cards {
+			margin: 50px auto;
+			display: grid;
+			grid-template-columns: 2fr;
+			grid-gap: 10px;
+			height: auto;
+		}
+	}
 </style>
