@@ -1,6 +1,8 @@
 <template>
 	<div class="register-page">
-		<div class="brand"></div>
+		<router-link to="/">
+			<div class="brand"></div>
+		</router-link>
 		<div class="steps-area">
 			<div class="steps local-mb-4">
 				<div v-on:click='backToRegisterForm()' class="step-one current-step">1</div>

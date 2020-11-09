@@ -1,16 +1,25 @@
 <template>
-	<section class="header">
-		<div class="header-grid local-container-8">
+	<section class="header local-shadow">
+		<div class="header-grid">
 			<div id="header-column-1" class="brand">
 				<router-link to='/' tag="p">
-					<div class="header-brand"></div>
+					<router-link to="/">
+						<div class="header-brand"></div>
+					</router-link>
 				</router-link>
 			</div>
 			<div id="header-column-2">
 				<ul class="header-list poppins">
-					<router-link to="/login" tag="li">Log in</router-link>
-					<router-link to="/register" tag="li">Register</router-link>
-					<router-link to="/about" tag="li">About</router-link>
+					<router-link to="/login" tag="li">
+						<button class="local-btn bg-primary text-white shadow">
+							Log in
+						</button>
+					</router-link>
+					<router-link to="/register" tag="li">
+						<button class="local-btn bg-primary text-white shadow">
+							Register
+						</button>
+					</router-link>
 				</ul>
 			</div>
 		</div>
@@ -33,8 +42,8 @@ export default {
 <style lang="css" scoped>
 
 .header {
-	height: 70px;
-	/*background-color: green;*/
+	height: 50px;
+	background-color: white;
 	width: 100%;
 }
 .header-brand {
@@ -42,10 +51,11 @@ export default {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	width: 200px;
+	width: 160px;
 	height: 50px;
 	position: absolute;
-	top: 11px;
+	top: 0px;
+	left: 10px;
 }
 .header-list {
 	list-style: none;
@@ -56,11 +66,12 @@ export default {
 	color: black;
 	font-weight: 500;
 	padding: 0px 10px 0px 10px;
+	cursor: pointer;
 }
 .header-grid {
 	display: grid;
 	grid-template-columns: 50% 50%;
-	padding-top: 25px;
+	padding-top: 8px;
 }
 #header-column-1 {
 	justify-self : start;

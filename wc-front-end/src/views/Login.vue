@@ -1,6 +1,8 @@
 <template>
 	<div class="login-page">
-		<div class="brand"></div>
+		<router-link to="/">
+			<div class="brand"></div>
+		</router-link>
 		<div class="login local-card shadow local-p-4">
 			<div width="100px"  height="50px" class="brand-small-sevices"></div>
 			<h1 class="text-left local-mb-4">Log in</h1>
