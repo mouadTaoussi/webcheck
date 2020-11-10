@@ -5,22 +5,22 @@
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-reviewed"></div>
 				<h3>We'll check your websites</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				<p class="poppins">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-windows"></div>
 				<h3>You'll be able to put max of 3 websites</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				<p class="poppins">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-confirmation"></div>
 				<h3>Get notifications about your websites status</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				<p class="poppins">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 				</p>
 			</div>
 		</div>
@@ -49,7 +49,7 @@ export default {
 		display: grid;
 		grid-template-columns: 2fr 2fr 2fr;
 		grid-gap: 10px;
-		height: 300px;
+		/*height: auto;*/
 	}
 	.cards-card {
 		border: .2px solid rgba(0,0,0,.2);
@@ -88,12 +88,14 @@ export default {
 
 	}
 	@media only screen and (max-width: 800px) {
+		section {
+			height: auto;
+		}
 		.cards {
 			margin: 50px auto;
 			display: grid;
 			grid-template-columns: 2fr;
 			grid-gap: 10px;
-			height: auto;
 		}
 	}
 </style>

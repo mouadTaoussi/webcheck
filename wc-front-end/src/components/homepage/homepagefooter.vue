@@ -1,7 +1,7 @@
 <template>
-	<section>
-		<div class="local-container-8 bg-light">
-			Footer
+	<section class="footer">
+		<div class="local-container-8">
+			<!-- Footer -->
 		</div>
 	</section>
 </template>
@@ -21,8 +21,16 @@ export default {
 
 <style lang="css" scoped>
 	section {
-		height: 200px;
+		/*height: 200px;*/
+		/*width: 100%;*/
+		/*background: black;	*/
+	}
+	.footer {
+		background-image: url('../.././assets/footerBackground.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
 		width: 100%;
-		background: black;	
+		height: 280px;
 	}
 </style>

@@ -1,11 +1,11 @@
 <template>
 	<section class="local-container-8">
-		<h1 class="text-center title poppins">With us you can ...</h1>
+		<!-- <h1 class="text-center title poppins">With us you can ...</h1> -->
 		<div class="features">
 			<!-- Feature one -->
 			<div>
 				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
-				<p class="text-left">
+				<p class="text-left poppins">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 				</p>
 				<router-link to="/login">
@@ -24,7 +24,7 @@
 			</div>
 			<div>
 				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
-				<p class="text-left">
+				<p class="text-left poppins">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 				</p>
 				<router-link to="/login">
@@ -81,5 +81,17 @@ export default {
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
+@media only screen and (max-width: 800px) {
+	.features {
+		margin-top: 150px;
+		display: grid;
+		grid-template-columns: 100%;
+		grid-gap: 20px;
+		grid-row-gap: 20px; 
+	}	
+	.feature-title {
+		margin-top: 10px;
+}
 
+}
 </style>

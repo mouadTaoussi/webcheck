@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-<!--     <img alt="Vue logo" src="../assets/logo.png">
+
+<!--     <img alt="Vue logo" src./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <homepageheader></homepageheader>
     <landingpage></landingpage>
     <cards></cards>
-    <div class="undisplayable">
-      <featuressection></featuressection>
-    </div>
+    <featuressection></featuressection>
+    <loginsection></loginsection>
     <homepagefooter></homepagefooter>
   </div>
 </template>
@@ -19,6 +19,7 @@ import homepageheader from '@/components/homepage/homepageheader.vue';
 import landingpage from '@/components/homepage/landingpage.vue';
 import cards from '@/components/homepage/cards.vue';
 import featuressection from '@/components/homepage/featuressection.vue';
+import loginsection from '@/components/homepage/loginsection.vue';
 import homepagefooter from '@/components/homepage/homepagefooter.vue';
 
 export default {
@@ -29,14 +30,10 @@ export default {
     landingpage,
     cards,
     featuressection,
+    loginsection,
     homepagefooter
   }
 }
 </script>
 <style scoped>
-  @media only screen and (max-width: 800px) {
-    .undisplayable {
-      display: none!important;
-    }
-  }
 </style>
