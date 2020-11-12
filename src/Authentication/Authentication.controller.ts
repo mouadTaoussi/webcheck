@@ -6,16 +6,24 @@ import { Request,Response, NextFunction } from 'express';
 import { genSalt, compare, hash } from 'bcrypt';
 import { v4 } from 'uuid';
 
-const userService = new AuthenticationService();
 
+const userService = new AuthenticationService();
 class AuthenticationController implements AuthenticationControllerInterface{
 
 	// private userService: any;
-
+	private vapidPublicKey : string = "BCa2OQQNkeJ_8AdJNCFt4RNJGDRKhtRS2mQxF7kxifgduGX7QMg_23AtN-TODCzxG9HyCYBLjyAdnGs_4PzfWD"; 
+	private vapidPrivateKey: string = "gpqSDBsmGABfd20qBQayIxhC1_64LYnjp3cD6UkkdOI"; 
 	// constructor(){
 	// 	this.await userService = new AuthenticationService();
 	// }
 
+	public async pushServiceRegisteration(request: any,response:Response):Promise<void>{
+		// Get body data and the token
+		// send it back to the frontend
+		response.status(200).send({ message: "Set!" });
+	}
+
+	// @TODO : add a controller that get subscription from push service
 	public async loginUser(request:any,response:Response):Promise<void>  {
 		// Get body data
 		const body: { email:string, password:string } = request.body;

@@ -3,16 +3,19 @@
 		<div class="loginsection-grid local-container-4">
 			<div class="row-text">
 				<h1 class="text-white text-left">
-					Log in now and try our <strong class="text-white">Service</strong>
+					<strong class="text-white">
+						Log in now and try our Service
+					</strong>
 				</h1>
 				<p class="text-white text-left poppins">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</p>
-				<button 
-				style="background-color: var(--primary-app)" 
-				class="local-btn float-left local-mr-2 text-white shadow"
-				>Get Started</button>
-				<button class="local-btn local-btn-dark float-left shadow">Learn more</button>
+				<button class="ctas local-btn float-left local-mr-2">
+					Get Started
+				</button>
+				<button class="ctas local-btn float-left">
+					Learn more
+				</button>
 			</div>
 			<div class="row-login local-card shadow local-p-4">
 				<div class="login">
@@ -64,6 +67,12 @@
 }*/
 .row-text {
 	margin-top: 30px;
+}
+.ctas {
+	background: transparent;
+	border: 1px solid white; 
+	color: white;
+	padding: 12px 40px 12px 40px;
 }
 @media only screen and (max-width: 800px) {
 	.loginsection {

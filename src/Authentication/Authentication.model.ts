@@ -15,7 +15,16 @@ const UserSchema = new Schema({
 	receivingEmail: { type: Boolean, default:  true ,  required: true }, // if he would to send emails to him
 	displayTheme  : { type: String,  default: "light", required: true  },  // display theme he prefer
 	websitesCount : { type: Number,  required: true }, // How many websites put: increment whenever added a website, decrement when a website got deleted
-	websites      : [       userWebsiteSchema       ]  // user's websites
+	websites      : [       userWebsiteSchema       ], // user's websites
+	// @TODO : add subscription model from push service
+	pushRegisteration : new Schema({
+		endpoint       : { type: String, required: false, default: null },
+		expirationTime : { type : String || Number, default: null },
+		keys : new Schema({
+			p256dh: { type: String, required: false, default: null },
+	    	auth:   { type: String, required: false, default: null }
+		})
+	})
 });
 
 const UserModel = model("users",UserSchema);

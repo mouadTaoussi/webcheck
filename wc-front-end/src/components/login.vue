@@ -9,12 +9,14 @@
 				v-bind:Message="alertStatus.message"
 			></alert>
 			<input 
+				id="email"
 				type="text" 
 				name="email" 
 				placeholder="Enter Your Email" 
 				autofocus="true"
 				class="form-control local-input my-2">
 			<input 
+				id="password"
 				type="password" 
 				name="password" 
 				placeholder="Enter Your Password" 

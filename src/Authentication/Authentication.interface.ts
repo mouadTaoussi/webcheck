@@ -16,6 +16,16 @@ type userWebsites = [
 
 ] // User should put just 3 websites ! ! !
 
+// @TODO : add subscription model from push service
+interface subscription {
+	endpoint: string,
+	expirationTime : unknown,
+	keys: {
+	    p256dh: string,
+	    auth: string
+    }
+}
+
 // Used to register a new user
 interface UserBody {
 	name          : string; 
@@ -25,6 +35,7 @@ interface UserBody {
 	active        : boolean;
 	websitesCount : number;
 	websites      : userWebsites | [] // [] will be deleted  ! ! !
+	// @TODO : add subscription model from push service and not required
 }
 
 // Get user from database
@@ -38,6 +49,7 @@ interface UserInterface {
 	displayTheme  : string;
 	websitesCount : number;
 	websites      : userWebsites | [];
+	// @TODO : add subscription model from push service
 };
  
 // Used body user to update his profile
@@ -51,6 +63,7 @@ interface UserUpdate {
 
 // Interface used to describe authentication controller methods ! ! !
 interface AuthenticationControllerInterface {
+	pushServiceRegisteration(request: any,response:Response)          : Promise<void>
 	loginUser      (request:any, response:Response)                   : Promise<void>
 	registerUser   (request:any, response:Response)                   : Promise<void>
 	resetPassword  (request:any, response:Response)                   : Promise<void> 
@@ -68,4 +81,4 @@ interface AuthenticationServiceInterface {
 	deleteUser     (user_id:string)                                                       :Promise<{status:number, deleted: boolean, message: string}>;    
 };
 
-export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate };
+export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate, subscription };

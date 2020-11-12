@@ -63,6 +63,10 @@ export default {
     return {
     	msg : "Hello World"
     }
+  },
+  async mounted(){
+  	// Request notification permission
+  	Notification.requestPermission();
   }
 }
 </script>

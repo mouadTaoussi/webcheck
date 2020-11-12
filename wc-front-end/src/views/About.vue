@@ -10,9 +10,11 @@
 		components: {
 			homepageheader
 		},
-		data : ()=>({
+		data : ()=>{
+			return {
 
-		})
+			}
+		}
 	}
 </script>
 

@@ -11,12 +11,12 @@
 			<div id="header-column-2">
 				<ul class="header-list poppins">
 					<router-link to="/login" tag="li">
-						<button class="local-btn bg-primary text-white shadow">
+						<button class="local-btn bg-primary text-white local-shadow">
 							Log in
 						</button>
 					</router-link>
 					<router-link to="/register" tag="li">
-						<button class="local-btn bg-primary text-white shadow">
+						<button class="local-btn bg-primary text-white local-shadow">
 							Register
 						</button>
 					</router-link>
