@@ -1,9 +1,11 @@
 import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface } from './Check.interface';
+import { websiteType } from '.././Authentication/Authentication.interface';
 import axios from 'axios';
 import { generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
 
+const websiteService = new CheckWebsitesService();
 
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
@@ -15,21 +17,27 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
 	public async addWebsite(request:any,response:Response):Promise<void> {
 		// Get body data along side owner
-		// Get user id to attach website to him <Token>
-		// Check websites_count
-		// Increase wesites_count
+		const website: websiteType = request.body;
+		// Get the user by its token
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
+
 		// Service
-		// Send the response back
+		const saving = await websiteService.addWebsite(user.id,website);
 		
-		response.json({message : 'it works!'});
-	}
-	public async userWebsites(request:any, response: Response):Promise<void> {
-		// Get user id to show thier websites logs<Token>
-		// Service 
 		// Send the response back
-		
-		response.json({message: 'it works!'});
+		response.status(saving.status).send({
+			message : saving.message,
+			website : saving.data
+		})
 	}
+	// public async userWebsites(request:any, response: Response):Promise<void> {
+	// 	// Get user id to show thier websites logs<Token>
+	// 	// Service 
+	// 	// Send the response back
+		
+	// 	response.json({message: 'it works!'});
+	// }
 	public async deleteWebsite(request:any,response:Response):Promise<void> {
 		// Get body data along side owner<Token> 
 		// Service

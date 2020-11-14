@@ -3,7 +3,7 @@ import { websiteType } from '.././Authentication/Authentication.interface';
  
 interface CheckWebsiteControllerInterface {
 	addWebsite(request:Request,response:Response)        : Promise<void>
-	userWebsites(request:any, response: Response)        : Promise<void>
+	// userWebsites(request:any, response: Response)        : Promise<void>
 	deleteWebsite(request:any,response:Response)         : Promise<void>
 	websiteLogs(request:Request,response:Response)       : Promise<void>
 	deleteWebsiteLogs(request:Request,response:Response) : Promise<void>
@@ -16,8 +16,8 @@ interface CheckWebsiteServiceInterface {
 	*/
 	// websitelogmodel                                                  : any
 	// statusCodes                                                      : ServerStatusCodesType<string>
-	addWebsite(website: websiteType)                                 : Promise<{status:number,message:string | null,data:any | null}> 
-	userWebsites(user_id: string)                                    : Promise<{status:number,message:string | null,data:any | null}> 
+	addWebsite(user_id:string,website: websiteType)                  : Promise<{status:number,message:string | null,data:any | null}> 
+	// userWebsites(user_id: string)                                    : Promise<{status:number,message:string | null,data:any | null}> 
 	deleteWebsite(website_id: string)                                : Promise<{status:number,message:string | null,data:any | null}>
 	pushLog( status_code:number, user_id:string, website_id:string ) : Promise<{status:number,message:string | null,data:any | null}>
 	getLogs( user_id:string, website_id:string )                     : Promise<{status:number,message:string | null,data:any | null}>

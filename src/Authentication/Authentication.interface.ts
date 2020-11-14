@@ -4,7 +4,7 @@ import { Request,Response, NextFunction } from 'express';
 type websiteType = {
 	name        : string;
 	description : string;
-	active      : boolean;
+	active      : boolean |undefined;
 	website     : string;
 	_id         : string | undefined;
 } 

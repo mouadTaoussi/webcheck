@@ -198,9 +198,16 @@ export default {
 				method : "POST",
 				url    : "http://localhost:8000/auth/register",
 				data   : { 
-					name : this.userInfo.name, 
-					email : this.userInfo.email, 
-					password:this.userInfo.password
+					name     : this.userInfo.name, 
+					email    : this.userInfo.email, 
+					password :this.userInfo.password,
+					websites : [
+					{
+						name        : this.userWebsite.name,
+						description : this.userWebsite.description,
+						website     : this.userWebsite.website
+					}
+					]
 				}
 			})
 			.then((response)=>{
@@ -220,10 +227,6 @@ export default {
 					this.alertStatus.display = "block";
 				}
 			})
-
-	  		window.setTimeout(()=>{
-	  			this.$router.push('/dashboard');
-	  		},2000)
   		}
   		else if (validate_website == false ) {
   			document.querySelector('.register-form').id = "prev-form";

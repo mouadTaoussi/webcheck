@@ -1,6 +1,7 @@
 import { CheckWebsiteServiceInterface, ServerStatusCodesType } from './Check.interface';
 import { websiteType } from '.././Authentication/Authentication.interface';
 import WebsiteLogModel from './Check.model';
+import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
 import {  } from 'moment';
  
@@ -26,16 +27,47 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		]
 	}
 
-	public async addWebsite(website: websiteType)
+	public async addWebsite(user_id:string,website: websiteType)
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	 {
 		// Get website data
 		// Save it !!!
 		try {
-			return {
-				status  : 200, 
-				message : null,
-				data : null
+			// Find the user
+			const user = await UserModel.findOne({_id:user_id});
+			console.log(user)
+
+			// Check his websitesCount 
+			if (user.websitesCount < 3 ) {
+
+				// Get him websites
+				const userWebsites = user.websites;
+				console.log(userWebsites);
+
+				website.active = true;
+
+				// Push the new website to the current websites array
+				userWebsites.push(website);
+
+				// Increase websitesCount then Save it to the database
+				const update = await UserModel.findByIdAndUpdate(user_id,{
+					websitesCount: user.websitesCount++, 
+					websites: userWebsites
+				})
+
+				return {
+					status  : 200, 
+					message : 'A NEW WEBSITE ADDED!!',
+					data : website
+				}
+
+			}
+			else {
+				return {
+					status  : 200, 
+					message : 'You cannot add more than 3 websites!!',
+					data : null
+				}
 			}
 		}
 		catch(error) {
@@ -47,26 +79,28 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		}
 
 	}
-	public async userWebsites(user_id: string)
-	:Promise<{status:number,message:string | null,data:any | null}>  
-	{
-		try {
-			return {
-				status  : 200, 
-				message : null,
-				data    : null
-			}
-			// if (user == null ) return {
-			// status : 404, found : false, message : "user doesn't exists!", user: null };
-		}
-		catch(error) {
-			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data    : null
-			}
-		}
-	}
+	// public async userWebsites(user_id: string)
+	// :Promise<{status:number,message:string | null,data:any | null}>  
+	// {
+	// 	try {
+
+	// 		// const userWebsite = await UserModel
+	// 		return {
+	// 			status  : 200, 
+	// 			message : null,
+	// 			data    : null
+	// 		}
+	// 		// if (user == null ) return {
+	// 		// status : 404, found : false, message : "user doesn't exists!", user: null };
+	// 	}
+	// 	catch(error) {
+	// 		return {
+	// 			status  : 500, 
+	// 			message : "Something went wrong!",
+	// 			data    : null
+	// 		}
+	// 	}
+	// }
 	public async deleteWebsite(website_id: string)
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	 {
