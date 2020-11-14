@@ -7,6 +7,19 @@ const userWebsiteSchema = new Schema({
 	website       : { type : String }  // Website Url
 })
 
+// > Deparceted
+const keysSchema = new Schema({
+	p256dh: { type: String, required: true, default: null },
+	auth:   { type: String, required: true, default: null }
+})
+
+const pushSubscriptionSchema = new Schema({
+	endpoint       : { type: String, required: true, default: null },
+	expirationTime : { type : String || Number, default: null },
+	keys : keysSchema
+})
+// <
+
 const UserSchema = new Schema({
 	name          : { type: String,  required: true },
 	email         : { type: String,  required: true },
@@ -17,14 +30,14 @@ const UserSchema = new Schema({
 	websitesCount : { type: Number,  required: true }, // How many websites put: increment whenever added a website, decrement when a website got deleted
 	websites      : [       userWebsiteSchema       ], // user's websites
 	// @TODO : add subscription model from push service
-	pushRegisteration : new Schema({
-		endpoint       : { type: String, required: false, default: null },
-		expirationTime : { type : String || Number, default: null },
-		keys : new Schema({
-			p256dh: { type: String, required: false, default: null },
-	    	auth:   { type: String, required: false, default: null }
-		})
-	})
+	pushRegisteration : {
+		endpoint : { type: String || null, required:false, default: null },
+		expirationTime : { type: String || Number || null, required:false, default: null },
+		keys : {
+			p256dh : { type:String || null, required:false, default: null },
+			auth : { type: String || null, required:false, default: null }
+		}
+	}
 });
 
 const UserModel = model("users",UserSchema);

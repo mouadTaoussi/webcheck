@@ -5,7 +5,7 @@
 			<div class='left-side'>
 				<div class="header-elements-brand"></div>	
 			</div>
-			<div class='right-side'>
+			<div v-on:click="logoutUser()" class='right-side'>
 				<p class="header-elements-logout  text-right" style="cursor:pointer;">Log out</p>
 			</div>
 		</div>
@@ -21,6 +21,14 @@ export default {
     return {
 
     }
+  },
+  methods : {
+  	logoutUser: function() {
+  		// Delete the token
+  		window.localStorage.removeItem('user_token');
+  		// Redirect the user to the /
+		this.$router.push({ path: '/login' });
+  	}
   }
 }
 </script>

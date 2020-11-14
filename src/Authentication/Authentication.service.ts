@@ -1,20 +1,42 @@
 import UserModel from './Authentication.model';
 import WebsiteLogSchema from '../Check/Check.model';
-import { AuthenticationServiceInterface, UserBody, UserInterface, UserUpdate } from './Authentication.interface'
+import { AuthenticationServiceInterface, UserBody, UserInterface, UserUpdate,subscriptionObject } from './Authentication.interface'
  
 class AuthenticationService implements AuthenticationServiceInterface {
 
 	private usermodel:any;
 
-	constructor(){
-		this.usermodel = UserModel;
+	// constructor(){
+	// 	this.usermodel = UserModel;
+	// }
+	public async registerToPushService (user_id:string,object:subscriptionObject)
+	: Promise<{status:number, saved:boolean,message:string | null}> {
+		try {
+			// pushRegisteration : new Schema({
+			// 	endpoint       : { type: String, required: false, default: null },
+			// 	expirationTime : { type : String || Number, default: null },
+			// 	keys : new Schema({
+			// 		p256dh: { type: String, required: false, default: null },
+			//     	auth:   { type: String, required: false, default: null }
+			// 	})
+			// })
+			// Find user
+			const user = await UserModel.findByIdAndUpdate(user_id, { pushRegisteration: object });
+			// @TODO Add it to the user
+			return {
+				status : 200, saved : true, message : null, 
+			}
+		}
+		catch(error) {
+			return {
+				status : 500, saved : false, message  : 'something went wrong! Try again.'
+			}
+		}
 	}
-
 	public async addUser(body : UserBody): Promise<{status:number, saved:boolean,user:any,message:string | null}> {
 		try {
 			const init_new_user = new UserModel(body);
 			const new_user = await init_new_user.save();
-		
 			return {
 			status : 200, saved : true, message : null, user : new_user }
 		}

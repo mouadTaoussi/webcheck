@@ -18,10 +18,12 @@ import logincomponent from '.././components/login.vue';
 export default {
 
   name: 'Login',
+
   components: {
   	// alert
   	logincomponent
   },
+
   data () {
     return {
     	// alertStatus : {
@@ -33,7 +35,13 @@ export default {
 
     	// }
     }
-  }
+  },
+  created (){
+  	// If the user already logged in the we wont let him go to the dashboard
+  	if (window.localStorage.getItem('user_token')) {
+  		this.$router.push({ path: '/dashboard' });
+  	}
+  },
 }
 </script>
 

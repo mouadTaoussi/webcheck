@@ -75,7 +75,11 @@
 				<div width="100px"  height="50px" class="brand-small-sevices"></div>
 				<h1 class="text-left local-mb-4">Add your first Website</h1>
 				<!-- Alert -->
-				<div class="local-alert local-text-left danger">Email or password is not correct</div>
+				<alert 
+					v-bind:style="'display:' + alertStatus.display" 
+					v-bind:type="alertStatus.type" 
+					v-bind:Message="alertStatus.message"
+				></alert>
 				<input 
 					id="website_name"
 					type="text" 
@@ -137,20 +141,26 @@ export default {
     	alertStatus : {
 	    	message: "Fuck you boi!!",
 	    	type : "info",
-	    	display : "none"
+	    	display : "block"
     	},
     	userInfo : {
-    		name : "",
-    		email : "",
-    		password : "",
-    		password2 : "",
+    		name : "mouad",
+    		email : "mouad@getItem",
+    		password : "123",
+    		password2 : "1223",
     	},
     	userWebsite : {
-    		name : "",
-    		description : "",
-    		website : ""
+    		name : "mouadweb",
+    		description : "yup",
+    		website : "http://"
     	}
     }
+  },
+  created (){
+  	// If the user already logged in the we wont let him go to the dashboard
+  	if (window.localStorage.getItem('user_token')) {
+  		this.$router.push({ path: '/dashboard' });
+  	}
   },
   methods : {
   	nextToAddWebsite : function (){
@@ -183,6 +193,34 @@ export default {
 			  </div>
 			</div>
 	  		`	
+	  		// Rgsiter user
+	  		this.$http({
+				method : "POST",
+				url    : "http://localhost:8000/auth/register",
+				data   : { 
+					name : this.userInfo.name, 
+					email : this.userInfo.email, 
+					password:this.userInfo.password
+				}
+			})
+			.then((response)=>{
+				// Save that token in the localstorage
+				window.localStorage.setItem('user_token',response.data.user_token);
+				// Redirect the user to the dashboard
+				this.$router.push({ path: '/dashboard' });
+			})
+			.catch((error)=>{
+				if (error.message == "Request failed with status code 404") {
+					this.alertStatus.message = "Incorrect credentials!";
+					this.alertStatus.type = "danger";
+					this.alertStatus.display = "block";
+				} else {
+					this.alertStatus.message = "Something went wrong!";
+					this.alertStatus.type = "danger";
+					this.alertStatus.display = "block";
+				}
+			})
+
 	  		window.setTimeout(()=>{
 	  			this.$router.push('/dashboard');
 	  		},2000)

@@ -3,7 +3,8 @@ import { CheckWebsiteControllerInterface } from './Check.interface';
 import axios from 'axios';
 import { generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
- // setVapidDetails()
+
+
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
 	private  websitesLogService  : any;
@@ -15,35 +16,43 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 	public async addWebsite(request:any,response:Response):Promise<void> {
 		// Get body data along side owner
 		// Get user id to attach website to him <Token>
+		// Check websites_count
+		// Increase wesites_count
 		// Service
 		// Send the response back
+		
 		response.json({message : 'it works!'});
 	}
 	public async userWebsites(request:any, response: Response):Promise<void> {
 		// Get user id to show thier websites logs<Token>
 		// Service 
 		// Send the response back
+		
 		response.json({message: 'it works!'});
 	}
 	public async deleteWebsite(request:any,response:Response):Promise<void> {
 		// Get body data along side owner<Token> 
 		// Service
 		// Send the response back
+		
 		response.json({message : 'it works!'});
 	}
 	public async websiteLogs(request:any,response:Response):Promise<void> {
 		// Get user id to show thier websites logs<Token>
 		// Service
 		// Send the response back
+		
 		response.json({message : 'it works!'});
 	}
 	public async deleteWebsiteLogs(request:Request,response:Response):Promise<void> {
 		// Get user id to delete thier websites logs<Token>
 		// Service
 		// Send the response back
+		
 		response.json({message : 'it works!'});	
 	}
-	public checkEveryWebsiteExists(){
+	public async checkEveryWebsiteExists():Promise<void> {
+		console.log('Hello');
 		// Get all users
 		// Loop
 		// get first user

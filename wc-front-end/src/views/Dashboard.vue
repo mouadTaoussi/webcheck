@@ -64,6 +64,12 @@ export default {
     	msg : "Hello World"
     }
   },
+  created (){
+  	// If the user already logged in the we wont let him go to the dashboard
+  	if (!window.localStorage.getItem('user_token')) {
+  		this.$router.push({ path: '/login' });
+  	}
+  },
   async mounted(){
   	// Request notification permission
   	Notification.requestPermission();

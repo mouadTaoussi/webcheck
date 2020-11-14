@@ -1,26 +1,37 @@
 import AuthenticationService from './Authentication.service';
-import { AuthenticationControllerInterface, UserBody, UserInterface, UserUpdate } from './Authentication.interface';
+import { AuthenticationControllerInterface, UserBody, UserInterface, UserUpdate, subscriptionObject } from './Authentication.interface';
 import { sign, verify, decode } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 import { Request,Response, NextFunction } from 'express';
 import { genSalt, compare, hash } from 'bcrypt';
 import { v4 } from 'uuid';
 
-
 const userService = new AuthenticationService();
+
 class AuthenticationController implements AuthenticationControllerInterface{
 
 	// private userService: any;
-	private vapidPublicKey : string = "BCa2OQQNkeJ_8AdJNCFt4RNJGDRKhtRS2mQxF7kxifgduGX7QMg_23AtN-TODCzxG9HyCYBLjyAdnGs_4PzfWD"; 
-	private vapidPrivateKey: string = "gpqSDBsmGABfd20qBQayIxhC1_64LYnjp3cD6UkkdOI"; 
+	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
+	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
 	// constructor(){
 	// 	this.await userService = new AuthenticationService();
 	// }
 
 	public async pushServiceRegisteration(request: any,response:Response):Promise<void>{
-		// Get body data and the token
-		// send it back to the frontend
-		response.status(200).send({ message: "Set!" });
+		// Get body data and the user
+		const body:subscriptionObject = request.body; 
+
+		const user = request.user;
+	
+		// Attach that to the user
+		const attached: { 
+			status:number, saved:boolean,message:string | null } = await userService.registerToPushService(user.id,body);
+
+		// Response back
+		response.status(attached.status).send({
+			attached : attached.saved, message  : attached.message
+		})
+
 	}
 
 	// @TODO : add a controller that get subscription from push service
@@ -44,11 +55,13 @@ class AuthenticationController implements AuthenticationControllerInterface{
 				const user_token:string = sign({id:userEmail.user._id, email: userEmail.user.email} ,'bgfgngf');
 
 				// send it back to the frontend
+				
 				response.status(userEmail.status).send({ loggedin : true, message : "Logged in!", user_token : user_token })
 			}
 		}
 		else {
 			// if not then
+			
 			response.status(userEmail.status).send({ loggedin : false, message : "Incorrect credentials!", }) 
 		}	
 	}	
@@ -80,19 +93,18 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// Check whether saved or not
 			if (new_user.saved == true) {
 
+				// sign a token
 				const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,'bgfgngf');
 
-				// send it back to the frontend	
+				// send it back to the frontend			
 				response.status(new_user.status).send({ registered : true, message: "Registered successfully!", user_token:user_token  })
 
 			}
-			else {
+			else {		
 				response.status(new_user.status).send({
 					message : "Something went wrong!"
 				})
 			}
-
-			// sign a token
 		}
 	}
 
@@ -120,6 +132,9 @@ class AuthenticationController implements AuthenticationControllerInterface{
 				
 			} = await userService.changePassword(user.user._id, hashed_password);
 
+			// Send email with that new password
+			console.log(password)
+
 			response.status(updatePassword.status).send({
 				sent : true,
 				message : "email sent to your inbox!",
@@ -145,6 +160,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
 
 		// Response back
+		
 		response.status(updating.status).send({
 			updated : updating.updated,
 			message : updating.message
@@ -172,12 +188,14 @@ class AuthenticationController implements AuthenticationControllerInterface{
 				// Delete user
 				const user: { 
 					status:number,deleted:boolean,message:string } = await userService.deleteUser(request.user.id);
-				// Delete thier logs
+				// @TODO Delete thier logs
+
 				response.status(user.status).send({
 					deleted : user.deleted, message : user.message
 				})
 			}
 			else {
+			
 				response.status(401).send({ message : 'Not authorized' })
 			}
 		}
@@ -198,7 +216,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// Find the appropriate user that owns this token
 			const user = await verify(token,"bgfgngf");
 
-			if (!user) response.status(401).send({ message:'token not valid', });
+			if (!user) {response.status(401).send({ message:'token not valid', })};
 
 			request.user = user;
 			next();

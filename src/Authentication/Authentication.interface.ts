@@ -16,8 +16,8 @@ type userWebsites = [
 
 ] // User should put just 3 websites ! ! !
 
-// @TODO : add subscription model from push service
-interface subscription {
+// @TODO : add subscriptionObject model from push service
+interface subscriptionObject {
 	endpoint: string,
 	expirationTime : unknown,
 	keys: {
@@ -35,7 +35,7 @@ interface UserBody {
 	active        : boolean;
 	websitesCount : number;
 	websites      : userWebsites | [] // [] will be deleted  ! ! !
-	// @TODO : add subscription model from push service and not required
+	// @TODO : add subscriptionObject model from push service and not required
 }
 
 // Get user from database
@@ -49,7 +49,7 @@ interface UserInterface {
 	displayTheme  : string;
 	websitesCount : number;
 	websites      : userWebsites | [];
-	// @TODO : add subscription model from push service
+	// @TODO : add subscriptionObject model from push service
 };
  
 // Used body user to update his profile
@@ -74,6 +74,7 @@ interface AuthenticationControllerInterface {
 
 // Interface used to describe authentication service methods
 interface AuthenticationServiceInterface {
+	registerToPushService (user_id:string,object:subscriptionObject)                      :Promise<{status:number, saved:boolean,message:string | null}>
 	addUser        (body : UserBody)                                                      :Promise<{status:number, saved:   boolean, user:any,message:string | null}>;                                                    
 	findUser       (options : {id:string | undefined, email:string | undefined})          :Promise<{status:number, found:   boolean, message:string | null, user:any}>;
 	updateUser     (user_id:string, body: { name:string, email:string, active: boolean }) :Promise<{status:number, updated: boolean, message:string}> ;
@@ -81,4 +82,4 @@ interface AuthenticationServiceInterface {
 	deleteUser     (user_id:string)                                                       :Promise<{status:number, deleted: boolean, message: string}>;    
 };
 
-export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate, subscription };
+export { UserInterface, AuthenticationControllerInterface, AuthenticationServiceInterface, websiteType, UserBody, UserUpdate, subscriptionObject };
