@@ -22,6 +22,7 @@
 				class="form-control local-input my-2"
 			/>
 			<button
+				id="sending"
 				v-on:click="sendPassword()"
 				style="background-color: var(--primary-app);width: 100%"
 				class="local-btn local-my-2 local-text-white"
@@ -80,7 +81,15 @@ export default {
 				this.alertStatus.type = "info";
 				this.alertStatus.display = "block";
 			} else {
-				
+				// Waiting spinner 
+				document.querySelector('#sending').innerHTML = `
+				<div>
+					<div class="spinner-border spinner-border-sm" role="status">
+					  <span class="sr-only">Loading...</span>
+					</div>
+					Wait a minute...
+				</div>
+				`
 				this.$http({
 					method: "POST",
 					url: "http://localhost:8000/auth/resetPassword",
@@ -96,10 +105,14 @@ export default {
 				})
 				.catch((error) => {
 					if (error.message == "Request failed with status code 404") {
+						// Clear sppiner
+						document.querySelector('#sending').innerHTML = "Send!";
 						this.alertStatus.message = "Email doesnt exists!";
 						this.alertStatus.type = "danger";
 						this.alertStatus.display = "block";
 					} else {
+						// Clear sppiner
+						document.querySelector('#sending').innerHTML = "Send!";
 						this.alertStatus.message = "Something went wrong!";
 						this.alertStatus.type = "danger";
 						this.alertStatus.display = "block";

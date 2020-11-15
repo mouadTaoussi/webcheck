@@ -25,11 +25,11 @@
 		</select>
 		<div class="local-mt-4">
 			<button  
+				id="saving"
 				v-on:click="saveChanges()" 
 				class="local-btn local-ml-2 save-changes-btn"
 			>Save changes</button>
 			<button 
-				v-on:click="deleteAccount()" 
 				style="float: right" 
 				class="local-btn local-ml-2 local-btn-danger">
 			Delete account</button>
@@ -60,10 +60,32 @@ export default {
 
   		// Validate function
   		alert('Saved!');
-  	},
-  	deleteAccount : function(){
-  		// Password required
-  		confirm('Sure you want to delete this account!');
+
+  		// Waiting spinner 
+		document.querySelector('#saving').innerHTML = `
+		<div>
+			<div class="spinner-border spinner-border-sm" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			Wait a minute...
+		</div>
+		`
+	},
+	deleteAccount : function(){
+		// Password required
+		confirm('Sure you want to delete this account!');
+
+		// Waiting spinner 
+		document.querySelector('#deleteing').innerHTML = `
+		<div>
+			<div class="spinner-border spinner-border-sm" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			Wait a minute...
+		</div>
+		`
+		// Clear sppiner
+		document.querySelector('#deleteing').innerHTML = "Delete account!";
   	},
   }
 }

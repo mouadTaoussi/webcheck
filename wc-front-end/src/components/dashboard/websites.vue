@@ -15,14 +15,15 @@
 			    </header>
 			    <section class="modal-card-body">
 			    	<!-- Alert -->
-				<!-- 	<alert 
+					<alert 
 						v-bind:style="'display:' + alertStatus.display" 
 						v-bind:type="alertStatus.type" 
 						v-bind:Message="alertStatus.message"
-					></alert> -->
+					></alert>
 			      <!-- Content ... -->
 				   <input 
 				   	id="website_name"
+				   	v-model="newWebsite.name"
 				   	class="local-input form-control local-my-2"
 				   	placeholder="Your website name" 
 				   	name="name" 
@@ -30,6 +31,7 @@
 				   >
 				   <textarea
 				   	id="description"
+				   	v-model="newWebsite.description"
 				   	class="local-input form-control local-my-2"
 				   	placeholder="Your website description" 
 				   	name="description" 
@@ -37,6 +39,7 @@
 				   ></textarea> 
 				   <input 
 				   	id="website"
+				   	v-model="newWebsite.website"
 				   	class="local-input form-control local-my-2"
 				   	placeholder="Your website Url" 
 				   	name="website_url" 
@@ -49,6 +52,7 @@
 			    </section>
 			    <footer class="modal-card-foot">
 			      <button 
+			      id="adding-website"
 			      class="local-btn local-btn-success is-success local-mr-2"
 			      v-on:click="addWebsite()"
 			      >Add Website</button>
@@ -98,24 +102,29 @@
 
 <script>
 	import website from './website.vue';
-	// import alert from './alert.vue';
+	import alert from '.././alert.vue';
 
 	export default {
 
 	  name: 'websites',
 	  components: {
 	  	website,
-	  	// alert
+	  	alert
 	  },
 
 	  data () {
 	    return {
 	    	limit : 3,
 	    	userWebsites: [],
-	    	addWebsite : {
-	    		websiteName: null,
-	    		websiteDescription : null,
-	    		websiteUrl: null
+	    	alertStatus : {
+		    	message: "",
+		    	type : "",
+		    	display : "none"
+	    	},
+	    	newWebsite : {
+	    		name: "mouad",
+	    		description : "null",
+	    		website: "https://google.com"
 	    	}
 	    }
 	  },
@@ -134,13 +143,81 @@
 				modal.classList.add('is-active')	
 			}
 		},
-		addWebsite : ()=>{
+		addWebsite : function(){
 			// Validate website url
+			const validate_website = this.validateUserWebsite();
+
 			// Send a request to the server using this.$http
+			if (validate_website) {
+				// Waiting spinner 
+				document.querySelector('#adding-website').innerHTML = `
+				<div>
+					<div class="spinner-border spinner-border-sm" role="status">
+					  <span class="sr-only">Loading...</span>
+					</div>
+					Wait a minute...
+				</div>
+				`
+				this.$http({
+					method : "POST",
+					url    : "http://localhost:8000/check/aVdd",
+					data   : { 
+						name: this.newWebsite.name, 
+						description: this.newWebsite.description, 
+						website: this.newWebsite.website 
+					}
+				})
+				.then((response)=>{
+					// Push new website to the websites state
+					this.alertStatus.message = "Your website added successfully!";
+					this.alertStatus.type = "success";
+					this.alertStatus.display = "block";					
+				})
+				.catch((error)=>{
+					// Clear sppiner
+					document.querySelector('#adding-website').innerHTML = "Add Website";
+					
+					this.alertStatus.message = "Something went wrong!";
+					this.alertStatus.type = "danger";
+					this.alertStatus.display = "block";
+				})
+			}
+			
 		},
 		deleteWebsite : (website_id)=>{
 			alert('Delete Website fired!'+ website_id);
-		}
+		},
+		validateUserWebsite : function(){
+
+	  		if (this.newWebsite.name === "") {
+	  			document.querySelector('#website_name').style.borderColor = "red";
+	  			return false;
+	  		}
+	  		else if (this.newWebsite.description === "") {
+	  			document.querySelector('#description').style.borderColor = "red";
+	  			return false;
+	  		}
+	  		else if (this.newWebsite.website === "") {
+	  			document.querySelector('#website').style.borderColor = "red";
+	  			return false;
+	  		}
+	  		else if ( 
+	  			!this.newWebsite.website.includes('http://') 
+	  		) {
+	  			if (!this.newWebsite.website.includes('https://')){
+
+	  				document.querySelector('.website_error_message')
+		  			.innerHTML = "Enter a valid Url that includes http:// or https://";
+		  			return false;
+	  			}
+	  			else {
+	  				return true;
+	  			}
+	  		}
+	  		else {
+	  			return true;
+	  		}	
+	  	}
 	  }
 	}
 </script>

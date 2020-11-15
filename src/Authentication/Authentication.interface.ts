@@ -4,9 +4,9 @@ import { Request,Response, NextFunction } from 'express';
 type websiteType = {
 	name        : string;
 	description : string;
-	active      : boolean |undefined;
+	active      : boolean |undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 	website     : string;
-	_id         : string | undefined;
+	_id         : string | undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 } 
 type userWebsites = [
 

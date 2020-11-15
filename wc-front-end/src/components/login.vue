@@ -24,6 +24,7 @@
 				v-model="userInfo.password"
 				class="form-control local-input my-2">
 			<button 
+				id="logging"
 				v-on:click="loginUser()"
 				style="background-color: var(--primary-app);width: 100%" 
 				class="local-btn local-my-2 local-text-white"
@@ -77,6 +78,15 @@ export default {
   			this.alertStatus.display = "block";
   		}
   		else {
+  			// Waiting spinner 
+			document.querySelector('#logging').innerHTML = `
+			<div>
+				<div class="spinner-border spinner-border-sm" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				Wait a minute...
+			</div>
+			`
 
 	  		this.$http({
 				method : "POST",
@@ -91,10 +101,14 @@ export default {
 			})
 			.catch((error)=>{
 				if (error.message == "Request failed with status code 404") {
+					// Clear sppiner
+					document.querySelector('#logging').innerHTML = "Log in";
 					this.alertStatus.message = "Incorrect credentials!";
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
 				} else {
+					// Clear sppiner
+					document.querySelector('#logging').innerHTML = "Log in";
 					this.alertStatus.message = "Something went wrong!";
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";

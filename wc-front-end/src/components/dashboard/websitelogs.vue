@@ -6,8 +6,12 @@
 				<option>Website two</option>
 				<option>Website three</option>
 			</select>
-			<button type="button" class="local-btn local-btn-danger clear-logs-btn">
-			  Clear logs
+			<button 
+			id="clearing" 
+			type="button" 
+			v-on:click="clearLogs()"
+			class="local-btn local-btn-danger clear-logs-btn">
+			Clear logs
 			</button>
 		</div>
 		<!-- <chartlogs></chartlogs> -->
@@ -35,6 +39,20 @@ export default {
     return {
 
     }
+  },
+  clearLogs : ()=>{
+  	// Waiting spinner 
+	document.querySelector('#clearing').innerHTML = `
+	<div>
+		<div class="spinner-border spinner-border-sm" role="status">
+		  <span class="sr-only">Loading...</span>
+		</div>
+		Wait a minute...
+	</div>
+	`
+
+	// Clear sppiner
+	document.querySelector('#clearing').innerHTML = "Clear logs";
   }
 }
 </script>

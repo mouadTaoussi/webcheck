@@ -111,7 +111,7 @@
 					v-on:click='backToRegisterForm()'
 				>Go Back</button>
 				<button 
-					id="register-btn"
+					id="registeration"
 					style="background-color: var(--primary-app);width: 100%" 
 					class="local-btn local-mb-2 local-text-white"
 					v-on:click='registerUser()'
@@ -186,13 +186,15 @@ export default {
 
   		if (validate == true && validate_website == true) {
   			// put a loading spinner
-	  		document.querySelector('#register-btn').innerHTML = `
-	  		<div style="font-size:10px;" class="d-flex justify-content-center">
-			  <div style="color: white;" class="spinner-border spinner-border-md" role="status">
-			    <span class="sr-only">Loading...</span>
-			  </div>
+	  		// Waiting spinner 
+			document.querySelector('#registeration').innerHTML = `
+			<div>
+				<div class="spinner-border spinner-border-sm" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				Wait a minute...
 			</div>
-	  		`	
+			`
 	  		// Rgsiter user
 	  		this.$http({
 				method : "POST",
@@ -218,10 +220,14 @@ export default {
 			})
 			.catch((error)=>{
 				if (error.message == "Request failed with status code 404") {
+					// Clear sppiner
+					document.querySelector('#registeration').innerHTML = "Register";
 					this.alertStatus.message = "Incorrect credentials!";
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
 				} else {
+					// Clear sppiner
+					document.querySelector('#registeration').innerHTML = "Register";
 					this.alertStatus.message = "Something went wrong!";
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
