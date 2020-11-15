@@ -21,7 +21,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		// Get the user by its token
 		const user: { 
 			iat:string, email:string, id:string } = request.user;
-
+		console.log(website)
 		// Service
 		const saving = await websiteService.addWebsite(user.id,website);
 		

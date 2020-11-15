@@ -168,7 +168,10 @@
 					}
 				})
 				.then((response)=>{
-					// Push new website to the websites state
+					// Check if added
+						// Push new website to the websites state
+					// Clear sppiner
+					document.querySelector('#adding-website').innerHTML = "Add Website";
 					this.alertStatus.message = "Your website added successfully!";
 					this.alertStatus.type = "success";
 					this.alertStatus.display = "block";					
@@ -176,7 +179,7 @@
 				.catch((error)=>{
 					// Clear sppiner
 					document.querySelector('#adding-website').innerHTML = "Add Website";
-					
+
 					this.alertStatus.message = "Something went wrong!";
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
