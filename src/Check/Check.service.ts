@@ -42,8 +42,11 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 				// Get him websites
 				const userWebsites = user.websites;
-				console.log(userWebsites);
 
+				// Increase websitesCount by one, so we can limit users websites 
+				const plusOne = user.websitesCount + 1;
+
+				// Set to true by default
 				website.active = true;
 
 				// Push the new website to the current websites array
@@ -51,30 +54,23 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 				// Increase websitesCount then Save it to the database
 				const update = await UserModel.findByIdAndUpdate(user_id,{
-					websitesCount: user.websitesCount++, 
+					websitesCount: plusOne, 
 					websites: userWebsites
 				})
 
-				return {
-					status  : 200, 
-					message : 'A NEW WEBSITE ADDED!!',
-					data : website
+				return { 
+					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website
 				}
-
 			}
 			else {
 				return {
-					status  : 200, 
-					message : 'You cannot add more than 3 websites!!',
+					status  : 200, message : 'You cannot add more than 3 websites!!',
 					data : null
 				}
 			}
-		}
-		catch(error) {
+		} catch(error) {
 			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data : null
+				status  : 500, message : "Something went wrong!", data : null
 			}
 		}
 

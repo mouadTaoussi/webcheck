@@ -16,7 +16,25 @@ class AuthenticationController implements AuthenticationControllerInterface{
 	// constructor(){
 	// 	this.await userService = new AuthenticationService();
 	// }
+	public async getAuthenticatedUser(request: any,response:Response):Promise<void> {
+		// Get the user by its token
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
 
+		// Get user
+		const gettingUser: 
+			{ status:number, found:boolean, message:string | null, user:any } 
+		= await userService.findUser({email : undefined, id: user.id});
+
+		// Except the password and push service credentials to be sent ! ! !
+		gettingUser.user.password = undefined;
+		gettingUser.user.pushRegisteration = undefined;
+
+		// Response back
+		response.status(gettingUser.status).send({
+			user : gettingUser.user, message : gettingUser.message
+		})
+	}
 	public async pushServiceRegisteration(request: any,response:Response):Promise<void>{
 		// Get body data and the user
 		const body:subscriptionObject = request.body; 
@@ -72,7 +90,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		const body: UserBody = request.body;
 
 		// Check if email is exists
-		const emailExists = await await userService.findUser({email : body.email, id: undefined});
+		const emailExists = await userService.findUser({email : body.email, id: undefined});
 		
 		// if true then
 		// tell the user that email already taken

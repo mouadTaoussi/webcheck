@@ -5,6 +5,7 @@ import AuthenticationController from './Authentication.controller';
 const authentication_router = Router();
 const AuthController        = new AuthenticationController();
 
+authentication_router.get('/',                          /*cors,*/ AuthController.Authenticated,  AuthController.getAuthenticatedUser )
 authentication_router.post('/pushServiceRegisteration', /*cors,*/ AuthController.Authenticated,  AuthController.pushServiceRegisteration )
 authentication_router.post('/login',                    /*cors,*/ AuthController.loginUser )
 authentication_router.post('/register',                 /*cors,*/ AuthController.registerUser)

@@ -5,4 +5,5 @@ export default function cors(request: Request, response:Response,next:NextFuncti
 	// response.header("Access-Control-Allow-Credentials", true);
 	response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 	response.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type');
+	next();
 };

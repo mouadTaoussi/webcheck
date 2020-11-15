@@ -6,7 +6,7 @@ type websiteType = {
 	description : string;
 	active      : boolean |undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 	website     : string;
-	_id         : string | undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
+	_id         : string  | undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 } 
 type userWebsites = [
 
@@ -63,6 +63,7 @@ interface UserUpdate {
 
 // Interface used to describe authentication controller methods ! ! !
 interface AuthenticationControllerInterface {
+	getAuthenticatedUser(request: any,response:Response)              : Promise<void>
 	pushServiceRegisteration(request: any,response:Response)          : Promise<void>
 	loginUser      (request:any, response:Response)                   : Promise<void>
 	registerUser   (request:any, response:Response)                   : Promise<void>

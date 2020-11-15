@@ -30,11 +30,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-	#alert {
+/*	#alert {
 		position: absolute;
 		bottom: 20px;
 		right: 20px;
 		width: 300px;
 		transition: all .3s ease-out;
-	}
+	}*/
 </style>

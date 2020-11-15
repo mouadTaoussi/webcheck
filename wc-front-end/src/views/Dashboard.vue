@@ -11,7 +11,7 @@
 		      <div class="tab-pane fade show active" id="list-websites" role="tabpanel" aria-labelledby="list-websites-list">
 		      	<h3 class="text-left local-mb-4">Your Websites</h3>
 		      	<div class="websites-area">
-		      		<websites></websites>
+		      		<websites v-bind:websites="userWebsites"></websites>
 		      	</div>
 		      </div>
 		      <div class="tab-pane fade" id="list-websites-logs" role="tabpanel" aria-labelledby="list-websites-logs-list">  
@@ -23,13 +23,20 @@
 		      <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">  
 		      	<h3 class="text-left local-mb-4">Your Account</h3>
 		      	<div class="user-account">
-		      		<useraccount></useraccount>
+		      		<useraccount
+			      		v-bind:name="user.name"
+			      		v-bind:email="user.email"
+		      		></useraccount>
 	      		</div>
 			  </div>
 		      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
 		      	<h3 class="text-left local-mb-4">Settings</h3>
 		      	<div class="user-settings">
-		      		<settings></settings>
+		      		<settings
+		      			v-bind:receivingEmail="user.receivingEmail"
+		      			v-bind:active="user.active"
+		      			v-bind:displayTheme="user.displayTheme"
+		      		></settings>
 	      		</div>
 			  </div>
 		    </div>
@@ -61,7 +68,16 @@ export default {
 
   data () {
     return {
-    	msg : "Hello World"
+    	msg : "Hello World",
+    	user : {
+    		name: null,
+    		email: null,
+    		receivingEmail: null,
+    		active: null,
+    		displayTheme: null,
+    	},
+    	userWebsites : null,
+    	websitesLogs : null
     }
   },
   created (){
@@ -69,6 +85,30 @@ export default {
   	if (!window.localStorage.getItem('user_token')) {
   		this.$router.push({ path: '/login' });
   	}
+
+  	// Fetch user
+  	this.$http({
+  		method: "GET",
+  		url   : 
+  		`http://localhost:8000/auth/?token=${window.localStorage.getItem('user_token')}`
+  	})
+  	.then((response)=>{
+  		alert('it works')
+  		console.log(response);
+
+  		// Push to the local state
+  		this.user.name           = response.data.user.name;
+  		this.user.email           = response.data.user.email;
+  		this.user.receivingEmail = response.data.user.receivingEmail;
+  		this.user.active         = response.data.user.active;
+  		this.user.displayTheme    = response.data.user.displayTheme;
+  		this.userWebsites        = response.data.user.websites;
+  	})
+  	.catch((err)=>{
+
+  	})
+  	// Fetch logs
+
   },
   async mounted(){
   	// Request notification permission

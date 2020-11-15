@@ -2,27 +2,22 @@
 	<section>
 		<!-- <br><br> -->
 		<p class="text-left">Name:</p>
-		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Name">
+		<input 
+			v-bind:value="name"
+			type="text" name="" 
+			class="form-control local-input local-mb-2" 
+			placeholder="Name">
 		<p class="text-left">Email:</p>
-		<input type="text" name="" class="form-control local-input local-mb-2" placeholder="Email">
+		<input 
+			v-bind:value="email"
+			type="text" 
+			name="" 
+			class="form-control local-input local-mb-2" 
+			placeholder="Email">
 		<p class="text-left text-danger website_error_message" style='font-size: 12px'>
 	   	Must be http:// or https://
 		</p>
-		<p class="text-left">Receiving emails:</p>
-		<select class="form-control local-input local-mb-2">
-			<option value="true">Enabled</option>
-			<option value="false">Disabled</option>
-		</select>
-		<p class="text-left">Check your websites:</p>
-		<select class="form-control local-input local-mb-2">
-			<option value="true">Enabled</option>
-			<option value="false">Disabled</option>
-		</select>
-		<p class="text-left">Choose theme:</p>
-		<select class="form-control local-input local-mb-2">
-			<option value="light">Light</option>
-			<option value="dark">Dark</option>
-		</select>
+		
 		<div class="local-mt-4">
 			<button  
 				id="saving"
@@ -42,24 +37,20 @@ import alert from '.././alert.vue';
 export default {
 
   name: 'useraccount',
+
+  props : { name:String, email:String },
   components: {
   	alert
   },
 
   data : () => {
-    return {
-    	name           : null, 
-		email          : null, 
-		receivingEmail : null,
-		active         : null, 
-		displayTheme   : null,
-    }
+    return {}
   },
   methods : {
   	saveChanges : function(){
 
   		// Validate function
-  		alert('Saved!');
+  		alert(this.email);
 
   		// Waiting spinner 
 		document.querySelector('#saving').innerHTML = `

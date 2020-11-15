@@ -16,8 +16,8 @@ var application: Application = express();
 application.use(helmet());
 application.use(bodyParser.json());
 
-application.use('/auth',         cors, authentication_router);
-application.use('/checkwebsite', cors, website_logs_router);
+application.use('/auth',  cors, authentication_router);
+application.use('/check', cors, website_logs_router);
 
 connect(application_config.mongodb_connection,
 	{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }

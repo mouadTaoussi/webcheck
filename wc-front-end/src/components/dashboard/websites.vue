@@ -75,27 +75,16 @@
 		</div>
 
 		<div class="websites-area">
-			<website 
-				websiteID="123"
-				websiteName="myBlog1" 
-				websiteDescription="this is my blog baby!!" 
-				websiteUrl="https://myblog.com"
-				v-bind:isActive="false"
-				v-on:deleteOne="deleteWebsite($event)" ></website>
-			<website 
-				websiteID="123"
-				websiteName="myBlog" 
-				websiteDescription="this is my blog baby!!" 
-				websiteUrl="https://myblog.com"
-				v-bind:isActive="true"
-				v-on:deleteOne="deleteWebsite($event)" ></website>
-			<website 
-				websiteID="123"
-				websiteName="myBlog" 
-				websiteDescription="this is my blog baby!!" 
-				websiteUrl="https://myblog.com"
-				v-bind:isActive="true"
-				v-on:deleteOne="deleteWebsite($event)" ></website>
+			<div v-for="website in websites">
+				<website 
+					v-bind:websiteID="website.id"
+					v-bind:websiteName="website.name" 
+					v-bind:websiteDescription="website.description" 
+					v-bind:websiteUrl="website.website"
+					v-bind:v-bind:isActive="website.active"
+					v-on:deleteOne="deleteWebsite($event)" 
+				></website>
+			</div>
 		</div>
 	</section>
 </template>
@@ -107,6 +96,7 @@
 	export default {
 
 	  name: 'websites',
+	  props : ['websites'],
 	  components: {
 	  	website,
 	  	alert
@@ -115,10 +105,10 @@
 	  data () {
 	    return {
 	    	limit : 3,
-	    	userWebsites: [],
+	    	userWebsites: this.websites,
 	    	alertStatus : {
-		    	message: "",
-		    	type : "",
+		    	message: "null",
+		    	type : "info",
 		    	display : "none"
 	    	},
 	    	newWebsite : {
@@ -160,7 +150,7 @@
 				`
 				this.$http({
 					method : "POST",
-					url    : "http://localhost:8000/check/aVdd",
+					url    : `http://localhost:8000/check/add?token=${window.localStorage.getItem('user_token')}`,
 					data   : { 
 						name: this.newWebsite.name, 
 						description: this.newWebsite.description, 
@@ -172,8 +162,10 @@
 						// Push new website to the websites state
 					// Clear sppiner
 					document.querySelector('#adding-website').innerHTML = "Add Website";
-					this.alertStatus.message = "Your website added successfully!";
-					this.alertStatus.type = "success";
+
+					this.alertStatus.message = response.data.message;
+					this.alertStatus.type = 
+					response.data.message.includes('added') ? "success" : "info";
 					this.alertStatus.display = "block";					
 				})
 				.catch((error)=>{
