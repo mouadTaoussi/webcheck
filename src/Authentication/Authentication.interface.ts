@@ -35,7 +35,6 @@ interface UserBody {
 	active        : boolean;
 	websitesCount : number;
 	websites      : userWebsites | [] // [] will be deleted  ! ! !
-	// @TODO : add subscriptionObject model from push service and not required
 }
 
 // Get user from database
@@ -50,6 +49,7 @@ interface UserInterface {
 	websitesCount : number;
 	websites      : userWebsites | [];
 	// @TODO : add subscriptionObject model from push service
+	pushRegisteration : subscriptionObject
 };
  
 // Used body user to update his profile

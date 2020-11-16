@@ -1,5 +1,5 @@
-import { CheckWebsiteServiceInterface, ServerStatusCodesType } from './Check.interface';
-import { websiteType } from '.././Authentication/Authentication.interface';
+import { CheckWebsiteServiceInterface, ServerStatusCodesType, WebsiteLog } from './Check.interface';
+import { websiteType, UserInterface } from '.././Authentication/Authentication.interface';
 import WebsiteLogModel from './Check.model';
 import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
@@ -34,17 +34,16 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		// Save it !!!
 		try {
 			// Find the user
-			const user = await UserModel.findOne({_id:user_id});
-			console.log(user)
+			const user: UserInterface = await UserModel.findOne({_id:user_id});
 
 			// Check his websitesCount 
 			if (user.websitesCount < 3 ) {
 
 				// Get him websites
-				const userWebsites = user.websites;
+				const userWebsites: [websiteType] = user.websites;
 
 				// Increase websitesCount by one, so we can limit users websites 
-				const plusOne = user.websitesCount + 1;
+				const plusOne: number = user.websitesCount + 1;
 
 				// Set to true by default
 				website.active = true;
@@ -54,69 +53,63 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 				// Increase websitesCount then Save it to the database
 				const update = await UserModel.findByIdAndUpdate(user_id,{
-					websitesCount: plusOne, 
-					websites: userWebsites
+					websitesCount : plusOne, 
+					websites      : userWebsites
 				})
 
 				return { 
-					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website
-				}
+					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website }
 			}
 			else {
 				return {
 					status  : 200, message : 'You cannot add more than 3 websites!!',
-					data : null
-				}
+					data : null }
 			}
 		} catch(error) {
 			return {
-				status  : 500, message : "Something went wrong!", data : null
-			}
+				status  : 500, message : "Something went wrong!", data : null }
 		}
-
 	}
-	// public async userWebsites(user_id: string)
-	// :Promise<{status:number,message:string | null,data:any | null}>  
-	// {
-	// 	try {
 
-	// 		// const userWebsite = await UserModel
-	// 		return {
-	// 			status  : 200, 
-	// 			message : null,
-	// 			data    : null
-	// 		}
-	// 		// if (user == null ) return {
-	// 		// status : 404, found : false, message : "user doesn't exists!", user: null };
-	// 	}
-	// 	catch(error) {
-	// 		return {
-	// 			status  : 500, 
-	// 			message : "Something went wrong!",
-	// 			data    : null
-	// 		}
-	// 	}
-	// }
-	public async deleteWebsite(website_id: string)
-	:Promise<{status:number,message:string | null,data:any | null}> 
+	public async deleteWebsite(user_id:string,website_id: string)
+	:Promise<{status:number,message:string | null}> 
 	 {
-		// Get website data
-		// Save it !!!
 		try {
-			return {
-				status  : 200, 
-				message : null,
-				data : null
+			// Get website data
+			const user: UserInterface = await UserModel.findOne({_id:user_id});
+
+			// Get user websites
+			const websites: [websiteType] = user.websites;
+
+			// Websites without the targeted one to be deleted
+			let websitesNotDeleted: [websiteType] | [] = [];
+
+			// Remove the target website
+			for (var i = 0; i < websites.length; i++) {
+
+				if ( websites[i]._id.toString() == website_id.toString() ) {
+					continue;
+				}
+				else {
+					websitesNotDeleted.push(websites[i]);
+				}
 			}
+			// Decrease one in websitesCount
+			const decreaseOne: number = user.websitesCount - 1;
+
+			// Save it !!! 👌👌
+			const update = await UserModel.findByIdAndUpdate(user_id,{
+				websitesCount : decreaseOne, 
+				websites      : websitesNotDeleted
+			})
+
+			return { status  : 200, message : "Website deleted successfully", }
 		}
 		catch(error) {
-			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data : null
-			}
+			return { status  : 500, message : "Something went wrong!", }
 		}
 	}
+
 	public async pushLog( status_code:number, user_id:string, website_id:string )
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	{
@@ -124,59 +117,64 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		// Push
 		try {
 			return {
-				status  : 200, 
-				message : null,
-				data : null
-			}
+				status  : 200, message : null, data : null }
 		}
 		catch(error) {
 			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data : null
-			}
+				status  : 500, message : "Something went wrong!", data : null}
 		}
 	}
-	public async getLogs( user_id:string, website_id:string )
+
+	public async getLogs( user_id:string )
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	{
 		try {
-			return {
-				status  : 200, 
-				message : null,
-				data : null
-			}
+			// Get user
+			const user: UserInterface = await UserModel.findOne({_id:user_id});
+
+			// Get logs of each website
+			let logs: [WebsiteLog] = await WebsiteLogModel.find({
+				user_id: user._id
+			});
+
+			// // Loop over user websites
+			// for( let i = 0; i < websites[i]; i++) {
+
+			// 	// Put logs of the current website
+			// 	let currentWebsiteLogs: [WebsiteLog] | [] = [];
+
+			// 	// Get logs of website[i]
+			// 	const websitelogs: [WebsiteLog] = await WebsiteLogModel.find({
+			// 		user_id:user_id
+			// 	})
+
+			// 	for ( let o = 0; o < websitelogs.length ; o++ ) {
+			// 		websitelogs[o]
+			// 	}
+
+			// }
+
+			return { status  : 200, message : null, data : logs }
 		}
 		catch(error) {
 			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data : null
+				status  : 500,  message : "Something went wrong!", data : null
 			}
 		}
 	}
+
 	public async deleteLogs( user_id:string, website_id:string | undefined )
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	{
 		try {
-			return {
-				status  : 200, 
-				message : null,
-				data : null
-			}
+			return { status  : 200, message : null, data : null }
 		}
 		catch(error) {
-			return {
-				status  : 500, 
-				message : "Something went wrong!",
-				data : null
+			return { 
+				status  : 500,  message : "Something went wrong!", data : null
 			}
 		}
-	}
-	// public getLog( user_id:string, website_id:string ){
-		
-	// }
-	
+	}	
 }
 
 export default CheckWebsitesService;

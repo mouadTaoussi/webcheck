@@ -52,13 +52,13 @@
 export default {
 
   name: 'website',
-  props : {
-  	websiteID          : String,
-  	websiteName        : String,
-    websiteDescription : String,
-    websiteUrl         : String, 
-    isActive           : Boolean
-  },
+  props : [
+  	"websiteID"          ,
+  	"websiteName"        ,
+    "websiteDescription" ,
+    "websiteUrl"         , 
+    "isActive"           
+  ],
   data () {
     return {}
   },

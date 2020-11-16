@@ -14,8 +14,8 @@
 			name="" 
 			class="form-control local-input local-mb-2" 
 			placeholder="Email">
-		<p class="text-left text-danger website_error_message" style='font-size: 12px'>
-	   	Must be http:// or https://
+		<p class="text-left text-danger email_exists" style='font-size: 12px'>
+	   		Email already exists
 		</p>
 		
 		<div class="local-mt-4">

@@ -75,9 +75,9 @@
 		</div>
 
 		<div class="websites-area">
-			<div v-for="website in websites">
+			<div v-for="website in userWebsites">
 				<website 
-					v-bind:websiteID="website.id"
+					v-bind:websiteID="website._id"
 					v-bind:websiteName="website.name" 
 					v-bind:websiteDescription="website.description" 
 					v-bind:websiteUrl="website.website"
@@ -119,7 +119,9 @@
 	    }
 	  },
 	  mounted(){
-	  	// alert('it works!')
+	  	console.log('function() {}f')
+	  	console.log(this.userWebsites)
+	  	console.log(this.websites)
 		// Fetch user websites by its token
 	  },
 	  methods : {
@@ -179,8 +181,24 @@
 			}
 			
 		},
-		deleteWebsite : (website_id)=>{
-			alert('Delete Website fired!'+ website_id);
+		deleteWebsite : function(website_id){
+
+			const confirm = window.confirm('Sure you want to delete that website?');
+			console.log(website_id)
+			if (!confirm) return;
+
+			this.$http({
+		  		method: "DELETE",
+		  		url   : 
+		  		`http://localhost:8000/check/deletewebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
+		  	})
+		  	.then((response)=>{
+		  		// Push to the local state
+		  		console.log(response)
+		  	})
+		  	.catch((err)=>{
+		  		console.log(err)
+		  	})
 		},
 		validateUserWebsite : function(){
 

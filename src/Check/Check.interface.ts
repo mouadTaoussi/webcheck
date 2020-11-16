@@ -18,11 +18,20 @@ interface CheckWebsiteServiceInterface {
 	// statusCodes                                                      : ServerStatusCodesType<string>
 	addWebsite(user_id:string,website: websiteType)                  : Promise<{status:number,message:string | null,data:any | null}> 
 	// userWebsites(user_id: string)                                    : Promise<{status:number,message:string | null,data:any | null}> 
-	deleteWebsite(website_id: string)                                : Promise<{status:number,message:string | null,data:any | null}>
+	deleteWebsite(user_id:string, website_id: string)                : Promise<{status:number,message:string | null}>
 	pushLog( status_code:number, user_id:string, website_id:string ) : Promise<{status:number,message:string | null,data:any | null}>
 	getLogs( user_id:string, website_id:string )                     : Promise<{status:number,message:string | null,data:any | null}>
 	deleteLogs( user_id:string, website_id:string | undefined )      : Promise<{status:number,message:string | null,data:any | null}>
 };
+
+interface WebsiteLog {
+	user_id      : string,
+	website_id   : string,
+	statusCode   : string,
+	explanation  : string,
+	whenitdown   : string,
+	log_id       : string
+}
 
 type ServerStatusCodesType<GenericType> = [
 	{ code : number, description : GenericType },
@@ -39,7 +48,7 @@ type ServerStatusCodesType<GenericType> = [
 
 ]
 
-export { CheckWebsiteControllerInterface, CheckWebsiteServiceInterface,ServerStatusCodesType };
+export { CheckWebsiteControllerInterface, CheckWebsiteServiceInterface,ServerStatusCodesType, WebsiteLog };
 
 /**
 *

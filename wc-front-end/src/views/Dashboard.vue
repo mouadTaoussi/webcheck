@@ -93,9 +93,6 @@ export default {
   		`http://localhost:8000/auth/?token=${window.localStorage.getItem('user_token')}`
   	})
   	.then((response)=>{
-  		alert('it works')
-  		console.log(response);
-
   		// Push to the local state
   		this.user.name           = response.data.user.name;
   		this.user.email           = response.data.user.email;
@@ -107,7 +104,20 @@ export default {
   	.catch((err)=>{
 
   	})
+
   	// Fetch logs
+  	 this.$http({
+  		method: "GET",
+  		url   : 
+  		`http://localhost:8000/check/logs?token=${window.localStorage.getItem('user_token')}`
+  	})
+  	.then((response)=>{
+  		// Push to the local state
+  		console.log(response)
+  	})
+  	.catch((err)=>{
+  		console.log(err)
+  	})
 
   },
   async mounted(){

@@ -3,17 +3,17 @@
 		<p class="text-left">Receiving emails:</p>
 		<select class="form-control local-input local-mb-2">
 			<option value="true">Enabled</option>
-			<option value="false">Disabled</option>
+			<option value="false" selected>Disabled</option>
 		</select>
 		<p class="text-left">Check your websites:</p>
 		<select class="form-control local-input local-mb-2">
-			<option value="true">Enabled</option>
+			<option value="true" selected>Enabled</option>
 			<option value="false">Disabled</option>
 		</select>
 		<p class="text-left">Choose theme:</p>
 		<select class="form-control local-input local-mb-2">
 			<option value="light">Light</option>
-			<option value="dark">Dark</option>
+			<option value="dark" selected>Dark</option>
 		</select>
 		<button  
 			id="saving"

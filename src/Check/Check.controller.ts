@@ -21,7 +21,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		// Get the user by its token
 		const user: { 
 			iat:string, email:string, id:string } = request.user;
-		console.log(website)
+
 		// Service
 		const saving = await websiteService.addWebsite(user.id,website);
 		
@@ -39,18 +39,33 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 	// 	response.json({message: 'it works!'});
 	// }
 	public async deleteWebsite(request:any,response:Response):Promise<void> {
-		// Get body data along side owner<Token> 
+		// Get user
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
+
+		// Get website id
+		const {website_id} = request.query;
+
 		// Service
+		const deleting = await websiteService.deleteWebsite(user.id, website_id);
+
 		// Send the response back
-		
-		response.json({message : 'it works!'});
+		response.status(deleting.status).send({
+			message : deleting.message,
+		})		
 	}
 	public async websiteLogs(request:any,response:Response):Promise<void> {
 		// Get user id to show thier websites logs<Token>
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
+
 		// Service
+		const logs = await websiteService.getLogs(user.id);	
+
 		// Send the response back
-		
-		response.json({message : 'it works!'});
+		response.status(logs.status).send({
+			logs : logs.data,
+		});
 	}
 	public async deleteWebsiteLogs(request:Request,response:Response):Promise<void> {
 		// Get user id to delete thier websites logs<Token>
@@ -62,6 +77,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 	public async checkEveryWebsiteExists():Promise<void> {
 		console.log('Hello');
 		// Get all users
+		// const users = await User
 		// Loop
 		// get first user
 			// Loop
