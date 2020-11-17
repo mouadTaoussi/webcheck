@@ -53,7 +53,7 @@ export default {
   	filterLogs : function(){
   		const website_id = document.querySelector('.choose-website').value;
 
-  		this.logsToFilter = this.logsToFilter.filter((websitelogs)=>{
+  		this.logsToFilter = this.logs.filter((websitelogs)=>{
   			return websitelogs._id == website_id;
   		})
   	},

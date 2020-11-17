@@ -106,16 +106,16 @@
 	  data () { ////
 	    return {
 	    	limit : 3,
-	    	userWebsites: this.websites,
+	    	// userWebsites: this.websites,
 	    	alertStatus : {
 		    	message: "null",
 		    	type : "info",
 		    	display : "none"
 	    	},
 	    	newWebsite : {
-	    		name: "mouad",
-	    		description : "null",
-	    		website: "https://google.com"
+	    		name: null,
+	    		description : null,
+	    		website: null
 	    	}
 	    }
 	  },
@@ -163,12 +163,14 @@
 				})
 				.then((response)=>{
 					// Check if added
-						// Push new website to the websites state
-					this.websites.push({
-						name: this.newWebsite.name,
-						description: this.newWebsite.description,
-						website: this.newWebsite.website
-					})
+					// Push new website to the websites prop
+					if (response.data.message.includes('added')) {
+						this.websites.push({
+							name: this.newWebsite.name,
+							description: this.newWebsite.description,
+							website: this.newWebsite.website
+						})
+					}
 					// Clear sppiner
 					document.querySelector('#adding-website').innerHTML = "Add Website";
 
@@ -200,8 +202,8 @@
 		  		`http://localhost:8000/check/deletewebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
 		  	})
 		  	.then((response)=>{
-		  		// Pop from the local state
-		  		this.websites = this.userWebsites.filter((website)=>{
+		  		// Pop from the websites prop
+		  		this.websites = this.websites.filter((website)=>{
 		  			return website._id !== website_id
 		  		})
 		  	})

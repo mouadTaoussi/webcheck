@@ -188,8 +188,8 @@ class AuthenticationController implements AuthenticationControllerInterface{
 	public async deleteUser(request:any,response:Response):Promise<void> {
 		// Require password to change user data
 		// Get the password to authorize user to change his credentials
-		const password: { password: string } = request.body.password;
-
+		const password: string = request.query.password;
+		console.log(request.query)
 		if (!password) {response.status(400).send({message:"no password prvided!"}); response.end()};
 
 		// Find user by its token

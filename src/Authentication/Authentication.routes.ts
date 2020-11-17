@@ -11,7 +11,7 @@ authentication_router.post('/login',                    /*cors,*/ AuthController
 authentication_router.post('/register',                 /*cors,*/ AuthController.registerUser)
 authentication_router.post('/resetPassword',            /*cors,*/ AuthController.resetPassword)
 authentication_router.post('/updateUser',               /*cors,*/ AuthController.Authenticated ,AuthController.updateUser)
-// authentication_router.delete('/deleteUser',  AuthController.Authenticated ,AuthController.deleteUser)
+authentication_router.delete('/deleteUser',  AuthController.Authenticated ,AuthController.deleteUser)
 // authentication_router.post('/',(request,response)=>{
 // 	response.json({ message: 'it works!' })
 // })
