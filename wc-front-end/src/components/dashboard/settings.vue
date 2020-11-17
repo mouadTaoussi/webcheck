@@ -16,8 +16,8 @@
 			<option value="dark" selected>Dark</option>
 		</select>
 		<button  
-			id="saving"
-			v-on:click="saveChanges()" 
+			id="saving-settings"
+			v-on:click="saveChangesSettings()" 
 			class="local-btn local-ml-2 save-changes-btn"
 		>Save changes</button>
 		<button 
@@ -28,26 +28,25 @@
 export default {
 
   name: 'settings',
-  props : {
-  	receivingEmail: String,
-  	active:         String,
-  	displayTheme:   String
-  },
+  props : [
+  	"receivingEmail",
+  	"active",
+  	"displayTheme" 
+  ],
 
   data () {
     return {
-    	receivingEmail : null,
-		active         : null, 
-		displayTheme   : null,
+    	ReceivingEmail : this.receivingEmail,
+		Active         : this.active, 
+		DisplayTheme   : this.displayTheme,
     }
   },
   methods : {
-  	saveChanges : function() {
+  	saveChangesSettings : function() {
   		// Validate function
-  		alert('Saved!');
 
   		// Waiting spinner 
-		document.querySelector('#saving').innerHTML = `
+		document.querySelector('#saving-settings').innerHTML = `
 		<div>
 			<div class="spinner-border spinner-border-sm" role="status">
 			  <span class="sr-only">Loading...</span>

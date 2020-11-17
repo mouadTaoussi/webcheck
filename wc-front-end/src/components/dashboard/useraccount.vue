@@ -20,11 +20,13 @@
 		
 		<div class="local-mt-4">
 			<button  
-				id="saving"
-				v-on:click="saveChanges()" 
+				id="saving-user-info"
+				v-on:click="saveChangesUserInfo()" 
 				class="local-btn local-ml-2 save-changes-btn"
 			>Save changes</button>
 			<button 
+				id="deleteing"
+				v-on:click="deleteAccount()" 
 				style="float: right" 
 				class="local-btn local-ml-2 local-btn-danger">
 			Delete account</button>
@@ -44,16 +46,15 @@ export default {
   },
 
   data : () => {
-    return {}
+    return { Name: this.name, Email: this.email }
   },
   methods : {
-  	saveChanges : function(){
-
+  	saveChangesUserInfo : function(){
   		// Validate function
   		alert(this.email);
 
   		// Waiting spinner 
-		document.querySelector('#saving').innerHTML = `
+		document.querySelector('#saving-user-info').innerHTML = `
 		<div>
 			<div class="spinner-border spinner-border-sm" role="status">
 			  <span class="sr-only">Loading...</span>
@@ -76,7 +77,7 @@ export default {
 		</div>
 		`
 		// Clear sppiner
-		document.querySelector('#deleteing').innerHTML = "Delete account!";
+		// document.querySelector('#deleteing').innerHTML = "Delete account!";
   	},
   }
 }

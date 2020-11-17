@@ -1,10 +1,12 @@
 <template>
 	<section>
 		<div class="logs-options">	
-			<select class="choose-website local-input form-control">
-				<option>Website one</option>
-				<option>Website two</option>
-				<option>Website three</option>
+			<select v-on:change="filterLogs()" class="choose-website local-input form-control">
+				<option 
+					v-for="website in websites" 
+					v-bind:value='website._id'>
+					{{ website.name }}
+				</option>
 			</select>
 			<button 
 			id="clearing" 
@@ -16,8 +18,9 @@
 		</div>
 		<!-- <chartlogs></chartlogs> -->
 		<!-- <loadingspinner></loadingspinner> -->
-		<websitelog></websitelog>
-		<websitelog></websitelog>
+		<div v-for="log in logsToFilter">
+			<websitelog v-bind:log="log"></websitelog>
+		</div>
 	</section>
 </template>
 
@@ -29,6 +32,9 @@ import loadingspinner from '.././loadingspinner.vue';
 export default {
 
   name: 'websitelogs',
+
+  props : ['logs','logsToFilter','websites'],
+
   components: {
   	websitelog,
   	chartlogs,
@@ -37,22 +43,34 @@ export default {
 
   data () {
     return {
-
+    	websiteLogs : this.logs,
+    	filteredLogs : this.logsToFilter,
+    	userWesites : this.websites
     }
   },
-  clearLogs : ()=>{
-  	// Waiting spinner 
-	document.querySelector('#clearing').innerHTML = `
-	<div>
-		<div class="spinner-border spinner-border-sm" role="status">
-		  <span class="sr-only">Loading...</span>
-		</div>
-		Wait a minute...
-	</div>
-	`
+  
+  methods : {
+  	filterLogs : function(){
+  		const website_id = document.querySelector('.choose-website').value;
 
-	// Clear sppiner
-	document.querySelector('#clearing').innerHTML = "Clear logs";
+  		this.logsToFilter = this.logsToFilter.filter((websitelogs)=>{
+  			return websitelogs._id == website_id;
+  		})
+  	},
+  	clearLogs : ()=>{
+	  	// Waiting spinner 
+		document.querySelector('#clearing').innerHTML = `
+		<div>
+			<div class="spinner-border spinner-border-sm" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			Wait a minute...
+		</div>
+		` 
+
+		// Clear sppiner
+		// document.querySelector('#clearing').innerHTML = "Clear logs";
+	  },
   }
 }
 </script>

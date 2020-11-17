@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/main",
     "dev": "nodemon ./dist/main",
-    "compile": "tsc -p . "
+    "compile": "tsc -p . --watch"
   },
   "repository": {
     "type": "git",

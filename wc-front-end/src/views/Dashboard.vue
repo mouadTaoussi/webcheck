@@ -17,7 +17,10 @@
 		      <div class="tab-pane fade" id="list-websites-logs" role="tabpanel" aria-labelledby="list-websites-logs-list">  
 		      	<h3 class="text-left local-mb-4">Websites Logs</h3>
 		      	<div class="website-logs">
-		      		<websitelogs></websitelogs>
+		      		<websitelogs 
+			      		v-bind:logs="websitesLogs" 
+			      		v-bind:logsToFilter="websitesLogs"
+			      		v-bind:websites="userWebsites"></websitelogs>
 	      		</div>
 			  </div>
 		      <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">  
@@ -80,7 +83,7 @@ export default {
     	websitesLogs : null
     }
   },
-  created (){
+  beforeCreate(){
   	// If the user already logged in the we wont let him go to the dashboard
   	if (!window.localStorage.getItem('user_token')) {
   		this.$router.push({ path: '/login' });
@@ -102,7 +105,7 @@ export default {
   		this.userWebsites        = response.data.user.websites;
   	})
   	.catch((err)=>{
-
+  		alert('Something went wrong!');
   	})
 
   	// Fetch logs
@@ -113,10 +116,10 @@ export default {
   	})
   	.then((response)=>{
   		// Push to the local state
-  		console.log(response)
+  		this.websitesLogs = response.data.logs;
   	})
   	.catch((err)=>{
-  		console.log(err)
+  		alert('Something went wrong!')
   	})
 
   },

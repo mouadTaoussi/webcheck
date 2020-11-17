@@ -75,7 +75,7 @@
 		</div>
 
 		<div class="websites-area">
-			<div v-for="website in userWebsites">
+			<div v-for="website in websites">
 				<website 
 					v-bind:websiteID="website._id"
 					v-bind:websiteName="website.name" 
@@ -97,12 +97,13 @@
 
 	  name: 'websites',
 	  props : ['websites'],
+
 	  components: {
 	  	website,
 	  	alert
 	  },
 
-	  data () {
+	  data () { ////
 	    return {
 	    	limit : 3,
 	    	userWebsites: this.websites,
@@ -120,8 +121,9 @@
 	  },
 	  mounted(){
 	  	console.log('function() {}f')
-	  	console.log(this.userWebsites)
+	  	// console.log(this.userWebsites)
 	  	console.log(this.websites)
+		// Fetch user websites by its token
 		// Fetch user websites by its token
 	  },
 	  methods : {
@@ -162,6 +164,11 @@
 				.then((response)=>{
 					// Check if added
 						// Push new website to the websites state
+					this.websites.push({
+						name: this.newWebsite.name,
+						description: this.newWebsite.description,
+						website: this.newWebsite.website
+					})
 					// Clear sppiner
 					document.querySelector('#adding-website').innerHTML = "Add Website";
 
@@ -182,9 +189,9 @@
 			
 		},
 		deleteWebsite : function(website_id){
-
+    
 			const confirm = window.confirm('Sure you want to delete that website?');
-			console.log(website_id)
+			// console.log(website_id)
 			if (!confirm) return;
 
 			this.$http({
@@ -193,11 +200,13 @@
 		  		`http://localhost:8000/check/deletewebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
 		  	})
 		  	.then((response)=>{
-		  		// Push to the local state
-		  		console.log(response)
+		  		// Pop from the local state
+		  		this.websites = this.userWebsites.filter((website)=>{
+		  			return website._id !== website_id
+		  		})
 		  	})
 		  	.catch((err)=>{
-		  		console.log(err)
+		  		alert('Something went wrong')
 		  	})
 		},
 		validateUserWebsite : function(){

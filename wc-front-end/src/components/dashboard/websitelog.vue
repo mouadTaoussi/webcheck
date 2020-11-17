@@ -23,7 +23,7 @@
 export default {
 
   name: 'websitelog',
-
+  props : ['log'],
   data () {
     return {
 
