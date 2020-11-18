@@ -5,12 +5,12 @@ import AuthenticationController from './Authentication.controller';
 const authentication_router = Router();
 const AuthController        = new AuthenticationController();
 
-authentication_router.get('/',                          /*cors,*/ AuthController.Authenticated,  AuthController.getAuthenticatedUser )
+authentication_router.get ('/',                         /*cors,*/ AuthController.Authenticated,  AuthController.getAuthenticatedUser )
 authentication_router.post('/pushServiceRegisteration', /*cors,*/ AuthController.Authenticated,  AuthController.pushServiceRegisteration )
 authentication_router.post('/login',                    /*cors,*/ AuthController.loginUser )
 authentication_router.post('/register',                 /*cors,*/ AuthController.registerUser)
 authentication_router.post('/resetPassword',            /*cors,*/ AuthController.resetPassword)
-authentication_router.post('/updateUser',               /*cors,*/ AuthController.Authenticated ,AuthController.updateUser)
+authentication_router.put ('/updateUser',               /*cors,*/ AuthController.Authenticated ,AuthController.updateUser)
 authentication_router.delete('/deleteUser',  AuthController.Authenticated ,AuthController.deleteUser)
 // authentication_router.post('/',(request,response)=>{
 // 	response.json({ message: 'it works!' })

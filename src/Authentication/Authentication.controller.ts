@@ -146,7 +146,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// Update it with forgotten one
 			const updatePassword:{ 
 
-				status:number,changed:boolean, message:string 
+				status:number, changed:boolean, message:string 
 				
 			} = await userService.changePassword(user.user._id, hashed_password);
 
@@ -173,16 +173,46 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		// Get body data
 		const body: UserUpdate = request.body;
 
-		// Update user
-		const updating: { 
-			status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
+		// Check if the email alreay provided
+		// Find email if possible
+		const userEmail = await userService.findUser({ email: body.email ,id :undefined});
 
-		// Response back
-		
-		response.status(updating.status).send({
-			updated : updating.updated,
-			message : updating.message
-		})
+		// if found then
+		if (userEmail.found == true) {
+
+			if ( user.email == body.email ) {
+				// Update user
+				const updating: { 
+					status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
+
+				// Response back
+				
+				response.status(updating.status).send({
+					updated : updating.updated,
+					message : updating.message
+				})
+			}
+			else {
+				response.status(404).send({
+					updated : false,
+					message : "Email alreay provided!"
+				})
+
+			}
+		}
+		else {
+			// Update user
+			const updating: { 
+				status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
+
+			// Response back
+			
+			response.status(updating.status).send({
+				updated : updating.updated,
+				message : updating.message
+			})
+		}
+
 
 	} 
 	public async deleteUser(request:any,response:Response):Promise<void> {

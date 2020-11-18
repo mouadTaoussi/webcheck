@@ -4,7 +4,7 @@ import { Request,Response, NextFunction } from 'express';
 type websiteType = {
 	name        : string;
 	description : string;
-	active      : boolean |undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
+	active      : boolean | undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 	website     : string;
 	_id         : string  | undefined; // undefined beacuse adding website proccess doesn't require that field to get from user
 } 
@@ -39,7 +39,7 @@ interface UserBody {
 
 // Get user from database
 interface UserInterface {
-	_id           : string |  undefined;
+	_id           : string | undefined;
 	name          : string;
 	email         : string;
 	password      : string | undefined;
@@ -54,11 +54,11 @@ interface UserInterface {
  
 // Used body user to update his profile
 interface UserUpdate { 
-	name: string, 
-	email: string, 
-	receivingEmail:string 
-	active: boolean, 
-	displayTheme:string,
+	name          : string  | undefined, 
+	email         : string  | undefined, 
+	receivingEmail: string  | undefined,
+	active        : boolean | undefined, 
+	displayTheme  : string  | undefined,
 }
 
 // Interface used to describe authentication controller methods ! ! !
@@ -78,7 +78,7 @@ interface AuthenticationServiceInterface {
 	registerToPushService (user_id:string,object:subscriptionObject)                      :Promise<{status:number, saved:boolean,message:string | null}>
 	addUser        (body : UserBody)                                                      :Promise<{status:number, saved:   boolean, user:any,message:string | null}>;                                                    
 	findUser       (options : {id:string | undefined, email:string | undefined})          :Promise<{status:number, found:   boolean, message:string | null, user:any}>;
-	updateUser     (user_id:string, body: { name:string, email:string, active: boolean }) :Promise<{status:number, updated: boolean, message:string}> ;
+	updateUser     (user_id:string, body: UserUpdate) :Promise<{status:number, updated    : boolean, message:string}> ;
 	changePassword (id: string, password: string)                                         :Promise<{status:number, changed: boolean, message:string}>;                    
 	deleteUser     (user_id:string)                                                       :Promise<{status:number, deleted: boolean, message: string}>;    
 };

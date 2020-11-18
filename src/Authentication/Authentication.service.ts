@@ -37,6 +37,7 @@ class AuthenticationService implements AuthenticationServiceInterface {
 		try {
 			const init_new_user = new UserModel(body);
 			const new_user = await init_new_user.save();
+			
 			return {
 			status : 200, saved : true, message : null, user : new_user }
 		}

@@ -18,7 +18,7 @@
 		<button  
 			id="saving-settings"
 			v-on:click="saveChangesSettings()" 
-			class="local-btn local-ml-2 save-changes-btn"
+			class="shadow local-btn local-ml-2 save-changes-btn"
 		>Save changes</button>
 		<button 
 	</section>

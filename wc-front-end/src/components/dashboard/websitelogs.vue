@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<div class="logs-options">	
-			<select v-on:change="filterLogs()" class="choose-website local-input form-control">
+			<select v-on:change="filterLogs()" class="shadow choose-website local-input form-control">
 				<option 
 					v-for="website in websites" 
 					v-bind:value='website._id'>
@@ -12,7 +12,7 @@
 			id="clearing" 
 			type="button" 
 			v-on:click="clearLogs()"
-			class="local-btn local-btn-danger clear-logs-btn">
+			class="shadow local-btn local-btn-danger clear-logs-btn">
 			Clear logs
 			</button>
 		</div>

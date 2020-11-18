@@ -3,13 +3,15 @@
 		<!-- <br><br> -->
 		<p class="text-left">Name:</p>
 		<input 
-			v-bind:value="name"
+			id="name"
+			v-model="name"
 			type="text" name="" 
 			class="form-control local-input local-mb-2" 
 			placeholder="Name">
 		<p class="text-left">Email:</p>
 		<input 
-			v-bind:value="email"
+			id="email"
+			v-model="email"
 			type="text" 
 			name="" 
 			class="form-control local-input local-mb-2" 
@@ -22,13 +24,13 @@
 			<button  
 				id="saving-user-info"
 				v-on:click="saveChangesUserInfo()" 
-				class="local-btn local-ml-2 save-changes-btn"
+				class="shadow local-btn local-ml-2 save-changes-btn"
 			>Save changes</button>
 			<button 
 				id=""
 				v-on:click="toggleModal()" 
 				style="float: right" 
-				class="local-btn local-ml-2 local-btn-danger">
+				class="shadow local-btn local-ml-2 local-btn-danger">
 			Delete account</button>
 		</div>
 
@@ -96,8 +98,6 @@ export default {
 
   data : () => {
     return { 
-    	Name: this.name, 
-    	Email: this.email, 
     	Password: '',
     	alertStatus : {
 	    	message: "null",
@@ -108,25 +108,47 @@ export default {
   },
   methods : {
   	saveChangesUserInfo : function(){
-  		// Validate function
-  		// alert(this.email);
 
-  		// Waiting spinner 
-		document.querySelector('#saving-user-info').innerHTML = `
-		<div>
-			<div class="spinner-border spinner-border-sm" role="status">
-			  <span class="sr-only">Loading...</span>
+  		if (this.name == null || this.name == "") {
+  			console.log(1)
+  		}	
+  		else if (this.email == null || this.email == "") {
+  			console.log(2)
+  		}
+  		else {
+  			console.log(3)
+  			// Waiting spinner 
+			document.querySelector('#saving-user-info').innerHTML = `
+			<div>
+				<div class="spinner-border spinner-border-sm" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				Wait a minute...
 			</div>
-			Wait a minute...
-		</div>
-		`
+			`
+
+  			// Http request
+  			this.$http({
+  				method : 'PUT',
+  				url : `http://localhost:8000/auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
+  				data : {name : this.name, email: this.email }
+  			})
+  			.then((response)=>{
+  				// Clear sppiner
+				document.querySelector('#saving-user-info').innerHTML = "Saved your Changes!";
+  			})
+  			.catch((err)=>{
+  				// Clear sppiner
+				document.querySelector('#saving-user-info').innerHTML = "Save Changes";
+  			})
+  		}
 	},
 	deleteAccount : function(){
 		// Password required
 		// confirm('Sure you want to delete this account!');
 
 		// Validate if password provided
-		if (this.Password == null) {
+		if (this.Password == null || this.Password == '') {
 			document.querySelector('#password').style.borderColor = "red";
 		}
 		else {
