@@ -81,7 +81,7 @@
 					v-bind:websiteName="website.name" 
 					v-bind:websiteDescription="website.description" 
 					v-bind:websiteUrl="website.website"
-					v-bind:v-bind:isActive="website.active"
+					v-bind:isActive="website.active"
 					v-on:deleteOne="deleteWebsite($event)" 
 				></website>
 			</div>
@@ -113,19 +113,13 @@
 		    	display : "none"
 	    	},
 	    	newWebsite : {
-	    		name: null,
-	    		description : null,
-	    		website: null
+	    		name: '',
+	    		description : '',
+	    		website: ''
 	    	}
 	    }
 	  },
-	  mounted(){
-	  	console.log('function() {}f')
-	  	// console.log(this.userWebsites)
-	  	console.log(this.websites)
-		// Fetch user websites by its token
-		// Fetch user websites by its token
-	  },
+	  mounted(){},
 	  methods : {
 		toggleModal : ()=>{
 			const modal = document.querySelector('#add-website-modal');
@@ -164,7 +158,7 @@
 				.then((response)=>{
 					// Check if added
 					// Push new website to the websites prop
-					if (response.data.message.includes('added')) {
+					if (response.data.message.includes('added') || response.data.message.includes('ADDED')) {
 						this.websites.push({
 							name: this.newWebsite.name,
 							description: this.newWebsite.description,

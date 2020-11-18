@@ -98,7 +98,7 @@ export default {
     return { 
     	Name: this.name, 
     	Email: this.email, 
-    	Password: null,
+    	Password: '',
     	alertStatus : {
 	    	message: "null",
 	    	type : "info",

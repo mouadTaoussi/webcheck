@@ -18,8 +18,12 @@
 		</div>
 		<!-- <chartlogs></chartlogs> -->
 		<!-- <loadingspinner></loadingspinner> -->
+
 		<div v-for="log in logsToFilter">
-			<websitelog v-bind:log="log"></websitelog>
+			<!-- <div v-if='!log'><p class="text-center cabin text-dark">No logs for now!</p></div> -->
+			<websitelog 
+				v-bind:log="log">	
+			</websitelog>
 		</div>
 	</section>
 </template>
@@ -48,13 +52,16 @@ export default {
     	userWesites : this.websites
     }
   },
-  
+  mounted(){
+
+  },
   methods : {
   	filterLogs : function(){
+  		  	// console.log(this.logs)
+  	// console.log(this.logsToFilter)
   		const website_id = document.querySelector('.choose-website').value;
-
   		this.logsToFilter = this.logs.filter((websitelogs)=>{
-  			return websitelogs._id == website_id;
+  			return websitelogs.website_id == website_id;
   		})
   	},
   	clearLogs : ()=>{

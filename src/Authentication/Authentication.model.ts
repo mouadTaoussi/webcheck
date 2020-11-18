@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const userWebsiteSchema = new Schema({
 	name          : { type : String }, // a name given for the website
 	description   : { type : String }, // a description of that website
-	active        : { type : String }, // if the website is working then <true>, if down then <false>
+	active        : { type : Boolean }, // if the website is working then <true>, if down then <false>
 	website       : { type : String }  // Website Url
 })
 
