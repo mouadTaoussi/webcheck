@@ -64,7 +64,7 @@ export default {
   			return websitelogs.website_id == website_id;
   		})
   	},
-  	clearLogs : ()=>{
+  	clearLogs : function(){
 	  	// Waiting spinner 
 		document.querySelector('#clearing').innerHTML = `
 		<div>
@@ -75,8 +75,25 @@ export default {
 		</div>
 		` 
 
-		// Clear sppiner
-		// document.querySelector('#clearing').innerHTML = "Clear logs";
+		//HTTP Request 
+		this.$http({
+			method : 'DELETE',
+			url    :
+			`http://localhost:8000/check/clearLogs?token=${window.localStorage.getItem('user_token')}`
+		})
+		.then((response)=>{
+			console.log(response);
+			// Clear logs state prop
+			this.logsToFilter = null;
+			this.logs = null;
+			// Clear sppiner
+			document.querySelector('#clearing').innerHTML = "Clear logs";
+		})
+		.catch((err)=>{
+			window.alert('Something went wrong!')
+			// Clear sppiner
+			document.querySelector('#clearing').innerHTML = "Clear logs";
+		});
 	  },
   }
 }

@@ -72,6 +72,16 @@ class AuthenticationService implements AuthenticationServiceInterface {
 				return {
 				status : 200, found : true, message: null, user  : user }
 			}
+			else if (options.id == undefined && options.email == undefined) {
+				// Get all users
+				const users = await UserModel.find();
+
+				if (users == null ) return {
+				status : 404, found : false, message : "users doesn't exists!", user: null };
+
+				return {
+				status : 200, found : true, message: null, user  : users }
+			}
 			else {  
 				return {
 				status : 404, found : false, message: 'something went wrong! Try again.',user: null }

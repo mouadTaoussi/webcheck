@@ -167,7 +167,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	{
 		try {
-			return { status  : 200, message : null, data : null }
+			// Delete user logs
+			const deleting = await UserModel.find({ user_id: user_id }).remove();
+			// console.log(deleting)
+			return { status  : 200, message : "Logs has been deleted successfully", data : null }
 		}
 		catch(error) {
 			return { 

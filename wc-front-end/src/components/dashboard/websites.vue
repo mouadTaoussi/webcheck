@@ -193,7 +193,7 @@
 			this.$http({
 		  		method: "DELETE",
 		  		url   : 
-		  		`http://localhost:8000/check/deletewebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
+		  		`http://localhost:8000/check/deleteWebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
 		  	})
 		  	.then((response)=>{
 		  		// Pop from the websites prop

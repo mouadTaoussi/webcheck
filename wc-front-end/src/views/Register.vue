@@ -141,7 +141,7 @@ export default {
     	alertStatus : {
 	    	message: "Fuck you boi!!",
 	    	type : "info",
-	    	display : "block"
+	    	display : "none"
     	},
     	userInfo : {
     		name : "mouad",

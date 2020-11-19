@@ -181,7 +181,11 @@ export default {
 				// Clear sppiner
 				document.querySelector('#deleting').innerHTML = "I inderstand, Delete my account!";
 				// Clear sppiner
-				document.querySelector('#deleting').innerHTML = "Deleted!";					
+				document.querySelector('#deleting').innerHTML = "Deleted!";
+				// Delete the token
+		  		window.localStorage.removeItem('user_token');
+		  		// Redirect the user to the /
+				this.$router.push({ path: '/login' });					
 			})
 			.catch((err)=>{
 				if (err.message == "Request failed with status code 401") {

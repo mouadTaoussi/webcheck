@@ -38,6 +38,10 @@ export default {
 <style lang="css" scoped>
 	.single-log {
 		position: relative;
+		border: .1px solid transparent;
+	}
+	.single-log:hover {
+		border: .1px solid rgba(0,0,0,.2);
 	}
 	.log-title {
 		font-size: 15px;

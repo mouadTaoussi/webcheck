@@ -1,11 +1,13 @@
 import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface } from './Check.interface';
 import { websiteType } from '.././Authentication/Authentication.interface';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
+import AuthenticationService from '.././Authentication/Authentication.service';
 
 const websiteService = new CheckWebsitesService();
+const userService = new AuthenticationService();
 
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
@@ -67,40 +69,69 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 			logs : logs.data,
 		});
 	}
-	public async deleteWebsiteLogs(request:Request,response:Response):Promise<void> {
+	public async deleteWebsiteLogs(request:any,response:Response):Promise<void> {
 		// Get user id to delete thier websites logs<Token>
+		const user: { 
+			iat:string, email:string, id:string } = request.user;
 		// Service
+		const deleting = await websiteService.deleteLogs(user.id, undefined);
 		// Send the response back
-		
-		response.json({message : 'it works!'});	
+		response.status(deleting.status).send({
+			message : deleting.message 
+		});	
 	}
 	public async checkEveryWebsiteExists():Promise<void> {
-		console.log('Hello');
+		// console.log('Hello');
 		// Get all users
-		// const users = await User
+		const users = await userService.findUser({id:undefined,email:undefined});
 		// Loop
-		// get first user
-			// Loop
-			// check thier websites
-				// Check if the already is down by checking website[i].active
-				// if true then
-					// axios
-					// if one of the websites is down
-						// set website[i].active to false
-						// send a notification and email
-						// nodemailer + webpush
-						// push a log to the database 
-						// new CheckWebsitesService().pushLog; 
-						// status_code:number, user_id:string, website_id:string
-					// if not
-						// move on
-				// if website[i].active is false
-					// axios
-					// if one of the websites is down
-						// move on
-					// if not
-						// set website[i].active to true
-						// move on
+		for (let i = 0; i < users.user.length ; i++) {
+			// console.log(users.user[i]);
+			// get first user
+				// Loop
+				for (let o = 0; o < users.user[i].websites.length; o++) {
+					// check thier websites
+					// Check if the already is down by checking website[i].active
+					// if true then
+					if ( users.user[i].websites[o].active ) {
+						// axios
+						const checking : AxiosResponse<any> = await axios({
+							method : 'GET',
+							url : users.user[i].websites[o].website,
+							headers : {
+								'Content-Type': 'text-html',
+								'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+							}
+						})
+						console.log(checking.status);
+						// if one of the websites is down
+						if (checking.status is 500) {
+
+							// set website[i].active to false
+							// send a notification and email
+							// nodemailer + webpush
+							// push a log to the database 
+							// new CheckWebsitesService().pushLog; 
+							// status_code:number, user_id:string, website_id:string
+						}
+						else {
+							// if not
+								// move on
+						}
+
+					}
+					// if website[i].active is false
+					else {
+							// axios
+							// if one of the websites is down
+								// move on
+							// if not
+								// set website[i].active to true
+								// move on
+					}
+
+				}
+		}
 
 
 	}
@@ -110,8 +141,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 // Run <checkEveryWebsiteExists> Job every 2 minutes
 const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
 
-setInterval(checkWebsitesJob,60000);
-
+setInterval(checkWebsitesJob,10000);
+// 60000
 export default CheckWebsiteController;
 
 // Create transporter object with credentials

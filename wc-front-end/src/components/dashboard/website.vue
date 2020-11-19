@@ -80,6 +80,10 @@ export default {
 		/*border: .1px solid rgba(0,0,0,.1);*/
 		position: relative;
 		height: auto;
+		border: .1px solid transparent;
+	}
+	.website-component:hover {
+		border: .1px solid rgba(0,0,0,.2);
 	}
 	.website_name {
 		font-weight: 500;
