@@ -8,6 +8,7 @@
 <style>
 :root {
   --primary-app : #008272;
+  /*--primary-app : #da3b01;*/
 }
 
 #app {

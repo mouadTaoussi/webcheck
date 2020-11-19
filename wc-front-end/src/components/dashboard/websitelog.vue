@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="shadow single-log local-card local-my-2 log">	      				
+		<div class="local-shadow single-log local-card local-my-2 log">	      				
 			<p class="log-title text-left text-danger poppins">{{log.statusCode}}
 			</p>
 			<p class="created_at">
@@ -47,7 +47,7 @@ export default {
 		/*font-family: helvetica,sans-serif;*/
 	}
 	.log {
-		border: .2px solid rgba(0,0,0,.2);
+		/*border: .2px solid rgba(0,0,0,.2);*/
 	}
 	.created_at {
 		position: absolute;

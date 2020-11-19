@@ -17,20 +17,20 @@
 			class="form-control local-input local-mb-2" 
 			placeholder="Email">
 		<p class="text-left text-danger email_exists" style='font-size: 12px'>
-	   		Email already exists
+	   		
 		</p>
 		
 		<div class="local-mt-4">
 			<button  
 				id="saving-user-info"
 				v-on:click="saveChangesUserInfo()" 
-				class="shadow local-btn local-ml-2 save-changes-btn"
+				class="local-shadow local-btn local-ml-2 save-changes-btn"
 			>Save changes</button>
 			<button 
 				id=""
 				v-on:click="toggleModal()" 
 				style="float: right" 
-				class="shadow local-btn local-ml-2 local-btn-danger">
+				class="local-shadow local-btn local-ml-2 local-btn-danger">
 			Delete account</button>
 		</div>
 
@@ -136,10 +136,20 @@ export default {
   			.then((response)=>{
   				// Clear sppiner
 				document.querySelector('#saving-user-info').innerHTML = "Saved your Changes!";
+				// Display err message
+				document.querySelector('.email_exists').innerHTML = "";
   			})
   			.catch((err)=>{
-  				// Clear sppiner
+  				// Clear sppiner email_exists
 				document.querySelector('#saving-user-info').innerHTML = "Save Changes";
+
+				if ( err.message == "Request failed with status code 404" ) {
+					// Display err message
+					document.querySelector('.email_exists').innerHTML = "Email already exists";
+				}
+				else {
+					window.alert('Something went wrong!');
+				}
   			})
   		}
 	},

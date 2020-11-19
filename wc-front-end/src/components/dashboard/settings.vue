@@ -1,24 +1,24 @@
 <template>
 	<section>
 		<p class="text-left">Receiving emails:</p>
-		<select class="form-control local-input local-mb-2">
+		<select class="form-control local-input local-mb-2" v-model="receivingEmail">
 			<option value="true">Enabled</option>
-			<option value="false" selected>Disabled</option>
+			<option value="false">Disabled</option>
 		</select>
 		<p class="text-left">Check your websites:</p>
-		<select class="form-control local-input local-mb-2">
-			<option value="true" selected>Enabled</option>
+		<select class="form-control local-input local-mb-2" v-model="active">
+			<option value="true">Enabled</option>
 			<option value="false">Disabled</option>
 		</select>
 		<p class="text-left">Choose theme:</p>
-		<select class="form-control local-input local-mb-2">
+		<select class="form-control local-input local-mb-2" v-model="displayTheme">
 			<option value="light">Light</option>
-			<option value="dark" selected>Dark</option>
+			<option value="dark">Dark</option>
 		</select>
 		<button  
 			id="saving-settings"
 			v-on:click="saveChangesSettings()" 
-			class="shadow local-btn local-ml-2 save-changes-btn"
+			class="local-shadow local-btn local-ml-2 save-changes-btn"
 		>Save changes</button>
 		<button 
 	</section>
@@ -54,6 +54,24 @@ export default {
 			Wait a minute...
 		</div>
 		`
+
+  		// HTTP Request 
+  		this.$http({
+  			method :'PUT',
+  			url : `http://localhost:8000/auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
+  			data : { 
+  				receivingEmail: this.receivingEmail,
+				active        : this.active, 
+				displayTheme  : this.displayTheme,
+  			}
+  		})
+  		.then((response)=>{
+  			document.querySelector('#saving-settings').innerHTML = 'Saved your Changes!';
+  		})
+  		.catch((err)=>{
+  			document.querySelector('#saving-settings').innerHTML = 'Save changes';
+  		})
+  		
   	}
   }
 }

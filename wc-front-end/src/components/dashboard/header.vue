@@ -51,7 +51,7 @@ export default {
 	background-size: contain;
 	width: 150px;
 	height: 50px;
-	margin: 0 auto;
+	margin: -1px auto;
 
 }
 

@@ -1,7 +1,7 @@
 <template>
 	<section>
 
-		<div class="shadow website-component local-p-2 poppins">
+		<div class="local-shadow website-component local-p-2 poppins">
 			<p class="text-left website_name"><strong>{{ websiteName }}</strong></p>
 			<div class="activity_status">
 				<p v-if="isActive" class="is_active text-success">
@@ -77,7 +77,7 @@ export default {
 <style lang="css" scoped>
 	.website-component {
 		background-color: white;
-		border: .2px solid rgba(0,0,0,.2);
+		/*border: .1px solid rgba(0,0,0,.1);*/
 		position: relative;
 		height: auto;
 	}

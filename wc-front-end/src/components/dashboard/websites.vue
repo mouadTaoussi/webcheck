@@ -46,9 +46,9 @@
 				   	type="text"
 				   >
 				   <p class="text-left text-danger website_error_message" style='font-size: 12px'>
-				   	Must be http:// or https://
+				   	
 					</p>
-
+					<!-- Must be http:// or https:// -->
 			    </section>
 			    <footer class="modal-card-foot">
 			      <button 
@@ -66,7 +66,7 @@
 			<!-- Button trigger modal -->
 			<button 
 				type="button"
-				class="local-btn add-website-btn shadow" 
+				class="local-btn add-website-btn local-shadow" 
 				data-toggle="modal" 				
 				data-target="#shareMethodsModal"
 				v-on:click="toggleModal()"
