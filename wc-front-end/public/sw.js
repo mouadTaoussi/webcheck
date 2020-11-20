@@ -17,7 +17,11 @@ this.onfetch = (event)=>{
 }
 
 this.onpush = (event)=>{
-
+	// Data received from server via push service
+	const data = event.data.json();
 	// Push a notification
-	console.log('Pushed');
+	self.registration.showNotification(data.title, {
+		body : "Your website is currently down and not working!",
+		icon : "/logo.ico"
+	});
 }

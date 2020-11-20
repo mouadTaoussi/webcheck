@@ -10,9 +10,6 @@ const userService = new AuthenticationService();
 
 class AuthenticationController implements AuthenticationControllerInterface{
 
-	// private userService: any;
-	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
-	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
 	// constructor(){
 	// 	this.await userService = new AuthenticationService();
 	// }

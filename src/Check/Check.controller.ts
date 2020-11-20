@@ -2,7 +2,7 @@ import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface } from './Check.interface';
 import { websiteType } from '.././Authentication/Authentication.interface';
 import axios, { AxiosResponse } from 'axios';
-import { generateVAPIDKeys,setVapidDetails } from 'web-push';
+import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
 import AuthenticationService from '.././Authentication/Authentication.service';
 
@@ -12,9 +12,19 @@ const userService = new AuthenticationService();
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
 	private  websitesLogService  : any;
+	// private userService: any;
+	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
+	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
+
 
 	constructor(){
-		this.websitesLogService = new CheckWebsitesService();
+		// this.websitesLogService = new CheckWebsitesService();
+		webpush.setGCMAPIKey('<Your GCM API Key Here>');
+		webpush.setVapidDetails(
+		  'mailto:example@yourdomain.org',
+		  this.vapidPublicKey,
+		  this.vapidPrivateKey
+		);
 	}
 
 	public async addWebsite(request:any,response:Response):Promise<void> {
@@ -84,6 +94,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		// console.log('Hello');
 		// Get all users
 		const users = await userService.findUser({id:undefined,email:undefined});
+		// console.log(users.user[0])
 		// Loop
 		for (let i = 0; i < users.user.length ; i++) {
 			// console.log(users.user[i]);
@@ -93,32 +104,61 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 					// check thier websites
 					// Check if the already is down by checking website[i].active
 					// if true then
+					// console.log(users.user[i].websites)
 					if ( users.user[i].websites[o].active ) {
 						// axios
-						const checking : AxiosResponse<any> = await axios({
+						try {
+							const checking : AxiosResponse<any> = await axios({
 							method : 'GET',
 							url : users.user[i].websites[o].website,
 							headers : {
 								'Content-Type': 'text-html',
 								'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 							}
-						})
-						console.log(checking.status);
-						// if one of the websites is down
-						if (checking.status is 500) {
-
-							// set website[i].active to false
-							// send a notification and email
-							// nodemailer + webpush
-							// push a log to the database 
-							// new CheckWebsitesService().pushLog; 
-							// status_code:number, user_id:string, website_id:string
+							})
+							console.log(checking.status == 200);
+						// 		// move on
 						}
-						else {
-							// if not
-								// move on
-						}
+						// // if one of the websites is down
+						catch (error){
+							// Status code
+							let statusCode: number;
 
+							if (error.response){
+								 // @TODO check by use regex or includes
+								if (error.response.status == 500){
+									// 	// send a notification
+									//  // init payload
+									const payload : { title: string, url: string } = {
+										title:"Might be you provided a wrong website url!",
+										url  : users.user[i].websites[o].website
+									}
+									//  // send a notification
+									sendNotification(
+										users.user[i].pushRegisteration,JSON.stringify(payload)
+									)
+								} // @TODO check by use regex or includes
+								else if (error.response.status == 404) {
+									//   @TODO	// set website[i].active to false
+									users.user[i].websites[o].active = false;
+									console.log(users.user[i].websites[o].active)
+									
+									//  // init payload
+									const payload : { title: string, url: string } = {
+										title:"A one of your Websites is down!!!",
+										url  : users.user[i].websites[o].website
+									}
+									//  // send a notification and email
+									sendNotification(
+										users.user[i].pushRegisteration,JSON.stringify(payload)
+									)
+									// 	// nodemailer + webpush
+									// 	// push a log to the database 
+									// 	// new CheckWebsitesService().pushLog; 
+									// 	// status_code:number, user_id:string, website_id:string
+								}
+							}
+						}
 					}
 					// if website[i].active is false
 					else {
