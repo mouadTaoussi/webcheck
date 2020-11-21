@@ -21,7 +21,7 @@ this.onpush = (event)=>{
 	const data = event.data.json();
 	// Push a notification
 	self.registration.showNotification(data.title, {
-		body : "Your website is currently down and not working!",
+		body : "Website link: " + data.url,
 		icon : "/logo.ico"
 	});
 }

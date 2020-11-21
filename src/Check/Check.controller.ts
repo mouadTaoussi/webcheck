@@ -1,6 +1,6 @@
 import CheckWebsitesService from './Check.service';
-import { CheckWebsiteControllerInterface } from './Check.interface';
-import { websiteType } from '.././Authentication/Authentication.interface';
+import { CheckWebsiteControllerInterface, handlePushAndEmailOptions } from './Check.interface';
+import { websiteType, subscriptionObject } from '.././Authentication/Authentication.interface';
 import axios, { AxiosResponse } from 'axios';
 import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
@@ -12,13 +12,11 @@ const userService = new AuthenticationService();
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
 	private  websitesLogService  : any;
-	// private userService: any;
 	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
 	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
 
 
 	constructor(){
-		// this.websitesLogService = new CheckWebsitesService();
 		webpush.setGCMAPIKey('<Your GCM API Key Here>');
 		webpush.setVapidDetails(
 		  'mailto:example@yourdomain.org',
@@ -43,13 +41,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 			website : saving.data
 		})
 	}
-	// public async userWebsites(request:any, response: Response):Promise<void> {
-	// 	// Get user id to show thier websites logs<Token>
-	// 	// Service 
-	// 	// Send the response back
-		
-	// 	response.json({message: 'it works!'});
-	// }
+
 	public async deleteWebsite(request:any,response:Response):Promise<void> {
 		// Get user
 		const user: { 
@@ -87,75 +79,98 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		const deleting = await websiteService.deleteLogs(user.id, undefined);
 		// Send the response back
 		response.status(deleting.status).send({
-			message : deleting.message 
+			message : deleting.message
 		});	
+	}
+	// @TODO : create a method that handle push notifications and sending email
+	// as well as controle the website whether if down or not
+	public async handlePushAndEmail(registeration:subscriptionObject,options:handlePushAndEmailOptions)
+	: Promise<void> {
+		//  // init payload
+		const payload : { title: string, url: string } = {
+			title: options.message,
+			url  : options.url
+		}
+		//  // send a notification and email
+		sendNotification(
+			registeration,JSON.stringify(payload)
+		)
+		// 	// nodemailer
+		// 	// push a log to the database 
+		// 	// new CheckWebsitesService().pushLog; 
+		// 	// status_code:number, user_id:string, website_id:stringify
 	}
 	public async checkEveryWebsiteExists():Promise<void> {
 		// console.log('Hello');
 		// Get all users
 		const users = await userService.findUser({id:undefined,email:undefined});
-		// console.log(users.user[0])
 		// Loop
 		for (let i = 0; i < users.user.length ; i++) {
-			// console.log(users.user[i]);
-			// get first user
 				// Loop
 				for (let o = 0; o < users.user[i].websites.length; o++) {
-					// check thier websites
+
 					// Check if the already is down by checking website[i].active
-					// if true then
-					// console.log(users.user[i].websites)
 					if ( users.user[i].websites[o].active ) {
-						// axios
+						
+						// axios 
 						try {
-							const checking : AxiosResponse<any> = await axios({
+							const checking : AxiosResponse = await axios({
 							method : 'GET',
 							url : users.user[i].websites[o].website,
 							headers : {
-								'Content-Type': 'text-html',
-								'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+								// 'Content-Type': 'text-html',
+								"access-control-allow-origin": "*",
+								// 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 							}
 							})
-							console.log(checking.status == 200);
 						// 		// move on
+						console.log('website')
 						}
 						// // if one of the websites is down
 						catch (error){
-							// Status code
-							let statusCode: number;
+							if (error.response) {
+								//   @TODO	// set website[i].active to false
+								users.user[i].websites[o].active = false;
+								// Save that active in the database
 
-							if (error.response){
-								 // @TODO check by use regex or includes
-								if (error.response.status == 500){
-									// 	// send a notification
-									//  // init payload
-									const payload : { title: string, url: string } = {
-										title:"Might be you provided a wrong website url!",
-										url  : users.user[i].websites[o].website
-									}
-									//  // send a notification
-									sendNotification(
-										users.user[i].pushRegisteration,JSON.stringify(payload)
-									)
-								} // @TODO check by use regex or includes
-								else if (error.response.status == 404) {
+								this.handlePushAndEmail(users.user[i].pushRegisteration,
+								{
+									message: "Your website is currently down!",
+									url    : users.user[i].websites[o].website,
+									status_code: error.response.status,
+									user_id    : users.user[i]._id,
+									website_id : users.user[i].websites[o]._id
+								})
+							}
+							else  {
+								if (error.message.includes('ENOTFOUND')) {
 									//   @TODO	// set website[i].active to false
 									users.user[i].websites[o].active = false;
-									console.log(users.user[i].websites[o].active)
-									
-									//  // init payload
-									const payload : { title: string, url: string } = {
-										title:"A one of your Websites is down!!!",
-										url  : users.user[i].websites[o].website
-									}
-									//  // send a notification and email
-									sendNotification(
-										users.user[i].pushRegisteration,JSON.stringify(payload)
-									)
-									// 	// nodemailer + webpush
-									// 	// push a log to the database 
-									// 	// new CheckWebsitesService().pushLog; 
-									// 	// status_code:number, user_id:string, website_id:string
+									// Save that active in the database
+
+									this.handlePushAndEmail(users.user[i].pushRegisteration,
+									{
+										message: "Might be you entered a wrong website url!",
+										url    : users.user[i].websites[o].website,
+										status_code: 404,
+										user_id    : users.user[i]._id,
+										website_id : users.user[i].websites[o]._id
+									})
+								}
+								else if (error.message.includes('ECONNREFUSED')) {
+									console.log('server error')
+									//   @TODO	// set website[i].active to false
+									users.user[i].websites[o].active = false;
+									// Save that active in the database
+
+									this.handlePushAndEmail(users.user[i].pushRegisteration,
+									{
+										message: "Your website is currently down!",
+										url    : users.user[i].websites[o].website,
+										status_code: 500,
+										user_id    : users.user[i]._id,
+										website_id : users.user[i].websites[o]._id
+									})
 								}
 							}
 						}
@@ -163,11 +178,26 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 					// if website[i].active is false
 					else {
 							// axios
-							// if one of the websites is down
-								// move on
-							// if not
-								// set website[i].active to true
-								// move on
+							try {
+								const checking : AxiosResponse = await axios({
+									method : 'GET',
+									url : users.user[i].websites[o].website,
+									headers : {
+										// 'Content-Type': 'text-html',
+										"access-control-allow-origin": "*",
+										// 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+									}
+									})
+								// 		// move on
+								console.log('website')
+								// if not
+									// set website[i].active to true
+									// move on
+							}
+							catch (error){
+								// if one of the websites is down
+									// move on
+							}
 					}
 
 				}

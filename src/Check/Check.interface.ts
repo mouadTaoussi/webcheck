@@ -1,5 +1,5 @@
 import { Request,Response } from 'express'
-import { websiteType } from '.././Authentication/Authentication.interface';
+import { websiteType, subscriptionObject } from '.././Authentication/Authentication.interface';
  
 interface CheckWebsiteControllerInterface {
 	addWebsite(request:Request,response:Response)        : Promise<void>
@@ -7,9 +7,19 @@ interface CheckWebsiteControllerInterface {
 	deleteWebsite(request:any,response:Response)         : Promise<void>
 	websiteLogs(request:Request,response:Response)       : Promise<void>
 	deleteWebsiteLogs(request:Request,response:Response) : Promise<void>
+	handlePushAndEmail(registeration:subscriptionObject,options:handlePushAndEmailOptions): Promise<void>
 	checkEveryWebsiteExists()                            : Promise<void>
 };
 
+type handlePushAndEmailOptions = {
+	// Used to send notification
+	message     : string,
+	url         : string,
+	// Used to store a log
+	status_code : number,
+	user_id     : string,
+	website_id  : string,
+}
 interface CheckWebsiteServiceInterface {
 	/*
 		not supported in typescript to put private elements in an interface
@@ -48,7 +58,9 @@ type ServerStatusCodesType<GenericType> = [
 
 ]
 
-export { CheckWebsiteControllerInterface, CheckWebsiteServiceInterface,ServerStatusCodesType, WebsiteLog };
+export { 
+	CheckWebsiteControllerInterface, CheckWebsiteServiceInterface,ServerStatusCodesType, WebsiteLog, handlePushAndEmailOptions
+};
 
 /**
 *
