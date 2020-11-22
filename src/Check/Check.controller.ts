@@ -94,11 +94,10 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		//  // send a notification and email
 		sendNotification(
 			registeration,JSON.stringify(payload)
-		)
+		) 
 		// 	// nodemailer
 		// 	// push a log to the database 
-		// 	// new CheckWebsitesService().pushLog; 
-		// 	// status_code:number, user_id:string, website_id:stringify
+		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
 	}
 	public async checkEveryWebsiteExists():Promise<void> {
 		// console.log('Hello');
@@ -120,11 +119,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 							headers : {
 								// 'Content-Type': 'text-html',
 								"access-control-allow-origin": "*",
-								// 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 							}
 							})
-						// 		// move on
-						console.log('website')
 						}
 						// // if one of the websites is down
 						catch (error){
@@ -132,8 +128,9 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 								//   @TODO	// set website[i].active to false
 								users.user[i].websites[o].active = false;
 								// Save that active in the database
+								await users.user[i].save();
 
-								this.handlePushAndEmail(users.user[i].pushRegisteration,
+								new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
 								{
 									message: "Your website is currently down!",
 									url    : users.user[i].websites[o].website,
@@ -147,8 +144,9 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 									//   @TODO	// set website[i].active to false
 									users.user[i].websites[o].active = false;
 									// Save that active in the database
+									await users.user[i].save();
 
-									this.handlePushAndEmail(users.user[i].pushRegisteration,
+									new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
 									{
 										message: "Might be you entered a wrong website url!",
 										url    : users.user[i].websites[o].website,
@@ -158,12 +156,12 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 									})
 								}
 								else if (error.message.includes('ECONNREFUSED')) {
-									console.log('server error')
 									//   @TODO	// set website[i].active to false
 									users.user[i].websites[o].active = false;
 									// Save that active in the database
+									await users.user[i].save();
 
-									this.handlePushAndEmail(users.user[i].pushRegisteration,
+									new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
 									{
 										message: "Your website is currently down!",
 										url    : users.user[i].websites[o].website,
@@ -185,9 +183,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 									headers : {
 										// 'Content-Type': 'text-html',
 										"access-control-allow-origin": "*",
-										// 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 									}
-									})
+								})
 								// 		// move on
 								console.log('website')
 								// if not

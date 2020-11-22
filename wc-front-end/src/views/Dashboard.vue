@@ -116,8 +116,8 @@ export default {
   	})
   	.then((response)=>{
   		// Push to the local state
-  		// this.websitesLogs = response.data.logs;
-  		this.websitesLogs = [
+  		this.websitesLogs = response.data.logs;
+  		/*this.websitesLogs = [
   				{
   					user_id : "mouadtaoussi",
   					website_id:'5fb52021f14e01356ce21ca7',
@@ -158,7 +158,7 @@ export default {
 					whenitdown : "17/12/2546",
 					log_id : "dfbvidnfivbniugfy,tiun"
 				},
-  		];
+  		];*/
   	})
   	.catch((err)=>{
   		alert('Something went wrong!')

@@ -3,8 +3,10 @@ import { websiteType, UserInterface } from '.././Authentication/Authentication.i
 import WebsiteLogModel from './Check.model';
 import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
-import {  } from 'moment';
+import moment from 'moment';
  
+console.log()
+
 class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 	private websitelogmodel   : any;
@@ -13,6 +15,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	constructor(){
 		this.websitelogmodel = WebsiteLogModel;
 		this.statusCodes = [
+			{ code : 404, description : "Might be you entered a wrong website Url" }
 			{ code : 500, description : "Internal Server Error" },
 			{ code : 501, description : "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request." },
 			{ code : 502, description : "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream." },
@@ -113,9 +116,24 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	public async pushLog( status_code:number, user_id:string, website_id:string )
 	:Promise<{status:number,message:string | null,data:any | null}> 
 	{
-		// Get to know the reasons
-		// Push
+		// Get to know the reason
+		const explanation : { code:number, description:string } = this.statusCodes.filter((statuscode)=>{
+			return statuscode.code == status_code;
+		})[0];
+
+		const saving = new WebsiteLogModel({
+			user_id     : user_id,
+			website_id  : website_id,
+			status_code : status_code,
+			explanation : explanation.description,
+			whenitdown  : moment().format('MMMM Do YYYY, h:mm:ss a'),
+			log_id      : v4()
+		})
+
 		try {
+			// Push
+			await saving.save();
+
 			return {
 				status  : 200, message : null, data : null }
 		}

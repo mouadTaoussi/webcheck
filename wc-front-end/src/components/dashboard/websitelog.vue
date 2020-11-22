@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<div class="local-shadow single-log local-card local-my-2 log">	      				
-			<p class="log-title text-left text-danger poppins">{{log.statusCode}}
+			<p class="log-title text-left text-danger poppins">{{log.status_code}}
 			</p>
 			<p class="created_at">
 				<svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
