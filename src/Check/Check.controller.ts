@@ -5,13 +5,14 @@ import axios, { AxiosResponse } from 'axios';
 import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
 import AuthenticationService from '.././Authentication/Authentication.service';
+import application_config from '.././main.config';
 
 const websiteService = new CheckWebsitesService();
 const userService = new AuthenticationService();
 
 class CheckWebsiteController implements CheckWebsiteControllerInterface{
 
-	private  websitesLogService  : any;
+	private websitesLogService  : any;
 	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
 	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
 
@@ -82,8 +83,6 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 			message : deleting.message
 		});	
 	}
-	// @TODO : create a method that handle push notifications and sending email
-	// as well as controle the website whether if down or not
 	public async handlePushAndEmail(registeration:subscriptionObject,options:handlePushAndEmailOptions)
 	: Promise<void> {
 		//  // init payload
@@ -96,6 +95,22 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 			registeration,JSON.stringify(payload)
 		) 
 		// 	// nodemailer
+		// Create transporter object with credentials
+		// var transporter = nodemailer.createTransport({
+		// 	service :'gmail',
+		// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+		// });
+		// // Check the language the user set in the app to send the email appropriated to his language
+		// let mailTemplate;
+
+		// // send it!
+		// transporter.sendMail({
+		// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
+		//     to: email,
+		//     subject: 'Reset password request',
+		//     text: 'Hey there, it’s your link to change your password below ;) ', 
+		//     html: mailTemplate
+		// });
 		// 	// push a log to the database 
 		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
 	}
@@ -105,104 +120,96 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		const users = await userService.findUser({id:undefined,email:undefined});
 		// Loop
 		for (let i = 0; i < users.user.length ; i++) {
-				// Loop
-				for (let o = 0; o < users.user[i].websites.length; o++) {
+			// Loop
+			for (let o = 0; o < users.user[i].websites.length; o++) {
 
-					// Check if the already is down by checking website[i].active
-					if ( users.user[i].websites[o].active ) {
-						
-						// axios 
-						try {
-							const checking : AxiosResponse = await axios({
+				// Check if the already is down by checking website[i].active
+				if ( users.user[i].websites[o].active ) {
+					
+					// axios 
+					try {
+						const checking : AxiosResponse = await axios({
+						method : 'GET',
+						url : users.user[i].websites[o].website,
+						headers : {
+							// 'Content-Type': 'text-html',
+							"access-control-allow-origin": "*",
+						}
+						})
+					}
+					// // if one of the websites is down
+					catch (error){
+						if (error.response) {
+						// set website[i].active to false
+						users.user[i].websites[o].active = false;
+						// Save that active in the database
+						await users.user[i].save();
+
+						new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
+						{
+							message: "Your website is currently down!",
+							url    : users.user[i].websites[o].website,
+							status_code: error.response.status,
+							user_id    : users.user[i]._id,
+							website_id : users.user[i].websites[o]._id
+						})
+						}
+						else {
+
+						if (error.message.includes('ENOTFOUND')) {
+							// set website[i].active to false
+							users.user[i].websites[o].active = false;
+							// Save that active in the database
+							await users.user[i].save();
+
+							new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
+							{
+								message: "Might be you entered a wrong website url!",
+								url    : users.user[i].websites[o].website,
+								status_code: 404,
+								user_id    : users.user[i]._id,
+								website_id : users.user[i].websites[o]._id
+							})
+						}
+						else if (error.message.includes('ECONNREFUSED')) {
+							// set website[i].active to false
+							users.user[i].websites[o].active = false;
+							// Save that active in the database
+							await users.user[i].save();
+
+							new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
+							{
+								message: "Your website is currently down!",
+								url    : users.user[i].websites[o].website,
+								status_code: 500,
+								user_id    : users.user[i]._id,
+								website_id : users.user[i].websites[o]._id
+							})
+						}
+
+						}
+					}
+				} /* if website[i].active is false */ else {
+					// axios
+					try {
+						const checking : AxiosResponse = await axios({
 							method : 'GET',
 							url : users.user[i].websites[o].website,
 							headers : {
 								// 'Content-Type': 'text-html',
 								"access-control-allow-origin": "*",
 							}
-							})
-						}
-						// // if one of the websites is down
-						catch (error){
-							if (error.response) {
-								//   @TODO	// set website[i].active to false
-								users.user[i].websites[o].active = false;
-								// Save that active in the database
-								await users.user[i].save();
-
-								new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
-								{
-									message: "Your website is currently down!",
-									url    : users.user[i].websites[o].website,
-									status_code: error.response.status,
-									user_id    : users.user[i]._id,
-									website_id : users.user[i].websites[o]._id
-								})
-							}
-							else  {
-								if (error.message.includes('ENOTFOUND')) {
-									//   @TODO	// set website[i].active to false
-									users.user[i].websites[o].active = false;
-									// Save that active in the database
-									await users.user[i].save();
-
-									new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
-									{
-										message: "Might be you entered a wrong website url!",
-										url    : users.user[i].websites[o].website,
-										status_code: 404,
-										user_id    : users.user[i]._id,
-										website_id : users.user[i].websites[o]._id
-									})
-								}
-								else if (error.message.includes('ECONNREFUSED')) {
-									//   @TODO	// set website[i].active to false
-									users.user[i].websites[o].active = false;
-									// Save that active in the database
-									await users.user[i].save();
-
-									new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration,
-									{
-										message: "Your website is currently down!",
-										url    : users.user[i].websites[o].website,
-										status_code: 500,
-										user_id    : users.user[i]._id,
-										website_id : users.user[i].websites[o]._id
-									})
-								}
-							}
-						}
+						})
+						//   @TODO	// set website[i].active to false
+						users.user[i].websites[o].active = true;
+						// Save that active in the database
+						await users.user[i].save();
 					}
-					// if website[i].active is false
-					else {
-							// axios
-							try {
-								const checking : AxiosResponse = await axios({
-									method : 'GET',
-									url : users.user[i].websites[o].website,
-									headers : {
-										// 'Content-Type': 'text-html',
-										"access-control-allow-origin": "*",
-									}
-								})
-								// 		// move on
-								console.log('website')
-								// if not
-									// set website[i].active to true
-									// move on
-							}
-							catch (error){
-								// if one of the websites is down
-									// move on
-							}
-					}
-
+					catch (error){ continue; }
 				}
+			}
 		}
-
-
 	}
-
 }
 
 // Run <checkEveryWebsiteExists> Job every 2 minutes
@@ -211,20 +218,3 @@ const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
 setInterval(checkWebsitesJob,10000);
 // 60000
 export default CheckWebsiteController;
-
-// Create transporter object with credentials
-// var transporter = nodemailer.createTransport({
-// 	service :'gmail',
-// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
-// });
-// // Check the language the user set in the app to send the email appropriated to his language
-// let mailTemplate;
-
-// // send it!
-// transporter.sendMail({
-// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
-//     to: email,
-//     subject: 'Reset password request',
-//     text: 'Hey there, it’s your link to change your password below ;) ', 
-//     html: mailTemplate
-// });

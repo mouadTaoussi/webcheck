@@ -5,8 +5,6 @@ import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
 import moment from 'moment';
  
-console.log()
-
 class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 	private websitelogmodel   : any;
@@ -15,7 +13,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	constructor(){
 		this.websitelogmodel = WebsiteLogModel;
 		this.statusCodes = [
-			{ code : 404, description : "Might be you entered a wrong website Url" }
+			{ code : 404, description : "Might be you entered a wrong website Url" },
 			{ code : 500, description : "Internal Server Error" },
 			{ code : 501, description : "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request." },
 			{ code : 502, description : "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream." },
