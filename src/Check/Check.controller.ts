@@ -4,17 +4,18 @@ import { websiteType, subscriptionObject } from '.././Authentication/Authenticat
 import axios, { AxiosResponse } from 'axios';
 import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
+import { createTransport } from 'nodemailer';
 import AuthenticationService from '.././Authentication/Authentication.service';
 import application_config from '.././main.config';
 
 const websiteService = new CheckWebsitesService();
 const userService = new AuthenticationService();
 
-class CheckWebsiteController implements CheckWebsiteControllerInterface{
+class CheckWebsiteController implements CheckWebsiteControllerInterface {
 
-	private websitesLogService  : any;
-	private vapidPublicKey : string = "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"; 
-	private vapidPrivateKey: string = "dfRRdDeegcQoENJOXao_Hi2hcP3nlUDtKKwrhWWpGJE"; 
+	private websitesLogService : any;
+	private vapidPublicKey : string | undefined = application_config.vapid_public_key; 
+	private vapidPrivateKey: string | undefined = application_config.vapid_private_key;
 
 
 	constructor(){
@@ -94,9 +95,9 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 		sendNotification(
 			registeration,JSON.stringify(payload)
 		) 
-		// 	// nodemailer
-		// Create transporter object with credentials
-		// var transporter = nodemailer.createTransport({
+			// nodemailer
+		// // Create transporter object with credentials
+		// var transporter = createTransport({
 		// 	service :'gmail',
 		// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
 		// });
@@ -215,6 +216,6 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface{
 // Run <checkEveryWebsiteExists> Job every 2 minutes
 const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
 
-setInterval(checkWebsitesJob,10000);
+setInterval(checkWebsitesJob,60000);
 // 60000
 export default CheckWebsiteController;
