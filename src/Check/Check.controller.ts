@@ -95,23 +95,23 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		sendNotification(
 			registeration,JSON.stringify(payload)
 		) 
-			// nodemailer
-		// // Create transporter object with credentials
-		// var transporter = createTransport({
-		// 	service :'gmail',
-		// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
-		// });
-		// // Check the language the user set in the app to send the email appropriated to his language
+		// nodemailer
+		// Create transporter object with credentials
+		var transporter = createTransport({
+			service :'gmail',
+			auth: { user: application_config.email, pass: application_config.password }
+		});
+		// Check the language the user set in the app to send the email appropriated to his language
 		// let mailTemplate;
 
-		// // send it!
-		// transporter.sendMail({
-		// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
-		//     to: email,
-		//     subject: 'Reset password request',
-		//     text: 'Hey there, it’s your link to change your password below ;) ', 
-		//     html: mailTemplate
-		// });
+		// send it!
+		transporter.sendMail({
+			from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+		    to: options.user_email,
+		    subject: 'Something went wrong!',
+		    text: options.message, 
+		    // html: mailTemplate
+		});
 		// 	// push a log to the database 
 		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
 	}
@@ -152,6 +152,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							url    : users.user[i].websites[o].website,
 							status_code: error.response.status,
 							user_id    : users.user[i]._id,
+							user_email : users.user[i].email,
 							website_id : users.user[i].websites[o]._id
 						})
 						}
@@ -169,6 +170,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								url    : users.user[i].websites[o].website,
 								status_code: 404,
 								user_id    : users.user[i]._id,
+								user_email : users.user[i].email,
 								website_id : users.user[i].websites[o]._id
 							})
 						}
@@ -184,6 +186,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								url    : users.user[i].websites[o].website,
 								status_code: 500,
 								user_id    : users.user[i]._id,
+								user_email : users.user[i].email,
 								website_id : users.user[i].websites[o]._id
 							})
 						}
@@ -201,7 +204,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								"access-control-allow-origin": "*",
 							}
 						})
-						//   @TODO	// set website[i].active to false
+						//  // set website[i].active to false
 						users.user[i].websites[o].active = true;
 						// Save that active in the database
 						await users.user[i].save();

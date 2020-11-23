@@ -3,7 +3,6 @@ import { websiteType, subscriptionObject } from '.././Authentication/Authenticat
  
 interface CheckWebsiteControllerInterface {
 	addWebsite(request:Request,response:Response)        : Promise<void>
-	// userWebsites(request:any, response: Response)        : Promise<void>
 	deleteWebsite(request:any,response:Response)         : Promise<void>
 	websiteLogs(request:Request,response:Response)       : Promise<void>
 	deleteWebsiteLogs(request:Request,response:Response) : Promise<void>
@@ -18,6 +17,7 @@ type handlePushAndEmailOptions = {
 	// Used to store a log
 	status_code : number,
 	user_id     : string,
+	user_email  : string,
 	website_id  : string,
 }
 interface CheckWebsiteServiceInterface {
