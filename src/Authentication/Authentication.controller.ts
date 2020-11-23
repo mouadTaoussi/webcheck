@@ -149,6 +149,23 @@ class AuthenticationController implements AuthenticationControllerInterface{
 
 			// Send email with that new password
 			console.log(password)
+			// then send it to the user's inbox via email
+			// Create transporter object with credentials
+			var transporter = createTransport({
+				service :'gmail',
+				auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+			});
+			// Check the language the user set in the app to send the email appropriated to his language
+			let mailTemplate;
+
+			// send it!
+			transporter.sendMail({
+				from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+			    to: user.user.email,
+			    subject: 'Reset password request',
+			    text: 'Hey there, it’s your link to change your password below ;) ', 
+			    html: mailTemplate
+			});
 
 			response.status(updatePassword.status).send({
 				sent : true,
@@ -270,20 +287,4 @@ class AuthenticationController implements AuthenticationControllerInterface{
 }
 
 export default AuthenticationController;
-// then send it to the user's inbox via email
-// Create transporter object with credentials
-// var transporter = nodemailer.createTransport({
-// 	service :'gmail',
-// 	auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
-// });
-// // Check the language the user set in the app to send the email appropriated to his language
-// let mailTemplate;
 
-// // send it!
-// transporter.sendMail({
-// 	from: '"SurveyApp Team" <mouadtaoussi0@gmail.com>',
-//     to: email,
-//     subject: 'Reset password request',
-//     text: 'Hey there, it’s your link to change your password below ;) ', 
-//     html: mailTemplate
-// });

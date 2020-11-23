@@ -117,48 +117,6 @@ export default {
   	.then((response)=>{
   		// Push to the local state
   		this.websitesLogs = response.data.logs;
-  		/*this.websitesLogs = [
-  				{
-  					user_id : "mouadtaoussi",
-  					website_id:'5fb52021f14e01356ce21ca7',
-  					statusCode : 502,
-					explanation : "Nothing but im try to make that thing works!!!",
-					whenitdown : "17/12/2546",
-					log_id : "dfbvidnfivbniugfy,tiun"
-				},
-				{
-  					user_id : "mouadtaoussi",
-  					website_id:'5fb52021f14e01356ce21ca7',
-  					statusCode : 502,
-					explanation : "Nothing but im try to make that thing works!!!",
-					whenitdown : "17/12/2546",
-					log_id : "dfbvidnfivbniugfy,tiun"
-				},
-				{
-  					user_id : "mouadtaoussi",
-  					website_id:'5fb52021f14e01356ce21ca7',
-  					statusCode : 502,
-					explanation : "Nothing but im try to make that thing works!!!",
-					whenitdown : "17/12/2546",
-					log_id : "dfbvidnfivbniugfy,tiun"
-				},
-				{
-  					user_id : "mouadtaoussi",
-  					website_id:'5fb52024f14e01356ce21ca9',
-  					statusCode : 502,
-					explanation : "Nothing but im try to make that thing works!!!",
-					whenitdown : "17/12/2546",
-					log_id : "dfbvidnfivbniugfy,tiun"
-				},
-				{
-  					user_id : "mouadtaoussi",
-  					website_id:'5fb52024f14e01356ce21ca9',
-  					statusCode : 502,
-					explanation : "Nothing but im try to make that thing works!!!",
-					whenitdown : "17/12/2546",
-					log_id : "dfbvidnfivbniugfy,tiun"
-				},
-  		];*/
   	})
   	.catch((err)=>{
   		alert('Something went wrong!')

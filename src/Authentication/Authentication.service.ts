@@ -12,14 +12,6 @@ class AuthenticationService implements AuthenticationServiceInterface {
 	public async registerToPushService (user_id:string,object:subscriptionObject)
 	: Promise<{status:number, saved:boolean,message:string | null}> {
 		try {
-			// pushRegisteration : new Schema({
-			// 	endpoint       : { type: String, required: false, default: null },
-			// 	expirationTime : { type : String || Number, default: null },
-			// 	keys : new Schema({
-			// 		p256dh: { type: String, required: false, default: null },
-			//     	auth:   { type: String, required: false, default: null }
-			// 	})
-			// })
 			// Find user
 			const user = await UserModel.findByIdAndUpdate(user_id, { pushRegisteration: object });
 			// @TODO Add it to the user

@@ -153,23 +153,6 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 				user_id: user._id
 			});
 
-			// // Loop over user websites
-			// for( let i = 0; i < websites[i]; i++) {
-
-			// 	// Put logs of the current website
-			// 	let currentWebsiteLogs: [WebsiteLog] | [] = [];
-
-			// 	// Get logs of website[i]
-			// 	const websitelogs: [WebsiteLog] = await WebsiteLogModel.find({
-			// 		user_id:user_id
-			// 	})
-
-			// 	for ( let o = 0; o < websitelogs.length ; o++ ) {
-			// 		websitelogs[o]
-			// 	}
-
-			// }
-
 			return { status  : 200, message : null, data : logs }
 		}
 		catch(error) {
