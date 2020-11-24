@@ -18,6 +18,7 @@ type handlePushAndEmailOptions = {
 	status_code : number,
 	user_id     : string,
 	user_email  : string,
+	receiving_email : string,
 	website_id  : string,
 }
 interface CheckWebsiteServiceInterface {

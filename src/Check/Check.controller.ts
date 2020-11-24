@@ -95,6 +95,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		sendNotification(
 			registeration,JSON.stringify(payload)
 		) 
+		// @TODO : check if he'is allowed to send emails to him
+		if (!options.receiving_email) return;
 		// nodemailer
 		// Create transporter object with credentials
 		var transporter = createTransport({
@@ -102,7 +104,30 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			auth: { user: application_config.email, pass: application_config.password }
 		});
 		// Check the language the user set in the app to send the email appropriated to his language
-		// let mailTemplate;
+		let mailTemplate : string = `
+		<!DOCTYPE html><!-- English template -->
+		<html>
+		<head>
+			<title>Email template</title>
+		</head>
+		<body style='background-color: rgba(0,0,0,.1);padding:20px;' >
+		<center></center>
+		<div style="width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;">
+		<h1>Hello! ${ options.user_email }</h1>
+		<h5>${ options.message }</h5>
+		<p><strong>Thank you!</strong></p>
+		<p>WebCheck Team.</p>
+		</div>
+		<center>
+		<ul style="list-style: none;margin: 10px 10px 10px 10px;" class="footer-list local-mt-4">
+			<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>
+			<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>
+			<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>
+		</ul>
+		</center>
+		</body>
+		</html>
+		`;
 
 		// send it!
 		transporter.sendMail({
@@ -110,7 +135,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		    to: options.user_email,
 		    subject: 'Something went wrong!',
 		    text: options.message, 
-		    // html: mailTemplate
+		    html: mailTemplate
 		});
 		// 	// push a log to the database 
 		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
@@ -121,6 +146,9 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		const users = await userService.findUser({id:undefined,email:undefined});
 		// Loop
 		for (let i = 0; i < users.user.length ; i++) {
+			// @TODO : Check whether he'is allowed to check his websites
+			if (!users.user[i].active) { continue }
+			else {
 			// Loop
 			for (let o = 0; o < users.user[i].websites.length; o++) {
 
@@ -153,6 +181,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							status_code: error.response.status,
 							user_id    : users.user[i]._id,
 							user_email : users.user[i].email,
+							receiving_email : users.user[i].receivingEmail,
 							website_id : users.user[i].websites[o]._id
 						})
 						}
@@ -171,6 +200,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								status_code: 404,
 								user_id    : users.user[i]._id,
 								user_email : users.user[i].email,
+								receiving_email : users.user[i].receivingEmail,
 								website_id : users.user[i].websites[o]._id
 							})
 						}
@@ -187,6 +217,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								status_code: 500,
 								user_id    : users.user[i]._id,
 								user_email : users.user[i].email,
+								receiving_email : users.user[i].receivingEmail,
 								website_id : users.user[i].websites[o]._id
 							})
 						}
@@ -211,6 +242,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 					}
 					catch (error){ continue; }
 				}
+			}
 			}
 		}
 	}
