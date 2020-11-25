@@ -15,6 +15,7 @@ dotenv.config({ path: './.env' })
 
 var application: Application = express();
 
+application.use('/',express.static("../wc-front-end/dist"));
 application.use(helmet());
 application.use(bodyParser.json());
 
