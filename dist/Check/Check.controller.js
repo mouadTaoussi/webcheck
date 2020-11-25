@@ -61,6 +61,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Check_service_1 = __importDefault(require("./Check.service"));
 var axios_1 = __importDefault(require("axios"));
 var web_push_1 = __importStar(require("web-push"));
+var nodemailer_1 = require("nodemailer");
 var Authentication_service_1 = __importDefault(require(".././Authentication/Authentication.service"));
 var main_config_1 = __importDefault(require(".././main.config"));
 var websiteService = new Check_service_1.default();
@@ -149,7 +150,7 @@ var CheckWebsiteController = (function () {
     };
     CheckWebsiteController.prototype.handlePushAndEmail = function (registeration, options) {
         return __awaiter(this, void 0, void 0, function () {
-            var payload, push;
+            var payload, transporter, mailTemplate, push;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -158,6 +159,20 @@ var CheckWebsiteController = (function () {
                             url: options.url
                         };
                         web_push_1.sendNotification(registeration, JSON.stringify(payload));
+                        if (!options.receiving_email)
+                            return [2];
+                        transporter = nodemailer_1.createTransport({
+                            service: 'gmail',
+                            auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
+                        });
+                        mailTemplate = "\n\t\t<!DOCTYPE html><!-- English template -->\n\t\t<html>\n\t\t<head>\n\t\t\t<title>Email template</title>\n\t\t</head>\n\t\t<body style='background-color: rgba(0,0,0,.1);padding:20px;' >\n\t\t<center></center>\n\t\t<div style=\"width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;\">\n\t\t<h1>Hello! " + options.user_email + "</h1>\n\t\t<h5>" + options.message + "</h5>\n\t\t<p><strong>Thank you!</strong></p>\n\t\t<p>WebCheck Team.</p>\n\t\t</div>\n\t\t<center>\n\t\t<ul style=\"list-style: none;margin: 10px 10px 10px 10px;\" class=\"footer-list local-mt-4\">\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>\n\t\t</ul>\n\t\t</center>\n\t\t</body>\n\t\t</html>\n\t\t";
+                        transporter.sendMail({
+                            from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+                            to: options.user_email,
+                            subject: 'Something went wrong!',
+                            text: options.message,
+                            html: mailTemplate
+                        });
                         return [4, websiteService.pushLog(options.status_code, options.user_id, options.website_id)];
                     case 1:
                         push = _a.sent();
@@ -177,15 +192,18 @@ var CheckWebsiteController = (function () {
                         i = 0;
                         _a.label = 2;
                     case 2:
-                        if (!(i < users.user.length)) return [3, 20];
-                        o = 0;
-                        _a.label = 3;
+                        if (!(i < users.user.length)) return [3, 21];
+                        if (!!users.user[i].active) return [3, 3];
+                        return [3, 20];
                     case 3:
-                        if (!(o < users.user[i].websites.length)) return [3, 19];
-                        if (!users.user[i].websites[o].active) return [3, 14];
+                        o = 0;
                         _a.label = 4;
                     case 4:
-                        _a.trys.push([4, 6, , 13]);
+                        if (!(o < users.user[i].websites.length)) return [3, 20];
+                        if (!users.user[i].websites[o].active) return [3, 15];
+                        _a.label = 5;
+                    case 5:
+                        _a.trys.push([5, 7, , 14]);
                         return [4, axios_1.default({
                                 method: 'GET',
                                 url: users.user[i].websites[o].website,
@@ -193,56 +211,62 @@ var CheckWebsiteController = (function () {
                                     "access-control-allow-origin": "*",
                                 }
                             })];
-                    case 5:
-                        checking = _a.sent();
-                        return [3, 13];
                     case 6:
+                        checking = _a.sent();
+                        return [3, 14];
+                    case 7:
                         error_1 = _a.sent();
-                        if (!error_1.response) return [3, 8];
+                        if (!error_1.response) return [3, 9];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 7:
+                    case 8:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
                             url: users.user[i].websites[o].website,
                             status_code: error_1.response.status,
                             user_id: users.user[i]._id,
+                            user_email: users.user[i].email,
+                            receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        return [3, 12];
-                    case 8:
-                        if (!error_1.message.includes('ENOTFOUND')) return [3, 10];
+                        return [3, 13];
+                    case 9:
+                        if (!error_1.message.includes('ENOTFOUND')) return [3, 11];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 9:
+                    case 10:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Might be you entered a wrong website url!",
                             url: users.user[i].websites[o].website,
                             status_code: 404,
                             user_id: users.user[i]._id,
+                            user_email: users.user[i].email,
+                            receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        return [3, 12];
-                    case 10:
-                        if (!error_1.message.includes('ECONNREFUSED')) return [3, 12];
+                        return [3, 13];
+                    case 11:
+                        if (!error_1.message.includes('ECONNREFUSED')) return [3, 13];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 11:
+                    case 12:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
                             url: users.user[i].websites[o].website,
                             status_code: 500,
                             user_id: users.user[i]._id,
+                            user_email: users.user[i].email,
+                            receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        _a.label = 12;
-                    case 12: return [3, 13];
-                    case 13: return [3, 18];
-                    case 14:
-                        _a.trys.push([14, 17, , 18]);
+                        _a.label = 13;
+                    case 13: return [3, 14];
+                    case 14: return [3, 19];
+                    case 15:
+                        _a.trys.push([15, 18, , 19]);
                         return [4, axios_1.default({
                                 method: 'GET',
                                 url: users.user[i].websites[o].website,
@@ -250,23 +274,23 @@ var CheckWebsiteController = (function () {
                                     "access-control-allow-origin": "*",
                                 }
                             })];
-                    case 15:
+                    case 16:
                         checking = _a.sent();
                         users.user[i].websites[o].active = true;
                         return [4, users.user[i].save()];
-                    case 16:
-                        _a.sent();
-                        return [3, 18];
                     case 17:
-                        error_2 = _a.sent();
-                        return [3, 18];
+                        _a.sent();
+                        return [3, 19];
                     case 18:
-                        o++;
-                        return [3, 3];
+                        error_2 = _a.sent();
+                        return [3, 19];
                     case 19:
+                        o++;
+                        return [3, 4];
+                    case 20:
                         i++;
                         return [3, 2];
-                    case 20: return [2];
+                    case 21: return [2];
                 }
             });
         });

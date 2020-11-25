@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Authentication_service_1 = __importDefault(require("./Authentication.service"));
 var jsonwebtoken_1 = require("jsonwebtoken");
+var nodemailer_1 = require("nodemailer");
 var bcrypt_1 = require("bcrypt");
 var uuid_1 = require("uuid");
 var userService = new Authentication_service_1.default();
@@ -158,7 +159,7 @@ var AuthenticationController = (function () {
     };
     AuthenticationController.prototype.resetPassword = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var body, user, password, salt, hashed_password, updatePassword;
+            var body, user, password, salt, hashed_password, updatePassword, transporter, mailTemplate;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -178,6 +179,18 @@ var AuthenticationController = (function () {
                     case 4:
                         updatePassword = _a.sent();
                         console.log(password);
+                        transporter = nodemailer_1.createTransport({
+                            service: 'gmail',
+                            auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+                        });
+                        mailTemplate = void 0;
+                        transporter.sendMail({
+                            from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+                            to: user.user.email,
+                            subject: 'Reset password request',
+                            text: 'Hey there, it’s your link to change your password below ;) ',
+                            html: mailTemplate
+                        });
                         response.status(updatePassword.status).send({
                             sent: true,
                             message: "email sent to your inbox!",
