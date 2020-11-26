@@ -8,6 +8,7 @@
 <style>
 :root {
   --primary-app : #008272;
+  --border      : .2px solid rgba(0,0,0,.1);
   /*--primary-app : #da3b01;*/
 }
 

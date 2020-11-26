@@ -41,7 +41,7 @@ export default {
 		border: .1px solid transparent;
 	}
 	.single-log:hover {
-		border: .1px solid rgba(0,0,0,.2);
+		border: var(--border);
 	}
 	.log-title {
 		font-size: 15px;

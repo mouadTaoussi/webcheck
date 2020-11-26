@@ -2,14 +2,18 @@
 	<section class="header local-shadow">
 		<div class="header-grid">
 			<div id="header-column-1" class="brand">
-				<router-link to='/' tag="p">
+				
 					<router-link to="/">
 						<div class="header-brand"></div>
 					</router-link>
-				</router-link>
+					<ul class="header-list-1 poppins">
+						<li class="header-list-1-item">About</li>
+						<li class="header-list-1-item">Contact</li>
+						<li class="header-list-1-item">Privacy & Policy</li>
+					</ul>
 			</div>
 			<div id="header-column-2">
-				<ul class="header-list poppins">
+				<ul class="header-list-2 poppins">
 					<router-link to="/login" tag="li">
 						<button class="local-btn bg-primary text-white local-shadow">
 							Log in
@@ -45,6 +49,8 @@ export default {
 	height: 50px;
 	background-color: white;
 	width: 100%;
+	position: sticky;
+	top: 0;
 }
 .header-brand {
 	background-image: url('../.././assets/logo_light.svg');
@@ -57,11 +63,24 @@ export default {
 	top: 0px;
 	left: 10px;
 }
-.header-list {
+.header-list-1 {
+	list-style: none;
+	text-decoration: none;
+	position: absolute;
+	top: 13px;
+	left: 200px;
+}
+.header-list-2 {
 	list-style: none;
 	text-decoration: none;
 }
-.header-list li {
+.header-list-1 li {
+	display: inline;
+	padding: 5px;
+	font-size: 13px;
+	cursor: pointer;
+}
+.header-list-2 li {
 	display: inline;
 	color: black;
 	font-weight: 500;

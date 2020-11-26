@@ -52,7 +52,7 @@ export default {
 		/*height: auto;*/
 	}
 	.cards-card {
-		border: .2px solid rgba(0,0,0,.2);
+		border: var(--border);
 	}
 	.svg-reviewed {
 		background-image: url('../.././assets/undraw_Reviewed_docs_re_9lmr.svg');

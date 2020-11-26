@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="landingpage">
+		<div class="landingpage shadow">
 			<h1 class="title poppins">
 				Get notified whether<br> your websites are down!
 			</h1>
@@ -32,11 +32,11 @@ export default {
 
 <style lang="css" scoped>
 	.landingpage {
-		background-color: #f9f9f9;
+		background-color: #f9f9f9;/*#f9f9f9 rgba(0,0,0,.1)*/
 		height: 550px;
 		padding-top: 170px;
-		border-top: .2px solid rgba(0,0,0,.3);
-		border-bottom: .2px solid rgba(0,0,0,.3)
+		border-top: var(--border);
+		border-bottom: var(--border);
 	}
 	.title {
 		color: black;

@@ -9,13 +9,13 @@ import bodyParser from 'body-parser';
 // Routes  
 import website_logs_router from './Check/Check.routes';
 import authentication_router from './Authentication/Authentication.routes';
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 // dotenv.config({ path: './.env' })
 
 var application: Application = express();
 
-application.use('/',express.static("../wc-front-end/dist"));
+application.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
 application.use(helmet());
 application.use(bodyParser.json());
 

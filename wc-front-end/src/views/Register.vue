@@ -144,14 +144,14 @@ export default {
 	    	display : "none"
     	},
     	userInfo : {
-    		name : "mouad",
-    		email : "mouad@getItem",
-    		password : "123",
-    		password2 : "1223",
+    		name : "",
+    		email : "",
+    		password : "",
+    		password2 : "",
     	},
     	userWebsite : {
-    		name : "mouadweb",
-    		description : "yup",
+    		name : "",
+    		description : "",
     		website : "http://"
     	}
     }
