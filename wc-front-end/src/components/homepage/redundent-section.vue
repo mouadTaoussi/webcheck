@@ -3,7 +3,7 @@
 		<section class="section">
 			<center>
 				<h1 class="title text-white poppins">Still can't find what you're looking for?</h1>
-				<button class="local-btn local-btn-success">Create Account</button>
+				<button class="local-btn bg-light local-text-success cta">Create Account</button>
 			</center>
 		</section>
 	</section>
@@ -36,6 +36,10 @@ export default {
 	}
 	.title {
 		font-size: 40px;
+	}
+	.cta {
+		padding: 10px 30px 10px 30px;
+		font-size: 20px;
 	}
 	@media only screen and (max-width: 600px) {
 		.local-container-8 {

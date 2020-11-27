@@ -1,27 +1,40 @@
 <template>
 	<section>
 		<div class="landingpage shadow">
-			<h1 class="title poppins">
-				Get notified whether<br> your websites are down!
-			</h1>
-			<p class="poppins">
-				You can get notified that your website just got down! to avoid losing traffic
-			</p>
-			<router-link to="/login">
-				<button class="cta local-btn local-btn-success local-mr-2 shadow">Get Started</button>
-			</router-link>
-			<router-link to="">
-				<button class="cta local-btn local-btn-dark shadow">Learn more</button>
-			</router-link>
+			<!-- Alert -->
+			<div class="local-container-8 landingpage-alert">
+				<alert 
+					style="display: block;" 
+					type="info" 
+					Message="If you stuck know how to tak decisions to your audience ! you can try out surveyapp"
+				></alert>
+			</div>
+			<div class="landingpage-content">
+				<h1 class="title poppins">
+					Get notified whether<br> your websites are down!
+				</h1>
+				<p class="poppins">
+					You can get notified that your website just got down! to avoid losing traffic
+				</p>
+				<router-link to="/login">
+					<button class="cta local-btn local-btn-success local-mr-2 shadow">Get Started</button>
+				</router-link>
+				<router-link to="">
+					<button class="cta local-btn local-btn-dark shadow">Learn more</button>
+				</router-link>
+			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+import alert from '../alert.vue';
 export default {
 
   name: 'landingpage',
-
+  components: {
+  	alert
+  },
   data () {
     return {
 
@@ -32,11 +45,19 @@ export default {
 
 <style lang="css" scoped>
 	.landingpage {
-		background-color: #f9f9f9;/*#f9f9f9 rgba(0,0,0,.1)*/
+		background-color: rgba(0,0,0,.1);/*#f9f9f9 rgba(0,0,0,.1)*/
 		height: 550px;
-		padding-top: 170px;
 		border-top: var(--border);
 		border-bottom: var(--border);
+	}
+	.landingpage-alert {
+		/*position: sticky;*/
+		/*top: 0;*/
+		padding-top: 30px;
+	}
+	.landingpage-content {
+
+		padding-top: 80px;
 	}
 	.title {
 		color: black;

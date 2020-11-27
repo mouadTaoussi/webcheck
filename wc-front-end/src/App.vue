@@ -9,6 +9,7 @@
 :root {
   --primary-app : #008272;
   --border      : .2px solid rgba(0,0,0,.1);
+  --rectangle-above-title : red;
   /*--primary-app : #da3b01;*/
 }
 

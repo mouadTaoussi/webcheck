@@ -4,9 +4,10 @@
 		<div class="features">
 			<!-- Feature one -->
 			<div>
+				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
 				<p class="text-left poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
 				</p>
 				<router-link to="/login">
 					<button class="float-left local-btn local-btn-success local-mr-2 shadow">Get Started</button>
@@ -23,9 +24,10 @@
 				<div class="websitesStatus"></div>
 			</div>
 			<div>
+				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
 				<p class="text-left poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
 				</p>
 				<router-link to="/login">
 					<button class="float-left local-btn local-btn-success local-mr-2 shadow">Get Started</button>
@@ -53,7 +55,7 @@ export default {
 
 <style lang="css" scoped>
 .feature-title {
-	margin-top: 100px;
+	/*margin-top: 100px;*/
 }
 .features {
 	display: grid;
@@ -80,6 +82,13 @@ export default {
 	height: 400px;
 	margin-top: 40px;
 	margin-bottom: 40px;
+}
+.rectangle-above-title {
+	width: 120px;
+	height: 8px;
+	background-color: var(--rectangle-above-title);
+	margin-bottom: 10px;
+	margin-top: 100px;
 }
 @media only screen and (max-width: 800px) {
 	.features {
