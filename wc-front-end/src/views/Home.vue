@@ -8,7 +8,7 @@
     <cards></cards>
     <featuressection></featuressection>
     <loginsection></loginsection>
-    <redundent_section></redundent_section>
+    <!-- <redundent_section></redundent_section> -->
     <homepagefooter></homepagefooter>
   </div>
 </template>

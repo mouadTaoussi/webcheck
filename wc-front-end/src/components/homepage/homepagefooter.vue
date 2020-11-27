@@ -1,8 +1,25 @@
 <template>
 	<section class="footer">
-		<div class="local-container-8">
+		<div class="local-container-8 footer-row">
 			<!-- Footer -->
+			<div class="child">
+				<p class="text-left text-white">It works</p>
+				<p class="text-left text-white">It works</p>
+				<p class="text-left text-white">It works</p>
+				<!-- <div class="brand-footer"></div> -->
+			</div>
+			<div class="child">
+				<p class="text-left text-white">Log in</p>
+				<p class="text-left text-white">Register</p>
+				<p class="text-left text-white">Reset Password</p>
+			</div>
+			<div class="child">
+				<p class="text-left text-white">Contact</p>
+				<p class="text-left text-white">About</p>
+				<p class="text-left text-white">Privacy & Pollicy</p>
+			</div>
 		</div>
+		<p class="text-center poppins text-white">devmt development LLC</p>
 	</section>
 </template>
 
@@ -32,5 +49,28 @@ export default {
 		background-size: cover;
 		width: 100%;
 		height: 280px;
+	}
+	.footer-row {
+		display: grid;
+		grid-template-columns: 2fr 2fr 2fr;
+		grid-gap: 20px;
+	}
+	.child {
+		/*background-color: red;*/
+		height: 200px;
+		padding: 50px 0 0 0;
+	}
+/*	.brand-footer {
+		background-image: url('../.././assets/logo_green.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 270px;
+		height: 120px;
+		margin: 0 auto;
+	}*/
+	@media only screen and (max-width: 600px) {
+		grid-template-columns: 100%;
+		grid-gap: 20px;
 	}
 </style>
