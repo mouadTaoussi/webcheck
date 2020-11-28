@@ -7,9 +7,15 @@
 						<div class="header-brand"></div>
 					</router-link>
 					<ul class="header-list-1 poppins">
-						<li class="header-list-1-item">About</li>
-						<li class="header-list-1-item">Contact</li>
-						<li class="header-list-1-item">Privacy & Policy</li>
+						<li class="header-list-1-item">
+							<router-link to="/about" tag='c'>About</router-link>
+						</li>
+						<li class="header-list-1-item">
+							<router-link to="/about" tag='c'>Contact</router-link>
+						</li>
+						<li class="header-list-1-item">
+							<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
+						</li>
 					</ul>
 			</div>
 			<div id="header-column-2">
@@ -97,5 +103,8 @@ export default {
 }
 #header-column-2 {
 	justify-self : end;
+}
+@media only screen and (max-width: 600px) {
+
 }
 </style>

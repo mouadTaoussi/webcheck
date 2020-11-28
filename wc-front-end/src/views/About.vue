@@ -1,8 +1,10 @@
 <template>
-  <div class="about">
-  	<homepageheader></homepageheader>
-    <h1>This is an about page</h1>
-  </div>
+  <section class="about">
+	<homepageheader></homepageheader>
+  	<div class="local-container-8">
+	    <h1 class="text-left">This is an about page</h1>
+	</div>
+  </section>
 </template>
 <script>
 	import homepageheader from '@/components/homepage/homepageheader.vue';

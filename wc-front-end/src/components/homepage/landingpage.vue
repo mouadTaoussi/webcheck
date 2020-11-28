@@ -4,7 +4,7 @@
 			<!-- Alert -->
 			<div class="local-container-8 landingpage-alert">
 				<alert 
-					style="display: block;" 
+					style="display: none;" 
 					type="info" 
 					Message="If you stuck know how to take decisions to your audience ! you can try out surveyapp"
 					link="https://surveyapp1.herokuapp.com"
@@ -45,7 +45,7 @@ export default {
 </script>
 <style lang="css" scoped>
 	.landingpage {
-		background-image: url('../.././assets/LandingPageBackground.svg');
+		background-image: url('../.././assets/backgroundLandingPage.jpg');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
@@ -72,5 +72,8 @@ export default {
 	.cta {
 		padding: 10px 30px 10px 30px;
 		font-size: 20px;
+	}
+	@media only screen and (max-width: 600px) {
+	
 	}
 </style>

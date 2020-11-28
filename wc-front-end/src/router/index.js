@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ResetPassword from '../views/ResetPassword.vue'
+import PrivacyPolicy from '../views/Privacy&Policy.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ const routes = [
     name: 'ResetPassword',
     component: ResetPassword
   },
+  {
+    path: '/privacypolicy',
+    name: 'PrivacyPolicy',
+    component: PrivacyPolicy
+  }
 ]
 
 const router = new VueRouter({

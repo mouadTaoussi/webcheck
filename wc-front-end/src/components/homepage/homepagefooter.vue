@@ -9,14 +9,26 @@
 				<!-- <div class="brand-footer"></div> -->
 			</div>
 			<div class="child poppins">
-				<p class="text-left text-white">Log in</p>
-				<p class="text-left text-white">Register</p>
-				<p class="text-left text-white">Reset Password</p>
+				<p class="text-left text-white">
+					<router-link to="/login" tag='c'>Log in</router-link>
+				</p>
+				<p class="text-left text-white">
+					<router-link to="/register" tag='c'>Register</router-link>
+				</p>
+				<p class="text-left text-white">
+					<router-link to="/resetPassword" tag='c'>Reset Password</router-link>
+				</p>
 			</div>
 			<div class="child poppins">
-				<p class="text-left text-white">Contact</p>
-				<p class="text-left text-white">About</p>
-				<p class="text-left text-white">Privacy & Policy</p>
+				<p class="text-left text-white">
+					<router-link to="/about" tag='c'>Contact</router-link>
+				</p>
+				<p class="text-left text-white">
+					<router-link to="/about" tag='c'>About</router-link>
+				</p>
+				<p class="text-left text-white">
+					<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
+				</p>
 			</div>
 		</div>
 		<p class="text-center poppins text-white">devmt development LLC</p>
@@ -70,7 +82,9 @@ export default {
 		margin: 0 auto;
 	}*/
 	@media only screen and (max-width: 600px) {
-		grid-template-columns: 100%;
-		grid-gap: 20px;
+		.footer-row {
+			grid-template-columns: 100%;
+			grid-gap: 20px;
+		}
 	}
 </style>
