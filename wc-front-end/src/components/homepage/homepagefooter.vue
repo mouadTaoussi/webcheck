@@ -2,21 +2,21 @@
 	<section class="footer">
 		<div class="local-container-8 footer-row">
 			<!-- Footer -->
-			<div class="child">
+			<div class="child poppins">
 				<p class="text-left text-white">It works</p>
 				<p class="text-left text-white">It works</p>
 				<p class="text-left text-white">It works</p>
 				<!-- <div class="brand-footer"></div> -->
 			</div>
-			<div class="child">
+			<div class="child poppins">
 				<p class="text-left text-white">Log in</p>
 				<p class="text-left text-white">Register</p>
 				<p class="text-left text-white">Reset Password</p>
 			</div>
-			<div class="child">
+			<div class="child poppins">
 				<p class="text-left text-white">Contact</p>
 				<p class="text-left text-white">About</p>
-				<p class="text-left text-white">Privacy & Pollicy</p>
+				<p class="text-left text-white">Privacy & Policy</p>
 			</div>
 		</div>
 		<p class="text-center poppins text-white">devmt development LLC</p>

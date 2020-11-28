@@ -5,9 +5,9 @@
 			<!-- Feature one -->
 			<div>
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
+				<h1 class="feature-title poppins text-left">Tired of losing traffic to your websites?</h1>
 				<p class="text-left poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+					if one of your websites just goes down, then you'll get notified as soon as possible! to fix the problem 
 				</p>
 				<router-link to="/login">
 					<button class="float-left local-btn local-btn-success local-mr-2 shadow">Get Started</button>
@@ -25,9 +25,10 @@
 			</div>
 			<div>
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">You'll be able to see your websites activity</h1>
+				<h1 class="feature-title poppins text-left">See your websites logs</h1>
 				<p class="text-left poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+					You can get logs about your websites downtime logs, to see what's wrong with your them!
+					and fix that problem. 
 				</p>
 				<router-link to="/login">
 					<button class="float-left local-btn local-btn-success local-mr-2 shadow">Get Started</button>

@@ -4,23 +4,23 @@
 		<div class="cards local-container-8">
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-reviewed"></div>
-				<h3>We'll check your websites</h3>
+				<h3>We'll check your websites every minute</h3>
 				<p class="poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					Our platform is designed to work for you to monitor your websites and notify you whenever a problem occurs.
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-windows"></div>
-				<h3>You'll be able to put max of 3 websites</h3>
+				<h3>You'll be able to monitor max of 3 websites</h3>
 				<p class="poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					You can monitor 3 websites at the same time instead of creating another account and put one website.
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-confirmation"></div>
-				<h3>Get notifications about your websites status</h3>
+				<h3>Get notifications and emails about your websites status</h3>
 				<p class="poppins">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					You'll receive Notifications and emails whenever a website just got down, with the reason to help you target your problem and fix it at the right time, instead of losing traffic!
 				</p>
 			</div>
 		</div>

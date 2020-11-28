@@ -15,7 +15,8 @@
 			<section id="" class="single-form register-form">
 				<!-- Brand for smaller devices -->
 				<div width="100px"  height="50px" class="brand-small-sevices"></div>
-				<h1 class="text-left local-mb-4">Register</h1>
+				<h1 class="text-left local-mb-2">Register</h1>
+				<p class="text-left info-text poppins">You need to allow receiving notifications. after registering</p>
 				<!-- Alert -->
 				<alert 
 					v-bind:style="'display:' + alertStatus.display" 
@@ -315,6 +316,9 @@ export default {
 		width: 270px;
 		height: 120px;
 		margin: 0 auto;
+	}
+	.info-text {
+		font-size: 15px;
 	}
 	.brand-small-sevices {
 		background-image: url('.././assets/logo_light.svg');

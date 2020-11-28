@@ -6,7 +6,8 @@
 				<alert 
 					style="display: block;" 
 					type="info" 
-					Message="If you stuck know how to tak decisions to your audience ! you can try out surveyapp"
+					Message="If you stuck know how to take decisions to your audience ! you can try out surveyapp"
+					link="https://surveyapp1.herokuapp.com"
 				></alert>
 			</div>
 			<div class="landingpage-content">
