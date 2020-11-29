@@ -101,7 +101,10 @@ export default {
 	}	
 	.feature-title {
 		margin-top: 10px;
-}
+	}
+	.Notifications, .websitesStatus {
+		display: none	
+	}
 
 }
 </style>

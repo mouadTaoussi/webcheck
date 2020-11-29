@@ -11,10 +11,10 @@
 				></alert>
 			</div>
 			<div class="landingpage-content">
-				<h1 class="title poppins">
+				<h1 class="title poppins ">
 					Get notified whether<br> your websites are down or not!
 				</h1>
-				<p class="poppins text-white">
+				<p class="poppins ">
 					You can get notified that your website just got down! to avoid losing traffic
 				</p>
 				<router-link to="/login">
@@ -23,6 +23,17 @@
 				<router-link to="">
 					<button class="cta local-btn local-btn-dark shadow">Learn more</button>
 				</router-link>
+				<!-- brs -->
+				<br>
+				<br>
+				<br>
+				<!-- brs -->
+				<p id="features-title" class="poppins">
+					Here is some of our features down below!
+				</p>
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+				</svg>
 			</div>
 		</div>
 	</section>
@@ -45,11 +56,11 @@ export default {
 </script>
 <style lang="css" scoped>
 	.landingpage {
-		background-image: url('../.././assets/backgroundLandingPage.jpg');
+		/*background-image: url('../.././assets/backgroundLandingPage.jpg');*/
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		/*background-color: rgba(0,255,150,.2);/*#f9f9f9 rgba(0,0,0,.1)*/
+		background-color: #f2f5fa;/*#f9f9f9 rgba(0,0,0,.1)*/
 		height: 550px;
 		border-top: var(--border);
 		border-bottom: var(--border);
@@ -64,7 +75,7 @@ export default {
 		padding-top: 80px;
 	}
 	.title {
-		color: white;
+		/*color: white;*/
 		/*opacity: .8;*/
 		font-weight: bold;
 		font-size: 50px;
@@ -73,7 +84,12 @@ export default {
 		padding: 10px 30px 10px 30px;
 		font-size: 20px;
 	}
+	#features-title {
+		font-size: 12px;
+	}
 	@media only screen and (max-width: 600px) {
-	
+		.title {
+			font-size: 30px;
+		}
 	}
 </style>

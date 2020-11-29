@@ -82,6 +82,11 @@ export default {
 		margin: 0 auto;
 	}*/
 	@media only screen and (max-width: 600px) {
+		.footer  {
+			background-color: black;
+			height: auto;
+			background-image: url('')
+		}
 		.footer-row {
 			grid-template-columns: 100%;
 			grid-gap: 20px;

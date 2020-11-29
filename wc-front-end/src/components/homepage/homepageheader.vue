@@ -31,8 +31,12 @@
 						</button>
 					</router-link>
 				</ul>
+				<svg v-on:click="toggleMenu()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify hamburger-menu" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+				</svg>
 			</div>
 		</div>
+		<section class="header-list-smaller-devices"></section>
 	</section>
 </template>
 
@@ -45,6 +49,19 @@ export default {
     return {
 
     }
+  },
+  methods: {
+  	toggleMenu : function(){
+  		// Get menu
+  		const side_menu = document.querySelector('.header-list-smaller-devices');
+
+  		if (side_menu.style.right == "0") {
+  			alert('it works! 😉'+ side_menu.style.right);
+  		}
+  		else {
+  			alert('not working 😒' + side_menu.style.right);
+  		}
+  	}
   }
 }
 </script>
@@ -104,7 +121,27 @@ export default {
 #header-column-2 {
 	justify-self : end;
 }
+.header-list-smaller-devices {
+	background: red;
+	height: 100vh;
+	width: 300px;
+	position: absolute;
+	right: 0;
+	top: 50px; 
+	transition: all .2s ease-out;
+}
+.hamburger-menu {
+	position: absolute;
+	top: 18px;
+	right: 20px;
+	display: none;
+}
 @media only screen and (max-width: 600px) {
-
+	.header-list-1 , .header-list-2 {
+		display: none;
+	}
+	.hamburger-menu {
+		display: block;
+	}
 }
 </style>
