@@ -130,6 +130,8 @@
 
 <script>
 import alert from '.././components/alert.vue';
+import api_config from "../.././api.config.js";
+
 export default {
 
   name: 'Register',
@@ -199,7 +201,7 @@ export default {
 	  		// Rgsiter user
 	  		this.$http({
 				method : "POST",
-				url    : "http://localhost:8000/auth/register",
+				url    : api_config.apiPath + "auth/register",
 				data   : { 
 					name     : this.userInfo.name, 
 					email    : this.userInfo.email, 

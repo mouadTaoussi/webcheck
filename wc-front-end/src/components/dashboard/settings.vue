@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import api_config from "../../.././api.config.js";
+
 export default {
 
   name: 'settings',
@@ -58,7 +60,7 @@ export default {
   		// HTTP Request 
   		this.$http({
   			method :'PUT',
-  			url : `http://localhost:8000/auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
+  			url : api_config.apiPath + `auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
   			data : { 
   				receivingEmail: this.receivingEmail,
 				active        : this.active, 

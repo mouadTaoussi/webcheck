@@ -32,6 +32,7 @@
 import websitelog from './websitelog.vue';
 import chartlogs from './chartlogs.vue';
 import loadingspinner from '.././loadingspinner.vue';
+import api_config from "../../.././api.config.js";
 
 export default {
 
@@ -79,7 +80,7 @@ export default {
 		this.$http({
 			method : 'DELETE',
 			url    :
-			`http://localhost:8000/check/clearLogs?token=${window.localStorage.getItem('user_token')}`
+			api_config.apiPath + `check/clearLogs?token=${window.localStorage.getItem('user_token')}`
 		})
 		.then((response)=>{
 			console.log(response);

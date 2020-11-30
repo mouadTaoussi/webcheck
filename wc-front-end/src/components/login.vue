@@ -47,6 +47,7 @@
 
 <script>
 import alert from './alert.vue';
+import api_config from "../.././api.config.js";
 
 export default {
 
@@ -90,7 +91,7 @@ export default {
 
 	  		this.$http({
 				method : "POST",
-				url    : "http://localhost:8000/auth/login",
+				url    : api_config.apiPath + "auth/login",
 				data   : { email : this.userInfo.email, password:this.userInfo.password }
 			})
 			.then((response)=>{

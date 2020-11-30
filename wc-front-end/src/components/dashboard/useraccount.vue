@@ -87,6 +87,8 @@
 
 <script>
 import alert from '.././alert.vue';
+import api_config from "../../.././api.config.js";
+
 export default {
 
   name: 'useraccount',
@@ -130,7 +132,7 @@ export default {
   			// Http request
   			this.$http({
   				method : 'PUT',
-  				url : `http://localhost:8000/auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
+  				url : api_config.apiPath + `auth/updateUser?token=${window.localStorage.getItem('user_token')}`,
   				data : {name : this.name, email: this.email }
   			})
   			.then((response)=>{
@@ -175,7 +177,7 @@ export default {
 			this.$http({
 				method : "DELETE",
 				url    : 
-				`http://localhost:8000/auth/deleteUser?token=${window.localStorage.getItem('user_token')}&password=${this.Password}`
+				api_config.apiPath + `auth/deleteUser?token=${window.localStorage.getItem('user_token')}&password=${this.Password}`
 			})
 			.then((response)=>{
 				// Clear sppiner

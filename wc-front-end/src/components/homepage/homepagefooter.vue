@@ -2,11 +2,18 @@
 	<section class="footer">
 		<div class="local-container-8 footer-row">
 			<!-- Footer -->
-			<div class="child poppins">
-				<p class="text-left text-white">It works</p>
-				<p class="text-left text-white">It works</p>
-				<p class="text-left text-white">It works</p>
-				<!-- <div class="brand-footer"></div> -->
+			<div style="padding-top: 80px" class="child poppins">
+
+				<a  target="_blank" href='https://github.com/mouadTaoussi/'>
+					<i class="fab fa-github fa-2x text-white p-2"></i>
+				</a>
+				<a  target="_blank" href='https://www.instagram.com/devmt_/'>
+					<i class="fab fa-instagram fa-2x text-white p-2"></i>
+				</a>
+				<a target="_blank" href=''>
+					<i class="fab fa-twitter fa-2x text-white p-2"></i>
+				</a>
+
 			</div>
 			<div class="child poppins">
 				<p class="text-left text-white">
@@ -21,7 +28,7 @@
 			</div>
 			<div class="child poppins">
 				<p class="text-left text-white">
-					<router-link to="/about" tag='c'>Contact</router-link>
+					<router-link to="/contact" tag='c'>Contact</router-link>
 				</p>
 				<p class="text-left text-white">
 					<router-link to="/about" tag='c'>About</router-link>
@@ -71,6 +78,9 @@ export default {
 		/*background-color: red;*/
 		height: 200px;
 		padding: 50px 0 0 0;
+	}
+	.child p {
+		cursor: pointer;
 	}
 /*	.brand-footer {
 		background-image: url('../.././assets/logo_green.svg');

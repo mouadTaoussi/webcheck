@@ -92,6 +92,7 @@
 <script>
 	import website from './website.vue';
 	import alert from '.././alert.vue';
+	import api_config from "../../.././api.config.js";
 
 	export default {
 
@@ -148,7 +149,7 @@
 				`
 				this.$http({
 					method : "POST",
-					url    : `http://localhost:8000/check/add?token=${window.localStorage.getItem('user_token')}`,
+					url    : api_config.apiPath + `check/add?token=${window.localStorage.getItem('user_token')}`,
 					data   : { 
 						name: this.newWebsite.name, 
 						description: this.newWebsite.description, 
@@ -193,7 +194,7 @@
 			this.$http({
 		  		method: "DELETE",
 		  		url   : 
-		  		`http://localhost:8000/check/deleteWebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
+		  		api_config.apiPath + `/check/deleteWebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
 		  	})
 		  	.then((response)=>{
 		  		// Pop from the websites prop

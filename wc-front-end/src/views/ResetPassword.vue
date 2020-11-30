@@ -49,6 +49,7 @@
 
 <script>
 import alert from ".././components/alert.vue";
+import api_config from "../.././api.config.js";
 
 export default {
 	name: "ResetPassword",
@@ -92,7 +93,7 @@ export default {
 				`
 				this.$http({
 					method: "POST",
-					url: "http://localhost:8000/auth/resetPassword",
+					url: api_config.apiPath + "auth/resetPassword",
 					data: {
 						email: this.userInfo.email,
 					},

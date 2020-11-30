@@ -30,13 +30,35 @@
 							Register
 						</button>
 					</router-link>
+					<a target="_blank" href='https://github.com/mouadTaoussi/'>
+						<i class="fab fa-github p-2"></i>
+					</a>
+						<i class="fab fa-instagram p-2"></i>
+					</a>
+					<a target="_blank" href=''>
+						<i class="fab fa-twitter p-2"></i>
+					</a>
 				</ul>
 				<svg v-on:click="toggleMenu()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify hamburger-menu" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
 				</svg>
 			</div>
 		</div>
-		<section class="header-list-smaller-devices"></section>
+		<section class="header-list-smaller-devices header-sd-hidden shadow">
+			<router-link style="display: block" class="text-left poppins" to="/about" tag='p'>About</router-link>
+			<router-link style="display: block" class="text-left poppins" to="/about" tag='p'>Contact</router-link>
+			<router-link style="display: block" class="text-left poppins" to="/privacypolicy" tag='p'>Privacy & Policy</router-link>
+			<router-link style="display: block" class="text-left poppins" to="/register">Register</router-link><br>
+			<router-link style="display: block" class="text-left poppins" to="/login">Log in</router-link>
+			<a target="_blank" href='https://github.com/mouadTaoussi/'>
+				<i class="fab fa-github p-2"></i>
+			</a>
+				<i class="fab fa-instagram p-2"></i>
+			</a>
+			<a target="_blank" href=''>
+				<i class="fab fa-twitter p-2"></i>
+			</a>
+		</section>
 	</section>
 </template>
 
@@ -55,11 +77,13 @@ export default {
   		// Get menu
   		const side_menu = document.querySelector('.header-list-smaller-devices');
 
-  		if (side_menu.style.right == "0") {
-  			alert('it works! 😉'+ side_menu.style.right);
+  		if (side_menu.classList.contains('header-sd-hidden')) {
+  			side_menu.classList.add('header-sd-shown')
+  			side_menu.classList.remove('header-sd-hidden')
   		}
-  		else {
-  			alert('not working 😒' + side_menu.style.right);
+  		else if(side_menu.classList.contains('header-sd-shown')) {
+  			side_menu.classList.add('header-sd-hidden')
+  			side_menu.classList.remove('header-sd-shown')
   		}
   	}
   }
@@ -122,13 +146,19 @@ export default {
 	justify-self : end;
 }
 .header-list-smaller-devices {
-	background: red;
+	background-color: white;
 	height: 100vh;
-	width: 300px;
+	width: var(--side-menu-width);
 	position: absolute;
-	right: 0;
 	top: 50px; 
-	transition: all .2s ease-out;
+	transition: all .3s ease-out;
+	padding: 40px 0 0 40px; 
+}
+.header-sd-shown {
+	right: 0;
+}
+.header-sd-hidden {
+	right: -1000px;
 }
 .hamburger-menu {
 	position: absolute;

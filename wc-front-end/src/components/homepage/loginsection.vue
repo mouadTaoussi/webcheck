@@ -29,6 +29,7 @@
 
 <script>
 	import logincomponent from '.././login.vue';
+	import api_config from "../../.././api.config.js";
 
 	export default {
 
