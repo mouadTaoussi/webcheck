@@ -83,7 +83,7 @@ export default {
     	websitesLogs : null
     }
   },
-  beforeCreate(){
+  created(){
   	// If the user already logged in the we wont let him go to the dashboard
   	if (!window.localStorage.getItem('user_token')) {
   		this.$router.push({ path: '/login' });
@@ -93,7 +93,7 @@ export default {
   	this.$http({
   		method: "GET",
   		url   : 
-  		`http://localhost:8000/auth/?token=${window.localStorage.getItem('user_token')}`
+  		api_config.apiPath + `auth/?token=${window.localStorage.getItem('user_token')}`
   	})
   	.then((response)=>{
   		// Push to the local state
@@ -112,7 +112,7 @@ export default {
   	 this.$http({
   		method: "GET",
   		url   : 
-  		`http://localhost:8000/check/logs?token=${window.localStorage.getItem('user_token')}`
+  		api_config.apiPath + `check/logs?token=${window.localStorage.getItem('user_token')}`
   	})
   	.then((response)=>{
   		// Push to the local state
