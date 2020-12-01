@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios';
 import './assets/fontawesome/css/all.css';
+import api_config from '.././api.config.js';
 // import './registerServiceWorker'
 
 Vue.config.productionTip = false
@@ -57,7 +58,7 @@ async function regsiterServiceWorker(){
 				console.log('Subsciriped to the push service')	
 				axios({
 					method : "POST",
-					url    : `http://localhost:8000/auth/pushServiceRegisteration?token=${window.localStorage.getItem('user_token')}`,
+					url    : api_config.apiPath + `auth/pushServiceRegisteration?token=${window.localStorage.getItem('user_token')}`,
 					data   : subscription
 				})
 				.then((response)=>{
