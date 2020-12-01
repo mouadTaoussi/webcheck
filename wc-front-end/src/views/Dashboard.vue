@@ -106,7 +106,7 @@ export default {
   		this.userWebsites        = response.data.user.websites;
   	})
   	.catch((err)=>{
-  		alert('Something went wrong!');
+  		window.alert('Something went wrong!');
   	})
 
   	// Fetch logs
@@ -120,7 +120,7 @@ export default {
   		this.websitesLogs = response.data.logs;
   	})
   	.catch((err)=>{
-  		alert('Something went wrong!')
+  		window.alert('Something went wrong!')
   	})
 
   },

@@ -194,7 +194,7 @@
 			this.$http({
 		  		method: "DELETE",
 		  		url   : 
-		  		api_config.apiPath + `/check/deleteWebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
+		  		api_config.apiPath + `check/deleteWebsite?token=${window.localStorage.getItem('user_token')}&website_id=${website_id}`
 		  	})
 		  	.then((response)=>{
 		  		// Pop from the websites prop
@@ -203,7 +203,7 @@
 		  		})
 		  	})
 		  	.catch((err)=>{
-		  		alert('Something went wrong')
+		  		window.alert('Something went wrong');
 		  	})
 		},
 		validateUserWebsite : function(){
