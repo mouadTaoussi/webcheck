@@ -32,7 +32,7 @@
 					</router-link>
 					<a target="_blank" href='https://github.com/mouadTaoussi/'>
 						<i class="fab fa-github p-2"></i>
-					</a>
+					</a target="_blank" href='https://www.instagram.com/devmt_/'>
 						<i class="fab fa-instagram p-2"></i>
 					</a>
 					<a target="_blank" href=''>

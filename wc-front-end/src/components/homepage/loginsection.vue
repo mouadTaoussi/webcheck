@@ -8,9 +8,9 @@
 						Log in now and try our Service
 					</strong>
 				</h1>
-				<p class="text-white text-left poppins">
+				<!-- <p class="text-white text-left poppins">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				</p>
+				</p> -->
 				<button class="ctas local-btn float-left local-mr-2">
 					Get Started
 				</button>

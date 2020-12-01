@@ -12,8 +12,6 @@ var helmet_1 = __importDefault(require("helmet"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var Check_routes_1 = __importDefault(require("./Check/Check.routes"));
 var Authentication_routes_1 = __importDefault(require("./Authentication/Authentication.routes"));
-var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({ path: './.env' });
 var application = express_1.default();
 application.use('/', express_1.default.static(__dirname + "/../wc-front-end/dist"));
 application.use(helmet_1.default());
