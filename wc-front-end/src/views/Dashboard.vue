@@ -56,6 +56,7 @@ import websites from '@/components/dashboard/websites';
 import websitelogs from '@/components/dashboard/websitelogs.vue';
 import useraccount from '@/components/dashboard/useraccount.vue';
 import settings from '@/components/dashboard/settings.vue';
+import api_config from '../.././api.config.js';
 
 export default {
 
