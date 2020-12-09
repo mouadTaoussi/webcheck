@@ -167,7 +167,12 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	{
 		try {
 			// Delete user logs
-			const deleting = await UserModel.find({ user_id: user_id }).remove();
+			// Delete thier logs
+			const logs = await WebsiteLogModel.find({user_id: user_id});
+
+			for (var i = 0; logs.length > i; i++) {
+				await logs[i].remove();
+			}
 			// console.log(deleting)
 			return { status  : 200, message : "Logs has been deleted successfully", data : null }
 		}

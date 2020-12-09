@@ -200,21 +200,32 @@ var CheckWebsitesService = (function () {
     };
     CheckWebsitesService.prototype.deleteLogs = function (user_id, website_id) {
         return __awaiter(this, void 0, void 0, function () {
-            var deleting, error_5;
+            var logs, i, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4, Authentication_model_1.default.find({ user_id: user_id }).remove()];
+                        _a.trys.push([0, 6, , 7]);
+                        return [4, Check_model_1.default.find({ user_id: user_id })];
                     case 1:
-                        deleting = _a.sent();
-                        return [2, { status: 200, message: "Logs has been deleted successfully", data: null }];
+                        logs = _a.sent();
+                        i = 0;
+                        _a.label = 2;
                     case 2:
+                        if (!(logs.length > i)) return [3, 5];
+                        return [4, logs[i].remove()];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        i++;
+                        return [3, 2];
+                    case 5: return [2, { status: 200, message: "Logs has been deleted successfully", data: null }];
+                    case 6:
                         error_5 = _a.sent();
                         return [2, {
                                 status: 500, message: "Something went wrong!", data: null
                             }];
-                    case 3: return [2];
+                    case 7: return [2];
                 }
             });
         });
