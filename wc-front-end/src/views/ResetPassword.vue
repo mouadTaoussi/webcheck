@@ -44,6 +44,17 @@
 				>Need an account?</router-link
 			>
 		</div>
+		<ul class="resetpassword-list-1 poppins">
+			<li class="resetpassword-list-1-item">
+				<router-link to="/about" tag='c'>About</router-link>
+			</li>
+			<li class="resetpassword-list-1-item">
+				<router-link to="/about" tag='c'>Contact</router-link>
+			</li>
+			<li class="resetpassword-list-1-item">
+				<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -127,7 +138,7 @@ export default {
 
 <style lang="css" scoped></style>
 <style scoped>
-		.resetPassword-page {
+	.resetPassword-page {
 		padding-top: 20px;
 		height: 100vh;
 		background-image: url('.././assets/login&registerBackground.svg');
@@ -155,7 +166,21 @@ export default {
 	}
 	.resetPassword {
 		width: 400px;
-		margin: 100px auto;
+		margin: 100px auto 20px;
+	}
+	.resetpassword-list-1 {
+		list-style: none;
+		text-decoration: none;
+	}
+	.resetpassword-list-2 {
+		list-style: none;
+		text-decoration: none;
+	}
+	.resetpassword-list-1 li {
+		display: inline;
+		padding: 5px;
+		font-size: 13px;
+		cursor: pointer;
 	}
 	@media only screen and (max-width: 600px) {
 		.resetPassword-page {

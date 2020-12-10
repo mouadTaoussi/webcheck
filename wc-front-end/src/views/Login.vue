@@ -7,8 +7,18 @@
 			<div width="100px"  height="50px" class="brand-small-sevices"></div>
 			<!-- <h1 class="text-left local-mb-4">Log in</h1> -->
 			<logincomponent></logincomponent>
-
 		</div>
+		<ul class="login-list-1 poppins">
+			<li class="login-list-1-item">
+				<router-link to="/about" tag='c'>About</router-link>
+			</li>
+			<li class="login-list-1-item">
+				<router-link to="/about" tag='c'>Contact</router-link>
+			</li>
+			<li class="login-list-1-item">
+				<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -74,7 +84,22 @@ export default {
 	}
 	.login {
 		width: 400px;
-		margin: 100px auto;
+		margin: 100px auto 20px;
+	}
+	.login-list-1 {
+		list-style: none;
+		text-decoration: none;
+		
+	}
+	.login-list-2 {
+		list-style: none;
+		text-decoration: none;
+	}
+	.login-list-1 li {
+		display: inline;
+		padding: 5px;
+		font-size: 13px;
+		cursor: pointer;
 	}
 	@media only screen and (max-width: 600px) {
 		.login-page {

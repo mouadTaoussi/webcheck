@@ -125,6 +125,17 @@
 				>Have an account?</router-link>
 			</section>
 		</div>
+		<ul class="register-list-1 poppins">
+			<li class="register-list-1-item">
+				<router-link to="/about" tag='c'>About</router-link>
+			</li>
+			<li class="register-list-1-item">
+				<router-link to="/about" tag='c'>Contact</router-link>
+			</li>
+			<li class="register-list-1-item">
+				<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -368,6 +379,20 @@ export default {
 	}
 	#prev-prev-form {
 		display: none;
+	}
+	.register-list-1 {
+		list-style: none;
+		text-decoration: none;
+	}
+	.register-list-2 {
+		list-style: none;
+		text-decoration: none;
+	}
+	.register-list-1 li {
+		display: inline;
+		padding: 5px;
+		font-size: 13px;
+		cursor: pointer;
 	}
 	@media only screen and (max-width: 600px) {
 		.register-page {
