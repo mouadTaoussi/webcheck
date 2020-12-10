@@ -209,7 +209,7 @@ var AuthenticationController = (function () {
     };
     AuthenticationController.prototype.updateUser = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, body, userEmail, updating, updating;
+            var user, body, userEmail, updating, updating, updating;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -218,7 +218,7 @@ var AuthenticationController = (function () {
                         return [4, userService.findUser({ email: body.email, id: undefined })];
                     case 1:
                         userEmail = _a.sent();
-                        if (!(userEmail.found == true)) return [3, 5];
+                        if (!(userEmail.found == true)) return [3, 7];
                         if (!(user.email == body.email)) return [3, 3];
                         return [4, userService.updateUser(user.id, body)];
                     case 2:
@@ -227,23 +227,33 @@ var AuthenticationController = (function () {
                             updated: updating.updated,
                             message: updating.message
                         });
-                        return [3, 4];
+                        return [3, 6];
                     case 3:
-                        response.status(404).send({
-                            updated: false,
-                            message: "Email alreay provided!"
-                        });
-                        _a.label = 4;
-                    case 4: return [3, 7];
-                    case 5: return [4, userService.updateUser(user.id, body)];
-                    case 6:
+                        if (!(body.email == undefined)) return [3, 5];
+                        return [4, userService.updateUser(user.id, body)];
+                    case 4:
                         updating = _a.sent();
                         response.status(updating.status).send({
                             updated: updating.updated,
                             message: updating.message
                         });
-                        _a.label = 7;
-                    case 7: return [2];
+                        return [3, 6];
+                    case 5:
+                        response.status(404).send({
+                            updated: false,
+                            message: "Email alreay provided!"
+                        });
+                        _a.label = 6;
+                    case 6: return [3, 9];
+                    case 7: return [4, userService.updateUser(user.id, body)];
+                    case 8:
+                        updating = _a.sent();
+                        response.status(updating.status).send({
+                            updated: updating.updated,
+                            message: updating.message
+                        });
+                        _a.label = 9;
+                    case 9: return [2];
                 }
             });
         });

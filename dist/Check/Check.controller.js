@@ -166,13 +166,19 @@ var CheckWebsiteController = (function () {
                             auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
                         });
                         mailTemplate = "\n\t\t<!DOCTYPE html><!-- English template -->\n\t\t<html>\n\t\t<head>\n\t\t\t<title>Email template</title>\n\t\t</head>\n\t\t<body style='background-color: rgba(0,0,0,.1);padding:20px;' >\n\t\t<center></center>\n\t\t<div style=\"width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;\">\n\t\t<h1>Hello! " + options.user_email + "</h1>\n\t\t<h5>" + options.message + "</h5>\n\t\t<p><strong>Thank you!</strong></p>\n\t\t<p>WebCheck Team.</p>\n\t\t</div>\n\t\t<center>\n\t\t<ul style=\"list-style: none;margin: 10px 10px 10px 10px;\" class=\"footer-list local-mt-4\">\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>\n\t\t</ul>\n\t\t</center>\n\t\t</body>\n\t\t</html>\n\t\t";
-                        transporter.sendMail({
-                            from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
-                            to: options.user_email,
-                            subject: 'Something went wrong!',
-                            text: options.message,
-                            html: mailTemplate
-                        });
+                        try {
+                            transporter.sendMail({
+                                from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+                                to: options.user_email,
+                                subject: 'Something went wrong!',
+                                text: options.message,
+                                html: mailTemplate
+                            });
+                        }
+                        catch (err) {
+                            console.log('Something went wrong with nodemailer');
+                            console.log(err.message);
+                        }
                         return [4, websiteService.pushLog(options.status_code, options.user_id, options.website_id)];
                     case 1:
                         push = _a.sent();

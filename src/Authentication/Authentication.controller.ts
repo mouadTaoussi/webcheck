@@ -207,11 +207,24 @@ class AuthenticationController implements AuthenticationControllerInterface{
 				})
 			}
 			else {
-				response.status(404).send({
-					updated : false,
-					message : "Email alreay provided!"
-				})
+				// IF THE EAMIL IS UNDEFINED THEN THE USER UPDATED SOMETHING IN THE SETTINGS
+				if ( body.email == undefined ){
+					// Update user
+					const updating: { 
+						status:number,updated:boolean,message:string } = await userService.updateUser(user.id,body);
 
+					// Response back
+					response.status(updating.status).send({
+						updated : updating.updated,
+						message : updating.message
+					})
+				} 
+				else {
+					response.status(404).send({
+						updated : false,
+						message : "Email alreay provided!"
+					})
+				}
 			}
 		}
 		else {
