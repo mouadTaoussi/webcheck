@@ -129,14 +129,20 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		</html>
 		`;
 
-		// send it!
-		transporter.sendMail({
-			from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
-		    to: options.user_email,
-		    subject: 'Something went wrong!',
-		    text: options.message, 
-		    html: mailTemplate
-		});
+		try {
+			// send it!
+			transporter.sendMail({
+				from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+			    to: options.user_email,
+			    subject: 'Something went wrong!',
+			    text: options.message, 
+			    html: mailTemplate
+			});
+		}
+		catch(err){
+			console.log('Something went wrong with nodemailer')			
+			console.log(err.message);			
+		}
 		// 	// push a log to the database 
 		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
 	}
