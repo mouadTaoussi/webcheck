@@ -165,7 +165,7 @@ var CheckWebsiteController = (function () {
                             service: 'gmail',
                             auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
                         });
-                        mailTemplate = "\n\t\t<!DOCTYPE html><!-- English template -->\n\t\t<html>\n\t\t<head>\n\t\t\t<title>Email template</title>\n\t\t</head>\n\t\t<body style='background-color: rgba(0,0,0,.1);padding:20px;' >\n\t\t<center></center>\n\t\t<div style=\"width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;\">\n\t\t<h1>Hello! " + options.user_email + "</h1>\n\t\t<h5>" + options.message + "</h5>\n\t\t<p><strong>Thank you!</strong></p>\n\t\t<p>WebCheck Team.</p>\n\t\t</div>\n\t\t<center>\n\t\t<ul style=\"list-style: none;margin: 10px 10px 10px 10px;\" class=\"footer-list local-mt-4\">\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>\n\t\t</ul>\n\t\t</center>\n\t\t</body>\n\t\t</html>\n\t\t";
+                        mailTemplate = "\n\t\t<!DOCTYPE html><!-- English template -->\n\t\t<html>\n\t\t<head>\n\t\t\t<title>Email template</title>\n\t\t</head>\n\t\t<body style='background-color: rgba(0,0,0,.1);padding:20px;' >\n\t\t<center></center>\n\t\t<div style=\"width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;\">\n\t\t<h1>Hello! " + options.user_email + "</h1>\n\t\t<h5>" + options.message + "</h5>\n\t\t<h2>Website: " + options.website_name + "</h2>\n\t\t<p><strong>Thank you!</strong></p>\n\t\t<p>WebCheck Team.</p>\n\t\t</div>\n\t\t<center>\n\t\t<ul style=\"list-style: none;margin: 10px 10px 10px 10px;\" class=\"footer-list local-mt-4\">\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>\n\t\t</ul>\n\t\t</center>\n\t\t</body>\n\t\t</html>\n\t\t";
                         try {
                             transporter.sendMail({
                                 from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
@@ -230,6 +230,7 @@ var CheckWebsiteController = (function () {
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
                             url: users.user[i].websites[o].website,
+                            website_name: users.user[i].websites[o].name,
                             status_code: error_1.response.status,
                             user_id: users.user[i]._id,
                             user_email: users.user[i].email,
@@ -246,6 +247,7 @@ var CheckWebsiteController = (function () {
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Might be you entered a wrong website url!",
                             url: users.user[i].websites[o].website,
+                            website_name: users.user[i].websites[o].name,
                             status_code: 404,
                             user_id: users.user[i]._id,
                             user_email: users.user[i].email,
@@ -262,6 +264,7 @@ var CheckWebsiteController = (function () {
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
                             url: users.user[i].websites[o].website,
+                            website_name: users.user[i].websites[o].name,
                             status_code: 500,
                             user_id: users.user[i]._id,
                             user_email: users.user[i].email,

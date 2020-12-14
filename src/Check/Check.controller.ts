@@ -115,6 +115,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		<div style="width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;">
 		<h1>Hello! ${ options.user_email }</h1>
 		<h5>${ options.message }</h5>
+		<h2>Website: ${options.website_name}</h2>
 		<p><strong>Thank you!</strong></p>
 		<p>WebCheck Team.</p>
 		</div>
@@ -184,6 +185,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						{
 							message: "Your website is currently down!",
 							url    : users.user[i].websites[o].website,
+							website_name : users.user[i].websites[o].name,
 							status_code: error.response.status,
 							user_id    : users.user[i]._id,
 							user_email : users.user[i].email,
@@ -203,6 +205,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							{
 								message: "Might be you entered a wrong website url!",
 								url    : users.user[i].websites[o].website,
+								website_name : users.user[i].websites[o].name,
 								status_code: 404,
 								user_id    : users.user[i]._id,
 								user_email : users.user[i].email,
@@ -220,6 +223,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							{
 								message: "Your website is currently down!",
 								url    : users.user[i].websites[o].website,
+								website_name : users.user[i].websites[o].name,
 								status_code: 500,
 								user_id    : users.user[i]._id,
 								user_email : users.user[i].email,

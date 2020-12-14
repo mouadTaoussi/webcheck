@@ -14,6 +14,7 @@ type handlePushAndEmailOptions = {
 	// Used to send notification
 	message     : string,
 	url         : string,
+	website_name: string,
 	// Used to store a log
 	status_code : number,
 	user_id     : string,
