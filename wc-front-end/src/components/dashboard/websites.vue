@@ -163,7 +163,8 @@
 						this.websites.push({
 							name: this.newWebsite.name,
 							description: this.newWebsite.description,
-							website: this.newWebsite.website
+							website: this.newWebsite.website,
+							active: true // By default
 						})
 					}
 					// Clear sppiner

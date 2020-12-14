@@ -9,9 +9,6 @@ import bodyParser from 'body-parser';
 // Routes  
 import website_logs_router from './Check/Check.routes';
 import authentication_router from './Authentication/Authentication.routes';
-// import dotenv from 'dotenv';
-
-// dotenv.config({ path: './.env' })
 
 var application: Application = express();
 
@@ -35,7 +32,7 @@ connect(application_config.database_connection,
 });
 
 const PORT : number | string | undefined 
-	= process.env.PORT_DEV || process.env.PORT;
+	= application_config.port_dev || application_config.port;
 
 application.listen(PORT);
 console.log("Server up and running at port " + PORT);

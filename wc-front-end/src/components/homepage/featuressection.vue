@@ -4,7 +4,7 @@
 		<div class="features">
 			<!-- Feature one -->
 			<div>
-				<div class="rectangle-above-title"></div>
+				<!-- <div class="rectangle-above-title"></div> -->
 				<h1 class="feature-title poppins text-left">Tired of losing traffic to your websites?</h1>
 				<p class="text-left poppins">
 					if one of your websites just goes down, then you'll get notified as soon as possible! to fix the problem 
@@ -24,7 +24,7 @@
 				<div class="websitesStatus"></div>
 			</div>
 			<div>
-				<div class="rectangle-above-title"></div>
+				<!-- <div class="rectangle-above-title"></div> -->
 				<h1 class="feature-title poppins text-left">See your websites logs</h1>
 				<p class="text-left poppins">
 					You can get logs about your websites downtime logs, to see what's wrong with your them!

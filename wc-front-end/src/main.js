@@ -55,7 +55,7 @@ async function regsiterServiceWorker(){
 					applicationServerKey : "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"
 				});
 				// Send that subscribe to the server associated with the token
-				console.log('Subsciriped to the push service')	
+				console.log('Subscriped to the push service')	
 				axios({
 					method : "POST",
 					url    : api_config.apiPath + `auth/pushServiceRegisteration?token=${window.localStorage.getItem('user_token')}`,
@@ -75,8 +75,8 @@ async function regsiterServiceWorker(){
 
 		}
 		else {
-			// Request notification permission
-	  		Notification.requestPermission();
+			// // Request notification permission
+	  // 		Notification.requestPermission();
 		}
 	}
 	else {

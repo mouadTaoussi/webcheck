@@ -26,6 +26,6 @@ mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser:
         console.log('Database up and running!');
     }
 });
-var PORT = process.env.PORT_DEV || process.env.PORT;
+var PORT = main_config_1.default.port_dev || main_config_1.default.port;
 application.listen(PORT);
 console.log("Server up and running at port " + PORT);

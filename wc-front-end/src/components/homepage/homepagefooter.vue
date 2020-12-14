@@ -38,7 +38,7 @@
 				</p>
 			</div>
 		</div>
-		<p class="text-center poppins text-white">devmt development LLC</p>
+		<p class="text-center poppins text-white">devmt development.</p>
 	</section>
 </template>
 

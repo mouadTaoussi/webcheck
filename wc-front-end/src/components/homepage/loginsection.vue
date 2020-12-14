@@ -2,7 +2,7 @@
 	<section class="loginsection">
 		<div class="loginsection-grid local-container-4">
 			<div class="row-text">
-				<div class="rectangle-above-title"></div>
+				<!-- <div class="rectangle-above-title"></div> -->
 				<h1 class="text-white text-left">
 					<strong class="text-white poppins">
 						Log in now and try our Service
