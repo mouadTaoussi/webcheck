@@ -29,12 +29,11 @@ function urlBase64ToUint8Array(base64String) {
 	}
 	return outputArray;
 }
-
 async function regsiterServiceWorker(){
 	console.log(1)
 	if ('serviceWorker' in window.navigator) {
 		// Register a service worker
-		const serviceWorkerwRegisteration = await window.navigator.serviceWorker.register('/sw.js');
+		const serviceWorkerwRegisteration = await window.navigator.serviceWorker.register('./sw.js');
 
 		
 		// axios
