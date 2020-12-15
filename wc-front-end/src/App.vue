@@ -39,5 +39,6 @@
   position: absolute;
   bottom: 0;
   right: 50px;
+  position: fixed;
 }
 </style>

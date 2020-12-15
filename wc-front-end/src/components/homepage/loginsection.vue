@@ -79,7 +79,7 @@
 .rectangle-above-title {
 	width: 120px;
 	height: 8px;
-	background-color: var(--rectangle-above-title);
+	background-color: transparent/*var(--rectangle-above-title)*/;
 	margin-bottom: 10px
 }
 @media only screen and (max-width: 800px) {
