@@ -10,24 +10,24 @@
 <rect x="1093" y="500" width="200" height="30" fill="#008272" fill-opacity="0.69"/>
 </g>
 <g style="mix-blend-mode:multiply">
-<rect x="1093" y="560" width="200" height="30" fill="#008272"/>
+<rect x="1093" y="559" width="200" height="30" fill="#008272"/>
 </g>
 <g style="mix-blend-mode:multiply">
-<rect x="894" y="530" width="200" height="30" fill="#008272" fill-opacity="0.69"/>
+<rect x="893" y="530" width="201" height="29" fill="#008272" fill-opacity="0.69"/>
 </g>
 <g style="mix-blend-mode:multiply">
 <rect width="200" height="30" fill="#008272" fill-opacity="0.47"/>
 </g>
 <rect x="200" y="60" width="200" height="30" fill="white"/>
 <rect y="30" width="200" height="30" fill="white"/>
-<rect x="199" width="200" height="30" fill="white"/>
+<rect x="199" width="208" height="30" fill="white"/>
 <rect x="893" y="498" width="200" height="32" fill="white"/>
 <rect x="893" y="559" width="200" height="30" fill="white"/>
-<rect x="1094" y="530" width="200" height="30" fill="white"/>
+<rect x="1093" y="530" width="201" height="29" fill="white"/>
 <rect x="1093" y="470" width="200" height="30" fill="white"/>
 <rect x="1093" y="471" width="201" height="30" fill="white"/>
 <rect y="90" width="200" height="30" fill="white"/>
-<rect y="498" width="893" height="107" fill="white"/>
+<rect y="498" width="895" height="107" fill="white"/>
 <rect x="399" width="895" height="60" fill="white"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
