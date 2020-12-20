@@ -49,7 +49,7 @@
 
 <style lang="css" scoped>
 .loginsection {
-	background-image: url('../.././assets/loginHomePageBackground.svg');
+	background-image: url('../.././assets/LoginSection.svg.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
