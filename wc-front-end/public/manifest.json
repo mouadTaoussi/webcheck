@@ -1,0 +1,21 @@
+{
+  "name": "WebCheck",
+  "short_name": "WebCheck",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ededed",
+  "theme_color": "#008272",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "84x84"
+    },
+     {
+      "src": "./logo.ico",
+      "type": "image/x-icon",
+      "sizes": "84x84"
+    }
+  ]
+}
