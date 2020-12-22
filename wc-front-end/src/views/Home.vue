@@ -7,7 +7,7 @@
     <landingpage></landingpage>
     <cards></cards>
     <featuressection></featuressection>
-    <loginsection></loginsection>
+    <!-- <loginsection></loginsection> -->
     <conclusion></conclusion>
     <!-- <redundent_section></redundent_section> -->
     <homepagefooter></homepagefooter>
@@ -21,7 +21,7 @@ import homepageheader from '@/components/homepage/homepageheader.vue';
 import landingpage from '@/components/homepage/landingpage.vue';
 import cards from '@/components/homepage/cards.vue';
 import featuressection from '@/components/homepage/featuressection.vue';
-import loginsection from '@/components/homepage/loginsection.vue';
+// import loginsection from '@/components/homepage/loginsection.vue';
 // import redundent_section from '@/components/homepage/redundent-section.vue'
 import conclusion from '@/components/homepage/conclusion.vue';
 import homepagefooter from '@/components/homepage/homepagefooter.vue';
@@ -34,7 +34,7 @@ export default {
     landingpage,
     cards,
     featuressection,
-    loginsection,
+    // loginsection,
     // redundent_section,
     conclusion,
     homepagefooter

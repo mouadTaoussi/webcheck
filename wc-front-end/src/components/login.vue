@@ -72,6 +72,10 @@ export default {
   },
    methods : {
   	loginUser : function(){
+  		// @TODO : implement background syncing
+		// navigator.serviceWorker.ready.then(function(swRegistration) {
+		// 	return swRegistration.sync.register('loginSync');
+		// }); 
   		// check if the inputs are empty
   		if (this.userInfo.email == null  || this.userInfo.password == null){
   			this.alertStatus.message = "Fill the inputs!";

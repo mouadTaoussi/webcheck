@@ -110,7 +110,7 @@ export default {
   },
   methods : {
   	saveChangesUserInfo : function(){
-
+  		
   		if (this.name == null || this.name == "") {
   			console.log(1)
   		}	
@@ -150,12 +150,17 @@ export default {
 					document.querySelector('.email_exists').innerHTML = "Email already exists";
 				}
 				else {
+					// @TODO : implement background syncing
+					// navigator.serviceWorker.ready.then(function(swRegistration) {
+					// 	return swRegistration.sync.register('saveUserInfoSync');
+					// });
 					window.alert('Something went wrong!');
 				}
   			})
   		}
 	},
 	deleteAccount : function(){
+	
 		// Password required
 		// confirm('Sure you want to delete this account!');
 
@@ -200,6 +205,10 @@ export default {
 					// this.alertStatus.display = "block";
 
 				}else {
+					// @TODO : implement background syncing
+					// navigator.serviceWorker.ready.then(function(swRegistration) {
+					// 	return swRegistration.sync.register('deleteUserSync');
+					// });
 					window.alert('Something went wrong!');
 					// this.alertStatus.message = "Something went wrong!";
 					// this.alertStatus.type = "danger";

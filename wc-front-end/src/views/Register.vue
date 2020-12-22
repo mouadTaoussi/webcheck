@@ -194,7 +194,7 @@ export default {
   		document.querySelector('.step-two').classList.remove('current-step');
   	},
   	registerUser : function() {
-  		// validate again
+  	
   		const validate = this.validateUserInputs();
   		const validate_website = this.validateUserWebsite();
 
@@ -240,6 +240,11 @@ export default {
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
 				} else {
+					// @TODO : implement background syncing
+					// navigator.serviceWorker.ready.then(function(swRegistration) {
+					// 	return swRegistration.sync.register('registerSync');
+					// });
+			  		// validate again
 					// Clear sppiner
 					document.querySelector('#registeration').innerHTML = "Register";
 					this.alertStatus.message = "Something went wrong!";

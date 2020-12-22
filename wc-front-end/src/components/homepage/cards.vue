@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<!-- Will be a separate component -->
-		<div class="cards local-container-8">
+		<div class="cards local-container-4">
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-reviewed"></div>
 				<h3>We'll check your websites every minute</h3>

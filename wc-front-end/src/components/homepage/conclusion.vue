@@ -1,6 +1,6 @@
 <template>
 	<section class="section">
-		<h1 class="title local-text-success text-center poppins">Ready to Get started with us?</h1>
+		<h1 class="title local-text-dark text-center poppins">Ready to Get started with us?</h1>
 		<p class="text-dark text-center poppins">Never mind about payment! it's free!</p>
 		<router-link to="/login">
 			<button class="cta local-btn local-btn-success local-mr-2 shadow">Get Started</button>

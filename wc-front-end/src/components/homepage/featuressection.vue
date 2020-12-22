@@ -1,5 +1,5 @@
 <template>
-	<section class="local-container-8">
+	<section class="local-container-4">
 		<!-- <h1 class="text-center title poppins">With us you can ...</h1> -->
 		<div class="features">
 			<!-- Feature one -->

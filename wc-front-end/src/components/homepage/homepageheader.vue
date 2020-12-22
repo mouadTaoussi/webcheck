@@ -35,7 +35,7 @@
 					</a target="_blank" href='https://www.instagram.com/devmt_/'>
 						<i class="fab fa-instagram p-2"></i>
 					</a>
-					<a target="_blank" href=''>
+					<a target="_blank" href='https://twitter.com/mouadTaoussi2'>
 						<i class="fab fa-twitter p-2"></i>
 					</a>
 				</ul>
@@ -52,10 +52,10 @@
 			<router-link style="display: block" class="text-left poppins" to="/login">Log in</router-link>
 			<a target="_blank" href='https://github.com/mouadTaoussi/'>
 				<i class="fab fa-github p-2"></i>
-			</a>
+			</a target="_blank" href="https://www.instagram.com/devmt_/">
 				<i class="fab fa-instagram p-2"></i>
-			</a>
-			<a target="_blank" href=''>
+			</a target="_blank" href="https://twitter.com/mouadTaoussi2">
+			<a target="_blank" href='https://twitter.com/mouadTaoussi2'>
 				<i class="fab fa-twitter p-2"></i>
 			</a>
 		</section>

@@ -66,6 +66,7 @@ export default {
   		})
   	},
   	clearLogs : function(){
+  		
 	  	// Waiting spinner 
 		document.querySelector('#clearing').innerHTML = `
 		<div>
@@ -91,6 +92,10 @@ export default {
 			document.querySelector('#clearing').innerHTML = "Clear logs";
 		})
 		.catch((err)=>{
+			// @TODO : implement background syncing
+			// navigator.serviceWorker.ready.then(function(swRegistration) {
+			// 	return swRegistration.sync.register('clearLogsSync');
+			// });
 			window.alert('Something went wrong!')
 			// Clear sppiner
 			document.querySelector('#clearing').innerHTML = "Clear logs";

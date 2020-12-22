@@ -133,6 +133,7 @@
 			}
 		},
 		addWebsite : function(){
+
 			// Validate website url
 			const validate_website = this.validateUserWebsite();
 
@@ -176,6 +177,10 @@
 					this.alertStatus.display = "block";					
 				})
 				.catch((error)=>{
+					// @TODO : implement background syncing
+					// navigator.serviceWorker.ready.then(function(swRegistration) {
+					// 	return swRegistration.sync.register('addWebsiteSync');
+					// });
 					// Clear sppiner
 					document.querySelector('#adding-website').innerHTML = "Add Website";
 
@@ -187,7 +192,7 @@
 			
 		},
 		deleteWebsite : function(website_id){
-    
+    		
 			const confirm = window.confirm('Sure you want to delete that website?');
 			// console.log(website_id)
 			if (!confirm) return;
@@ -204,6 +209,10 @@
 		  		})
 		  	})
 		  	.catch((err)=>{
+		  		// @TODO : implement background syncing
+				// navigator.serviceWorker.ready.then(function(swRegistration) {
+				// 	return swRegistration.sync.register('deleteWebsiteSync');
+				// });
 		  		window.alert('Something went wrong');
 		  	})
 		},

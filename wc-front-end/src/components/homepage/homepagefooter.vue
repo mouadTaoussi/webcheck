@@ -10,7 +10,7 @@
 				<a  target="_blank" href='https://www.instagram.com/devmt_/'>
 					<i class="fab fa-instagram fa-2x text-white p-2"></i>
 				</a>
-				<a target="_blank" href=''>
+				<a target="_blank" href='https://twitter.com/mouadTaoussi2'>
 					<i class="fab fa-twitter fa-2x text-white p-2"></i>
 				</a>
 
@@ -63,6 +63,7 @@ export default {
 	}
 	.footer {
 		background-image: url('../.././assets/footerBackground.svg');
+		background-color: white;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;

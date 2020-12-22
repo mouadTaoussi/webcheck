@@ -2,7 +2,7 @@
   <div id="app">
  
     <router-view/>
-    <a class="product-hunt-featured" href="https://www.producthunt.com/posts/webcheck?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-webcheck" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=278060&theme=light" alt="WebCheck - Get notified whenever some of your websites are down | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+    <a class="product-hunt-featured" href="https://www.producthunt.com/posts/webcheck?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-webcheck" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=278060&theme=dark" alt="WebCheck - Get notified whenever some of your websites are down | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
   </div>
 </template>
 
@@ -37,8 +37,8 @@
 }
 .product-hunt-featured {
   position: absolute;
-  bottom: 0;
-  right: 50px;
+  bottom: 10px;
+  right: 10px;
   position: fixed;
 }
 </style>

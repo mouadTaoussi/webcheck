@@ -45,6 +45,7 @@ export default {
   },
   methods : {
   	saveChangesSettings : function() {
+  		
   		// Validate function
 
   		// Waiting spinner 
@@ -71,6 +72,10 @@ export default {
   			document.querySelector('#saving-settings').innerHTML = 'Saved your Changes!';
   		})
   		.catch((err)=>{
+  			// @TODO : implement background syncing
+			// navigator.serviceWorker.ready.then(function(swRegistration) {
+			// 	return swRegistration.sync.register('saveUserSettingsSync');
+			// });
   			document.querySelector('#saving-settings').innerHTML = 'Save changes';
   		})
   		

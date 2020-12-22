@@ -67,30 +67,43 @@ this.onactivate = (event)=>{
 }
 
 this.onfetch = (event)=>{
-
-	if (event.request.includes('/auth') || event.request.includes('/check')){
+	if ('/auth' in event.request || '/check' in event.request){
 		event.respondWith(fetch(event.request));
+		console.log(1);
 	}
 	else {
 		// stale and revalidate caching strategy 
 		event.respondWith(
 			fetch(event.request).then((responseFromServer)=>{
 				return caches.open(dynamicVersion).then((cach)=>{
-					cach.put(e.request,responseFromServer.clone());
+					cach.put(event.request,responseFromServer.clone());
 					return responseFromServer;
 				})
 			})
 			.catch((err)=>{
 				return caches.match(event.request).then((responseFromCach)=>{
-					return responseFromCach
+					return responseFromCach || caches.match('/');
 				});
 			})
 		)
-		console.log('Fetched');
-
+		console.log(2)
 	}
 }
-
+// e.respondWith(
+			
+// 	fetch(e.request).then((response)=>{
+// 		return caches.open(dynamicAssets).then((cach)=>{
+// 			cach.put(e.request,response.clone());
+// 			return response;
+// 		})
+// 	})
+// 	.catch((err)=>{
+// 		return caches.match(e.request).then((cach)=>{
+// 			return cach || caches.match('/');
+// 		})
+// 	})
+	
+// )
 this.onpush = (event)=>{
 	// Data received from server via push service
 	const data = event.data.json();
@@ -114,7 +127,13 @@ this.onsync = (event)=>{
 		event.waitUntil(doSomeStuff());
 	}else if (event.tag == 'saveUserInfoSync') {
 		event.waitUntil(doSomeStuff());
+	}else if (event.tag == 'deleteUserSync') {
+		event.waitUntil(doSomeStuff());
 	}else if (event.tag == 'saveUserSettingsSync') {
 		event.waitUntil(doSomeStuff());
 	}
 }
+
+// navigator.serviceWorker.ready.then(function(swRegistration) {
+//   return swRegistration.sync.register('myFirstSync');
+// });
