@@ -1,30 +1,53 @@
 import { CheckWebsiteServiceInterface, ServerStatusCodesType, WebsiteLog } from './Check.interface';
 import { websiteType, UserInterface } from '.././Authentication/Authentication.interface';
-import WebsiteLogModel from './Check.model';
+import { WebsiteLogModel, websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel } from './Check.model';
 import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
 import moment from 'moment';
  
 class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
-	private websitelogmodel   : any;
 	private statusCodes       : ServerStatusCodesType<string>;
 
 	constructor(){
-		this.websitelogmodel = WebsiteLogModel;
 		this.statusCodes = [
-			{ code : 404, description : "Might be you entered a wrong website Url" },
-			{ code : 500, description : "Internal Server Error" },
-			{ code : 501, description : "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request." },
-			{ code : 502, description : "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream." },
-			{ code : 503, description : "Service Unavailable: The server cannot handle the request (because it is overloaded or down for maintenance). Generally, this is a temporary state." },
-			{ code : 504, description : "Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server." },
-			{ code : 505, description : "HTTP Version Not Supported: The server does not support the HTTP protocol version used in the request." },
-			{ code : 506, description : "Variant Also Negotiates (RFC 2295): Transparent content negotiation for the request results in a circular reference." },
-			{ code : 507, description : "Insufficient Storage (WebDAV; RFC 4918): The server is unable to store the representation needed to complete the request." },
-			{ code : 509, description : "Loop Detected (WebDAV; RFC 5842): The server detected an infinite loop while processing the request (sent instead of 208 Already Reported)." },
-			{ code : 510, description : "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it." },
-			{ code : 511, description : "Network Authentication Required (RFC 6585)." }
+		{
+			code : 404, 
+			description : "Might be you entered a wrong website Url" },
+		{ 
+			code : 500, 
+			description : "Internal Server Error" },
+		{ 
+			code : 501, 
+			description : "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request." },
+		{ 
+			code : 502, 
+			description : "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream." },
+		{ 
+			code : 503, 
+			description : "Service Unavailable: The server cannot handle the request (because it is overloaded or down for maintenance). Generally, this is a temporary state." },
+		{ 
+			code : 504, 
+			description : "Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server." },
+		{ 
+			code : 505, 
+			description : "HTTP Version Not Supported: The server does not support the HTTP protocol version used in the request." },
+		{ 
+			code : 506, 
+			description : "Variant Also Negotiates (RFC 2295): Transparent content negotiation for the request results in a circular reference." },
+		{ 
+			code : 507, 
+			description : "Insufficient Storage (WebDAV; RFC 4918): The server is unable to store the representation needed to complete the request." },
+		{ 
+			code : 509, 
+			description : "Loop Detected (WebDAV; RFC 5842): The server detected an infinite loop while processing the request (sent instead of 208 Already Reported)." },
+		{ 
+			code : 510, 
+			description : "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it." },
+		{ 
+			code : 511, 
+			description : "Network Authentication Required (RFC 6585)." 
+		}
 		]
 	}
 
@@ -182,6 +205,18 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			}
 		}
 	}	
+
+
+
+
+	// Push response time for website
+	// Push average response entity for the current day to the array
+	// Pop first and older average response entity for the if the entities reached to 10 long
+	// clear responses time for the day
+
+
+
+
 }
 
 export default CheckWebsitesService;

@@ -148,7 +148,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			} = await userService.changePassword(user.user._id, hashed_password);
 
 			// Send email with that new password
-			console.log(password)
+			// console.log(password)
 			// then send it to the user's inbox via email
 			// Create transporter object with credentials
 			var transporter = createTransport({

@@ -9,6 +9,8 @@ import bodyParser from 'body-parser';
 // Routes  
 import website_logs_router from './Check/Check.routes';
 import authentication_router from './Authentication/Authentication.routes';
+// Jobs 
+import './Check/Check.scheduledjobs';
 
 var application: Application = express();
 

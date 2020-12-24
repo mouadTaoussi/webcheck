@@ -8,6 +8,7 @@ interface CheckWebsiteControllerInterface {
 	deleteWebsiteLogs(request:Request,response:Response) : Promise<void>
 	handlePushAndEmail(registeration:subscriptionObject,options:handlePushAndEmailOptions): Promise<void>
 	checkEveryWebsiteExists()                            : Promise<void>
+	calculateAverageResponseOfWebsite()                  : Promise<void>
 };
 
 type handlePushAndEmailOptions = {
@@ -31,6 +32,10 @@ interface CheckWebsiteServiceInterface {
 	pushLog( status_code:number, user_id:string, website_id:string ) : Promise<{status:number,message:string | null,data:any | null}>
 	getLogs( user_id:string, website_id:string )                     : Promise<{status:number,message:string | null,data:any | null}>
 	deleteLogs( user_id:string, website_id:string | undefined )      : Promise<{status:number,message:string | null,data:any | null}>
+	// Push response time for website
+	// Push average response entity for the current day to the array
+	// Pop first and older average response entity for the if the entities reached to 10 long
+	// clear responses time for the day
 };
 
 interface WebsiteLog {
@@ -41,7 +46,16 @@ interface WebsiteLog {
 	when_it_down : string,
 	log_id       : string
 }
-
+interface websitesResponsesTimeInDay {
+	website_id : string , 
+	user_id    : string , 
+	response_times_melliseconds: number[]
+}
+interface websiteAverageTimeInDay {
+	website_id : string,
+	user_id    : string,
+	website_speed_last_ten_days : [ { date:string, average_melliseconds: number } ] // Queue
+}
 type ServerStatusCodesType<GenericType> = [
 	{ code : number, description : GenericType },
 	{ code : number, description : GenericType },

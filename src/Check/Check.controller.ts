@@ -1,7 +1,7 @@
 import CheckWebsitesService from './Check.service';
 import { CheckWebsiteControllerInterface, handlePushAndEmailOptions } from './Check.interface';
 import { websiteType, subscriptionObject } from '.././Authentication/Authentication.interface';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
 import { createTransport } from 'nodemailer';
@@ -19,12 +19,30 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 
 
 	constructor(){
+		// Set vapid keys 
 		webpush.setGCMAPIKey('<Your GCM API Key Here>');
 		webpush.setVapidDetails(
 		  'mailto:example@yourdomain.org',
 		  this.vapidPublicKey,
 		  this.vapidPrivateKey
 		);
+		// Request interceptor will startTime
+		axios.interceptors.request.use((config) => {
+			config.metadata = { startTime: new Date()}
+		 	return config;
+		},(error)=>{
+			return Promise.reject(error);
+		});
+		// Response interceptor will set endTime & calculate the duration
+		axios.interceptors.response.use((response) => {
+			response.config.metadata.endTime = new Date()
+			response.duration = response.config.metadata.endTime - response.config.metadata.startTime
+			return response;
+		},(error) => {
+			error.config.metadata.endTime = new Date();
+			error.duration = error.config.metadata.endTime - error.config.metadata.startTime;
+			return Promise.reject(error);
+		});
 	}
 
 	public async addWebsite(request:any,response:Response):Promise<void> {
@@ -172,6 +190,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							"access-control-allow-origin": "*",
 						}
 						})
+						// @TODO Push time in melliseconds
 					}
 					// // if one of the websites is down
 					catch (error){
@@ -245,6 +264,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 								"access-control-allow-origin": "*",
 							}
 						})
+						// @TODO Push time in melliseconds
 						//  // set website[i].active to false
 						users.user[i].websites[o].active = true;
 						// Save that active in the database
@@ -256,11 +276,13 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			}
 		}
 	}
+	public async calculateAverageResponseOfWebsite(): Promise<void> {
+	  // loop over <websitesResponsesTime>
+	  // Calculate average time per day per website 
+	  // add new entity with the average calculated in the <websiteAverageTimeInDay>
+	  // Implement queue to delete the first entity if the long reached to 10
+	  // make the current <websitesResponsesTime.response> empty
+	} 
 }
 
-// Run <checkEveryWebsiteExists> Job every 2 minutes
-const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
-
-setInterval(checkWebsitesJob,60000);
-// 60000
 export default CheckWebsiteController;
