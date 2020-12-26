@@ -80,7 +80,8 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					websitesCount : plusOne, 
 					websites      : userWebsites
 				})
-
+				// @TODO Add response times in day Document
+				// @TODO Add average response time last ten days Document
 				return { 
 					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website }
 			}
@@ -118,6 +119,11 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					websitesNotDeleted.push(websites[i]);
 				}
 			}
+
+			// @TODO Remove website logs
+			// @TODO Remove response times in day
+			// @TODO Remove average response time last ten days
+
 			// Decrease one in websitesCount
 			const decreaseOne: number = user.websitesCount - 1;
 

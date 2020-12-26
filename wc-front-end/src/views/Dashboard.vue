@@ -23,6 +23,18 @@
 			      		v-bind:websites="userWebsites"></websitelogs>
 	      		</div>
 			  </div>
+			  <div class="tab-pane fade" id="list-average-response-time-day" role="tabpanel" aria-labelledby="list-average-response-time-day-list">  
+		      	<h3 class="text-left local-mb-4">Average response time for your Websites</h3>
+		      	<div class="average_response_time_day">
+		      		 <average_response_time_day
+		      		 	v-bind:websites_names="average_response_time_day.websites_names"
+		      		 	v-bind:entities="average_response_time_day.entities"
+		      		 ></average_response_time_day>
+		      		 <!-- <average_response_time_day></average_response_time_day> -->
+		      		 <!-- <average_response_time_day></average_response_time_day> -->
+	      		</div>
+			  </div>
+			 
 		      <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">  
 		      	<h3 class="text-left local-mb-4">Your Account</h3>
 		      	<div class="user-account">
@@ -54,6 +66,7 @@ import headercomponent from '@/components/dashboard/header.vue';
 import tabsgroup from '@/components/dashboard/tabsgroup.vue';
 import websites from '@/components/dashboard/websites';
 import websitelogs from '@/components/dashboard/websitelogs.vue';
+import average_response_time_day from '@/components/dashboard/average_response_time_day.vue'
 import useraccount from '@/components/dashboard/useraccount.vue';
 import settings from '@/components/dashboard/settings.vue';
 import api_config from '../.././api.config.js';
@@ -66,6 +79,7 @@ export default {
   	tabsgroup,
   	websites,
   	websitelogs,
+  	average_response_time_day,
   	useraccount,
   	settings
   },
@@ -81,14 +95,19 @@ export default {
     		displayTheme: null,
     	},
     	userWebsites : null,
-    	websitesLogs : null
+    	websitesLogs : null,
+    	average_response_time_day : {
+    		websites_names : ['moaudblog','website of architecture'],
+    		entities : [1,2,3]
+    	}
+
     }
   },
   created(){
   	// If the user already logged in the we wont let him go to the dashboard
-  	if (!window.localStorage.getItem('user_token')) {
-  		this.$router.push({ path: '/login' });
-  	}
+  	// if (!window.localStorage.getItem('user_token')) {
+  	// 	this.$router.push({ path: '/login' });
+  	// }
 
   	// Fetch user
   	this.$http({
@@ -123,6 +142,7 @@ export default {
   		window.alert('Something went wrong!')
   	})
 
+  	// Fetch Average response time last ten days (GraphQL Apollo) 
   },
   async mounted(){
   	// Request notification permission
@@ -149,6 +169,7 @@ export default {
 		position: sticky!important;
 		top: 20px;
 	}
+	
 	@media only screen and (max-width: 800px) {
 		.dashboard-row {
 			display:  grid;

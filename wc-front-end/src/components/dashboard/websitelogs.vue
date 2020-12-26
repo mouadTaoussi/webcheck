@@ -16,7 +16,6 @@
 			Clear logs
 			</button>
 		</div>
-		<!-- <chartlogs></chartlogs> -->
 		<!-- <loadingspinner></loadingspinner> -->
 
 		<div v-for="log in logsToFilter">
@@ -30,7 +29,6 @@
 
 <script>
 import websitelog from './websitelog.vue';
-import chartlogs from './chartlogs.vue';
 import loadingspinner from '.././loadingspinner.vue';
 import api_config from "../../.././api.config.js";
 
@@ -42,7 +40,6 @@ export default {
 
   components: {
   	websitelog,
-  	chartlogs,
   	loadingspinner
   },
 

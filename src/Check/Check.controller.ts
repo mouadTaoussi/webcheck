@@ -191,6 +191,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						}
 						})
 						// @TODO Push time in melliseconds
+						const responseTime: number = checking.duration;
 					}
 					// // if one of the websites is down
 					catch (error){
@@ -265,6 +266,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							}
 						})
 						// @TODO Push time in melliseconds
+						const responseTime: number = checking.duration;
+						
 						//  // set website[i].active to false
 						users.user[i].websites[o].active = true;
 						// Save that active in the database

@@ -53,6 +53,7 @@ interface websitesResponsesTimeInDay {
 }
 interface websiteAverageTimeInDay {
 	website_id : string,
+	website_name: string,
 	user_id    : string,
 	website_speed_last_ten_days : [ { date:string, average_melliseconds: number } ] // Queue
 }
