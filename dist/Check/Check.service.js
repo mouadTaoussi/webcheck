@@ -39,26 +39,61 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Check_model_1 = __importDefault(require("./Check.model"));
+var Check_model_1 = require("./Check.model");
 var Authentication_model_1 = __importDefault(require(".././Authentication/Authentication.model"));
 var uuid_1 = require("uuid");
 var moment_1 = __importDefault(require("moment"));
 var CheckWebsitesService = (function () {
     function CheckWebsitesService() {
-        this.websitelogmodel = Check_model_1.default;
         this.statusCodes = [
-            { code: 404, description: "Might be you entered a wrong website Url" },
-            { code: 500, description: "Internal Server Error" },
-            { code: 501, description: "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request." },
-            { code: 502, description: "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream." },
-            { code: 503, description: "Service Unavailable: The server cannot handle the request (because it is overloaded or down for maintenance). Generally, this is a temporary state." },
-            { code: 504, description: "Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server." },
-            { code: 505, description: "HTTP Version Not Supported: The server does not support the HTTP protocol version used in the request." },
-            { code: 506, description: "Variant Also Negotiates (RFC 2295): Transparent content negotiation for the request results in a circular reference." },
-            { code: 507, description: "Insufficient Storage (WebDAV; RFC 4918): The server is unable to store the representation needed to complete the request." },
-            { code: 509, description: "Loop Detected (WebDAV; RFC 5842): The server detected an infinite loop while processing the request (sent instead of 208 Already Reported)." },
-            { code: 510, description: "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it." },
-            { code: 511, description: "Network Authentication Required (RFC 6585)." }
+            {
+                code: 404,
+                description: "Might be you entered a wrong website Url"
+            },
+            {
+                code: 500,
+                description: "Internal Server Error"
+            },
+            {
+                code: 501,
+                description: "Not Implemented: The server either does not recognize the request method,or it lacks the ability to fulfil the request."
+            },
+            {
+                code: 502,
+                description: "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream."
+            },
+            {
+                code: 503,
+                description: "Service Unavailable: The server cannot handle the request (because it is overloaded or down for maintenance). Generally, this is a temporary state."
+            },
+            {
+                code: 504,
+                description: "Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server."
+            },
+            {
+                code: 505,
+                description: "HTTP Version Not Supported: The server does not support the HTTP protocol version used in the request."
+            },
+            {
+                code: 506,
+                description: "Variant Also Negotiates (RFC 2295): Transparent content negotiation for the request results in a circular reference."
+            },
+            {
+                code: 507,
+                description: "Insufficient Storage (WebDAV; RFC 4918): The server is unable to store the representation needed to complete the request."
+            },
+            {
+                code: 509,
+                description: "Loop Detected (WebDAV; RFC 5842): The server detected an infinite loop while processing the request (sent instead of 208 Already Reported)."
+            },
+            {
+                code: 510,
+                description: "Not Extended (RFC 2774): Further extensions to the request are required for the server to fulfil it."
+            },
+            {
+                code: 511,
+                description: "Network Authentication Required (RFC 6585)."
+            }
         ];
     }
     CheckWebsitesService.prototype.addWebsite = function (user_id, website) {
@@ -145,7 +180,7 @@ var CheckWebsitesService = (function () {
                         explanation = this.statusCodes.filter(function (statuscode) {
                             return statuscode.code == status_code;
                         })[0];
-                        saving = new Check_model_1.default({
+                        saving = new Check_model_1.WebsiteLogModel({
                             user_id: user_id,
                             website_id: website_id,
                             status_code: status_code,
@@ -182,7 +217,7 @@ var CheckWebsitesService = (function () {
                         return [4, Authentication_model_1.default.findOne({ _id: user_id })];
                     case 1:
                         user = _a.sent();
-                        return [4, Check_model_1.default.find({
+                        return [4, Check_model_1.WebsiteLogModel.find({
                                 user_id: user._id
                             })];
                     case 2:
@@ -205,7 +240,7 @@ var CheckWebsitesService = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
-                        return [4, Check_model_1.default.find({ user_id: user_id })];
+                        return [4, Check_model_1.WebsiteLogModel.find({ user_id: user_id })];
                     case 1:
                         logs = _a.sent();
                         i = 0;
@@ -227,6 +262,118 @@ var CheckWebsitesService = (function () {
                             }];
                     case 7: return [2];
                 }
+            });
+        });
+    };
+    CheckWebsitesService.prototype.pushResponseTimeForWebsite = function (website_id, responseTime) {
+        return __awaiter(this, void 0, void 0, function () {
+            var websitesResponsesTimeInDay, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, Check_model_1.websitesResponsesTimeInDayModel.findOne({ website_id: website_id })];
+                    case 1:
+                        websitesResponsesTimeInDay = _a.sent();
+                        websitesResponsesTimeInDay.response_times_melliseconds.push(responseTime);
+                        return [4, websitesResponsesTimeInDay.save()];
+                    case 2:
+                        _a.sent();
+                        return [2, {
+                                status: 200, message: "Saved!"
+                            }];
+                    case 3:
+                        err_1 = _a.sent();
+                        return [2, {
+                                status: 500, message: "Something went wrong!"
+                            }];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    CheckWebsitesService.prototype.pushAverageResponseForToday = function (website_id, entitiy) {
+        return __awaiter(this, void 0, void 0, function () {
+            var websiteAverageTimeInDay, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, Check_model_1.websiteAverageTimeInDayModel.findOne({ website_id: website_id })];
+                    case 1:
+                        websiteAverageTimeInDay = _a.sent();
+                        websiteAverageTimeInDay.website_speed_last_ten_days.push(entitiy);
+                        return [4, websiteAverageTimeInDay.save()];
+                    case 2:
+                        _a.sent();
+                        return [2, {
+                                status: 200, message: "Saved!"
+                            }];
+                    case 3:
+                        err_2 = _a.sent();
+                        return [2, {
+                                status: 500, message: "Something went wrong!"
+                            }];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    CheckWebsitesService.prototype.popOlderEntity = function (website_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var websiteAverageTimeInDay, entities, entitiesOutput, i, err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, Check_model_1.websiteAverageTimeInDayModel.findOne({ website_id: website_id })];
+                    case 1:
+                        websiteAverageTimeInDay = _a.sent();
+                        entities = websiteAverageTimeInDay.website_speed_last_ten_days;
+                        entitiesOutput = [];
+                        for (i = 0; entities.length > i; i++) {
+                            if (i == 0) {
+                                continue;
+                            }
+                            else {
+                                entitiesOutput.push(entities[i]);
+                            }
+                        }
+                        websiteAverageTimeInDay.website_speed_last_ten_days = entitiesOutput;
+                        return [4, websiteAverageTimeInDay.save()];
+                    case 2:
+                        _a.sent();
+                        return [2, {
+                                status: 200,
+                                message: "Deleted!"
+                            }];
+                    case 3:
+                        err_3 = _a.sent();
+                        return [2, {
+                                status: 200,
+                                message: "Deleted!"
+                            }];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    CheckWebsitesService.prototype.clearResponseTimesForWebsite = function (website_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                try {
+                    return [2, {
+                            status: 200,
+                            message: "Deleted!"
+                        }];
+                }
+                catch (err) {
+                    return [2, {
+                            status: 200,
+                            message: "Deleted!"
+                        }];
+                }
+                return [2];
             });
         });
     };

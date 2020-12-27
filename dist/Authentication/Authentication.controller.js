@@ -178,7 +178,6 @@ var AuthenticationController = (function () {
                         return [4, userService.changePassword(user.user._id, hashed_password)];
                     case 4:
                         updatePassword = _a.sent();
-                        console.log(password);
                         transporter = nodemailer_1.createTransport({
                             service: 'gmail',
                             auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }

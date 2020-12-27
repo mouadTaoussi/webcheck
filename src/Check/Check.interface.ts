@@ -27,15 +27,19 @@ interface CheckWebsiteServiceInterface {
 	/*
 		not supported in typescript to put private elements in an interface
 	*/
-	addWebsite(user_id:string,website: websiteType)                  : Promise<{status:number,message:string | null,data:any | null}> 
-	deleteWebsite(user_id:string, website_id: string)                : Promise<{status:number,message:string | null}>
-	pushLog( status_code:number, user_id:string, website_id:string ) : Promise<{status:number,message:string | null,data:any | null}>
-	getLogs( user_id:string, website_id:string )                     : Promise<{status:number,message:string | null,data:any | null}>
-	deleteLogs( user_id:string, website_id:string | undefined )      : Promise<{status:number,message:string | null,data:any | null}>
+	addWebsite(user_id:string,website: websiteType)                    : Promise<{status:number,message:string | null,data:any | null}> 
+	deleteWebsite(user_id:string, website_id: string)                  : Promise<{status:number,message:string | null}>
+	pushLog(status_code:number, user_id:string, website_id:string)     : Promise<{status:number,message:string | null,data:any | null}>
+	getLogs(user_id:string, website_id:string)                         : Promise<{status:number,message:string | null,data:any | null}>
+	deleteLogs(user_id:string, website_id:string | undefined)          : Promise<{status:number,message:string | null,data:any | null}>
 	// Push response time for website
+	pushResponseTimeForWebsite(website_id:string, responseTime:number) : Promise<{ status:number,message:string }>
 	// Push average response entity for the current day to the array
+	pushAverageResponseForToday(website_id:string, entitiy : { date:string,value:number } ) : Promise<{ status:number,message:string }>
 	// Pop first and older average response entity for the if the entities reached to 10 long
+	popOlderEntity(website_id:string)                                  : Promise<{ status:number,message:string }>
 	// clear responses time for the day
+	clearResponseTimesForWebsite(website_id:string)                    : Promise<{ status:number, message: string }>
 };
 
 interface WebsiteLog {

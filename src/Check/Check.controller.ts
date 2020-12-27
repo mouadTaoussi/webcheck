@@ -192,6 +192,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						})
 						// @TODO Push time in melliseconds
 						const responseTime: number = checking.duration;
+						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 					}
 					// // if one of the websites is down
 					catch (error){
@@ -267,6 +268,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						})
 						// @TODO Push time in melliseconds
 						const responseTime: number = checking.duration;
+						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 						
 						//  // set website[i].active to false
 						users.user[i].websites[o].active = true;

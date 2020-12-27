@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Authentication_model_1 = __importDefault(require("./Authentication.model"));
-var Check_model_1 = __importDefault(require("../Check/Check.model"));
+var Check_model_1 = require(".././Check/Check.model");
 var AuthenticationService = (function () {
     function AuthenticationService() {
     }
@@ -204,7 +204,7 @@ var AuthenticationService = (function () {
                         return [4, Authentication_model_1.default.findById(user_id).remove()];
                     case 1:
                         user = _a.sent();
-                        return [4, Check_model_1.default.find({ user_id: user_id })];
+                        return [4, Check_model_1.WebsiteLogModel.find({ user_id: user_id })];
                     case 2:
                         logs = _a.sent();
                         i = 0;

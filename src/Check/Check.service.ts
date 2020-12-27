@@ -80,8 +80,20 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					websitesCount : plusOne, 
 					websites      : userWebsites
 				})
+
 				// @TODO Add response times in day Document
+				const addResponseTimesDocument = new websitesResponsesTimeInDayModel({
+
+				})
+				await addResponseTimesDocument.save();
+
 				// @TODO Add average response time last ten days Document
+				const addAverageResponseTimeDocument = new websitesResponsesTimeInDayModel({
+
+				})
+				await addAverageResponseTimeDocument.save();
+				
+				// 
 				return { 
 					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website }
 			}
@@ -216,12 +228,101 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 
 	// Push response time for website
+	public async pushResponseTimeForWebsite(website_id:string, responseTime:number) 
+	:Promise<{status:number,message: string}> {
+		try {
+			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
+			let websitesResponsesTimeInDay :any = await websitesResponsesTimeInDayModel.findOne({website_id:website_id});
+			// Push respsone time value
+			websitesResponsesTimeInDay.response_times_melliseconds.push(responseTime);
+			// Save it!
+			await websitesResponsesTimeInDay.save();
+			//
+			return {
+				status : 200, message : "Saved!"
+			}
+		}
+		catch (err){
+			return {
+				status : 500, message : "Something went wrong!"
+			}
+		}
+
+	}
 	// Push average response entity for the current day to the array
+	public async pushAverageResponseForToday(website_id:string,entitiy : { date:string,value:number }) 
+	:Promise<{ status:number, message: string }> {
+		try {
+			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
+			let websiteAverageTimeInDay :any = await websiteAverageTimeInDayModel.findOne({website_id:website_id});
+			// Push respsone time value
+			websiteAverageTimeInDay.website_speed_last_ten_days.push(entitiy);
+			// Save it!
+			await websiteAverageTimeInDay.save();
+			//
+			return {
+				status : 200, message : "Saved!"
+			}
+		}
+		catch (err){
+			return {
+				status : 500, message : "Something went wrong!"
+			}
+		}
+
+	}
 	// Pop first and older average response entity for the if the entities reached to 10 long
+	public async popOlderEntity(website_id:string) 
+	:Promise<{ status:number, message: string }> {
+		try {
+			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
+			let websiteAverageTimeInDay :any = await websiteAverageTimeInDayModel.findOne({website_id:website_id});
+			// Push respsone time value
+			const entities: [{date:string,average_melliseconds:number}] 
+			= websiteAverageTimeInDay.website_speed_last_ten_days;
+
+			// Delete older one
+			let entitiesOutput = [];
+			for (var i = 0; entities.length > i; i++) {
+				if ( i == 0 ) { continue }
+				else {
+					entitiesOutput.push(entities[i]);
+				}
+			}
+			websiteAverageTimeInDay.website_speed_last_ten_days = entitiesOutput;
+			await websiteAverageTimeInDay.save();
+			//
+			return {
+				status : 200,
+				message : "Deleted!"
+			}
+		}
+		catch (err){
+			return {
+				status : 200,
+				message : "Deleted!"
+			}
+		}
+
+	}
 	// clear responses time for the day
+	public async clearResponseTimesForWebsite(website_id:string) 
+	:Promise<{ status:number, message: string }> {
+		try {
+			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
+			return {
+				status : 200,
+				message : "Deleted!"
+			}
+		}
+		catch (err){
+			return {
+				status : 200,
+				message : "Deleted!"
+			}
+		}
 
-
-
+	}
 
 }
 
