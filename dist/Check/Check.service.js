@@ -98,15 +98,15 @@ var CheckWebsitesService = (function () {
     }
     CheckWebsitesService.prototype.addWebsite = function (user_id, website) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, userWebsites, plusOne, update, error_1;
+            var user, userWebsites, plusOne, update, addResponseTimesDocument, addAverageResponseTimeDocument, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 5, , 6]);
+                        _a.trys.push([0, 7, , 8]);
                         return [4, Authentication_model_1.default.findOne({ _id: user_id })];
                     case 1:
                         user = _a.sent();
-                        if (!(user.websitesCount < 3)) return [3, 3];
+                        if (!(user.websitesCount < 3)) return [3, 5];
                         userWebsites = user.websites;
                         plusOne = user.websitesCount + 1;
                         website.active = true;
@@ -117,20 +117,28 @@ var CheckWebsitesService = (function () {
                             })];
                     case 2:
                         update = _a.sent();
+                        addResponseTimesDocument = new Check_model_1.websitesResponsesTimeInDayModel({});
+                        return [4, addResponseTimesDocument.save()];
+                    case 3:
+                        _a.sent();
+                        addAverageResponseTimeDocument = new Check_model_1.websitesResponsesTimeInDayModel({});
+                        return [4, addAverageResponseTimeDocument.save()];
+                    case 4:
+                        _a.sent();
                         return [2, {
-                                status: 200, message: 'A NEW WEBSITE ADDED!!', data: website
+                                status: 200, message: 'A new website added!!', data: website
                             }];
-                    case 3: return [2, {
+                    case 5: return [2, {
                             status: 200, message: 'You cannot add more than 3 websites!!',
                             data: null
                         }];
-                    case 4: return [3, 6];
-                    case 5:
+                    case 6: return [3, 8];
+                    case 7:
                         error_1 = _a.sent();
                         return [2, {
                                 status: 500, message: "Something went wrong!", data: null
                             }];
-                    case 6: return [2];
+                    case 8: return [2];
                 }
             });
         });
@@ -141,7 +149,7 @@ var CheckWebsitesService = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
+                        _a.trys.push([0, 5, , 6]);
                         return [4, Authentication_model_1.default.findOne({ _id: user_id })];
                     case 1:
                         user = _a.sent();
@@ -155,18 +163,24 @@ var CheckWebsitesService = (function () {
                                 websitesNotDeleted.push(websites[i]);
                             }
                         }
+                        return [4, Check_model_1.websitesResponsesTimeInDayModel.findOne({ website_id: website_id }).remove()];
+                    case 2:
+                        _a.sent();
+                        return [4, Check_model_1.websiteAverageTimeInDayModel.findOne({ website_id: website_id }).remove()];
+                    case 3:
+                        _a.sent();
                         decreaseOne = user.websitesCount - 1;
                         return [4, Authentication_model_1.default.findByIdAndUpdate(user_id, {
                                 websitesCount: decreaseOne,
                                 websites: websitesNotDeleted
                             })];
-                    case 2:
+                    case 4:
                         update = _a.sent();
                         return [2, { status: 200, message: "Website deleted successfully", }];
-                    case 3:
+                    case 5:
                         error_2 = _a.sent();
                         return [2, { status: 500, message: "Something went wrong!", }];
-                    case 4: return [2];
+                    case 6: return [2];
                 }
             });
         });

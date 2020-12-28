@@ -1,7 +1,7 @@
-// import dotenv from 'dotenv'; 
+import dotenv from 'dotenv';
 
-// dotenv.config({ path: './.env' });
-
+dotenv.config({ path: './.env' });
+// dotenv.config({ path: './.env' })
 // console.log(process.env.EMAIL)
 // console.log(process.env.VAPID_PUBLIC_KEY)
 
@@ -14,7 +14,7 @@ type Config = {
 	port_dev             : string | number | undefined,
 	port                 : string | number | undefined
 }
- 
+
 const application_config : Config  = {
 	email                : process.env.EMAIL,
 	password             : process.env.PASSWORD,

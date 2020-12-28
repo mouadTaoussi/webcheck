@@ -92,10 +92,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 				})
 				await addAverageResponseTimeDocument.save();
-				
+
 				// 
 				return { 
-					status  : 200, message : 'A NEW WEBSITE ADDED!!', data : website }
+					status  : 200, message : 'A new website added!!', data : website }
 			}
 			else {
 				return {
@@ -134,7 +134,9 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 			// @TODO Remove website logs
 			// @TODO Remove response times in day
+			await websitesResponsesTimeInDayModel.findOne({website_id: website_id}).remove();
 			// @TODO Remove average response time last ten days
+			await websiteAverageTimeInDayModel.findOne({website_id: website_id}).remove();
 
 			// Decrease one in websitesCount
 			const decreaseOne: number = user.websitesCount - 1;

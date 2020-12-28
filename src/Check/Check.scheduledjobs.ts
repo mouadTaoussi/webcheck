@@ -5,8 +5,9 @@ import { scheduleJob } from 'node-schedule';
 const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
 const calculteAverageResponseOfWebsite = new CheckWebsiteController().calculateAverageResponseOfWebsite;
 
-// Run <checkEveryWebsiteExists> Job every 2 minutes
-setInterval(checkWebsitesJob, 60000);
+// Run <checkEveryWebsiteExists> Job every 1.5 minutes
+setInterval(checkWebsitesJob, 90000);
+// setInterval(()=>{console.log(1)},2000)
 
 // Run a job every day at 2:30PM
 // Job that collects response times in the day to calculate the average time taken 
