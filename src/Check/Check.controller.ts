@@ -298,13 +298,13 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			for (var io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
 				// code...
 				sum += responsesTime.data[i].response_times_melliseconds[io];
-				// add new entity with the average calculated in the <websiteAverageTimeInDay>
-				// make the current <websitesResponsesTime.response> empty
 			}
 			// Calculate the average
 			average = sum / responsesTime.data[i].response_times_melliseconds.length;
+			// add new entity with the average calculated in the <websiteAverageTimeInDay>
+			// make the current <websitesResponsesTime.response> empty
+			// Implement queue to delete the first entity if the long reached to 10
 		}
-		// Implement queue to delete the first entity if the long reached to 10
 	}
 }
 
