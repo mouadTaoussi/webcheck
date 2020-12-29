@@ -11,7 +11,7 @@ import { connect } from 'mongoose';
 import application_config from './main.config';
 
 connect(application_config.database_connection,
-
+ 
 	{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
 	,(error:any)=>{
 	if (error){
