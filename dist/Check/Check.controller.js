@@ -204,7 +204,7 @@ var CheckWebsiteController = (function () {
     };
     CheckWebsiteController.prototype.checkEveryWebsiteExists = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var users, i, o, checking, responseTime, pushing, error_1, checking, responseTime, pushing, error_2;
+            var users, i, o, checking, responseTime, error_1, checking, responseTime, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, userService.findUser({ id: undefined, email: undefined })];
@@ -213,18 +213,18 @@ var CheckWebsiteController = (function () {
                         i = 0;
                         _a.label = 2;
                     case 2:
-                        if (!(i < users.user.length)) return [3, 23];
+                        if (!(i < users.user.length)) return [3, 21];
                         if (!!users.user[i].active) return [3, 3];
-                        return [3, 22];
+                        return [3, 20];
                     case 3:
                         o = 0;
                         _a.label = 4;
                     case 4:
-                        if (!(o < users.user[i].websites.length)) return [3, 22];
-                        if (!users.user[i].websites[o].active) return [3, 16];
+                        if (!(o < users.user[i].websites.length)) return [3, 20];
+                        if (!users.user[i].websites[o].active) return [3, 15];
                         _a.label = 5;
                     case 5:
-                        _a.trys.push([5, 8, , 15]);
+                        _a.trys.push([5, 7, , 14]);
                         return [4, axios_1.default({
                                 method: 'GET',
                                 url: users.user[i].websites[o].website,
@@ -235,16 +235,13 @@ var CheckWebsiteController = (function () {
                     case 6:
                         checking = _a.sent();
                         responseTime = checking.duration;
-                        return [4, websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id, responseTime)];
+                        return [3, 14];
                     case 7:
-                        pushing = _a.sent();
-                        return [3, 15];
-                    case 8:
                         error_1 = _a.sent();
-                        if (!error_1.response) return [3, 10];
+                        if (!error_1.response) return [3, 9];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 9:
+                    case 8:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
@@ -256,12 +253,12 @@ var CheckWebsiteController = (function () {
                             receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        return [3, 14];
-                    case 10:
-                        if (!error_1.message.includes('ENOTFOUND')) return [3, 12];
+                        return [3, 13];
+                    case 9:
+                        if (!error_1.message.includes('ENOTFOUND')) return [3, 11];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 11:
+                    case 10:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Might be you entered a wrong website url!",
@@ -273,12 +270,12 @@ var CheckWebsiteController = (function () {
                             receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        return [3, 14];
-                    case 12:
-                        if (!error_1.message.includes('ECONNREFUSED')) return [3, 14];
+                        return [3, 13];
+                    case 11:
+                        if (!error_1.message.includes('ECONNREFUSED')) return [3, 13];
                         users.user[i].websites[o].active = false;
                         return [4, users.user[i].save()];
-                    case 13:
+                    case 12:
                         _a.sent();
                         new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
                             message: "Your website is currently down!",
@@ -290,11 +287,11 @@ var CheckWebsiteController = (function () {
                             receiving_email: users.user[i].receivingEmail,
                             website_id: users.user[i].websites[o]._id
                         });
-                        _a.label = 14;
-                    case 14: return [3, 15];
-                    case 15: return [3, 21];
-                    case 16:
-                        _a.trys.push([16, 20, , 21]);
+                        _a.label = 13;
+                    case 13: return [3, 14];
+                    case 14: return [3, 19];
+                    case 15:
+                        _a.trys.push([15, 18, , 19]);
                         return [4, axios_1.default({
                                 method: 'GET',
                                 url: users.user[i].websites[o].website,
@@ -302,27 +299,24 @@ var CheckWebsiteController = (function () {
                                     "access-control-allow-origin": "*",
                                 }
                             })];
-                    case 17:
+                    case 16:
                         checking = _a.sent();
                         responseTime = checking.duration;
-                        return [4, websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id, responseTime)];
-                    case 18:
-                        pushing = _a.sent();
                         users.user[i].websites[o].active = true;
                         return [4, users.user[i].save()];
-                    case 19:
+                    case 17:
                         _a.sent();
-                        return [3, 21];
-                    case 20:
+                        return [3, 19];
+                    case 18:
                         error_2 = _a.sent();
-                        return [3, 21];
-                    case 21:
+                        return [3, 19];
+                    case 19:
                         o++;
                         return [3, 4];
-                    case 22:
+                    case 20:
                         i++;
                         return [3, 2];
-                    case 23: return [2];
+                    case 21: return [2];
                 }
             });
         });
