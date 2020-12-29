@@ -28,5 +28,21 @@ async function getData (){
 	// console.log(err.duration);
 
 }
+function calculateAverageInArray(){
+	const array = [1,2,3];
+	var sum = 0;
+	var average = 0;
 
-getData();
+	// Calculate sum
+	for (var i = 0; i < array.length; i++) {
+		sum += array[i];
+	}
+	// Calculate average
+	average = sum / array.length;
+
+	// Output 
+	console.log(average);
+} 
+
+// getData();
+calculateAverageInArray();

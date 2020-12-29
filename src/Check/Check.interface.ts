@@ -32,6 +32,8 @@ interface CheckWebsiteServiceInterface {
 	pushLog(status_code:number, user_id:string, website_id:string)     : Promise<{status:number,message:string | null,data:any | null}>
 	getLogs(user_id:string, website_id:string)                         : Promise<{status:number,message:string | null,data:any | null}>
 	deleteLogs(user_id:string, website_id:string | undefined)          : Promise<{status:number,message:string | null,data:any | null}>
+	// Get websites respsones time 
+	getResponsesTimesForWebsites ()                                    : Promise<{status:number,data:any}>
 	// Push response time for website
 	pushResponseTimeForWebsite(website_id:string, responseTime:number) : Promise<{ status:number,message:string }>
 	// Push average response entity for the current day to the array

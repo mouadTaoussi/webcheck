@@ -281,13 +281,31 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			}
 		}
 	}
+	// Calculate average time per day per website
 	public async calculateAverageResponseOfWebsite(): Promise<void> {
-	  // loop over <websitesResponsesTime>
-	  // Calculate average time per day per website 
-	  // add new entity with the average calculated in the <websiteAverageTimeInDay>
-	  // Implement queue to delete the first entity if the long reached to 10
-	  // make the current <websitesResponsesTime.response> empty
-	} 
+		// loop over <websitesResponsesTime>
+		const responsesTime = await websiteService.getResponsesTimesForWebsites();
+
+		for (var i = 0; i < responsesTime.data.length; i++ ){
+			var sum: number = 0;
+			var average: number = 0;
+			
+			// Get user id and the website id
+			const user_id: string = responsesTime.data[i].user_id;
+			const website_id: string = responsesTime.data[i].website_id;
+			
+			// Sum the melliseconds
+			for (var io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
+				// code...
+				sum += responsesTime.data[i].response_times_melliseconds[io];
+				// add new entity with the average calculated in the <websiteAverageTimeInDay>
+				// make the current <websitesResponsesTime.response> empty
+			}
+			// Calculate the average
+			average = sum / responsesTime.data[i].response_times_melliseconds.length;
+		}
+		// Implement queue to delete the first entity if the long reached to 10
+	}
 }
 
 export default CheckWebsiteController;

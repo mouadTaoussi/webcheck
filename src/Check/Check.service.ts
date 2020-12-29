@@ -227,8 +227,23 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	}	
 
 
+	// Get responsesTime for each website
+	public async getResponsesTimesForWebsites () : Promise<{status:number,data:any}>
+	{
+		try {
 
-
+			//
+			const websites_response_times = await websitesResponsesTimeInDayModel.find({});
+			return {
+				status : 200, data : websites_response_times
+			}
+		}
+		catch (err) {
+			return {
+				status : 500, data   : null
+			}
+		}
+	}
 	// Push response time for website
 	public async pushResponseTimeForWebsite(website_id:string, responseTime:number) 
 	:Promise<{status:number,message: string}> {
