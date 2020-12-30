@@ -98,7 +98,7 @@ var CheckWebsitesService = (function () {
     }
     CheckWebsitesService.prototype.addWebsite = function (user_id, website) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, userWebsites, plusOne, update, addResponseTimesDocument, addAverageResponseTimeDocument, error_1;
+            var user, userWebsites, plusOne, update, website_id, addResponseTimesDocument, addAverageResponseTimeDocument, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -114,14 +114,23 @@ var CheckWebsitesService = (function () {
                         return [4, Authentication_model_1.default.findByIdAndUpdate(user_id, {
                                 websitesCount: plusOne,
                                 websites: userWebsites
-                            })];
+                            }, { new: true })];
                     case 2:
                         update = _a.sent();
-                        addResponseTimesDocument = new Check_model_1.websitesResponsesTimeInDayModel({});
+                        website_id = update.websites[update.websites.length - 1]._id;
+                        addResponseTimesDocument = new Check_model_1.websitesResponsesTimeInDayModel({
+                            website_id: website_id,
+                            user_id: user_id,
+                            response_times_melliseconds: []
+                        });
                         return [4, addResponseTimesDocument.save()];
                     case 3:
                         _a.sent();
-                        addAverageResponseTimeDocument = new Check_model_1.websitesResponsesTimeInDayModel({});
+                        addAverageResponseTimeDocument = new Check_model_1.websitesResponsesTimeInDayModel({
+                            website_id: website_id,
+                            user_id: user_id,
+                            website_speed_last_ten_days: []
+                        });
                         return [4, addAverageResponseTimeDocument.save()];
                     case 4:
                         _a.sent();
@@ -279,9 +288,64 @@ var CheckWebsitesService = (function () {
             });
         });
     };
+    CheckWebsitesService.prototype.getResponsesTimesForWebsites = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var websites_response_times, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4, Check_model_1.websitesResponsesTimeInDayModel.find({})];
+                    case 1:
+                        websites_response_times = _a.sent();
+                        return [2, {
+                                status: 200, data: websites_response_times
+                            }];
+                    case 2:
+                        err_1 = _a.sent();
+                        return [2, {
+                                status: 500, data: null
+                            }];
+                    case 3: return [2];
+                }
+            });
+        });
+    };
+    CheckWebsitesService.prototype.getAverageTimeForWebsite = function (website_id, user_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var websiteAverageTimeInDay, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 5, , 6]);
+                        websiteAverageTimeInDay = void 0;
+                        if (!(website_id != undefined && user_id == undefined)) return [3, 2];
+                        return [4, Check_model_1.websiteAverageTimeInDayModel.findOne({ website_id: website_id })];
+                    case 1:
+                        websiteAverageTimeInDay = _a.sent();
+                        return [3, 4];
+                    case 2:
+                        if (!(website_id == undefined && user_id != undefined)) return [3, 4];
+                        return [4, Check_model_1.websiteAverageTimeInDayModel.find({ user_id: user_id })];
+                    case 3:
+                        websiteAverageTimeInDay = _a.sent();
+                        _a.label = 4;
+                    case 4: return [2, {
+                            status: 200, data: websiteAverageTimeInDay
+                        }];
+                    case 5:
+                        err_2 = _a.sent();
+                        return [2, {
+                                status: 500, data: null
+                            }];
+                    case 6: return [2];
+                }
+            });
+        });
+    };
     CheckWebsitesService.prototype.pushResponseTimeForWebsite = function (website_id, responseTime) {
         return __awaiter(this, void 0, void 0, function () {
-            var websitesResponsesTimeInDay, err_1;
+            var websitesResponsesTimeInDay, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -297,7 +361,7 @@ var CheckWebsitesService = (function () {
                                 status: 200, message: "Saved!"
                             }];
                     case 3:
-                        err_1 = _a.sent();
+                        err_3 = _a.sent();
                         return [2, {
                                 status: 500, message: "Something went wrong!"
                             }];
@@ -308,7 +372,7 @@ var CheckWebsitesService = (function () {
     };
     CheckWebsitesService.prototype.pushAverageResponseForToday = function (website_id, entitiy) {
         return __awaiter(this, void 0, void 0, function () {
-            var websiteAverageTimeInDay, err_2;
+            var websiteAverageTimeInDay, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -324,7 +388,7 @@ var CheckWebsitesService = (function () {
                                 status: 200, message: "Saved!"
                             }];
                     case 3:
-                        err_2 = _a.sent();
+                        err_4 = _a.sent();
                         return [2, {
                                 status: 500, message: "Something went wrong!"
                             }];
@@ -335,7 +399,7 @@ var CheckWebsitesService = (function () {
     };
     CheckWebsitesService.prototype.popOlderEntity = function (website_id) {
         return __awaiter(this, void 0, void 0, function () {
-            var websiteAverageTimeInDay, entities, entitiesOutput, i, err_3;
+            var websiteAverageTimeInDay, entities, entitiesOutput, i, err_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -358,14 +422,12 @@ var CheckWebsitesService = (function () {
                     case 2:
                         _a.sent();
                         return [2, {
-                                status: 200,
-                                message: "Deleted!"
+                                status: 200, message: "Deleted!"
                             }];
                     case 3:
-                        err_3 = _a.sent();
+                        err_5 = _a.sent();
                         return [2, {
-                                status: 200,
-                                message: "Deleted!"
+                                status: 200, message: "Deleted!"
                             }];
                     case 4: return [2];
                 }
@@ -374,20 +436,28 @@ var CheckWebsitesService = (function () {
     };
     CheckWebsitesService.prototype.clearResponseTimesForWebsite = function (website_id) {
         return __awaiter(this, void 0, void 0, function () {
+            var websitesResponsesTimeInDay, err_6;
             return __generator(this, function (_a) {
-                try {
-                    return [2, {
-                            status: 200,
-                            message: "Deleted!"
-                        }];
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, Check_model_1.websitesResponsesTimeInDayModel.findOne({ website_id: website_id })];
+                    case 1:
+                        websitesResponsesTimeInDay = _a.sent();
+                        websitesResponsesTimeInDay.response_times_melliseconds = [];
+                        return [4, websitesResponsesTimeInDay.save()];
+                    case 2:
+                        _a.sent();
+                        return [2, {
+                                status: 200, message: "Deleted!"
+                            }];
+                    case 3:
+                        err_6 = _a.sent();
+                        return [2, {
+                                status: 200, message: "Deleted!"
+                            }];
+                    case 4: return [2];
                 }
-                catch (err) {
-                    return [2, {
-                            status: 200,
-                            message: "Deleted!"
-                        }];
-                }
-                return [2];
             });
         });
     };

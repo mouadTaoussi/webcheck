@@ -62,6 +62,7 @@ var Check_service_1 = __importDefault(require("./Check.service"));
 var axios_1 = __importDefault(require("axios"));
 var web_push_1 = __importStar(require("web-push"));
 var nodemailer_1 = require("nodemailer");
+var moment_1 = __importDefault(require("moment"));
 var Authentication_service_1 = __importDefault(require(".././Authentication/Authentication.service"));
 var main_config_1 = __importDefault(require(".././main.config"));
 var websiteService = new Check_service_1.default();
@@ -323,8 +324,45 @@ var CheckWebsiteController = (function () {
     };
     CheckWebsiteController.prototype.calculateAverageResponseOfWebsite = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var responsesTime, i, sum, average, user_id, website_id, io, entity, addIt, deleteResponsesTime, averageEntities, popOlderEntity;
             return __generator(this, function (_a) {
-                return [2];
+                switch (_a.label) {
+                    case 0: return [4, websiteService.getResponsesTimesForWebsites()];
+                    case 1:
+                        responsesTime = _a.sent();
+                        i = 0;
+                        _a.label = 2;
+                    case 2:
+                        if (!(i < responsesTime.data.length)) return [3, 9];
+                        sum = 0;
+                        average = 0;
+                        user_id = responsesTime.data[i].user_id;
+                        website_id = responsesTime.data[i].website_id;
+                        for (io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
+                            sum += responsesTime.data[i].response_times_melliseconds[io];
+                        }
+                        average = sum / responsesTime.data[i].response_times_melliseconds.length;
+                        entity = { date: moment_1.default().format('L'), value: average };
+                        return [4, websiteService.pushAverageResponseForToday(website_id, entity)];
+                    case 3:
+                        addIt = _a.sent();
+                        return [4, websiteService.clearResponseTimesForWebsite(website_id)];
+                    case 4:
+                        deleteResponsesTime = _a.sent();
+                        return [4, websiteService.getAverageTimeForWebsite(website_id, undefined)];
+                    case 5:
+                        averageEntities = _a.sent();
+                        if (!(averageEntities.data.website_speed_last_ten_days.length == 10)) return [3, 7];
+                        return [4, websiteService.popOlderEntity(website_id)];
+                    case 6:
+                        popOlderEntity = _a.sent();
+                        return [3, 8];
+                    case 7: return [3, 8];
+                    case 8:
+                        i++;
+                        return [3, 2];
+                    case 9: return [2];
+                }
             });
         });
     };

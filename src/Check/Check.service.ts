@@ -58,13 +58,13 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		// Save it !!!
 		try {
 			// Find the user
-			const user: UserInterface = await UserModel.findOne({_id:user_id});
+			const user: UserInterface | any = await UserModel.findOne({_id:user_id});
 
 			// Check his websitesCount 
 			if (user.websitesCount < 3 ) {
 
 				// Get him websites
-				const userWebsites: [websiteType] = user.websites;
+				const userWebsites: [websiteType] | any = user.websites;
 
 				// Increase websitesCount by one, so we can limit users websites 
 				const plusOne: number = user.websitesCount + 1;
@@ -76,26 +76,32 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 				userWebsites.push(website);
 
 				// Increase websitesCount then Save it to the database
-				const update = await UserModel.findByIdAndUpdate(user_id,{
+				const update: UserInterface | any = await UserModel.findByIdAndUpdate(user_id,{
 					websitesCount : plusOne, 
 					websites      : userWebsites
-				})
+				}, {new: true})
+
+				const website_id : string | undefined = update.websites[update.websites.length-1]._id;
 
 				// @TODO Add response times in day Document
 				const addResponseTimesDocument = new websitesResponsesTimeInDayModel({
-
+					website_id : website_id,
+					user_id    : user_id,
+					response_times_melliseconds : []
 				})
 				await addResponseTimesDocument.save();
 
 				// @TODO Add average response time last ten days Document
 				const addAverageResponseTimeDocument = new websitesResponsesTimeInDayModel({
-
+					website_id : website_id,
+					user_id    : user_id,
+					website_speed_last_ten_days : []
 				})
 				await addAverageResponseTimeDocument.save();
 
 				// 
 				return { 
-					status  : 200, message : 'A new website added!!', data : website }
+					status : 200, message : 'A new website added!!', data : website }
 			}
 			else {
 				return {
@@ -113,13 +119,13 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	 {
 		try {
 			// Get website data
-			const user: UserInterface = await UserModel.findOne({_id:user_id});
+			const user: UserInterface | any = await UserModel.findOne({_id:user_id});
 
 			// Get user websites
-			const websites: [websiteType] = user.websites;
+			const websites: [websiteType] | any = user.websites;
 
 			// Websites without the targeted one to be deleted
-			let websitesNotDeleted: [websiteType] | [] = [];
+			let websitesNotDeleted: [websiteType] | [] | any = [];
 
 			// Remove the target website
 			for (var i = 0; i < websites.length; i++) {
@@ -189,10 +195,10 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	{
 		try {
 			// Get user
-			const user: UserInterface = await UserModel.findOne({_id:user_id});
+			const user: UserInterface | any = await UserModel.findOne({_id:user_id});
 
 			// Get logs of each website
-			let logs: [WebsiteLog] = await WebsiteLogModel.find({
+			let logs: [WebsiteLog] | any = await WebsiteLogModel.find({
 				user_id: user._id
 			});
 
@@ -336,14 +342,12 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			await websiteAverageTimeInDay.save();
 			//
 			return {
-				status : 200,
-				message : "Deleted!"
+				status : 200, message : "Deleted!"
 			}
 		}
 		catch (err){
 			return {
-				status : 200,
-				message : "Deleted!"
+				status : 200, message : "Deleted!"
 			}
 		}
 
@@ -353,15 +357,20 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 	:Promise<{ status:number, message: string }> {
 		try {
 			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
+			let websitesResponsesTimeInDay: any = await websitesResponsesTimeInDayModel.findOne({website_id:website_id});
+
+			// Clear it!
+			websitesResponsesTimeInDay.response_times_melliseconds = [];
+			// Save it!
+			await websitesResponsesTimeInDay.save();
+			//
 			return {
-				status : 200,
-				message : "Deleted!"
+				status : 200, message : "Deleted!"
 			}
 		}
 		catch (err){
 			return {
-				status : 200,
-				message : "Deleted!"
+				status : 200, message : "Deleted!"
 			}
 		}
 

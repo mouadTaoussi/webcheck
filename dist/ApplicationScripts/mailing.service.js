@@ -39,10 +39,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Check_model_1 = require("./Check/Check.model");
-var Authentication_model_1 = __importDefault(require("./Authentication/Authentication.model"));
+var Authentication_model_1 = __importDefault(require(".././Authentication/Authentication.model"));
 var mongoose_1 = require("mongoose");
-var main_config_1 = __importDefault(require("./main.config"));
+var main_config_1 = __importDefault(require(".././main.config"));
+var nodemailer_1 = require("nodemailer");
 mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }, function (error) {
     if (error) {
         console.log(error);
@@ -51,73 +51,40 @@ mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser:
         console.log('Database up and running!');
     }
 });
-var Migration = (function () {
-    function Migration() {
+var EmailService = (function () {
+    function EmailService() {
     }
-    Migration.prototype.up = function () {
+    EmailService.prototype.sendEmails = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var users, i, io, WRTID, WATID, newInstance, newInstance;
+            var users, i, userEmail, transporter, mailTemplate;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, Authentication_model_1.default.find({})];
                     case 1:
                         users = _a.sent();
-                        i = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(i < users.length)) return [3, 13];
-                        io = 0;
-                        _a.label = 3;
-                    case 3:
-                        if (!(io < users[i].websites.length)) return [3, 12];
-                        return [4, Check_model_1.websitesResponsesTimeInDayModel.findOne({ user_id: users[i]._id, website_id: users[i].websites[io]._id })];
-                    case 4:
-                        WRTID = _a.sent();
-                        return [4, Check_model_1.websiteAverageTimeInDayModel.findOne({ user_id: users[i]._id, website_id: users[i].websites[io]._id })];
-                    case 5:
-                        WATID = _a.sent();
-                        if (!(WRTID == null)) return [3, 7];
-                        newInstance = new Check_model_1.websitesResponsesTimeInDayModel({
-                            user_id: users[i]._id,
-                            website_id: users[i].websites[io]._id,
-                            response_times_melliseconds: []
-                        });
-                        return [4, newInstance.save()];
-                    case 6:
-                        _a.sent();
-                        return [3, 8];
-                    case 7: return [3, 11];
-                    case 8:
-                        if (!(WATID == null)) return [3, 10];
-                        newInstance = new Check_model_1.websiteAverageTimeInDayModel({
-                            user_id: users[i]._id,
-                            website_id: users[i].websites[io]._id,
-                            website_name: users[i].websites[io].name,
-                            website_speed_last_ten_days: []
-                        });
-                        return [4, newInstance.save()];
-                    case 9:
-                        _a.sent();
-                        return [3, 11];
-                    case 10: return [3, 11];
-                    case 11:
-                        io++;
-                        return [3, 3];
-                    case 12:
-                        i++;
-                        return [3, 2];
-                    case 13: return [2];
+                        for (i = 0; i < users.length; i++) {
+                            userEmail = users[i].email;
+                            transporter = nodemailer_1.createTransport({
+                                service: 'gmail',
+                                auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
+                            });
+                            mailTemplate = void 0;
+                            transporter.sendMail({
+                                from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+                                to: userEmail,
+                                subject: 'Now you can see your website speed!',
+                                text: 'Hey there, it’s your link to change your password below ;) ',
+                                html: mailTemplate
+                            });
+                        }
+                        return [2];
                 }
             });
         });
     };
-    Migration.prototype.down = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2];
-            });
-        });
-    };
-    return Migration;
+    return EmailService;
 }());
-new Migration().up();
+new EmailService().sendEmails();
+setTimeout(function () {
+    process.exit(0);
+}, 60000);

@@ -31,7 +31,7 @@ class EmailService implements EmailService {
 		// Get all of the users 
 		const users = await UserModel.find({});
 		// Send email to each one f them
-		for (var i = 0; i < users.length; ++i) {
+		for (var i = 0; i < users.length; i++) {
 			// code...
 			const userEmail = users[i].email;
 			// Send email
