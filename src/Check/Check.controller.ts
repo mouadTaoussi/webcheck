@@ -5,6 +5,7 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import webpush, { sendNotification, generateVAPIDKeys,setVapidDetails } from 'web-push';
 import { Request, Response } from 'express';
 import { createTransport } from 'nodemailer';
+import moment from "moment";
 import AuthenticationService from '.././Authentication/Authentication.service';
 import application_config from '.././main.config';
 
@@ -301,9 +302,20 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			}
 			// Calculate the average
 			average = sum / responsesTime.data[i].response_times_melliseconds.length;
+
 			// add new entity with the average calculated in the <websiteAverageTimeInDay>
+			const entity = { date: moment().format('L'), value:average };
+			const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
+
 			// make the current <websitesResponsesTime.response> empty
+			const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);
+
 			// Implement queue to delete the first entity if the long reached to 10
+			const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
+
+			if ( averageEntities.data.website_speed_last_ten_days.length == 10 ) {
+				const popOlderEntity = await websiteService.popOlderEntity(website_id);
+			}else  { continue; }
 		}
 	}
 }

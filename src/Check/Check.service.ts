@@ -244,6 +244,32 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			}
 		}
 	}
+	// Get average time for a website
+	public async getAverageTimeForWebsite (website_id: any, user_id: any) : Promise<{status:number,data:any}>
+	{
+		try {
+
+			let websiteAverageTimeInDay: any;
+			//
+			if (website_id != undefined && user_id == undefined)
+			{
+				websiteAverageTimeInDay = await websiteAverageTimeInDayModel.findOne({website_id:website_id});
+			}
+			else if (website_id == undefined && user_id != undefined)
+			{
+				websiteAverageTimeInDay = await websiteAverageTimeInDayModel.find({user_id:user_id});
+			}
+
+			return {
+				status : 200, data : websiteAverageTimeInDay
+			}
+		}
+		catch (err) {
+			return {
+				status : 500, data   : null
+			}
+		}
+	}
 	// Push response time for website
 	public async pushResponseTimeForWebsite(website_id:string, responseTime:number) 
 	:Promise<{status:number,message: string}> {

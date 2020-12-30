@@ -1,14 +1,14 @@
 /**
 *
-* This file runs separatly procceses to update the databsae with the latest models and fields
+* This file runs separatly a proccess to update the databsae with the latest models and fields
 * This file doesnt store any database changelog or so, you need to use a specific migration library
 * to do that job for you
 *
 **/
-import { WebsiteLogModel, websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel } from './Check/Check.model';
-import UserModel from './Authentication/Authentication.model';
+import { WebsiteLogModel, websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel } from '.././Check/Check.model';
+import UserModel from '.././Authentication/Authentication.model';
 import { connect } from 'mongoose';
-import application_config from './main.config';
+import application_config from '.././main.config';
 
 connect(application_config.database_connection,
  
@@ -75,3 +75,7 @@ class Migration implements Migration {
 
 // Execution
 new Migration().up();
+
+setTimeout(()=>{
+	process.exit(0); 
+},60000)
