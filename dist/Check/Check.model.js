@@ -20,8 +20,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.websiteAverageTimeInDayModel = exports.websitesResponsesTimeInDayModel = exports.WebsiteLogModel = void 0;
-var mongoose_1 = __importStar(require("mongoose"));
-var WebsiteLogSchema = new mongoose_1.Schema({
+const mongoose_1 = __importStar(require("mongoose"));
+const WebsiteLogSchema = new mongoose_1.Schema({
     user_id: { type: String, required: true },
     website_id: { type: String, required: true },
     status_code: { type: Number, required: true },
@@ -29,20 +29,20 @@ var WebsiteLogSchema = new mongoose_1.Schema({
     whenitdown: { type: String, required: true },
     log_id: { type: String, required: true }
 });
-var websitesResponsesTimeInDaySchema = new mongoose_1.Schema({
+const websitesResponsesTimeInDaySchema = new mongoose_1.Schema({
     website_id: { type: String, required: true },
     user_id: { type: String, required: true },
     response_times_melliseconds: [mongoose_1.default.Schema.Types.Mixed]
 });
-var websiteAverageTimeInDaySchema = new mongoose_1.Schema({
+const websiteAverageTimeInDaySchema = new mongoose_1.Schema({
     website_id: { type: String, required: true },
     website_name: { type: String, required: true },
     user_id: { type: String, required: true },
     website_speed_last_ten_days: [{ date: String, average_melliseconds: Number }]
 });
-var WebsiteLogModel = mongoose_1.model("websiteslog", WebsiteLogSchema);
+const WebsiteLogModel = mongoose_1.model("websiteslog", WebsiteLogSchema);
 exports.WebsiteLogModel = WebsiteLogModel;
-var websitesResponsesTimeInDayModel = mongoose_1.model("websitesResponsesTimeInDay", websitesResponsesTimeInDaySchema);
+const websitesResponsesTimeInDayModel = mongoose_1.model("websitesResponsesTimeInDay", websitesResponsesTimeInDaySchema);
 exports.websitesResponsesTimeInDayModel = websitesResponsesTimeInDayModel;
-var websiteAverageTimeInDayModel = mongoose_1.model("websiteAverageTimeInDay", websiteAverageTimeInDaySchema);
+const websiteAverageTimeInDayModel = mongoose_1.model("websiteAverageTimeInDay", websiteAverageTimeInDaySchema);
 exports.websiteAverageTimeInDayModel = websiteAverageTimeInDayModel;

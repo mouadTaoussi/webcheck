@@ -18,354 +18,234 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Check_service_1 = __importDefault(require("./Check.service"));
-var axios_1 = __importDefault(require("axios"));
-var web_push_1 = __importStar(require("web-push"));
-var nodemailer_1 = require("nodemailer");
-var moment_1 = __importDefault(require("moment"));
-var Authentication_service_1 = __importDefault(require(".././Authentication/Authentication.service"));
-var main_config_1 = __importDefault(require(".././main.config"));
-var websiteService = new Check_service_1.default();
-var userService = new Authentication_service_1.default();
-var CheckWebsiteController = (function () {
-    function CheckWebsiteController() {
+const Check_service_1 = __importDefault(require("./Check.service"));
+const axios_1 = __importDefault(require("axios"));
+const web_push_1 = __importStar(require("web-push"));
+const nodemailer_1 = require("nodemailer");
+const moment_1 = __importDefault(require("moment"));
+const Authentication_service_1 = __importDefault(require(".././Authentication/Authentication.service"));
+const main_config_1 = __importDefault(require(".././main.config"));
+const websiteService = new Check_service_1.default();
+const userService = new Authentication_service_1.default();
+class CheckWebsiteController {
+    constructor() {
         this.vapidPublicKey = main_config_1.default.vapid_public_key;
         this.vapidPrivateKey = main_config_1.default.vapid_private_key;
         web_push_1.default.setGCMAPIKey('<Your GCM API Key Here>');
         web_push_1.default.setVapidDetails('mailto:example@yourdomain.org', this.vapidPublicKey, this.vapidPrivateKey);
-        axios_1.default.interceptors.request.use(function (config) {
+        axios_1.default.interceptors.request.use((config) => {
             config.metadata = { startTime: new Date() };
             return config;
-        }, function (error) {
+        }, (error) => {
             return Promise.reject(error);
         });
-        axios_1.default.interceptors.response.use(function (response) {
+        axios_1.default.interceptors.response.use((response) => {
             response.config.metadata.endTime = new Date();
             response.duration = response.config.metadata.endTime - response.config.metadata.startTime;
             return response;
-        }, function (error) {
+        }, (error) => {
             error.config.metadata.endTime = new Date();
             error.duration = error.config.metadata.endTime - error.config.metadata.startTime;
             return Promise.reject(error);
         });
     }
-    CheckWebsiteController.prototype.addWebsite = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var website, user, saving;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        website = request.body;
-                        user = request.user;
-                        return [4, websiteService.addWebsite(user.id, website)];
-                    case 1:
-                        saving = _a.sent();
-                        response.status(saving.status).send({
-                            message: saving.message,
-                            website: saving.data
-                        });
-                        return [2];
-                }
-            });
+    async addWebsite(request, response) {
+        const website = request.body;
+        const user = request.user;
+        const saving = await websiteService.addWebsite(user.id, website);
+        response.status(saving.status).send({
+            message: saving.message,
+            website: saving.data
         });
-    };
-    CheckWebsiteController.prototype.deleteWebsite = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var user, website_id, deleting;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        user = request.user;
-                        website_id = request.query.website_id;
-                        return [4, websiteService.deleteWebsite(user.id, website_id)];
-                    case 1:
-                        deleting = _a.sent();
-                        response.status(deleting.status).send({
-                            message: deleting.message,
-                        });
-                        return [2];
-                }
-            });
+    }
+    async deleteWebsite(request, response) {
+        const user = request.user;
+        const { website_id } = request.query;
+        const deleting = await websiteService.deleteWebsite(user.id, website_id);
+        response.status(deleting.status).send({
+            message: deleting.message,
         });
-    };
-    CheckWebsiteController.prototype.websiteLogs = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var user, logs;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        user = request.user;
-                        return [4, websiteService.getLogs(user.id)];
-                    case 1:
-                        logs = _a.sent();
-                        response.status(logs.status).send({
-                            logs: logs.data,
-                        });
-                        return [2];
-                }
-            });
+    }
+    async websiteLogs(request, response) {
+        const user = request.user;
+        const logs = await websiteService.getLogs(user.id);
+        response.status(logs.status).send({
+            logs: logs.data,
         });
-    };
-    CheckWebsiteController.prototype.deleteWebsiteLogs = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var user, deleting;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        user = request.user;
-                        return [4, websiteService.deleteLogs(user.id, undefined)];
-                    case 1:
-                        deleting = _a.sent();
-                        response.status(deleting.status).send({
-                            message: deleting.message
-                        });
-                        return [2];
-                }
-            });
+    }
+    async deleteWebsiteLogs(request, response) {
+        const user = request.user;
+        const deleting = await websiteService.deleteLogs(user.id, undefined);
+        response.status(deleting.status).send({
+            message: deleting.message
         });
-    };
-    CheckWebsiteController.prototype.handlePushAndEmail = function (registeration, options) {
-        return __awaiter(this, void 0, void 0, function () {
-            var payload, transporter, mailTemplate, push;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        payload = {
-                            title: options.message,
-                            url: options.url
-                        };
-                        web_push_1.sendNotification(registeration, JSON.stringify(payload));
-                        if (!options.receiving_email)
-                            return [2];
-                        transporter = nodemailer_1.createTransport({
-                            service: 'gmail',
-                            auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
-                        });
-                        mailTemplate = "\n\t\t<!DOCTYPE html><!-- English template -->\n\t\t<html>\n\t\t<head>\n\t\t\t<title>Email template</title>\n\t\t</head>\n\t\t<body style='background-color: rgba(0,0,0,.1);padding:20px;' >\n\t\t<center></center>\n\t\t<div style=\"width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;\">\n\t\t<h1>Hello! " + options.user_email + "</h1>\n\t\t<h5>" + options.message + "</h5>\n\t\t<h2>Website: " + options.website_name + "</h2>\n\t\t<p><strong>Thank you!</strong></p>\n\t\t<p>WebCheck Team.</p>\n\t\t</div>\n\t\t<center>\n\t\t<ul style=\"list-style: none;margin: 10px 10px 10px 10px;\" class=\"footer-list local-mt-4\">\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>\n\t\t\t<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>\n\t\t</ul>\n\t\t</center>\n\t\t</body>\n\t\t</html>\n\t\t";
+    }
+    async handlePushAndEmail(registeration, options) {
+        const payload = {
+            title: options.message,
+            url: options.url
+        };
+        web_push_1.sendNotification(registeration, JSON.stringify(payload));
+        if (!options.receiving_email)
+            return;
+        var transporter = nodemailer_1.createTransport({
+            service: 'gmail',
+            auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
+        });
+        let mailTemplate = `
+		<!DOCTYPE html><!-- English template -->
+		<html>
+		<head>
+			<title>Email template</title>
+		</head>
+		<body style='background-color: rgba(0,0,0,.1);padding:20px;' >
+		<center></center>
+		<div style="width: 70%;margin: 20px auto;background: white;height: auto;color: rgba(0,0,0,.89);padding:20px;">
+		<h1>Hello! ${options.user_email}</h1>
+		<h5>${options.message}</h5>
+		<h2>Website: ${options.website_name}</h2>
+		<p><strong>Thank you!</strong></p>
+		<p>WebCheck Team.</p>
+		</div>
+		<center>
+		<ul style="list-style: none;margin: 10px 10px 10px 10px;" class="footer-list local-mt-4">
+			<li style='display: inline;padding:8px;' class='footer-list-item'>Terms of service</li>
+			<li style='display: inline;padding:8px;' class='footer-list-item'>Privacy & policy</li>
+			<li style='display: inline;padding:8px;' class='footer-list-item'>How it works?</li>
+		</ul>
+		</center>
+		</body>
+		</html>
+		`;
+        try {
+            transporter.sendMail({
+                from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+                to: options.user_email,
+                subject: 'Something went wrong!',
+                text: options.message,
+                html: mailTemplate
+            });
+        }
+        catch (err) {
+            console.log('Something went wrong with nodemailer');
+            console.log(err.message);
+        }
+        const push = await websiteService.pushLog(options.status_code, options.user_id, options.website_id);
+    }
+    async checkEveryWebsiteExists() {
+        const users = await userService.findUser({ id: undefined, email: undefined });
+        for (let i = 0; i < users.user.length; i++) {
+            if (!users.user[i].active) {
+                continue;
+            }
+            else {
+                for (let o = 0; o < users.user[i].websites.length; o++) {
+                    if (users.user[i].websites[o].active) {
                         try {
-                            transporter.sendMail({
-                                from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
-                                to: options.user_email,
-                                subject: 'Something went wrong!',
-                                text: options.message,
-                                html: mailTemplate
+                            const checking = await axios_1.default({
+                                method: 'GET',
+                                url: users.user[i].websites[o].website,
+                                headers: {
+                                    "access-control-allow-origin": "*",
+                                }
                             });
+                            const responseTime = checking.duration;
                         }
-                        catch (err) {
-                            console.log('Something went wrong with nodemailer');
-                            console.log(err.message);
+                        catch (error) {
+                            if (error.response) {
+                                users.user[i].websites[o].active = false;
+                                await users.user[i].save();
+                                new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
+                                    message: "Your website is currently down!",
+                                    url: users.user[i].websites[o].website,
+                                    website_name: users.user[i].websites[o].name,
+                                    status_code: error.response.status,
+                                    user_id: users.user[i]._id,
+                                    user_email: users.user[i].email,
+                                    receiving_email: users.user[i].receivingEmail,
+                                    website_id: users.user[i].websites[o]._id
+                                });
+                            }
+                            else {
+                                if (error.message.includes('ENOTFOUND')) {
+                                    users.user[i].websites[o].active = false;
+                                    await users.user[i].save();
+                                    new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
+                                        message: "Might be you entered a wrong website url!",
+                                        url: users.user[i].websites[o].website,
+                                        website_name: users.user[i].websites[o].name,
+                                        status_code: 404,
+                                        user_id: users.user[i]._id,
+                                        user_email: users.user[i].email,
+                                        receiving_email: users.user[i].receivingEmail,
+                                        website_id: users.user[i].websites[o]._id
+                                    });
+                                }
+                                else if (error.message.includes('ECONNREFUSED')) {
+                                    users.user[i].websites[o].active = false;
+                                    await users.user[i].save();
+                                    new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
+                                        message: "Your website is currently down!",
+                                        url: users.user[i].websites[o].website,
+                                        website_name: users.user[i].websites[o].name,
+                                        status_code: 500,
+                                        user_id: users.user[i]._id,
+                                        user_email: users.user[i].email,
+                                        receiving_email: users.user[i].receivingEmail,
+                                        website_id: users.user[i].websites[o]._id
+                                    });
+                                }
+                            }
                         }
-                        return [4, websiteService.pushLog(options.status_code, options.user_id, options.website_id)];
-                    case 1:
-                        push = _a.sent();
-                        return [2];
-                }
-            });
-        });
-    };
-    CheckWebsiteController.prototype.checkEveryWebsiteExists = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var users, i, o, checking, responseTime, error_1, checking, responseTime, error_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, userService.findUser({ id: undefined, email: undefined })];
-                    case 1:
-                        users = _a.sent();
-                        i = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(i < users.user.length)) return [3, 21];
-                        if (!!users.user[i].active) return [3, 3];
-                        return [3, 20];
-                    case 3:
-                        o = 0;
-                        _a.label = 4;
-                    case 4:
-                        if (!(o < users.user[i].websites.length)) return [3, 20];
-                        if (!users.user[i].websites[o].active) return [3, 15];
-                        _a.label = 5;
-                    case 5:
-                        _a.trys.push([5, 7, , 14]);
-                        return [4, axios_1.default({
+                    }
+                    else {
+                        try {
+                            const checking = await axios_1.default({
                                 method: 'GET',
                                 url: users.user[i].websites[o].website,
                                 headers: {
                                     "access-control-allow-origin": "*",
                                 }
-                            })];
-                    case 6:
-                        checking = _a.sent();
-                        responseTime = checking.duration;
-                        return [3, 14];
-                    case 7:
-                        error_1 = _a.sent();
-                        if (!error_1.response) return [3, 9];
-                        users.user[i].websites[o].active = false;
-                        return [4, users.user[i].save()];
-                    case 8:
-                        _a.sent();
-                        new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
-                            message: "Your website is currently down!",
-                            url: users.user[i].websites[o].website,
-                            website_name: users.user[i].websites[o].name,
-                            status_code: error_1.response.status,
-                            user_id: users.user[i]._id,
-                            user_email: users.user[i].email,
-                            receiving_email: users.user[i].receivingEmail,
-                            website_id: users.user[i].websites[o]._id
-                        });
-                        return [3, 13];
-                    case 9:
-                        if (!error_1.message.includes('ENOTFOUND')) return [3, 11];
-                        users.user[i].websites[o].active = false;
-                        return [4, users.user[i].save()];
-                    case 10:
-                        _a.sent();
-                        new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
-                            message: "Might be you entered a wrong website url!",
-                            url: users.user[i].websites[o].website,
-                            website_name: users.user[i].websites[o].name,
-                            status_code: 404,
-                            user_id: users.user[i]._id,
-                            user_email: users.user[i].email,
-                            receiving_email: users.user[i].receivingEmail,
-                            website_id: users.user[i].websites[o]._id
-                        });
-                        return [3, 13];
-                    case 11:
-                        if (!error_1.message.includes('ECONNREFUSED')) return [3, 13];
-                        users.user[i].websites[o].active = false;
-                        return [4, users.user[i].save()];
-                    case 12:
-                        _a.sent();
-                        new CheckWebsiteController().handlePushAndEmail(users.user[i].pushRegisteration, {
-                            message: "Your website is currently down!",
-                            url: users.user[i].websites[o].website,
-                            website_name: users.user[i].websites[o].name,
-                            status_code: 500,
-                            user_id: users.user[i]._id,
-                            user_email: users.user[i].email,
-                            receiving_email: users.user[i].receivingEmail,
-                            website_id: users.user[i].websites[o]._id
-                        });
-                        _a.label = 13;
-                    case 13: return [3, 14];
-                    case 14: return [3, 19];
-                    case 15:
-                        _a.trys.push([15, 18, , 19]);
-                        return [4, axios_1.default({
-                                method: 'GET',
-                                url: users.user[i].websites[o].website,
-                                headers: {
-                                    "access-control-allow-origin": "*",
-                                }
-                            })];
-                    case 16:
-                        checking = _a.sent();
-                        responseTime = checking.duration;
-                        users.user[i].websites[o].active = true;
-                        return [4, users.user[i].save()];
-                    case 17:
-                        _a.sent();
-                        return [3, 19];
-                    case 18:
-                        error_2 = _a.sent();
-                        return [3, 19];
-                    case 19:
-                        o++;
-                        return [3, 4];
-                    case 20:
-                        i++;
-                        return [3, 2];
-                    case 21: return [2];
-                }
-            });
-        });
-    };
-    CheckWebsiteController.prototype.calculateAverageResponseOfWebsite = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var responsesTime, i, sum, average, user_id, website_id, io, entity, addIt, deleteResponsesTime, averageEntities, popOlderEntity;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, websiteService.getResponsesTimesForWebsites()];
-                    case 1:
-                        responsesTime = _a.sent();
-                        i = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(i < responsesTime.data.length)) return [3, 9];
-                        sum = 0;
-                        average = 0;
-                        user_id = responsesTime.data[i].user_id;
-                        website_id = responsesTime.data[i].website_id;
-                        for (io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
-                            sum += responsesTime.data[i].response_times_melliseconds[io];
+                            });
+                            const responseTime = checking.duration;
+                            users.user[i].websites[o].active = true;
+                            await users.user[i].save();
                         }
-                        average = sum / responsesTime.data[i].response_times_melliseconds.length;
-                        entity = { date: moment_1.default().format('L'), value: average };
-                        return [4, websiteService.pushAverageResponseForToday(website_id, entity)];
-                    case 3:
-                        addIt = _a.sent();
-                        return [4, websiteService.clearResponseTimesForWebsite(website_id)];
-                    case 4:
-                        deleteResponsesTime = _a.sent();
-                        return [4, websiteService.getAverageTimeForWebsite(website_id, undefined)];
-                    case 5:
-                        averageEntities = _a.sent();
-                        if (!(averageEntities.data.website_speed_last_ten_days.length == 10)) return [3, 7];
-                        return [4, websiteService.popOlderEntity(website_id)];
-                    case 6:
-                        popOlderEntity = _a.sent();
-                        return [3, 8];
-                    case 7: return [3, 8];
-                    case 8:
-                        i++;
-                        return [3, 2];
-                    case 9: return [2];
+                        catch (error) {
+                            continue;
+                        }
+                    }
                 }
-            });
-        });
-    };
-    return CheckWebsiteController;
-}());
+            }
+        }
+    }
+    async calculateAverageResponseOfWebsite() {
+        console.log(1);
+        const responsesTime = await websiteService.getResponsesTimesForWebsites();
+        for (var i = 0; i < responsesTime.data.length; i++) {
+            var sum = 0;
+            var average = 0;
+            const user_id = responsesTime.data[i].user_id;
+            const website_id = responsesTime.data[i].website_id;
+            for (var io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
+                sum += responsesTime.data[i].response_times_melliseconds[io];
+            }
+            average = sum / responsesTime.data[i].response_times_melliseconds.length;
+            const entity = { date: moment_1.default().format('L'), value: average };
+            const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
+            const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);
+            const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
+            if (averageEntities.data.website_speed_last_ten_days.length == 10) {
+                const popOlderEntity = await websiteService.popOlderEntity(website_id);
+            }
+            else {
+                continue;
+            }
+        }
+    }
+}
 exports.default = CheckWebsiteController;

@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dotenv_1 = __importDefault(require("dotenv"));
+const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: './.env' });
-var application_config = {
+const application_config = {
     email: process.env.EMAIL,
     password: process.env.PASSWORD,
     database_connection: process.env.DATABASE_CONNECTION,

@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = require("mongoose");
-var userWebsiteSchema = new mongoose_1.Schema({
+const mongoose_1 = require("mongoose");
+const userWebsiteSchema = new mongoose_1.Schema({
     name: { type: String },
     description: { type: String },
     active: { type: Boolean },
     website: { type: String }
 });
-var keysSchema = new mongoose_1.Schema({
+const keysSchema = new mongoose_1.Schema({
     p256dh: { type: String, required: true, default: null },
     auth: { type: String, required: true, default: null }
 });
-var pushSubscriptionSchema = new mongoose_1.Schema({
+const pushSubscriptionSchema = new mongoose_1.Schema({
     endpoint: { type: String, required: true, default: null },
     expirationTime: { type: String || Number, default: null },
     keys: keysSchema
 });
-var UserSchema = new mongoose_1.Schema({
+const UserSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
@@ -34,5 +34,5 @@ var UserSchema = new mongoose_1.Schema({
         }
     }
 });
-var UserModel = mongoose_1.model("users", UserSchema);
+const UserModel = mongoose_1.model("users", UserSchema);
 exports.default = UserModel;

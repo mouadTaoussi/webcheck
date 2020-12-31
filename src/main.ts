@@ -1,4 +1,6 @@
 import express , { Application, Request, Response } from "express";
+import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
 import "cookie-session";
 import { connect } from "mongoose";
 import application_config from "./main.config";
@@ -6,11 +8,14 @@ import xss from 'xss';
 import cors from './Authentication/Authentication.corsPolicy';
 import helmet from "helmet";
 import bodyParser from 'body-parser';
+import 'reflect-metadata';
 // Routes  
 import website_logs_router from './Check/Check.routes';
 import authentication_router from './Authentication/Authentication.routes';
 // Jobs 
 import './Check/Check.scheduledjobs';
+// GraphQL 
+import './GraphQL/main.graphql';
 
 var application: Application = express();
 

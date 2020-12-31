@@ -284,6 +284,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 	}
 	// Calculate average time per day per website
 	public async calculateAverageResponseOfWebsite(): Promise<void> {
+		console.log(1)
 		// loop over <websitesResponsesTime>
 		const responsesTime = await websiteService.getResponsesTimesForWebsites();
 

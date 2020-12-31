@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var Authentication_controller_1 = __importDefault(require("./Authentication.controller"));
-var authentication_router = express_1.default();
-var AuthController = new Authentication_controller_1.default();
+const express_1 = __importDefault(require("express"));
+const Authentication_controller_1 = __importDefault(require("./Authentication.controller"));
+const authentication_router = express_1.default();
+const AuthController = new Authentication_controller_1.default();
 authentication_router.get('/', AuthController.Authenticated, AuthController.getAuthenticatedUser);
 authentication_router.post('/pushServiceRegisteration', AuthController.Authenticated, AuthController.pushServiceRegisteration);
 authentication_router.post('/login', AuthController.loginUser);

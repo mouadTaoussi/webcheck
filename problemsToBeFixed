@@ -1,3 +1,6 @@
 Ongoing - Fix typing errors in The back-end code.
 Fixed - Fix env file problem (dotenv cannot open & read it because it need to by in the root directory).
 Fixed - Make migration to mongodb
+Ongoing - moderinize Reset Password and add the ability to change password
+Ongoing - Make graphql server to get some of the data
+Ongoing - Display that data into graph in the front-end 

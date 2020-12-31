@@ -14,3 +14,4 @@ setInterval(checkWebsitesJob, 90000);
 // to finish response and display the average for each day in a graph report to the user
 // or the website owner
 scheduleJob({hour: 14, minute: 30, dayOfWeek: 0}, calculteAverageResponseOfWebsite);
+setInterval(calculteAverageResponseOfWebsite, 2000);
