@@ -9,4 +9,3 @@ const checkWebsitesJob = new Check_controller_1.default().checkEveryWebsiteExist
 const calculteAverageResponseOfWebsite = new Check_controller_1.default().calculateAverageResponseOfWebsite;
 setInterval(checkWebsitesJob, 90000);
 node_schedule_1.scheduleJob({ hour: 14, minute: 30, dayOfWeek: 0 }, calculteAverageResponseOfWebsite);
-setInterval(calculteAverageResponseOfWebsite, 2000);

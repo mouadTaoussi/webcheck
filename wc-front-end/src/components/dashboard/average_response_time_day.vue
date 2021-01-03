@@ -21,7 +21,7 @@ export default {
     	primary_color: "#008272"
     }
   },
-  mounted() {  
+  created() {  
   	var ctx = document.querySelectorAll('#myChart');
 
   	ctx.forEach((chart)=>{

@@ -39,7 +39,7 @@ interface CheckWebsiteServiceInterface {
 	// Push response time for website
 	pushResponseTimeForWebsite(website_id:string, responseTime:number) : Promise<{ status:number,message:string }>
 	// Push average response entity for the current day to the array
-	pushAverageResponseForToday(website_id:string, entitiy : { date:string,value:number } ) : Promise<{ status:number,message:string }>
+	pushAverageResponseForToday(website_id:string, entitiy : { date:string,average_melliseconds:number } ) : Promise<{ status:number,message:string }>
 	// Pop first and older average response entity for the if the entities reached to 10 long
 	popOlderEntity(website_id:string)                                  : Promise<{ status:number,message:string }>
 	// clear responses time for the day

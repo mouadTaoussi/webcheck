@@ -11,31 +11,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.websiteResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const typedefinitions_graphql_1 = require("./typedefinitions.graphql");
+const Check_service_1 = __importDefault(require("../.././Check/Check.service"));
 let websiteResolver = class websiteResolver {
+    constructor() {
+        this.websiteService = new Check_service_1.default();
+    }
     async getAverageResponseTimeForUserWebsites(user_id) {
+        const data = await this.websiteService.getAverageTimeForWebsite(undefined, user_id);
+        console.log(data);
+        return data.data;
     }
     async getAverageResponseTimeForWebsite(website_id) {
+        const data = await this.websiteService.getAverageTimeForWebsite(website_id, undefined);
+        console.log(data);
+        return data.data;
     }
 };
 __decorate([
-    type_graphql_1.Query(returns => [typedefinitions_graphql_1.websiteAverageTimeInDaySchema]),
+    type_graphql_1.Query(() => [typedefinitions_graphql_1.websiteAverageTimeInDaySchema]),
     __param(0, type_graphql_1.Arg('user_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], websiteResolver.prototype, "getAverageResponseTimeForUserWebsites", null);
 __decorate([
-    type_graphql_1.Query(returns => typedefinitions_graphql_1.websiteAverageTimeInDaySchema),
+    type_graphql_1.Query(() => typedefinitions_graphql_1.websiteAverageTimeInDaySchema),
     __param(0, type_graphql_1.Arg('website_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], websiteResolver.prototype, "getAverageResponseTimeForWebsite", null);
 websiteResolver = __decorate([
-    type_graphql_1.Resolver(of => typedefinitions_graphql_1.websiteAverageTimeInDaySchema)
+    type_graphql_1.Resolver(of => typedefinitions_graphql_1.websiteAverageTimeInDaySchema),
+    __metadata("design:paramtypes", [])
 ], websiteResolver);
 exports.websiteResolver = websiteResolver;

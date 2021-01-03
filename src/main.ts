@@ -15,31 +15,49 @@ import authentication_router from './Authentication/Authentication.routes';
 // Jobs 
 import './Check/Check.scheduledjobs';
 // GraphQL 
-import './GraphQL/main.graphql';
+import { websiteResolver } from './GraphQL/main.graphql';
 
-var application: Application = express();
+async function runapp(){
 
-application.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
-application.use(helmet());
-application.use(bodyParser.json());
+	var app: Application = express();
 
-application.use('/auth',  cors, authentication_router);
-application.use('/check', cors, website_logs_router);
+	const ServerOfApollo: any = new ApolloServer({
+		schema: await buildSchema({
+			resolvers : [ websiteResolver ],
+			validate: true
+		}),
+		// context: '',
+		context: ({ req, res }) => ({ req, res }),
+		playground : true,
+	})
+	ServerOfApollo.applyMiddleware({ app });
 
-connect(application_config.database_connection,
+	// Routes
+	app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
+	app.use(helmet());
+	app.use(bodyParser.json());
 
-	{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
-	,(error:any)=>{
-	if (error){
-		console.log(error);
-	}else {
-		console.log('Database up and running!');
-	}
+	app.use('/auth',  cors, authentication_router);
+	app.use('/check', cors, website_logs_router);
 
-});
+	// Connect to database
+	connect(application_config.database_connection,
 
-const PORT : number | string | undefined 
-	= application_config.port_dev || application_config.port;
+		{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
+		,(error:any)=>{
+		if (error){
+			console.log(error);
+		}else {
+			console.log('Database up and running!');
+		}
 
-application.listen(PORT);
-console.log("Server up and running at port " + PORT);
+	});
+
+	// Set up the port
+	const PORT : number | string | undefined 
+		= application_config.port_dev || application_config.port;
+
+	app.listen(PORT);
+	console.log("Server up and running at port " + PORT);
+}
+runapp();

@@ -31,7 +31,6 @@ class Migration {
                     await newInstance.save();
                 }
                 else {
-                    continue;
                 }
                 if (WATID == null) {
                     const newInstance = new Check_model_1.websiteAverageTimeInDayModel({
@@ -43,7 +42,6 @@ class Migration {
                     await newInstance.save();
                 }
                 else {
-                    continue;
                 }
             }
         }

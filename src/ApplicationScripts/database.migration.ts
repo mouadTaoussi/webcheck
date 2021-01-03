@@ -50,7 +50,7 @@ class Migration implements Migration {
 					await newInstance.save();
 				}
 				else {
-					continue;
+					// continue;
 				}
 				if (WATID == null) {
 					const newInstance = new websiteAverageTimeInDayModel({
@@ -63,7 +63,7 @@ class Migration implements Migration {
 					await newInstance.save();
 				} 
 				else {
-					continue;
+					// continue;
 				}
 			}
 		}

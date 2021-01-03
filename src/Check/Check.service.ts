@@ -299,13 +299,18 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 	}
 	// Push average response entity for the current day to the array
-	public async pushAverageResponseForToday(website_id:string,entitiy : { date:string,value:number }) 
+	public async pushAverageResponseForToday(website_id:string,entitiy : { date:string,average_melliseconds:number }) 
 	:Promise<{ status:number, message: string }> {
 		try {
+			// Will be NaN if the website is down because there is no responseTime about it
+			if (isNaN(entitiy.average_melliseconds)){
+				entitiy.average_melliseconds = 0;
+			}
 			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
 			let websiteAverageTimeInDay :any = await websiteAverageTimeInDayModel.findOne({website_id:website_id});
 			// Push respsone time value
 			websiteAverageTimeInDay.website_speed_last_ten_days.push(entitiy);
+			// console.log(websiteAverageTimeInDay)
 			// Save it!
 			await websiteAverageTimeInDay.save();
 			//
@@ -314,6 +319,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			}
 		}
 		catch (err){
+			// console.log(err)
 			return {
 				status : 500, message : "Something went wrong!"
 			}

@@ -154,6 +154,7 @@ class CheckWebsiteController {
                                 }
                             });
                             const responseTime = checking.duration;
+                            const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id, responseTime);
                         }
                         catch (error) {
                             if (error.response) {
@@ -212,6 +213,7 @@ class CheckWebsiteController {
                                 }
                             });
                             const responseTime = checking.duration;
+                            const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id, responseTime);
                             users.user[i].websites[o].active = true;
                             await users.user[i].save();
                         }
@@ -224,7 +226,6 @@ class CheckWebsiteController {
         }
     }
     async calculateAverageResponseOfWebsite() {
-        console.log(1);
         const responsesTime = await websiteService.getResponsesTimesForWebsites();
         for (var i = 0; i < responsesTime.data.length; i++) {
             var sum = 0;
@@ -235,11 +236,12 @@ class CheckWebsiteController {
                 sum += responsesTime.data[i].response_times_melliseconds[io];
             }
             average = sum / responsesTime.data[i].response_times_melliseconds.length;
-            const entity = { date: moment_1.default().format('L'), value: average };
+            const entity = { date: moment_1.default().format('L'), average_melliseconds: average };
             const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
             const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);
             const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
-            if (averageEntities.data.website_speed_last_ten_days.length == 10) {
+            if (averageEntities.data.website_speed_last_ten_days.length > 11) {
+                console.log('reached');
                 const popOlderEntity = await websiteService.popOlderEntity(website_id);
             }
             else {

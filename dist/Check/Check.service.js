@@ -229,6 +229,9 @@ class CheckWebsitesService {
     }
     async pushAverageResponseForToday(website_id, entitiy) {
         try {
+            if (isNaN(entitiy.average_melliseconds)) {
+                entitiy.average_melliseconds = 0;
+            }
             let websiteAverageTimeInDay = await Check_model_1.websiteAverageTimeInDayModel.findOne({ website_id: website_id });
             websiteAverageTimeInDay.website_speed_last_ten_days.push(entitiy);
             await websiteAverageTimeInDay.save();

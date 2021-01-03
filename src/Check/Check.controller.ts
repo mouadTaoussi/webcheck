@@ -193,7 +193,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						})
 						// @TODO Push time in melliseconds
 						const responseTime: number = checking.duration;
-						// const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
+						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 					}
 					// // if one of the websites is down
 					catch (error){
@@ -269,7 +269,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						})
 						// @TODO Push time in melliseconds
 						const responseTime: number = checking.duration;
-						// const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
+						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 						
 						//  // set website[i].active to false
 						users.user[i].websites[o].active = true;
@@ -284,7 +284,6 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 	}
 	// Calculate average time per day per website
 	public async calculateAverageResponseOfWebsite(): Promise<void> {
-		console.log(1)
 		// loop over <websitesResponsesTime>
 		const responsesTime = await websiteService.getResponsesTimesForWebsites();
 
@@ -305,7 +304,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			average = sum / responsesTime.data[i].response_times_melliseconds.length;
 
 			// add new entity with the average calculated in the <websiteAverageTimeInDay>
-			const entity = { date: moment().format('L'), value:average };
+			const entity = { date: moment().format('L'), average_melliseconds:average };
+
 			const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
 
 			// make the current <websitesResponsesTime.response> empty
@@ -313,8 +313,9 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 
 			// Implement queue to delete the first entity if the long reached to 10
 			const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
-
-			if ( averageEntities.data.website_speed_last_ten_days.length == 10 ) {
+			// console.log(averageEntities.data.website_speed_last_ten_days.length)
+			if ( averageEntities.data.website_speed_last_ten_days.length > 11 ) {
+				console.log('reached')
 				const popOlderEntity = await websiteService.popOlderEntity(website_id);
 			}else  { continue; }
 		}

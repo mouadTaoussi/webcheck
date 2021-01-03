@@ -133,7 +133,7 @@ export default {
   		method: "GET",
   		url   : 
   		api_config.apiPath + `check/logs?token=${window.localStorage.getItem('user_token')}`
-  	})
+  	})   
   	.then((response)=>{
   		// Push to the local state
   		this.websitesLogs = response.data.logs;
