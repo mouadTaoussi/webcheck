@@ -5,12 +5,15 @@ import axios from 'axios';
 import './assets/fontawesome/css/all.css';
 import api_config from '.././api.config.js';
 // import './registerServiceWorker'
+import apolloProvider from './apollo.js';
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;
 
 new Vue({
   router,
+  // Inject apolloProvider for components to use.
+  provide: apolloProvider.provide(),
   render: h => h(App)
 }).$mount('#app')
 
@@ -110,4 +113,3 @@ window.showDropDown = (event)=>{
 
 
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWVhZjFlMmYzMDBmMzQwYzZmNjkzZSIsImVtYWlsIjoidGVzdDVAZ21haWwuY29tIiwiaWF0IjoxNjA1MjgzNjE0fQ.HYasipVSKDdSqSF3HeJ2ZZTXYJgJtCgInN74T64L6uw
-

@@ -8,7 +8,7 @@ class WebsiteSpeedEntity {
 	date : number
 
 	@Field(type => Number)
-	value : number
+	average_melliseconds : number
 
 }
 
@@ -29,4 +29,4 @@ class websiteAverageTimeInDaySchema {
 
 }
 
-export { websiteAverageTimeInDaySchema };
+export { websiteAverageTimeInDaySchema }; 

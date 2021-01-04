@@ -10,7 +10,7 @@ import UserModel from '.././Authentication/Authentication.model';
 import { connect } from 'mongoose';
 import application_config from '.././main.config';
 
-connect(application_config.database_connection,
+connect(application_config.database_connection!,
  
 	{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
 	,(error:any)=>{

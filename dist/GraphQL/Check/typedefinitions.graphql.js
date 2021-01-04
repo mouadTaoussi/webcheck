@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     type_graphql_1.Field(type => Number),
     __metadata("design:type", Number)
-], WebsiteSpeedEntity.prototype, "value", void 0);
+], WebsiteSpeedEntity.prototype, "average_melliseconds", void 0);
 WebsiteSpeedEntity = __decorate([
     type_graphql_1.ObjectType({ description: "This represents average response time about websites in a day" })
 ], WebsiteSpeedEntity);

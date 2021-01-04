@@ -17,6 +17,7 @@ const Check_routes_1 = __importDefault(require("./Check/Check.routes"));
 const Authentication_routes_1 = __importDefault(require("./Authentication/Authentication.routes"));
 require("./Check/Check.scheduledjobs");
 const main_graphql_1 = require("./GraphQL/main.graphql");
+const MODE = process.env.INDEV == "development" ? "development" : "production";
 async function runapp() {
     var app = express_1.default();
     const ServerOfApollo = new apollo_server_express_1.ApolloServer({
@@ -43,6 +44,6 @@ async function runapp() {
     });
     const PORT = main_config_1.default.port_dev || main_config_1.default.port;
     app.listen(PORT);
-    console.log("Server up and running at port " + PORT);
+    console.log("Server up and running at " + MODE + " mode at port " + PORT);
 }
 runapp();

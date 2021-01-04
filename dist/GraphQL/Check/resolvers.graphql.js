@@ -25,12 +25,10 @@ let websiteResolver = class websiteResolver {
     }
     async getAverageResponseTimeForUserWebsites(user_id) {
         const data = await this.websiteService.getAverageTimeForWebsite(undefined, user_id);
-        console.log(data);
         return data.data;
     }
     async getAverageResponseTimeForWebsite(website_id) {
         const data = await this.websiteService.getAverageTimeForWebsite(website_id, undefined);
-        console.log(data);
         return data.data;
     }
 };

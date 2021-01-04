@@ -1,5 +1,6 @@
 <template>
 	<div>
+		{{ AverageResponseTimeForUserWebsites }}
 		<headercomponent></headercomponent>
 		<br>
 		<div class="dashboard-row list-group-dashboard local-container-8">
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import headercomponent from '@/components/dashboard/header.vue';
 import tabsgroup from '@/components/dashboard/tabsgroup.vue';
 import websites from '@/components/dashboard/websites';
@@ -147,6 +149,37 @@ export default {
   async mounted(){
   	// Request notification permission
   	Notification.requestPermission();
+  },
+  apollo: {
+    // They key is the name of the data property
+    // on the component that you intend to populate.
+    AverageResponseTimeForUserWebsites: {
+      // Yes, this looks confusing.
+      // It's just normal GraphQL. # Write your query or mutation here
+      query: gql`
+		query ($user_id: String!) {
+		  getAverageResponseTimeForUserWebsites
+		  (user_id: $user_id) {
+		    website_id
+		    website_name
+		    user_id
+		    website_speed_last_ten_days {
+		    	date
+		    	average_melliseconds
+		    }
+		  }
+		}
+      `,
+
+      variables: {
+        user_id: `03e082be-5e10-4351-a968-5f28d3e50565`
+      },
+
+      // Apollo maps results to the name of the query, for caching.
+      // So to update the right property on the componet, you need to
+      // select the property of the result with the name of the query.
+      update: result => result.AverageResponseTimeForUserWebsites,
+    }
   }
 }
 </script>

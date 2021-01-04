@@ -17,6 +17,8 @@ import './Check/Check.scheduledjobs';
 // GraphQL 
 import { websiteResolver } from './GraphQL/main.graphql';
 
+const MODE:string = process.env.INDEV == "development" ? "development" : "production";
+
 async function runapp(){
 
 	var app: Application = express();
@@ -41,7 +43,7 @@ async function runapp(){
 	app.use('/check', cors, website_logs_router);
 
 	// Connect to database
-	connect(application_config.database_connection,
+	connect(application_config.database_connection!,
 
 		{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
 		,(error:any)=>{
@@ -58,6 +60,6 @@ async function runapp(){
 		= application_config.port_dev || application_config.port;
 
 	app.listen(PORT);
-	console.log("Server up and running at port " + PORT);
+	console.log("Server up and running at " + MODE + " mode at port " + PORT);
 }
 runapp();

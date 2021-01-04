@@ -81,6 +81,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					websites      : userWebsites
 				}, {new: true})
 
+				// Get the website id
 				const website_id : string | undefined = update.websites[update.websites.length-1]._id;
 
 				// @TODO Add response times in day Document
@@ -90,15 +91,16 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					response_times_melliseconds : []
 				})
 				await addResponseTimesDocument.save();
-
+				console.log(addResponseTimesDocument)
 				// @TODO Add average response time last ten days Document
-				const addAverageResponseTimeDocument = new websitesResponsesTimeInDayModel({
+				const addAverageResponseTimeDocument = new websiteAverageTimeInDayModel({
 					website_id : website_id,
 					user_id    : user_id,
+					website_name : website.name,
 					website_speed_last_ten_days : []
 				})
 				await addAverageResponseTimeDocument.save();
-
+				console.log(addAverageResponseTimeDocument)
 				// 
 				return { 
 					status : 200, message : 'A new website added!!', data : website }
@@ -109,6 +111,8 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					data : null }
 			}
 		} catch(error) {
+			console.log("error")
+			console.log(error)
 			return {
 				status  : 500, message : "Something went wrong!", data : null }
 		}

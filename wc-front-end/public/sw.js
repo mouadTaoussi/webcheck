@@ -67,8 +67,9 @@ this.onactivate = (event)=>{
 }
 
 this.onfetch = (event)=>{
-	if ('/auth' in event.request || '/check' in event.request){
-		event.respondWith(fetch(event.request));
+	console.log(event.request)
+	if ( event.request.method === "POST" ){
+		// event.respondWith(fetch(event.request));
 		console.log(1);
 	}
 	else {
@@ -153,48 +154,48 @@ this.onsync = (event)=>{
 	}
 }
 
-let   finalResult    = null;
-function openIndexeddb(objectStore, databaseName,databaseVersion) {
-	// Open up indexeddb for reading and deleting
-	const request = indexedDB.open(databaseName,databaseVersion);
-	let result = null;
+// let   finalResult    = null;
+// function openIndexeddb(objectStore, databaseName,databaseVersion) {
+// 	// Open up indexeddb for reading and deleting
+// 	const request = indexedDB.open(databaseName,databaseVersion);
+// 	let result = null;
 
-	request.onupgradeneeded = (event)=>{ // Block scope problem in this event !!!!
-		// Getting database
-	 	const opening_result = event.target.result;
-	 	// Create object store
-	 	opening_result.createObjectStore(objectStore, {keyPath: "email"});
-	 // 	// Onep a new transaction for CRUD ops
-	 // 	const tx = opening_result.transaction(objectStore, "readwrite");
-	 // 	// Get the object store to read data from it
-		// result = tx.objectStore(objectStore);
-	}
-	request.onsuccess = (event)=>{ // Block scope problem in this event !!!!
-		// Getting database
-		const opening_result = event.target.result;
-		// Opne a new transaction for CRUD ops
-		const tx = opening_result.transaction(objectStore, "readwrite");
-		// Get the object store to read data from it
-		result = tx.objectStore(objectStore);
-	}
-	request.onerror = (event)=>{
-		result = "Error!";
-	}
-	finalResult = result;
-	return finalResult;
-}; 
-console.log(openIndexeddb("ddd","xxx",1));
-// tx.onerror = e => alert( ` Error! ${e.target.error}  `)
-// const pNotes = tx.objectStore("personal_notes");
-// pNotes.add(note);
+// 	request.onupgradeneeded = (event)=>{ // Block scope problem in this event !!!!
+// 		// Getting database
+// 	 	const opening_result = event.target.result;
+// 	 	// Create object store
+// 	 	opening_result.createObjectStore(objectStore, {keyPath: "email"});
+// 	 // 	// Onep a new transaction for CRUD ops
+// 	 // 	const tx = opening_result.transaction(objectStore, "readwrite");
+// 	 // 	// Get the object store to read data from it
+// 		// result = tx.objectStore(objectStore);
+// 	}
+// 	request.onsuccess = (event)=>{ // Block scope problem in this event !!!!
+// 		// Getting database
+// 		const opening_result = event.target.result;
+// 		// Opne a new transaction for CRUD ops
+// 		const tx = opening_result.transaction(objectStore, "readwrite");
+// 		// Get the object store to read data from it
+// 		result = tx.objectStore(objectStore);
+// 	}
+// 	request.onerror = (event)=>{
+// 		result = "Error!";
+// 	}
+// 	finalResult = result;
+// 	return finalResult;
+// }; 
+// console.log(openIndexeddb("ddd","xxx",1));
+// // tx.onerror = e => alert( ` Error! ${e.target.error}  `)
+// // const pNotes = tx.objectStore("personal_notes");
+// // pNotes.add(note);
 
-let   finalResult    = null;
-function openIndexeddb(objectStore, databaseName,databaseVersion) {
-	// Open up indexeddb for reading and deleting
-	const request = indexedDB.open(databaseName,databaseVersion);
-    let result = null; 
-	function g() { result = 2 } g();
-    finalResult = result;
-	return finalResult;
-}; 
-console.log(openIndexeddb("ddd","xxx",1));
+// let   finalResult    = null;
+// function openIndexeddb(objectStore, databaseName,databaseVersion) {
+// 	// Open up indexeddb for reading and deleting
+// 	const request = indexedDB.open(databaseName,databaseVersion);
+//     let result = null; 
+// 	function g() { result = 2 } g();
+//     finalResult = result;
+// 	return finalResult;
+// }; 
+// console.log(openIndexeddb("ddd","xxx",1));

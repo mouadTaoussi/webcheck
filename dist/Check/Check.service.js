@@ -79,12 +79,15 @@ class CheckWebsitesService {
                     response_times_melliseconds: []
                 });
                 await addResponseTimesDocument.save();
-                const addAverageResponseTimeDocument = new Check_model_1.websitesResponsesTimeInDayModel({
+                console.log(addResponseTimesDocument);
+                const addAverageResponseTimeDocument = new Check_model_1.websiteAverageTimeInDayModel({
                     website_id: website_id,
                     user_id: user_id,
+                    website_name: website.name,
                     website_speed_last_ten_days: []
                 });
                 await addAverageResponseTimeDocument.save();
+                console.log(addAverageResponseTimeDocument);
                 return {
                     status: 200, message: 'A new website added!!', data: website
                 };
@@ -97,6 +100,8 @@ class CheckWebsitesService {
             }
         }
         catch (error) {
+            console.log("error");
+            console.log(error);
             return {
                 status: 500, message: "Something went wrong!", data: null
             };
