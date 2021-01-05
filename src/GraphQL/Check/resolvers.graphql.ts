@@ -1,6 +1,8 @@
 import { Resolver,Query , Arg, Field, ObjectType } from 'type-graphql';
 import { websiteAverageTimeInDaySchema } from './typedefinitions.graphql';
 import CheckWebsitesService from '../.././Check/Check.service';
+import { verify } from 'jsonwebtoken';
+import application_config  from '../.././main.config';
 
 @Resolver(of => websiteAverageTimeInDaySchema)
 class websiteResolver {
@@ -11,8 +13,11 @@ class websiteResolver {
 	}
 
 	@Query(() => [websiteAverageTimeInDaySchema]) 
-	public async getAverageResponseTimeForUserWebsites(@Arg('user_id') user_id:string){
-		const data = await this.websiteService.getAverageTimeForWebsite(undefined, user_id)
+	public async getAverageResponseTimeForUserWebsites(@Arg('user_token') user_token:string){
+		// Find the appropriate user that owns this token
+		const user = await verify(user_token, application_config.jwt_secret! );
+		// console.log(user)
+		const data = await this.websiteService.getAverageTimeForWebsite(undefined, user.id)
 		return data.data;
 	}
 	@Query(() => websiteAverageTimeInDaySchema)

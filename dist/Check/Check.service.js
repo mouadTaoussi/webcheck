@@ -79,7 +79,6 @@ class CheckWebsitesService {
                     response_times_melliseconds: []
                 });
                 await addResponseTimesDocument.save();
-                console.log(addResponseTimesDocument);
                 const addAverageResponseTimeDocument = new Check_model_1.websiteAverageTimeInDayModel({
                     website_id: website_id,
                     user_id: user_id,
@@ -87,7 +86,6 @@ class CheckWebsitesService {
                     website_speed_last_ten_days: []
                 });
                 await addAverageResponseTimeDocument.save();
-                console.log(addAverageResponseTimeDocument);
                 return {
                     status: 200, message: 'A new website added!!', data: website
                 };
@@ -227,6 +225,7 @@ class CheckWebsitesService {
             };
         }
         catch (err) {
+            console.log("error");
             return {
                 status: 500, message: "Something went wrong!"
             };

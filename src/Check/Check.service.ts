@@ -91,7 +91,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					response_times_melliseconds : []
 				})
 				await addResponseTimesDocument.save();
-				console.log(addResponseTimesDocument)
+
 				// @TODO Add average response time last ten days Document
 				const addAverageResponseTimeDocument = new websiteAverageTimeInDayModel({
 					website_id : website_id,
@@ -100,7 +100,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 					website_speed_last_ten_days : []
 				})
 				await addAverageResponseTimeDocument.save();
-				console.log(addAverageResponseTimeDocument)
+
 				// 
 				return { 
 					status : 200, message : 'A new website added!!', data : website }
@@ -286,6 +286,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 		try {
 			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel
 			let websitesResponsesTimeInDay :any = await websitesResponsesTimeInDayModel.findOne({website_id:website_id});
+	
 			// Push respsone time value
 			websitesResponsesTimeInDay.response_times_melliseconds.push(responseTime);
 			// Save it!
@@ -296,6 +297,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			}
 		}
 		catch (err){
+			console.log("error")
 			return {
 				status : 500, message : "Something went wrong!"
 			}

@@ -67,10 +67,10 @@ this.onactivate = (event)=>{
 }
 
 this.onfetch = (event)=>{
-	console.log(event.request)
+	// console.log(event.request)
 	if ( event.request.method === "POST" ){
 		// event.respondWith(fetch(event.request));
-		console.log(1);
+		// console.log(1);
 	}
 	else {
 		// stale and revalidate caching strategy 
@@ -87,7 +87,7 @@ this.onfetch = (event)=>{
 				});
 			})
 		)
-		console.log(2)
+		// console.log(2)
 	}
 }
 // e.respondWith(

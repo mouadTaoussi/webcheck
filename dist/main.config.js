@@ -12,6 +12,7 @@ const application_config = {
     vapid_public_key: process.env.VAPID_PUBLIC_KEY,
     vapid_private_key: process.env.VAPID_PRIVATE_KEY,
     port_dev: process.env.PORT_DEV,
-    port: process.env.PORT
+    port: process.env.PORT,
+    jwt_secret: process.env.JWT_SECRET
 };
 exports.default = application_config;

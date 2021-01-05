@@ -240,8 +240,7 @@ class CheckWebsiteController {
             const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
             const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);
             const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
-            if (averageEntities.data.website_speed_last_ten_days.length > 11) {
-                console.log('reached');
+            if (averageEntities.data.website_speed_last_ten_days.length > 10) {
                 const popOlderEntity = await websiteService.popOlderEntity(website_id);
             }
             else {

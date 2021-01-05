@@ -19,12 +19,15 @@ exports.websiteResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const typedefinitions_graphql_1 = require("./typedefinitions.graphql");
 const Check_service_1 = __importDefault(require("../.././Check/Check.service"));
+const jsonwebtoken_1 = require("jsonwebtoken");
+const main_config_1 = __importDefault(require("../.././main.config"));
 let websiteResolver = class websiteResolver {
     constructor() {
         this.websiteService = new Check_service_1.default();
     }
-    async getAverageResponseTimeForUserWebsites(user_id) {
-        const data = await this.websiteService.getAverageTimeForWebsite(undefined, user_id);
+    async getAverageResponseTimeForUserWebsites(user_token) {
+        const user = await jsonwebtoken_1.verify(user_token, main_config_1.default.jwt_secret);
+        const data = await this.websiteService.getAverageTimeForWebsite(undefined, user.id);
         return data.data;
     }
     async getAverageResponseTimeForWebsite(website_id) {
@@ -34,7 +37,7 @@ let websiteResolver = class websiteResolver {
 };
 __decorate([
     type_graphql_1.Query(() => [typedefinitions_graphql_1.websiteAverageTimeInDaySchema]),
-    __param(0, type_graphql_1.Arg('user_id')),
+    __param(0, type_graphql_1.Arg('user_token')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

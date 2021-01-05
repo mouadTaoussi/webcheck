@@ -5,6 +5,7 @@ import { createTransport } from 'nodemailer';
 import { Request,Response, NextFunction } from 'express';
 import { genSalt, compare, hash } from 'bcrypt';
 import { v4 } from 'uuid';
+import application_config from ".././main.config";
 
 const userService = new AuthenticationService();
 
@@ -67,8 +68,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			if (matched != true) {response.status(404).send({ message: "credentials aren't correct!" })}
 			else {
 				// sign a token
-				const user_token:string = sign({id:userEmail.user._id, email: userEmail.user.email} ,'bgfgngf');
-
+				const user_token:string = sign({id:userEmail.user._id, email: userEmail.user.email} ,application_config.jwt_secret!);
 				// send it back to the frontend
 				
 				response.status(userEmail.status).send({ loggedin : true, message : "Logged in!", user_token : user_token })
@@ -109,7 +109,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			if (new_user.saved == true) {
 
 				// sign a token
-				const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,'bgfgngf');
+				const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,application_config.jwt_secret!);
 
 				// send it back to the frontend			
 				response.status(new_user.status).send({ registered : true, message: "Registered successfully!", user_token:user_token  })
@@ -289,7 +289,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 		}
 		else {
 			// Find the appropriate user that owns this token
-			const user = await verify(token,"bgfgngf");
+			const user = await verify(token,application_config.jwt_secret!);
 
 			if (!user) {response.status(401).send({ message:'token not valid', })};
 

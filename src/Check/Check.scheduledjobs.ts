@@ -6,7 +6,8 @@ const checkWebsitesJob = new CheckWebsiteController().checkEveryWebsiteExists;
 const calculteAverageResponseOfWebsite = new CheckWebsiteController().calculateAverageResponseOfWebsite;
 
 // Run <checkEveryWebsiteExists> Job every 1.5 minutes
-setInterval(checkWebsitesJob, 90000);
+setInterval(checkWebsitesJob, 90000);/*90000*/
+// setInterval(()=>{console.log(1)},1000)
 // setInterval(checkWebsitesJob, 1000);
 // setInterval(()=>{console.log(1)},2000)
 

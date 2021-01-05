@@ -12,7 +12,8 @@ type Config = {
 	vapid_public_key     : string | undefined,
 	vapid_private_key    : string | undefined,
 	port_dev             : string | number | undefined,
-	port                 : string | number | undefined
+	port                 : string | number | undefined,
+	jwt_secret           : string | undefined
 }
 
 const application_config : Config  = {
@@ -22,7 +23,8 @@ const application_config : Config  = {
 	vapid_public_key     : process.env.VAPID_PUBLIC_KEY,
 	vapid_private_key    : process.env.VAPID_PRIVATE_KEY,
 	port_dev             : process.env.PORT_DEV,
-	port                 : process.env.PORT
+	port                 : process.env.PORT,
+	jwt_secret           : process.env.JWT_SECRET
 }
 
 export default application_config;

@@ -8,6 +8,7 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const nodemailer_1 = require("nodemailer");
 const bcrypt_1 = require("bcrypt");
 const uuid_1 = require("uuid");
+const main_config_1 = __importDefault(require(".././main.config"));
 const userService = new Authentication_service_1.default();
 class AuthenticationController {
     async getAuthenticatedUser(request, response) {
@@ -36,7 +37,7 @@ class AuthenticationController {
                 response.status(404).send({ message: "credentials aren't correct!" });
             }
             else {
-                const user_token = jsonwebtoken_1.sign({ id: userEmail.user._id, email: userEmail.user.email }, 'bgfgngf');
+                const user_token = jsonwebtoken_1.sign({ id: userEmail.user._id, email: userEmail.user.email }, main_config_1.default.jwt_secret);
                 response.status(userEmail.status).send({ loggedin: true, message: "Logged in!", user_token: user_token });
             }
         }
@@ -58,7 +59,7 @@ class AuthenticationController {
             body.websitesCount = 1;
             const new_user = await userService.addUser(body);
             if (new_user.saved == true) {
-                const user_token = jsonwebtoken_1.sign({ id: new_user.user._id, email: new_user.user.email }, 'bgfgngf');
+                const user_token = jsonwebtoken_1.sign({ id: new_user.user._id, email: new_user.user.email }, main_config_1.default.jwt_secret);
                 response.status(new_user.status).send({ registered: true, message: "Registered successfully!", user_token: user_token });
             }
             else {
@@ -167,7 +168,7 @@ class AuthenticationController {
             response.status(401).send({ message: "Not authenticated" });
         }
         else {
-            const user = await jsonwebtoken_1.verify(token, "bgfgngf");
+            const user = await jsonwebtoken_1.verify(token, main_config_1.default.jwt_secret);
             if (!user) {
                 response.status(401).send({ message: 'token not valid', });
             }

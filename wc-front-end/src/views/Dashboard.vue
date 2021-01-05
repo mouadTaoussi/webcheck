@@ -1,6 +1,5 @@
 <template>
 	<div>
-		{{ AverageResponseTimeForUserWebsites }}
 		<headercomponent></headercomponent>
 		<br>
 		<div class="dashboard-row list-group-dashboard local-container-8">
@@ -28,8 +27,7 @@
 		      	<h3 class="text-left local-mb-4">Average response time for your Websites</h3>
 		      	<div class="average_response_time_day">
 		      		 <average_response_time_day
-		      		 	v-bind:websites_names="average_response_time_day.websites_names"
-		      		 	v-bind:entities="average_response_time_day.entities"
+		      		 	v-bind:averageResponseTimeForUserWebsites="averageResponseTimeForUserWebsites"
 		      		 ></average_response_time_day>
 		      		 <!-- <average_response_time_day></average_response_time_day> -->
 		      		 <!-- <average_response_time_day></average_response_time_day> -->
@@ -90,6 +88,7 @@ export default {
     return {
     	msg : "Hello World",
     	user : {
+    		user_id : null,
     		name: null,
     		email: null,
     		receivingEmail: null,
@@ -98,10 +97,7 @@ export default {
     	},
     	userWebsites : null,
     	websitesLogs : null,
-    	average_response_time_day : {
-    		websites_names : ['moaudblog','website of architecture'],
-    		entities : [1,2,3]
-    	}
+    	averageResponseTimeForUserWebsites : "AverageResponseTimeForUserWebsites"
 
     }
   },
@@ -119,6 +115,7 @@ export default {
   	})
   	.then((response)=>{
   		// Push to the local state
+  		this.user_id             = response.data.user._id;
   		this.user.name           = response.data.user.name;
   		this.user.email           = response.data.user.email;
   		this.user.receivingEmail = response.data.user.receivingEmail;
@@ -157,9 +154,9 @@ export default {
       // Yes, this looks confusing.
       // It's just normal GraphQL. # Write your query or mutation here
       query: gql`
-		query ($user_id: String!) {
+		query ($user_token: String!) {
 		  getAverageResponseTimeForUserWebsites
-		  (user_id: $user_id) {
+		  (user_token: $user_token) {
 		    website_id
 		    website_name
 		    user_id
@@ -172,13 +169,17 @@ export default {
       `,
 
       variables: {
-        user_id: `03e082be-5e10-4351-a968-5f28d3e50565`
+        user_token: window.localStorage.getItem('user_token')
       },
 
       // Apollo maps results to the name of the query, for caching.
       // So to update the right property on the componet, you need to
       // select the property of the result with the name of the query.
-      update: result => result.AverageResponseTimeForUserWebsites,
+      update: function(result){
+      	// Attach it to the local state 
+      	this.averageResponseTimeForUserWebsites = result.getAverageResponseTimeForUserWebsites;
+      	return result.getAverageResponseTimeForUserWebsites
+      },
     }
   }
 }

@@ -167,7 +167,6 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		const push = await websiteService.pushLog(options.status_code,options.user_id,options.website_id); 
 	}
 	public async checkEveryWebsiteExists():Promise<void> {
-		// console.log('Hello');
 		// Get all users
 		const users = await userService.findUser({id:undefined,email:undefined});
 		// Loop
@@ -314,8 +313,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			// Implement queue to delete the first entity if the long reached to 10
 			const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
 			// console.log(averageEntities.data.website_speed_last_ten_days.length)
-			if ( averageEntities.data.website_speed_last_ten_days.length > 11 ) {
-				console.log('reached')
+			if ( averageEntities.data.website_speed_last_ten_days.length > 10 ) {
 				const popOlderEntity = await websiteService.popOlderEntity(website_id);
 			}else  { continue; }
 		}
