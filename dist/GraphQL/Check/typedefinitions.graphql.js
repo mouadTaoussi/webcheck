@@ -42,6 +42,14 @@ __decorate([
     type_graphql_1.Field(type => [WebsiteSpeedEntity], { nullable: true }),
     __metadata("design:type", Array)
 ], websiteAverageTimeInDaySchema.prototype, "website_speed_last_ten_days", void 0);
+__decorate([
+    type_graphql_1.Field(type => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], websiteAverageTimeInDaySchema.prototype, "labels", void 0);
+__decorate([
+    type_graphql_1.Field(type => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], websiteAverageTimeInDaySchema.prototype, "data", void 0);
 websiteAverageTimeInDaySchema = __decorate([
     type_graphql_1.ObjectType({ description: "This represents average response time about websites" })
 ], websiteAverageTimeInDaySchema);

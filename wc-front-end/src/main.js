@@ -6,6 +6,9 @@ import './assets/fontawesome/css/all.css';
 import api_config from '.././api.config.js';
 // import './registerServiceWorker'
 import apolloProvider from './apollo.js';
+window.chart = require('chart.js');
+window.frappe = require('frappe-charts/dist/frappe-charts.min.esm');
+import "frappe-charts/dist/frappe-charts.min.css";
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;
@@ -32,60 +35,58 @@ function urlBase64ToUint8Array(base64String) {
 	}
 	return outputArray;
 }
+
+let serviceWorkerwRegisteration;
+
+// Regsiter the service worker
 async function regsiterServiceWorker(){
-	console.log(1)
+	// console.log(1)
 	if ('serviceWorker' in window.navigator) {
 		// Register a service worker
-		const serviceWorkerwRegisteration = await window.navigator.serviceWorker.register('./sw.js');
-
-		
-		// axios
-		if (Notification.permission == 'granted') {
-	  		// Example of the Notification
-			// navigator.serviceWorker.getRegistration().then(function(reg) {
-			//     reg.showNotification('Hello world!');
-			// });
-
-			// Check if the the browser alreay registered in the pushService
-			const isSubscriped = await serviceWorkerwRegisteration.pushManager.getSubscription();
-
-			// Checking ...
-			if (!isSubscriped) {
-
-				const subscription = await serviceWorkerwRegisteration.pushManager.subscribe({
-					userVisibleOnly : true,
-					applicationServerKey : "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"
-				});
-				// Send that subscribe to the server associated with the token
-				console.log('Subscriped to the push service')	
-				axios({
-					method : "POST",
-					url    : api_config.apiPath + `auth/pushServiceRegisteration?token=${window.localStorage.getItem('user_token')}`,
-					data   : subscription
-				})
-				.then((response)=>{
-					console.log(response);
-				})
-				.catch((error)=>{
-					console.log(error);
-				})
-
-			}
-			else {
-				console.log('Already subscriped to the push service');
-			}
-
-		}
-		else {
-			// // Request notification permission
-	  // 		Notification.requestPermission();
-		}
+		serviceWorkerwRegisteration = await window.navigator.serviceWorker.register('./sw.js');
 	}
 	else {
 		alert('Notification are not supported in your browser!');
 	}
 }
 regsiterServiceWorker();
+
+// Regsiter the user to the push service 
+async function registerToPushService(){
+		// axios
+	if (Notification.permission == 'granted') {
+  		// Example of the Notification
+		// navigator.serviceWorker.getRegistration().then(function(reg) {
+		//     reg.showNotification('Hello world!');
+		// });
+
+		// Check if the the browser alreay registered in the pushService
+		const subscribed = await serviceWorkerwRegisteration.pushManager.getSubscription();
+		console.log("subscribed");
+		console.log(subscribed);
+		// Checking ...
+		if (!subscribed) {
+
+			const subscription = await serviceWorkerwRegisteration.pushManager.subscribe({
+				userVisibleOnly : true,
+				applicationServerKey : "BD99nt4AZUQlt5-ev2zGs_QSHt9Q-4Oj9ULgYphwUb3JuK0NnW_CBvoZVEMuQPmgD4aW4VxhGu4q_3augFNGi68"
+			});
+			// Send that subscribe to the server associated with the token
+			axios({
+				method : "POST",
+				url    : api_config.apiPath + `auth/pushServiceRegisteration?token=${window.localStorage.getItem('user_token')}`,
+				data   : subscription
+			})
+			.then((response)=> { return; })
+			.catch((error)=>   { return; })
+
+		}
+		else { return }
+	}
+	else { return }
+}
+
+window.setInterval(registerToPushService, 10000);
 
 // Show dropdwon menu in ./components/website.vue component
 /**
@@ -105,9 +106,6 @@ window.showDropDown = (event)=>{
 	}
 
 }
-
-
-
 
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWRiNTA3ZjY0NGRjMDg0OGJlMWJiNSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE2MDUyMTk1OTF9.WriNK0SHF0an7HWCtxKOk9uGGDjDmyCChfNUqWUT0mI
 

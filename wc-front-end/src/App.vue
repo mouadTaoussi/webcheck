@@ -38,7 +38,21 @@
 .product-hunt-featured {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  left: 10px;
   position: fixed;
+}
+.darkmode-toggle, .darkmode-layer {
+  position: absolute!important;
+  bottom: 10px!important;
+  right: 10px!important;
+  position: fixed!important;
+}
+.darkmode-toggle {
+    z-index: 999;
+}
+@media only screen and (max-width: 800px) {
+  .product-hunt-featured {
+    display: none;
+  }
 }
 </style>

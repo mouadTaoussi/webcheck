@@ -17,12 +17,33 @@ class websiteResolver {
 		// Find the appropriate user that owns this token
 		const user = await verify(user_token, application_config.jwt_secret! );
 		// console.log(user)
-		const data = await this.websiteService.getAverageTimeForWebsite(undefined, user.id)
-		return data.data;
+		const dataWebsites: { status:number, data:any } = await this.websiteService.getAverageTimeForWebsite(undefined, user.id)
+
+		// separate date and average time and put them in 2 arrays
+		for (var i = 0; i < dataWebsites.data.length; i++) {
+
+			var labels : string[] = [];
+			var data : number[] = [];
+
+			// Push values and dates to a separate variables to use them in the chat
+			for ( var io = 0; io < dataWebsites.data[i].website_speed_last_ten_days.length; io++ ) 
+			{
+				labels.push(dataWebsites.data[i].website_speed_last_ten_days[io].date);
+				data.push(dataWebsites.data[i].website_speed_last_ten_days[io].average_melliseconds);
+			} 
+			// console.log(labels)
+			// console.log(data)
+			dataWebsites.data[i].labels = labels;
+			dataWebsites.data[i].data = data;
+		}
+		return dataWebsites.data;
 	}
 	@Query(() => websiteAverageTimeInDaySchema)
 	public async getAverageResponseTimeForWebsite(@Arg('website_id') website_id:string) {
 		const data = await this.websiteService.getAverageTimeForWebsite(website_id, undefined )
+		// separate date and average time and put them in 2 arrays
+
+
 		return data.data;
 	}
 }

@@ -7,5 +7,6 @@ const Check_controller_1 = __importDefault(require("./Check.controller"));
 const node_schedule_1 = require("node-schedule");
 const checkWebsitesJob = new Check_controller_1.default().checkEveryWebsiteExists;
 const calculteAverageResponseOfWebsite = new Check_controller_1.default().calculateAverageResponseOfWebsite;
-setInterval(checkWebsitesJob, 90000);
+setInterval(checkWebsitesJob, 2000);
 node_schedule_1.scheduleJob({ hour: 14, minute: 30, dayOfWeek: 0 }, calculteAverageResponseOfWebsite);
+setInterval(calculteAverageResponseOfWebsite, 60000);

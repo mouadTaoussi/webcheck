@@ -25,7 +25,13 @@ class websiteAverageTimeInDaySchema {
 	website_name : string;
 
 	@Field(type => [WebsiteSpeedEntity], {nullable: true})
-	website_speed_last_ten_days: [WebsiteSpeedEntity]
+	website_speed_last_ten_days: [WebsiteSpeedEntity];
+
+	@Field(type => [String], {nullable: true})
+	labels : string[];
+
+	@Field(type => [String], {nullable: true})
+	data : string[];
 
 }
 

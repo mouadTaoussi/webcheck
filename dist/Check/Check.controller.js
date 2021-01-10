@@ -38,17 +38,17 @@ class CheckWebsiteController {
         web_push_1.default.setGCMAPIKey('<Your GCM API Key Here>');
         web_push_1.default.setVapidDetails('mailto:example@yourdomain.org', this.vapidPublicKey, this.vapidPrivateKey);
         axios_1.default.interceptors.request.use((config) => {
-            config.metadata = { startTime: new Date() };
+            config.metadata = { startTime: new Date().getTime() };
             return config;
         }, (error) => {
             return Promise.reject(error);
         });
         axios_1.default.interceptors.response.use((response) => {
-            response.config.metadata.endTime = new Date();
+            response.config.metadata.endTime = new Date().getTime();
             response.duration = response.config.metadata.endTime - response.config.metadata.startTime;
             return response;
         }, (error) => {
-            error.config.metadata.endTime = new Date();
+            error.config.metadata.endTime = new Date().getTime();
             error.duration = error.config.metadata.endTime - error.config.metadata.startTime;
             return Promise.reject(error);
         });
@@ -235,7 +235,7 @@ class CheckWebsiteController {
             for (var io = 0; io < responsesTime.data[i].response_times_melliseconds.length; ++io) {
                 sum += responsesTime.data[i].response_times_melliseconds[io];
             }
-            average = sum / responsesTime.data[i].response_times_melliseconds.length;
+            average = Math.floor(sum / responsesTime.data[i].response_times_melliseconds.length);
             const entity = { date: moment_1.default().format('L'), average_melliseconds: average };
             const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
             const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);

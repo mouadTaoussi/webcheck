@@ -33,15 +33,16 @@
 				   	id="description"
 				   	v-model="newWebsite.description"
 				   	class="local-input form-control local-my-2"
-				   	placeholder="Your website description" 
+				   	placeholder="Put a short description for the website or the api" 
 				   	name="description" 
 				   	type="text"
-				   ></textarea> 
+				   ></textarea>
+				   <p class="text-left"></p> 
 				   <input 
 				   	id="website"
 				   	v-model="newWebsite.website"
 				   	class="local-input form-control local-my-2"
-				   	placeholder="Your website Url" 
+				   	placeholder="You can put the website link or the API link to keep tracking" 
 				   	name="website_url" 
 				   	type="text"
 				   >

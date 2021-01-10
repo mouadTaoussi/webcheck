@@ -29,18 +29,19 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		);
 		// Request interceptor will startTime
 		axios.interceptors.request.use((config) => {
-			config.metadata = { startTime: new Date()}
+			config.metadata = { startTime: new Date().getTime()}
 		 	return config;
 		},(error)=>{
 			return Promise.reject(error);
 		});
 		// Response interceptor will set endTime & calculate the duration
 		axios.interceptors.response.use((response) => {
-			response.config.metadata.endTime = new Date()
-			response.duration = response.config.metadata.endTime - response.config.metadata.startTime
+			response.config.metadata.endTime = new Date().getTime();
+			response.duration = response.config.metadata.endTime - response.config.metadata.startTime;
+			// response.duration = Math.floor((response.config.metadata.endTime - response.config.metadata.startTime)%1000)
 			return response;
 		},(error) => {
-			error.config.metadata.endTime = new Date();
+			error.config.metadata.endTime = new Date().getTime();
 			error.duration = error.config.metadata.endTime - error.config.metadata.startTime;
 			return Promise.reject(error);
 		});
@@ -300,7 +301,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 				sum += responsesTime.data[i].response_times_melliseconds[io];
 			}
 			// Calculate the average
-			average = sum / responsesTime.data[i].response_times_melliseconds.length;
+			average = Math.floor(sum / responsesTime.data[i].response_times_melliseconds.length);
 
 			// add new entity with the average calculated in the <websiteAverageTimeInDay>
 			const entity = { date: moment().format('L'), average_melliseconds:average };

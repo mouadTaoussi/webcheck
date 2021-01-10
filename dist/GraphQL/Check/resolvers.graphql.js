@@ -27,8 +27,18 @@ let websiteResolver = class websiteResolver {
     }
     async getAverageResponseTimeForUserWebsites(user_token) {
         const user = await jsonwebtoken_1.verify(user_token, main_config_1.default.jwt_secret);
-        const data = await this.websiteService.getAverageTimeForWebsite(undefined, user.id);
-        return data.data;
+        const dataWebsites = await this.websiteService.getAverageTimeForWebsite(undefined, user.id);
+        for (var i = 0; i < dataWebsites.data.length; i++) {
+            var labels = [];
+            var data = [];
+            for (var io = 0; io < dataWebsites.data[i].website_speed_last_ten_days.length; io++) {
+                labels.push(dataWebsites.data[i].website_speed_last_ten_days[io].date);
+                data.push(dataWebsites.data[i].website_speed_last_ten_days[io].average_melliseconds);
+            }
+            dataWebsites.data[i].labels = labels;
+            dataWebsites.data[i].data = data;
+        }
+        return dataWebsites.data;
     }
     async getAverageResponseTimeForWebsite(website_id) {
         const data = await this.websiteService.getAverageTimeForWebsite(website_id, undefined);

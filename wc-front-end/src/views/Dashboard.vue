@@ -1,7 +1,9 @@
 <template>
 	<div>
+
 		<headercomponent></headercomponent>
-		<br>
+		<br>   
+		
 		<div class="dashboard-row list-group-dashboard local-container-8">
 		  <div class="dashboard-column">
 		    <tabsgroup></tabsgroup>
@@ -24,11 +26,15 @@
 	      		</div>
 			  </div>
 			  <div class="tab-pane fade" id="list-average-response-time-day" role="tabpanel" aria-labelledby="list-average-response-time-day-list">  
-		      	<h3 class="text-left local-mb-4">Average response time for your Websites</h3>
+		      	<h3 class="text-left local-mb-4">
+		      		<!-- Average response time for your Websites -->
+		      		Average response time
+		      		<v style="font-size: 13px" class="local-badge info">BETA</v>
+		      	</h3>
 		      	<div class="average_response_time_day">
-		      		 <average_response_time_day
-		      		 	v-bind:averageResponseTimeForUserWebsites="averageResponseTimeForUserWebsites"
-		      		 ></average_response_time_day>
+		      		 <average_response_time_websites
+		      		 	v-bind:getAverageResponseTimeForUserWebsites="getAverageResponseTimeForUserWebsites"
+		      		 ></average_response_time_websites>
 		      		 <!-- <average_response_time_day></average_response_time_day> -->
 		      		 <!-- <average_response_time_day></average_response_time_day> -->
 	      		</div>
@@ -66,7 +72,7 @@ import headercomponent from '@/components/dashboard/header.vue';
 import tabsgroup from '@/components/dashboard/tabsgroup.vue';
 import websites from '@/components/dashboard/websites';
 import websitelogs from '@/components/dashboard/websitelogs.vue';
-import average_response_time_day from '@/components/dashboard/average_response_time_day.vue'
+import average_response_time_websites from '@/components/dashboard/average_response_time_websites.vue'
 import useraccount from '@/components/dashboard/useraccount.vue';
 import settings from '@/components/dashboard/settings.vue';
 import api_config from '../.././api.config.js';
@@ -79,7 +85,7 @@ export default {
   	tabsgroup,
   	websites,
   	websitelogs,
-  	average_response_time_day,
+  	average_response_time_websites,
   	useraccount,
   	settings
   },
@@ -97,8 +103,8 @@ export default {
     	},
     	userWebsites : null,
     	websitesLogs : null,
-    	averageResponseTimeForUserWebsites : "AverageResponseTimeForUserWebsites"
-
+    	// averageResponseTimeForUserWebsites : 
+    	getAverageResponseTimeForUserWebsites :  null
     }
   },
   created(){
@@ -106,6 +112,9 @@ export default {
   	// if (!window.localStorage.getItem('user_token')) {
   	// 	this.$router.push({ path: '/login' });
   	// }
+  	// Attach the appolo results to  the local state
+ 	// this.AverageResponseTimeForUserWebsites = this.$apolloData.data.AverageResponseTimeForUserWebsites;
+ 	// console.log(this.$apolloData.data.AverageResponseTimeForUserWebsites)
 
   	// Fetch user
   	this.$http({
@@ -115,7 +124,7 @@ export default {
   	})
   	.then((response)=>{
   		// Push to the local state
-  		this.user_id             = response.data.user._id;
+  		this.user_id              = response.data.user._id;
   		this.user.name           = response.data.user.name;
   		this.user.email           = response.data.user.email;
   		this.user.receivingEmail = response.data.user.receivingEmail;
@@ -150,7 +159,7 @@ export default {
   apollo: {
     // They key is the name of the data property
     // on the component that you intend to populate.
-    AverageResponseTimeForUserWebsites: {
+    getAverageResponseTimeForUserWebsites: {
       // Yes, this looks confusing.
       // It's just normal GraphQL. # Write your query or mutation here
       query: gql`
@@ -164,6 +173,8 @@ export default {
 		    	date
 		    	average_melliseconds
 		    }
+		    labels
+		    data
 		  }
 		}
       `,
@@ -177,8 +188,8 @@ export default {
       // select the property of the result with the name of the query.
       update: function(result){
       	// Attach it to the local state 
-      	this.averageResponseTimeForUserWebsites = result.getAverageResponseTimeForUserWebsites;
-      	return result.getAverageResponseTimeForUserWebsites
+      	this.getAverageResponseTimeForUserWebsites = result.getAverageResponseTimeForUserWebsites;
+      	return result.getAverageResponseTimeForUserWebsites;
       },
     }
   }
