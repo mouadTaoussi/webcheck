@@ -12,11 +12,11 @@
 <body>
 	<div class="container">
 		<header class="header">
-
+			<img class="image" src="https://webcheck1.herokuapp.com/img/logo_light.9d3a344c.svg">
 		</header>
 		<div>
 			<p class="greetings" >Hello Mouad</p>
-			<h1>New Features and fixes are released!</h1>
+			<h1 class="title">New Features and fixes are released!</h1>
 			<div class="doted-list">
 				<ul>
 					<li>You can get analyses about your websits</li>
@@ -27,16 +27,32 @@
 			</div>
 			<div class="footer">
 				<ul>
-					<li><a class="link" href="">Privacy and policy</a></li>
-					<li><a class="link" href="">Open app</a></li>
-					<li><a class="link" href="">About</a></li>
+					<li>
+						<a class="link" href="https://webcheck1.herokuapp.com/#/privacypolicy">
+							Privacy and policy
+						</a>
+					</li>
+					<li>
+						<a class="link" href="https://webcheck1.herokuapp.com/#/dashboard">
+							Open app
+						</a>
+					</li>
+					<li>
+						<a class="link" href="https://webcheck1.herokuapp.com/#/about">
+							About
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 		<style>
 			body {
 				background-color: rgba(0,0,0,.1);
-				font-family: Courier,verdana,tahoma,helvetica;
+				font-family: tahoma,verdana,Courier,helvetica;
+			}
+			.image {
+				width: 200px;
+				height: 100px;
 			}
 			.container {
 				width: 80%;
@@ -53,8 +69,15 @@
 				margin-top: 10px;
 			}
 			.greetings {
-				color: rgba(0,0,0,.5);
+				font-family: Courier;
+				font-weight: bolder;
+				font-size: 20px;
+				margin: 0;
+				color: rgba(0,0,0,.7);
 
+			}
+			.title {
+				margin: 0;
 			}
 			.header {
 
