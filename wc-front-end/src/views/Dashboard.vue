@@ -109,9 +109,9 @@ export default {
   },
   created(){
   	// If the user already logged in the we wont let him go to the dashboard
-  	// if (!window.localStorage.getItem('user_token')) {
-  	// 	this.$router.push({ path: '/login' });
-  	// }
+  	if (!window.localStorage.getItem('user_token')) {
+  		this.$router.push({ path: '/login' });
+  	}
   	// Attach the appolo results to  the local state
  	// this.AverageResponseTimeForUserWebsites = this.$apolloData.data.AverageResponseTimeForUserWebsites;
  	// console.log(this.$apolloData.data.AverageResponseTimeForUserWebsites)

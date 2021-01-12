@@ -67,9 +67,10 @@ this.onactivate = (event)=>{
 }
 
 this.onfetch = (event)=>{
-	if ('/auth' in event.request || '/check' in event.request){
-		event.respondWith(fetch(event.request));
-		console.log(1);
+	// console.log(event.request)
+	if ( event.request.method === "POST" ){
+		// event.respondWith(fetch(event.request));
+		// console.log(1);
 	}
 	else {
 		// stale and revalidate caching strategy 
@@ -86,7 +87,7 @@ this.onfetch = (event)=>{
 				});
 			})
 		)
-		console.log(2)
+		// console.log(2)
 	}
 }
 // e.respondWith(
@@ -115,25 +116,86 @@ this.onpush = (event)=>{
 }
 
 this.onsync = (event)=>{
+	// Database version
+	const databaseVersion = 1;
+
 	if (event.tag == 'loginSync') {
-	    event.waitUntil(doSomeStuff());
+	    event.waitUntil(function(){
+	    	const result = openIndexeddb("loggingUser", "backgroundSync", databaseVersion)
+	    });
 	}else if (event.tag == 'registerSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("registeringUser", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'addWebsiteSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("addingWebsite", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'deleteWebsiteSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("deletingUser", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'clearLogsSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("clearingLogs", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'saveUserInfoSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("savingUser", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'deleteUserSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("deletingUser", "backgroundSync", databaseVersion)
+		});
 	}else if (event.tag == 'saveUserSettingsSync') {
-		event.waitUntil(doSomeStuff());
+		event.waitUntil(function(){
+			const result = openIndexeddb("savingUserSettings", "backgroundSync", databaseVersion)
+		});
 	}
 }
 
-// navigator.serviceWorker.ready.then(function(swRegistration) {
-//   return swRegistration.sync.register('myFirstSync');
-// });
+// let   finalResult    = null;
+// function openIndexeddb(objectStore, databaseName,databaseVersion) {
+// 	// Open up indexeddb for reading and deleting
+// 	const request = indexedDB.open(databaseName,databaseVersion);
+// 	let result = null;
+
+// 	request.onupgradeneeded = (event)=>{ // Block scope problem in this event !!!!
+// 		// Getting database
+// 	 	const opening_result = event.target.result;
+// 	 	// Create object store
+// 	 	opening_result.createObjectStore(objectStore, {keyPath: "email"});
+// 	 // 	// Onep a new transaction for CRUD ops
+// 	 // 	const tx = opening_result.transaction(objectStore, "readwrite");
+// 	 // 	// Get the object store to read data from it
+// 		// result = tx.objectStore(objectStore);
+// 	}
+// 	request.onsuccess = (event)=>{ // Block scope problem in this event !!!!
+// 		// Getting database
+// 		const opening_result = event.target.result;
+// 		// Opne a new transaction for CRUD ops
+// 		const tx = opening_result.transaction(objectStore, "readwrite");
+// 		// Get the object store to read data from it
+// 		result = tx.objectStore(objectStore);
+// 	}
+// 	request.onerror = (event)=>{
+// 		result = "Error!";
+// 	}
+// 	finalResult = result;
+// 	return finalResult;
+// }; 
+// console.log(openIndexeddb("ddd","xxx",1));
+// // tx.onerror = e => alert( ` Error! ${e.target.error}  `)
+// // const pNotes = tx.objectStore("personal_notes");
+// // pNotes.add(note);
+
+// let   finalResult    = null;
+// function openIndexeddb(objectStore, databaseName,databaseVersion) {
+// 	// Open up indexeddb for reading and deleting
+// 	const request = indexedDB.open(databaseName,databaseVersion);
+//     let result = null; 
+// 	function g() { result = 2 } g();
+//     finalResult = result;
+// 	return finalResult;
+// }; 
+// console.log(openIndexeddb("ddd","xxx",1));

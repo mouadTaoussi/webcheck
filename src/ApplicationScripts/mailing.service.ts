@@ -60,12 +60,11 @@ class EmailService implements EmailService {
 							<div>
 								<p class="greetings" >Hello ${users[i].name}</p>
 								<h1 class="title">New Features and fixes are released!</h1>
+								<p>these days! we worked on this app to improve its functionality and fixing problems! there are improvment below!</p>
 								<div class="doted-list">
 									<ul>
-										<li>You can get analyses about your websits</li>
-										<li>You can get a lot of things</li>
-										<li>You can get a lot of things</li>
-										<li>You can get a lot of things</li>
+										<li>You can get status about your website speed and performance represented in graph last ten days.</li>
+										<li>A problem related to notifications is fixed</li>
 									</ul>
 								</div>
 								<div class="footer">
