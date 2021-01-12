@@ -44,7 +44,7 @@ class EmailService {
 							<div>
 								<p class="greetings" >Hello ${users[i].name}</p>
 								<h1 class="title">New Features and fixes are released!</h1>
-								<p>these days! we worked on this app to improve its functionality and fixing problems! there are improvment below!</p>
+								<p class="text">these days! we worked on this app to improve its functionality and fixing problems! there are improvment below!</p>
 								<div class="doted-list">
 									<ul>
 										<li>You can get status about your website speed and performance represented in graph last ten days.</li>
@@ -102,7 +102,7 @@ class EmailService {
 									color: rgba(0,0,0,.7);
 
 								}
-								.title {
+								.title, .text {
 									margin: 0;
 								}
 								.header {

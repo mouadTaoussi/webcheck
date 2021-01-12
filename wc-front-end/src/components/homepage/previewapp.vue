@@ -1,0 +1,64 @@
+<template>
+	<section>
+		<div class="previewapp">
+			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
+			<h2 class="text-white">You can get a full report about your website performance and speed</h2>
+			<p class="text-white">You can get a full report about your website performance and speed</p>
+			<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
+			<button class="local-btn bg-light text-dark local-shadow local-m-2">Register</button>
+			<div class="previewapp-image"></div>
+		</div>
+	</section>
+</template>
+
+<script>
+export default {
+
+  name: 'previewapp',
+
+  data () {
+    return {
+
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+	.previewapp {
+		background-color: #00b894;
+		width: 100%;
+		height: auto;
+		padding: 60px;
+		margin: 30px 0 30px 0;
+	}
+/*	.previewapp-app {
+		width: 80%;
+		height: 470px;
+	}*/
+	.previewapp-image {
+		background-image: url('../.././assets/previewapp1.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		position: relative;
+		width: 95%;
+		height: 490px;
+		margin: 40px auto;
+		/*margin-left: auto;*/
+		/*margin-right: auto;*/
+	}
+	@media only screen and (max-width: 600px) {
+			.previewapp {
+				height: auto;
+				padding: 30px;
+				margin: 30px 0 30px 0;
+			}
+		.previewapp-image {
+			height: 490px;
+			margin: 10px auto;
+			/*margin-left: auto;*/
+			/*margin-right: auto;*/
+		}
+	}
+</style>

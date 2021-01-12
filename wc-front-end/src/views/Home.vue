@@ -7,6 +7,7 @@
     <landingpage></landingpage>
     <cards></cards>
     <featuressection></featuressection>
+    <previewapp></previewapp>
     <!-- <loginsection></loginsection> -->
     <conclusion></conclusion>
     <!-- <redundent_section></redundent_section> -->
@@ -23,6 +24,7 @@ import cards from '@/components/homepage/cards.vue';
 import featuressection from '@/components/homepage/featuressection.vue';
 // import loginsection from '@/components/homepage/loginsection.vue';
 // import redundent_section from '@/components/homepage/redundent-section.vue'
+import previewapp from '@/components/homepage/previewapp.vue'
 import conclusion from '@/components/homepage/conclusion.vue';
 import homepagefooter from '@/components/homepage/homepagefooter.vue';
 
@@ -34,6 +36,7 @@ export default {
     landingpage,
     cards,
     featuressection,
+    previewapp,
     // loginsection,
     // redundent_section,
     conclusion,
