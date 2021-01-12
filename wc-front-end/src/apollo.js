@@ -12,7 +12,7 @@ Vue.use(VueApollo);
 // Create a new HttpLink to connect to your GraphQL API.
 // According to the Apollo docs, this should be an absolute URI.
 const httpLink = new HttpLink({
-  uri: "http://localhost:8000/graphql"
+  uri: api_config.apiPath + "graphql"
 });
 
 // I'm creating another variable here just because it
