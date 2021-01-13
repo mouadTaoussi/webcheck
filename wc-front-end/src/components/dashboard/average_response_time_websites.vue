@@ -9,6 +9,7 @@
 				v-bind:labels="website.labels"
 				v-bind:data="website.data">
 			</average_response_chart>
+
 		</div>
 	</section>
 </template>

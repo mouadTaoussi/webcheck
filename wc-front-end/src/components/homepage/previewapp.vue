@@ -3,11 +3,11 @@
 		<div class="previewapp">
 			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
 			<h2>
-				<strong class="text-white">
+				<strong class="title text-white">
 					You can get a full report about your websites performance and speed
 				</strong>
 			</h2>
-			<p class="text-white">Get a graph that represents your websites speed over last 10 days!</p>
+			<p class="text-white poppins">Get a graph that represents your websites speed over last 10 days!</p>
 			<router-link to="/login">
 				<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
 			</router-link>
@@ -45,7 +45,7 @@ export default {
 		height: 470px;
 	}*/
 	.previewapp-image {
-		background-image: url('../.././assets/previewapp1.png');
+		background-image: url('../.././assets/previewapp2.jpeg');
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
@@ -56,12 +56,15 @@ export default {
 		/*margin-left: auto;*/
 		/*margin-right: auto;*/
 	}
+	.title {
+		font-size: 40px;
+	}
 	@media only screen and (max-width: 600px) {
-			.previewapp {
-				height: auto;
-				padding: 30px;
-				margin: 30px 0 30px 0;
-			}
+		.previewapp {
+			height: auto;
+			padding: 30px;
+			margin: 30px 0 30px 0;
+		}
 		.previewapp-image {
 			height: 490px;
 			margin: 10px auto;
