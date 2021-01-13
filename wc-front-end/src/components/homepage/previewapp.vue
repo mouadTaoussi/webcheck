@@ -2,10 +2,18 @@
 	<section>
 		<div class="previewapp">
 			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
-			<h2 class="text-white">You can get a full report about your website performance and speed</h2>
-			<p class="text-white">You can get a full report about your website performance and speed</p>
-			<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
-			<button class="local-btn bg-light text-dark local-shadow local-m-2">Register</button>
+			<h2>
+				<strong class="text-white">
+					You can get a full report about your websites performance and speed
+				</strong>
+			</h2>
+			<p class="text-white">Get a graph that represents your websites speed over last 10 days!</p>
+			<router-link to="/login">
+				<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
+			</router-link>
+			<router-link to="/register">
+				<button class="local-btn bg-light text-dark local-shadow local-m-2">Register</button>
+			</router-link>
 			<div class="previewapp-image"></div>
 		</div>
 	</section>

@@ -38,7 +38,7 @@
 .product-hunt-featured {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  right: 10px;
   position: fixed;
 }
 .darkmode-toggle, .darkmode-layer {

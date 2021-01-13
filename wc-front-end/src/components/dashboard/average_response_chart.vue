@@ -41,9 +41,13 @@ export default {
 	// 	})
 	// }
 	mounted() {
-		var ctx = document.getElementById(`${this.website_name}`);
+		var ctx = document.getElementById(`${this.website_name}`).getContext("2d");
 
-		var myLineChart = new Chart(ctx.getContext("2d"), {
+		// var gradientFill = ctx.createLinearGradient(0, 300, 0, 100);
+		// gradientFill.addColorStop(1, "white");
+		// gradientFill.addColorStop(0, "rgba(0, 130, 140, .1)");
+
+		var myLineChart = new Chart(ctx, {
 			type: "line",
 			data: {
 				labels: this.labels,
@@ -51,9 +55,17 @@ export default {
 					{
 						label: "average time to response",
 						data: this.data,
-						backgroundColor: ["rgba(0, 130, 140, .3)"],
+						backgroundColor: /*gradientFill*/["rgba(0, 130, 140, .2)"],
 						borderColor: [this.primary_color],
 						borderWidth: 2,
+						pointBorderColor: "rgba(0, 130, 140, .9)",
+			            pointBackgroundColor: "rgba(0, 130, 140, .9)",
+			            pointHoverBackgroundColor: "rgba(0, 130, 140, .9)",
+			            pointHoverBorderColor: "rgba(0, 130, 140, .9)",
+			            pointBorderWidth: 1,
+			            pointHoverRadius: 1,
+			            pointHoverBorderWidth: 1,
+			            pointRadius: 3,
 					},
 				],
 			},
@@ -70,7 +82,7 @@ export default {
 						{
 							display: true,
 							gridLines: {
-								display: true,
+								display: false,
 								color: this.chart_color,
 							},
 							ticks: {
@@ -102,12 +114,12 @@ export default {
 							//   display: true,
 							//   labelString: 'Value'
 							// }
-						},
-					],
-				},
-			},
+						}
+					]
+				}
+			}
 		});
-	},
+	}
 };
 </script>
 

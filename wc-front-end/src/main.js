@@ -62,8 +62,6 @@ async function registerToPushService(){
 
 		// Check if the the browser alreay registered in the pushService
 		const subscribed = await serviceWorkerwRegisteration.pushManager.getSubscription();
-		console.log("subscribed");
-		console.log(subscribed);
 		// Checking ...
 		if (!subscribed) {
 
