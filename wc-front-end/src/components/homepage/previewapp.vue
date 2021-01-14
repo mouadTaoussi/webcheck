@@ -4,10 +4,10 @@
 			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
 			<h2>
 				<strong class="title text-white">
-					You can get a full report about your websites performance and speed
+					You Can Get a Full Report About Your Websites Performance And Speed
 				</strong>
 			</h2>
-			<p class="text-white poppins">Get a graph that represents your websites speed over last 10 days!</p>
+			<p class="text-white poppins">Get a Graph That Represents Your Websites Speed Over Last 10 Days!</p>
 			<router-link to="/login">
 				<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
 			</router-link>
@@ -34,7 +34,11 @@ export default {
 
 <style lang="css" scoped>
 	.previewapp {
+		background-image: url('../.././assets/PreviewappBackground.svg');
 		background-color: #00b894;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
 		width: 100%;
 		height: auto;
 		padding: 60px;

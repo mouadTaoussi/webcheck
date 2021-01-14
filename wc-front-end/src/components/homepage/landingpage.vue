@@ -75,7 +75,7 @@ export default {
 		padding-top: 80px;
 	}
 	.title {
-		/*color: white;*/
+		color: rgba(0,0,0,.9);
 		/*opacity: .8;*/
 		font-weight: bold;
 		font-size: 50px;
