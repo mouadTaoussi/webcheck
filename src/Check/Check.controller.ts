@@ -304,7 +304,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			average = Math.floor(sum / responsesTime.data[i].response_times_melliseconds.length);
 
 			// add new entity with the average calculated in the <websiteAverageTimeInDay>
-			const entity = { date: moment().format('L'), average_melliseconds:average };
+			const entity = { date: moment().subtract(1, 'days').format('L'), average_melliseconds:average };
 
 			const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
 

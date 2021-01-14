@@ -102,7 +102,7 @@ export default {
 				// Save that token in the localstorage
 				window.localStorage.setItem('user_token',response.data.user_token);
 				// Redirect the user to the dashboard
-				this.$router.push({ path: '/dashboard' });
+				// this.$router.push({ path: '/dashboard' });
 			})
 			.catch((error)=>{
 				if (error.message == "Request failed with status code 404") {
@@ -118,6 +118,12 @@ export default {
 					this.alertStatus.type = "danger";
 					this.alertStatus.display = "block";
 				}
+			})
+			.finally (()=>{
+				// Await until the token was stord successfully 
+				// to allow apollo client execute the query with the token
+				// Redirect the user to the dashboard
+				this.$router.push({ path: '/dashboard' });
 			})
   		}
   	}

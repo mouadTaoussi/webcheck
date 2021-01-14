@@ -236,7 +236,7 @@ class CheckWebsiteController {
                 sum += responsesTime.data[i].response_times_melliseconds[io];
             }
             average = Math.floor(sum / responsesTime.data[i].response_times_melliseconds.length);
-            const entity = { date: moment_1.default().format('L'), average_melliseconds: average };
+            const entity = { date: moment_1.default().subtract(1, 'days').format('L'), average_melliseconds: average };
             const addIt = await websiteService.pushAverageResponseForToday(website_id, entity);
             const deleteResponsesTime = await websiteService.clearResponseTimesForWebsite(website_id);
             const averageEntities = await websiteService.getAverageTimeForWebsite(website_id, undefined);
