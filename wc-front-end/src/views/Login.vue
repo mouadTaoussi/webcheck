@@ -9,13 +9,13 @@
 			<logincomponent></logincomponent>
 		</div>
 		<ul class="login-list-1 poppins">
-			<li class="login-list-1-item">
+			<li class="text-white login-list-1-item">
 				<router-link to="/about" tag='c'>About</router-link>
 			</li>
-			<li class="login-list-1-item">
+			<li class="text-white login-list-1-item">
 				<router-link to="/about" tag='c'>Contact</router-link>
 			</li>
-			<li class="login-list-1-item">
+			<li class="text-white login-list-1-item">
 				<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
 			</li>
 		</ul>
@@ -59,13 +59,13 @@ export default {
 	.login-page {
 		padding-top: 20px;
 		height: 100vh;
-		background-image: url('../assets/login&registerBackground.svg');
+		background-image: url('.././assets/PreviewappBackground.svg')/*,url('../assets/login&registerBackground.svg')*/;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
 	}
 	.brand {
-		background-image: url('.././assets/logo_light.svg');
+		background-image: url('.././assets/logo_green.svg')/*, url('.././assets/logo_light.svg')*/;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -84,7 +84,7 @@ export default {
 	}
 	.login {
 		width: 400px;
-		margin: 100px auto 20px;
+		margin: 50px auto 20px;
 	}
 	.login-list-1 {
 		list-style: none;

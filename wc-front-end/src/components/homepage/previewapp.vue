@@ -49,7 +49,7 @@ export default {
 		height: 470px;
 	}*/
 	.previewapp-image {
-		background-image: url('../.././assets/previewapp2.jpeg');
+		background-image: url('../.././assets/DashboardPreview.svg');
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;

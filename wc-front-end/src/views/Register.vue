@@ -126,13 +126,13 @@
 			</section>
 		</div>
 		<ul class="register-list-1 poppins">
-			<li class="register-list-1-item">
+			<li class="text-white register-list-1-item">
 				<router-link to="/about" tag='c'>About</router-link>
 			</li>
-			<li class="register-list-1-item">
+			<li class="text-white register-list-1-item">
 				<router-link to="/about" tag='c'>Contact</router-link>
 			</li>
-			<li class="register-list-1-item">
+			<li class="text-white register-list-1-item">
 				<router-link to="/privacypolicy" tag='c'>Privacy & Policy</router-link>
 			</li>
 		</ul>
@@ -319,15 +319,15 @@ export default {
 
 <style lang="css" scoped>
 	.register-page {
-		padding-top: 20px;
+		padding-top: 7px;
 		height: 100vh;
-		background-image: url('../assets/login&registerBackground.svg');
+		background-image: url('.././assets/PreviewappBackground.svg')/*,url('../assets/login&registerBackground.svg')*/;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
 	}
 	.brand {
-		background-image: url('.././assets/logo_light.svg');
+		background-image: url('.././assets/logo_green.svg')/*, url('.././assets/logo_light.svg')*/;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
