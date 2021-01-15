@@ -2,7 +2,7 @@
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/BackgroundLogoLight.jpg"/>
 </p>
 <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/2021-01-13%20(2).png"/>
+  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreview.svg"/>
 </p>
 
 
