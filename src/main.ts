@@ -35,7 +35,7 @@ async function runapp(){
 	ServerOfApollo.applyMiddleware({ app });
 
 	// Routes
-	app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
+	// app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
 	app.use(helmet());
 	app.use(bodyParser.json());
 
