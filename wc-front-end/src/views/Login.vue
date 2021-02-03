@@ -1,10 +1,12 @@
 <template>
 	<div class="login-page">
 		<router-link to="/">
-			<div class="brand"></div>
+			<!-- <div class="brand"></div> -->
 		</router-link>
 		<div class="login local-card shadow local-p-4">
-			<div width="100px"  height="50px" class="brand-small-sevices"></div>
+			<router-link to="/">
+				<div width="100px"  height="50px" class="brand-small-sevices"></div>
+			</router-link>
 			<!-- <h1 class="text-left local-mb-4">Log in</h1> -->
 			<logincomponent></logincomponent>
 		</div>
@@ -80,7 +82,7 @@ export default {
 		background-size: contain;
 		width: 120px;
 		height: 60px;
-		display: none;
+		display: block;
 	}
 	.login {
 		width: 400px;

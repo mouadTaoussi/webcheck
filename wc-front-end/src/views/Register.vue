@@ -1,7 +1,7 @@
 <template>
 	<div class="register-page">
 		<router-link to="/">
-			<div class="brand"></div>
+			<!-- <div class="brand"></div> -->
 		</router-link>
 		<div class="steps-area">
 			<div class="steps local-mb-4">
@@ -14,7 +14,9 @@
 			<!-- Personel info -->
 			<section id="" class="single-form register-form">
 				<!-- Brand for smaller devices -->
-				<div width="100px"  height="50px" class="brand-small-sevices"></div>
+				<router-link to="/">
+					<div width="100px"  height="50px" class="brand-small-sevices"></div>
+				</router-link>
 				<h1 class="text-left local-mb-2">Register</h1>
 				<p class="text-left info-text poppins">You need to allow receiving notifications. after registering</p>
 				<!-- Alert -->
@@ -319,7 +321,7 @@ export default {
 
 <style lang="css" scoped>
 	.register-page {
-		padding-top: 7px;
+		padding-top: 20px;
 		height: 100vh;
 		background-image: url('.././assets/PreviewappBackground.svg')/*,url('../assets/login&registerBackground.svg')*/;
 		background-size: cover;
@@ -345,7 +347,7 @@ export default {
 		background-size: contain;
 		width: 120px;
 		height: 60px;
-		display: none;
+		display: block;
 	}
 	.steps {
 		display: grid;
@@ -372,7 +374,7 @@ export default {
 		display: grid;
 		grid-template-columns: 5fr 5fr;
 		overflow: hidden;
-		height: 450px;
+		height: auto;
 	}
 	.single-form {
 		width: 350px;

@@ -151,48 +151,79 @@ export default {
   	})
 
   	// Fetch Average response time last ten days (GraphQL Apollo) 
+	this.$http({
+		url : api_config.apiPath + 'graphql',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: JSON.stringify({
+			query: `
+				query ($user_token: String!) {
+				  getAverageResponseTimeForUserWebsites
+				  (user_token: $user_token) {
+				    website_id
+				    website_name
+				    user_id
+				    website_speed_last_ten_days {
+				    	date
+				    	average_melliseconds
+				    }
+				    labels
+				    data
+				  }
+				}
+			`,
+			variables: {
+				user_token: window.localStorage.getItem('user_token')
+			},
+		}),
+	})
+	.then((result) => {
+		this.getAverageResponseTimeForUserWebsites = result.data.data.getAverageResponseTimeForUserWebsites;
+	});
   },
   async mounted(){
   	// Request notification permission
   	Notification.requestPermission();
   },
-  apollo: {
-    // They key is the name of the data property
-    // on the component that you intend to populate.
-    getAverageResponseTimeForUserWebsites: {
-      // Yes, this looks confusing.
-      // It's just normal GraphQL. # Write your query or mutation here
-      query: gql`
-		query ($user_token: String!) {
-		  getAverageResponseTimeForUserWebsites
-		  (user_token: $user_token) {
-		    website_id
-		    website_name
-		    user_id
-		    website_speed_last_ten_days {
-		    	date
-		    	average_melliseconds
-		    }
-		    labels
-		    data
-		  }
-		}
-      `,
+  // apollo: {
+  //   // They key is the name of the data property
+  //   // on the component that you intend to populate.
+  //   getAverageResponseTimeForUserWebsites: {
+  //     // Yes, this looks confusing.
+  //     // It's just normal GraphQL. # Write your query or mutation here
+  //     query: gql`
+		// query ($user_token: String!) {
+		//   getAverageResponseTimeForUserWebsites
+		//   (user_token: $user_token) {
+		//     website_id
+		//     website_name
+		//     user_id
+		//     website_speed_last_ten_days {
+		//     	date
+		//     	average_melliseconds
+		//     }
+		//     labels
+		//     data
+		//   }
+		// }
+  //     `,
 
-      variables: {
-        user_token: window.localStorage.getItem('user_token')
-      },
+  //     variables: {
+  //       user_token: window.localStorage.getItem('user_token')
+  //     },
 
-      // Apollo maps results to the name of the query, for caching.
-      // So to update the right property on the componet, you need to
-      // select the property of the result with the name of the query.
-      update: function(result){
-      	// Attach it to the local state 
-      	this.getAverageResponseTimeForUserWebsites = result.getAverageResponseTimeForUserWebsites;
-      	return result.getAverageResponseTimeForUserWebsites;
-      },
-    }
-  }
+  //     // Apollo maps results to the name of the query, for caching.
+  //     // So to update the right property on the componet, you need to
+  //     // select the property of the result with the name of the query.
+  //     update: function(result){
+  //     	// Attach it to the local state 
+  //     	this.getAverageResponseTimeForUserWebsites = result.getAverageResponseTimeForUserWebsites;
+  //     	return result.getAverageResponseTimeForUserWebsites;
+  //     },
+  //   }
+  // }
 }
 </script>
 

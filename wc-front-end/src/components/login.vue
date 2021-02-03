@@ -48,6 +48,7 @@
 <script>
 import alert from './alert.vue';
 import api_config from "../.././api.config.js";
+import router from '.././router/index.js';
 
 export default {
 
@@ -101,8 +102,12 @@ export default {
 			.then((response)=>{
 				// Save that token in the localstorage
 				window.localStorage.setItem('user_token',response.data.user_token);
-				// Redirect the user to the dashboard
-				// this.$router.push({ path: '/dashboard' });
+				router.push({ path: '/dashboard' });
+
+				// window.setTimeout(function(){
+				// 	// Redirect the user to the dashboard
+				// 	router.push({ path: '/dashboard' });
+				// },1000)
 			})
 			.catch((error)=>{
 				if (error.message == "Request failed with status code 404") {
@@ -119,12 +124,12 @@ export default {
 					this.alertStatus.display = "block";
 				}
 			})
-			.finally (()=>{
-				// Await until the token was stord successfully 
-				// to allow apollo client execute the query with the token
-				// Redirect the user to the dashboard
-				this.$router.push({ path: '/dashboard' });
-			})
+			// .finally (()=>{
+			// 	// Await until the token was stord successfully 
+			// 	// to allow apollo client execute the query with the token
+			// 	// Redirect the user to the dashboard
+			// 	this.$router.push({ path: '/dashboard' });
+			// })
   		}
   	}
   }
