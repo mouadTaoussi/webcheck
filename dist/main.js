@@ -29,7 +29,6 @@ async function runapp() {
         playground: true,
     });
     ServerOfApollo.applyMiddleware({ app });
-    app.use('/', express_1.default.static(__dirname + "/../wc-front-end/dist"));
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
     app.use('/auth', Authentication_corsPolicy_1.default, Authentication_routes_1.default);
