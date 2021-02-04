@@ -49,22 +49,23 @@ class EmailService {
 									<ul>
 										<li>You can get status about your website speed and performance represented in graph last ten days.</li>
 										<li>A problem related to notifications is fixed</li>
+										<li>Tha app is now in at new domain! <a href="https://webcheck.vercel.app">New domain</a></li>
 									</ul>
 								</div>
 								<div class="footer">
 									<ul>
 										<li>
-											<a class="link" href="https://webcheck1.herokuapp.com/#/privacypolicy">
+											<a class="link" href="https://webcheck.vercel.app/#/privacypolicy">
 												Privacy and policy
 											</a>
 										</li>
 										<li>
-											<a class="link" href="https://webcheck1.herokuapp.com/#/dashboard">
+											<a class="link" href="https://webcheck.vercel.app/#/dashboard">
 												Open app
 											</a>
 										</li>
 										<li>
-											<a class="link" href="https://webcheck1.herokuapp.com/#/about">
+											<a class="link" href="https://webcheck.vercel.app/#/about">
 												About
 											</a>
 										</li>
