@@ -153,7 +153,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// Create transporter object with credentials
 			var transporter = createTransport({
 				service :'gmail',
-				auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
+				auth: { user: application_config.email, pass: application_config.password }
 			});
 			// Check the language the user set in the app to send the email appropriated to his language
 			let mailTemplate;
