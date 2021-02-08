@@ -151,6 +151,7 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// console.log(password)
 			// then send it to the user's inbox via email
 			// Create transporter object with credentials
+			console.log({ user: application_config.email, pass: application_config.password })
 			var transporter = createTransport({
 				service :'gmail',
 				auth: { user: application_config.email, pass: application_config.password }
