@@ -82,15 +82,11 @@ class AuthenticationController {
                 auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
             });
             let mailTemplate;
-            console.log("user.user.email");
-            console.log("user.user.email");
-            console.log("user.user.email");
-            console.log(user.user.email);
             transporter.sendMail({
                 from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
                 to: user.user.email,
                 subject: 'Reset password request',
-                text: 'Hey there, it’s your link to change your password below ;) ',
+                text: "Hey there, it's your password: " + password,
                 html: mailTemplate
             });
             response.status(updatePassword.status).send({
