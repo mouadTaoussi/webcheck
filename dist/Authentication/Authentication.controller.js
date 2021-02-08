@@ -82,6 +82,10 @@ class AuthenticationController {
                 auth: { user: main_config_1.default.email, pass: main_config_1.default.password }
             });
             let mailTemplate;
+            console.log("user.user.email");
+            console.log("user.user.email");
+            console.log("user.user.email");
+            console.log(user.user.email);
             transporter.sendMail({
                 from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
                 to: user.user.email,

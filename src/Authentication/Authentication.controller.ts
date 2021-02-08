@@ -157,7 +157,10 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			});
 			// Check the language the user set in the app to send the email appropriated to his language
 			let mailTemplate;
-
+			console.log("user.user.email")
+			console.log("user.user.email")
+			console.log("user.user.email")
+			console.log(user.user.email)
 			// send it!
 			transporter.sendMail({
 				from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
