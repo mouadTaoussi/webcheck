@@ -151,25 +151,21 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			// console.log(password)
 			// then send it to the user's inbox via email
 			// Create transporter object with credentials
-			console.log("GMAIL");
-			console.log("GMAIL");
-			console.log("GMAIL");
-			console.log({ user: application_config.email, pass: application_config.password });
-			// var transporter = createTransport({
-			// 	service :'gmail',
-			// 	auth: { user: application_config.email, pass: application_config.password }
-			// });
-			// // Check the language the user set in the app to send the email appropriated to his language
-			// let mailTemplate;
+			var transporter = createTransport({
+				service :'gmail',
+				auth: { user: application_config.email, pass: application_config.password }
+			});
+			// Check the language the user set in the app to send the email appropriated to his language
+			let mailTemplate;
 
-			// // send it!
-			// transporter.sendMail({
-			// 	from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
-			//     to: user.user.email,
-			//     subject: 'Reset password request',
-			//     text: 'Hey there, it’s your link to change your password below ;) ', 
-			//     html: mailTemplate
-			// });
+			// send it!
+			transporter.sendMail({
+				from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
+			    to: user.user.email,
+			    subject: 'Reset password request',
+			    text: 'Hey there, it’s your link to change your password below ;) ', 
+			    html: mailTemplate
+			});
 
 			response.status(updatePassword.status).send({
 				sent : true,
