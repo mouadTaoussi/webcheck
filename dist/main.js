@@ -36,7 +36,7 @@ async function runapp() {
     app.use(body_parser_1.default.json());
     app.use('/auth', Authentication_corsPolicy_1.default, Authentication_routes_1.default);
     app.use('/check', Authentication_corsPolicy_1.default, Check_routes_1.default);
-    mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }, (error) => {
+    mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (error) => {
         if (error) {
             console.log(error);
         }

@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Authentication_service_1 = __importDefault(require("./Authentication.service"));
 const jsonwebtoken_1 = require("jsonwebtoken");
-const nodemailer_1 = require("nodemailer");
 const bcrypt_1 = require("bcrypt");
 const uuid_1 = require("uuid");
 const main_config_1 = __importDefault(require(".././main.config"));
@@ -77,18 +76,10 @@ class AuthenticationController {
             const salt = await bcrypt_1.genSalt(10);
             const hashed_password = await bcrypt_1.hash(password, salt);
             const updatePassword = await userService.changePassword(user.user._id, hashed_password);
-            var transporter = nodemailer_1.createTransport({
-                service: 'gmail',
-                auth: { user: process.env.EMAIL_ADDRESSE, pass: process.env.EMAIL_PASSWORD }
-            });
-            let mailTemplate;
-            transporter.sendMail({
-                from: '"WebCheck Team" <mouadtaoussi0@gmail.com>',
-                to: user.user.email,
-                subject: 'Reset password request',
-                text: 'Hey there, it’s your link to change your password below ;) ',
-                html: mailTemplate
-            });
+            console.log("GMAIL");
+            console.log("GMAIL");
+            console.log("GMAIL");
+            console.log({ user: main_config_1.default.email, pass: main_config_1.default.password });
             response.status(updatePassword.status).send({
                 sent: true,
                 message: "email sent to your inbox!",
