@@ -49,7 +49,7 @@ async function runapp(){
 	// Connect to database
 	connect(application_config.database_connection!,
 
-		{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
+		{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 		,(error:any)=>{
 		if (error){
 			console.log(error);
