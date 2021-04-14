@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/BackgroundLogoLight.jpg"/>
+  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoPreview.png"/>
 </p>
 <p align="center">
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreview.svg"/>
