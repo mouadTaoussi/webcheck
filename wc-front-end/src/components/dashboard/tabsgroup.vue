@@ -1,5 +1,6 @@
 <template>
-	<section>
+	<section class="list-section">
+		<br>
 		<div class="list-group poppins" id="list-tab" role="tablist">
 	      <a 
 		      class="list-group-item list-group-item-action active text-left" 
@@ -83,8 +84,26 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.list-section {
+	height: 100vh;
+	background-color: var(--primary-app);
+	position: absolute;
+	width: 300px;
+	left: 0px;
+	transition: all .2s ease-out;
+	z-index: 999;
+}
+.list-group-item {
+	background-color: transparent!important;
+	color: white;
+}
 .list-group {
 	position: sticky!important;
 	top: 20px;
+}
+@media only screen and (max-width: 800px) {
+	.list-section {
+		/*left: -300px;*/
+	}
 }
 </style>

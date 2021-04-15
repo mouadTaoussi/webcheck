@@ -2,13 +2,13 @@
 	<div>
 
 		<headercomponent></headercomponent>
-		<br>   
 		
-		<div class="dashboard-row list-group-dashboard local-container-8">
+		<div class="dashboard-row list-group-dashboard">
 		  <div class="dashboard-column">
 		    <tabsgroup></tabsgroup>
 		  </div>
-		  <div class="dashboard-column">
+		  <div class="dashboard-column local-container-8">
+			<br>   
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show active" id="list-websites" role="tabpanel" aria-labelledby="list-websites-list">
 		      	<h3 class="text-left local-mb-4">Your Websites</h3>
