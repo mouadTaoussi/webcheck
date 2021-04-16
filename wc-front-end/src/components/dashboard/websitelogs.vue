@@ -12,7 +12,7 @@
 			id="clearing" 
 			type="button" 
 			v-on:click="clearLogs()"
-			class="local-shadow local-btn local-btn-danger clear-logs-btn">
+			class="local-shadow local-btn btn-danger clear-logs-btn">
 			Clear logs
 			</button>
 		</div>

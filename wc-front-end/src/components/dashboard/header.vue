@@ -66,7 +66,6 @@ export default {
 	width: 150px;
 	height: 50px;
 	margin: -1px auto;
-
 }
 .bi-list {
 	color: black;

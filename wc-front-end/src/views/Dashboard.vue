@@ -7,7 +7,7 @@
 		  <div class="dashboard-column">
 		    <tabsgroup></tabsgroup>
 		  </div>
-		  <div class="dashboard-column local-container-8">
+		  <div class="dashboard-content-area dashboard-column">
 			<br>   
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show active" id="list-websites" role="tabpanel" aria-labelledby="list-websites-list">
@@ -233,7 +233,7 @@ export default {
 	.dashboard-row {
 		display:  grid;
 		grid-template-columns: 1.2fr 4fr;
-		grid-gap: 20px;
+		grid-gap: 5px;
 	}
 	.websites-area {
 
@@ -245,7 +245,10 @@ export default {
 		position: sticky!important;
 		top: 20px;
 	}
-	
+	.dashboard-content-area {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 	@media only screen and (max-width: 800px) {
 		.dashboard-row {
 			display:  grid;

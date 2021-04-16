@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="local-shadow single-log local-card local-my-2 log">	      				
+		<div class="border local-shadow bg-light single-log local-card local-my-2 log">	      				
 			<p class="log-title text-left text-danger poppins">{{log.status_code}}
 			</p>
 			<p class="created_at">

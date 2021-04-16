@@ -30,7 +30,7 @@
 				id=""
 				v-on:click="toggleModal()" 
 				style="float: right" 
-				class="local-shadow local-btn local-ml-2 local-btn-danger">
+				class="local-shadow local-btn local-ml-2 btn-danger">
 			Delete account</button>
 		</div>
 

@@ -1,7 +1,7 @@
 <template>
 	<section>
 
-		<div class="local-shadow website-component local-p-2 poppins">
+		<div class="bg-light local-shadow website-component local-p-2 poppins">
 			<p class="text-left website_name"><strong>{{ websiteName }}</strong></p>
 			<div class="activity_status">
 				<p v-if="isActive" class="is_active text-success">

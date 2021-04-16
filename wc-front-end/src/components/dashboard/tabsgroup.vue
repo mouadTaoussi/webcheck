@@ -103,7 +103,7 @@ export default {
 }
 @media only screen and (max-width: 800px) {
 	.list-section {
-		/*left: -300px;*/
+		left: -300px;
 	}
 }
 </style>
