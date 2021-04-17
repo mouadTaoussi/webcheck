@@ -8,24 +8,24 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "./favicon.ico",
+      "src": "./Icon.ico",
       "type": "image/x-icon",
-      "sizes": "84x84"
+      "sizes": "102x102"
     },
     {
-      "src": "./logo.ico",
+      "src": "./Icon.ico",
       "type": "image/x-icon",
-      "sizes": "84x84"
+      "sizes": "102x102"
     },
      {
-      "src": "./logo.svg",
+      "src": "./Icon.svg",
       "type": "image/svg",
-      "sizes": "150x150"
+      "sizes": "102x102"
     },
      {
-      "src": "./logo.png",
+      "src": "./Icon.png",
       "type": "image/png",
-      "sizes": "150x150"
+      "sizes": "102x102"
     }
   ]
 }
