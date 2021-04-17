@@ -20,7 +20,26 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+//
+// window(screen.width >= 600)
+// Check the browser width to hide the side menu in dashboard
+window.onresize = function() {
+	// Get the width of the current webpage
+	var win = window,
+    doc = document,
+    docElem = doc.documentElement,
+    body = doc.getElementsByTagName('body')[0],
+    x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+    y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
+	if (x <= 1000) {
+		document.querySelector('.list-section').classList.add('hide-list');
+		document.querySelector('.list-section').classList.remove('show-list');
+	}else {
+		document.querySelector('.list-section').classList.add('show-list');
+		document.querySelector('.list-section').classList.remove('hide-list');
+	}
+}
 // Function that turns URL safe base64 string to a Uint8Array to pass into the subscribe call, 
 function urlBase64ToUint8Array(base64String) {
 	const padding = '='.repeat((4 - base64String.length % 4) % 4);

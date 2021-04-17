@@ -1,5 +1,5 @@
 <template>
-	<section class="list-section">
+	<section class="list-section show-list">
 		<br>
 		<div class="list-group poppins" id="list-tab" role="tablist">
 	      <a 
@@ -86,12 +86,13 @@ export default {
 <style lang="css" scoped>
 .list-section {
 	height: 100vh;
-	background-color: var(--primary-app);
+	background-color: var(--primary-app-darker);
 	position: absolute;
 	width: 300px;
-	left: 0px;
+	/*left: 0px;*/
 	transition: all .2s ease-out;
 	z-index: 999;
+	padding-top: 50px;
 }
 .list-group-item {
 	background-color: transparent!important;
@@ -101,9 +102,16 @@ export default {
 	position: sticky!important;
 	top: 20px;
 }
+.show-list {
+	left: 0px;
+}
+.hide-list {
+	left: -300px;
+}
 @media only screen and (max-width: 800px) {
 	.list-section {
-		left: -300px;
+		/*left: -300px;*/
+		/*left: 0px;*/
 	}
 }
 </style>

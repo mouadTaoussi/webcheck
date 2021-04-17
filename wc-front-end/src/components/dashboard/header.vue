@@ -36,14 +36,17 @@ export default {
   	},
   	toggleMenu : function() {
   		const list_group = document.querySelector('.list-section');
-  		console.log(list_group.style.right)
-  		if (list_group.style.right == "0px"){
-  			console.log(1)
-  			list_group.style.right = "-300px"
-  		}
-  		else {
-  			console.log(2)
-  			list_group.style.right = "0px"	
+  	
+  		if (list_group.classList.contains('show-list')) {
+
+			list_group.classList.add('hide-list')
+			list_group.classList.remove('show-list')
+  		
+  		}else if(list_group.classList.contains('hide-list')) {
+
+			list_group.classList.add('show-list')
+			list_group.classList.remove('hide-list')
+ 
   		}
   	}
   }
@@ -73,7 +76,7 @@ export default {
 	top: 15px;
 	display: none;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
 	.bi-list {
 		display: block;
 	}

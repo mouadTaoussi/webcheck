@@ -13,7 +13,7 @@
 			type="button" 
 			v-on:click="clearLogs()"
 			class="local-shadow local-btn btn-danger clear-logs-btn">
-			Clear logs
+			Clear
 			</button>
 		</div>
 		<!-- <loadingspinner></loadingspinner> -->

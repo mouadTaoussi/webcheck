@@ -9,6 +9,8 @@
 <style>
 :root {
   --primary-app : #008272;
+  --primary-app-darker : #05544a;
+  /*--primary-app : #d83b01;*/
   --border      : .2px solid rgba(0,0,0,.1);
   --rectangle-above-title : red;
   --side-menu-width : 300px;

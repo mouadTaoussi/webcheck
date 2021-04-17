@@ -124,6 +124,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	canvas{
+
+	  width: 400px !important;
+	  height: 250px !important;
+
+	}
 	chart-section:hover {
 		border: var(--border);
 	}
