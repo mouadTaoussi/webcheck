@@ -1,6 +1,3 @@
 node_modules
-wc-front-end/dist
 .env
-config
 problemsToBeFixed
-graphqlPlaygroundStarterPage.html
