@@ -32,7 +32,7 @@ async function runapp(){
 		context: ({ req, res }) => ({ req, res }),
 		playground : true,
 	})
-	ServerOfApollo.applyMiddleware({ app });
+	ServerOfApollo.applyMiddleware({ app  });
 
 	// Routes
 	// app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
