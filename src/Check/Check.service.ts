@@ -61,7 +61,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			const user: UserInterface | any = await UserModel.findOne({_id:user_id});
 
 			// Check his websitesCount 
-			if (user.websitesCount < 3 ) {
+			if (user.websitesCount < 20 ) {
 
 				// Get him websites
 				const userWebsites: [websiteType] | any = user.websites;
