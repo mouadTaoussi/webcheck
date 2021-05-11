@@ -86,7 +86,8 @@ export default {
 <style lang="css" scoped>
 .list-section {
 	/*height: 120vh;*/
-	height: 100%;
+	min-height: 120vh;
+	max-height: 100%;
 	background-color: var(--primary-app-darker);
 	position: absolute;
 	width: 300px;
