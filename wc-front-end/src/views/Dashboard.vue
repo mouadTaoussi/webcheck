@@ -248,6 +248,8 @@ export default {
 	.dashboard-content-area {
 		margin-left: 20px;
 		margin-right: 20px;
+		min-height: 120vh;
+		max-height: auto;
 	}
 	@media only screen and (max-width: 800px) {
 		.dashboard-row {
