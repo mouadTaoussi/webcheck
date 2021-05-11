@@ -63,7 +63,7 @@ class CheckWebsitesService {
     async addWebsite(user_id, website) {
         try {
             const user = await Authentication_model_1.default.findOne({ _id: user_id });
-            if (user.websitesCount < 20) {
+            if (user.websitesCount < 10) {
                 const userWebsites = user.websites;
                 const plusOne = user.websitesCount + 1;
                 website.active = true;
