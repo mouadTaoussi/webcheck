@@ -38,7 +38,7 @@ async function runapp(){
 	// app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
 	app.get('/',(req:Request, res:Response)=>{
 		res.redirect('https://webcheck.vercel.app');
-	})
+	});
 	
 	app.use(helmet());
 	app.use(bodyParser.json());

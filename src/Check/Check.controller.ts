@@ -90,7 +90,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 
 		// Send the response back
 		response.status(logs.status).send({
-			logs : logs.data,
+			logs : logs.data.reverse(),
 		});
 	}
 	public async deleteWebsiteLogs(request:any,response:Response):Promise<void> {

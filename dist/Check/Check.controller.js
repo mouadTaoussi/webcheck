@@ -74,7 +74,7 @@ class CheckWebsiteController {
         const user = request.user;
         const logs = await websiteService.getLogs(user.id);
         response.status(logs.status).send({
-            logs: logs.data,
+            logs: logs.data.reverse(),
         });
     }
     async deleteWebsiteLogs(request, response) {

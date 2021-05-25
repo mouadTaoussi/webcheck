@@ -1,16 +1,16 @@
 Fixes - Fix typing errors in The back-end code.
 Fixed - Fix env file problem (dotenv cannot open & read it because it need to by in the root directory).
 Fixed - Make migration to mongodb
-Ongoing - moderinize Reset Password and add the ability to change password
+Fexed - moderinize Reset Password and add the ability to change password
 Fixed - Make graphql server to get some of the data and fix it : solution: init the serverapollo in main.ts
 Fixed - Display that data into graph in the front-end and fix it
 Fixed - no need to refreach the page to send push service credentials for new user
 Fixed - doesn't add averageResponseModel when adding a new website
 Fixed - push notification process doesn't working
 Fixed - no need to refreach the page to see data into graph
-
-
+Ongoing - Not allowing users add same website
+Fixed - Update UI
 // 
 In case you need to refer to this chat interaction in the future, please take note of the following Case ID: 1-3686000031310
 
-https://youtu.be/n0xfM6qUNUE  
+https://youtu.be/n0xfM6qUNUE
