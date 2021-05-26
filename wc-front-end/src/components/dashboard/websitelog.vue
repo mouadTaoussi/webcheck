@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="border local-shadow bg-light single-log local-card local-my-2 log">	      				
+		<div class="shadow single-log local-card local-my-2 log">	      				
 			<p class="log-title text-left text-danger poppins">{{log.status_code}}
 			</p>
 			<p class="created_at">
@@ -12,12 +12,12 @@
 			</p>
 
 			<p class="log-desc text-left">
-				{{log.explanation}}
+				<strong class="poppins">{{log.explanation}}</strong>
 			</p>
 
-			<p class="text-left"><a class="log-link" href="https://www.google.com">
+<!-- 			<p class="text-left"><a class="log-link" href="https://www.google.com">
 				Visit site
-			</a></p>
+			</a></p> -->
 		</div>
 	</section>
 </template>

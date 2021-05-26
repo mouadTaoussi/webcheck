@@ -111,6 +111,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			title: options.message,
 			url  : options.url
 		}
+		// console.log(registeration)
 		//  // send a notification and email
 		sendNotification(
 			registeration,JSON.stringify(payload)
