@@ -28,7 +28,11 @@ async function runapp() {
         context: ({ req, res }) => ({ req, res }),
         playground: true,
     });
-    ServerOfApollo.applyMiddleware({ app });
+    ServerOfApollo.applyMiddleware({ app, cors: {
+            origin: main_config_1.default.front_end_origin,
+            credentials: true,
+            methods: ["POST", "OPTIONS"],
+        } });
     app.get('/', (req, res) => {
         res.redirect('https://webcheck.vercel.app');
     });

@@ -8,6 +8,7 @@ const application_config = {
     vapid_private_key: process.env.VAPID_PRIVATE_KEY,
     port_dev: process.env.PORT_DEV,
     port: process.env.PORT,
-    jwt_secret: process.env.JWT_SECRET
+    jwt_secret: process.env.JWT_SECRET,
+    front_end_origin: "https://webcheck.vercel.app",
 };
 exports.default = application_config;

@@ -32,7 +32,11 @@ async function runapp(){
 		context: ({ req, res }) => ({ req, res }),
 		playground : true,
 	})
-	ServerOfApollo.applyMiddleware({ app  });
+	ServerOfApollo.applyMiddleware({ app , cors: { 
+		origin: application_config.front_end_origin, 
+		credentials: true,
+		methods: ["POST","OPTIONS"],
+	} });
 
 	// Routes
 	// app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
