@@ -4,6 +4,8 @@ import { WebsiteLogModel, websitesResponsesTimeInDayModel, websiteAverageTimeInD
 import UserModel from '.././Authentication/Authentication.model';
 import { v4, v5 } from 'uuid';
 import moment from 'moment';
+import main_config from '.././main.config';
+
  
 class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
@@ -61,8 +63,18 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			const user: UserInterface | any = await UserModel.findOne({_id:user_id});
 
 			// Check his websitesCount 
-			if (user.websitesCount < 10 ) {
+			if (user.websitesCount < main_config.websites_limit ) {
 
+
+				// Check if any website with that Url
+				const isExists: UserInterface | null | any = await UserModel.findOne({"websites.website": website.website});
+
+				if (isExists !== null) {
+					return {
+						status  : 200, message : 'You cannot add an existing website!',
+						data : null }
+				}
+				
 				// Get him websites
 				const userWebsites: [websiteType] | any = user.websites;
 
@@ -107,12 +119,11 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 			}
 			else {
 				return {
-					status  : 200, message : 'You cannot add more than 3 websites!!',
+					status  : 200, message : 'You cannot add more than ' + main_config.websites_limit + ' websites!!',
 					data : null }
 			}
 		} catch(error) {
-			console.log("error")
-			console.log(error)
+			
 			return {
 				status  : 500, message : "Something went wrong!", data : null }
 		}
@@ -365,7 +376,7 @@ class CheckWebsitesService implements CheckWebsiteServiceInterface{
 
 	}
 	// clear responses time for the day
-	public async clearResponseTimesForWebsite(website_id:string) 
+	public async clearResponseTimesForWebsite(website_id: string) 
 	:Promise<{ status:number, message: string }> {
 		try {
 			// websitesResponsesTimeInDayModel, websiteAverageTimeInDayModel

@@ -1,6 +1,6 @@
 <template>
 	<!-- Header -->
-	<div class="local-shadow bg-light local-navbar-2 local-px-2">
+	<div class="shadow bg-light local-navbar-2 local-px-2">
 		<div class="local-navbar-content-grid poppins local-text-white">
 			<div class='left-side'>
 				<div v-on:click="toggleMenu()">

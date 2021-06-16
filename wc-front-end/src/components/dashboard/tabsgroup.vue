@@ -1,5 +1,5 @@
 <template>
-	<section class="list-section show-list">
+	<section class="shadow list-section show-list">
 		<br>
 		<div class="list-group poppins" id="list-tab" role="tablist">
 	      <a 

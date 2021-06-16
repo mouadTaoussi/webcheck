@@ -8,8 +8,25 @@ Fixed - no need to refreach the page to send push service credentials for new us
 Fixed - doesn't add averageResponseModel when adding a new website
 Fixed - push notification process doesn't working
 Fixed - no need to refreach the page to see data into graph
-Ongoing - Not allowing users add same website
 Fixed - Update UI
+
+
+Ongoing - Not allowing users add same website
+Ongoing - Restructure the UX for the app (might be)
+Ongoing - Change the chart library to G2Plot
+Ongoing - add feature that get how many times the website got down last ten 10 days
+Ongoing - Change the landingpage design as well as the primary color and update UI
+Ongoing - integrate more than tool to notify (SMS - Voice Call - Whatsapp)
+Ongoing - Take screenshot of the website 
+
+// 
+Primary colors 
+
+#05c46b darker
+#0be881 light
+
+swedish palette - flatui 
+
 // 
 In case you need to refer to this chat interaction in the future, please take note of the following Case ID: 1-3686000031310
 

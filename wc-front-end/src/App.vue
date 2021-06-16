@@ -8,8 +8,8 @@
 
 <style>
 :root {
-  --primary-app : #008272;
-  --primary-app-darker : #05544a;
+  --primary-app : #0be881;
+  --primary-app-darker : #05c46b;
   /*--primary-app : #d83b01;*/
   --border      : .2px solid rgba(0,0,0,.1);
   --rectangle-above-title : red;
@@ -52,6 +52,26 @@
 .darkmode-toggle {
     z-index: 999;
 }
+  /*add custom scroll bar*/
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 @media only screen and (max-width: 800px) {
   .product-hunt-featured {
     display: none;

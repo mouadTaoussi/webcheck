@@ -119,6 +119,30 @@ export default {
 				}
 			}
 		});
+
+		// G2Plot
+		const plot = new Line('container', {
+	      autoFit: true,
+	      height: 500,
+	      data,
+	      meta: {
+	        cpu: {
+	          time: { type: 'cat' },
+	          max: 100,
+	          min: 0,
+	        },
+	      },
+	      xField: 'time',
+	      yField: 'cpu',
+	      seriesField: 'date',
+	      tooltip: { showMarkers: false },
+	      point: {
+	        shape: 'breath-point',
+	      },
+	    });
+
+	    plot.update({ "theme": { "styleSheet": { "brandColor": "#9DF5CA", "paletteQualitative10": ["#9DF5CA", "#61DDAA", "#42C090", "#19A576", "#008A5D", "#006F45", "#00562F", "#003E19", "#002800"], "paletteQualitative20": ["#9DF5CA", "#61DDAA", "#42C090", "#19A576", "#008A5D", "#006F45", "#00562F", "#003E19", "#002800"] } } });
+	    plot.render();
 	}
 };
 </script>

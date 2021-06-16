@@ -1,5 +1,5 @@
 <template>
-	<section id="average_response_time_day_area">
+	<section class="websites p-2" id="average_response_time_day_area">
 		<div
 			v-for="website in getAverageResponseTimeForUserWebsites"
 			class="average_response_time_day"
@@ -37,6 +37,10 @@ export default {
 .chart-section {
 	/*background-color: rgba(0,0,0,.7);*/
 	/*color: white;*/
+}
+.websites {
+	overflow: scroll;
+	height: 500px;
 }
 #average_response_time_day_area {
 	display: grid;

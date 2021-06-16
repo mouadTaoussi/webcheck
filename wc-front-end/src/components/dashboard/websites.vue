@@ -67,7 +67,7 @@
 			<!-- Button trigger modal -->
 			<button 
 				type="button"
-				class="local-btn add-website-btn local-shadow" 
+				class="local-btn add-website-btn shadow" 
 				data-toggle="modal" 				
 				data-target="#shareMethodsModal"
 				v-on:click="toggleModal()"

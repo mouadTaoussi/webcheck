@@ -7,6 +7,7 @@ const Check_model_1 = require("./Check.model");
 const Authentication_model_1 = __importDefault(require(".././Authentication/Authentication.model"));
 const uuid_1 = require("uuid");
 const moment_1 = __importDefault(require("moment"));
+const main_config_1 = __importDefault(require(".././main.config"));
 class CheckWebsitesService {
     constructor() {
         this.statusCodes = [
@@ -63,7 +64,14 @@ class CheckWebsitesService {
     async addWebsite(user_id, website) {
         try {
             const user = await Authentication_model_1.default.findOne({ _id: user_id });
-            if (user.websitesCount < 10) {
+            if (user.websitesCount < main_config_1.default.websites_limit) {
+                const isExists = await Authentication_model_1.default.findOne({ "websites.website": website.website });
+                if (isExists !== null) {
+                    return {
+                        status: 200, message: 'You cannot add an existing website!',
+                        data: null
+                    };
+                }
                 const userWebsites = user.websites;
                 const plusOne = user.websitesCount + 1;
                 website.active = true;
@@ -92,14 +100,12 @@ class CheckWebsitesService {
             }
             else {
                 return {
-                    status: 200, message: 'You cannot add more than 3 websites!!',
+                    status: 200, message: 'You cannot add more than ' + main_config_1.default.websites_limit + ' websites!!',
                     data: null
                 };
             }
         }
         catch (error) {
-            console.log("error");
-            console.log(error);
             return {
                 status: 500, message: "Something went wrong!", data: null
             };

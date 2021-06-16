@@ -1,7 +1,7 @@
 <template>
-	<section>
+	<section >
 		<div class="logs-options">	
-			<select v-on:change="filterLogs()" class="local-shadow choose-website local-input form-control">
+			<select v-on:change="filterLogs()" class="shadow choose-website local-input form-control">
 				<option 
 					v-for="website in websites" 
 					v-bind:value='website._id'>
@@ -12,18 +12,19 @@
 			id="clearing" 
 			type="button" 
 			v-on:click="clearLogs()"
-			class="local-shadow local-btn btn-danger clear-logs-btn">
+			class="shadow local-btn btn-info clear-logs-btn">
 			Clear
 			</button>
 		</div>
 		<!-- <loadingspinner></loadingspinner> -->
-
-		<div v-for="log in logsToFilter">
-			<!-- <div v-if='!log'><p class="text-center cabin text-dark">No logs for now!</p></div> -->
-			<websitelog 
-				v-bind:log="log">	
-			</websitelog>
-		</div>
+		<section class="logs py-2">
+			<div v-for="log in logsToFilter">
+				<!-- <div v-if='!log'><p class="text-center cabin text-dark">No logs for now!</p></div> -->
+				<websitelog 
+					v-bind:log="log">	
+				</websitelog>
+			</div>
+		</section>
 	</section>
 </template>
 
@@ -113,10 +114,15 @@ export default {
 		top: 0;
 		left: 0;
 		width: 200px;
+		border : 0;
 	}
 	.clear-logs-btn {
 		position: absolute;
 		top: 0;
 		right: 0;
+	}
+	.logs {
+		overflow: scroll;
+		height: 500px;
 	}
 </style>

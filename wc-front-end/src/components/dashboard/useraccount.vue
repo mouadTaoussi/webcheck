@@ -24,13 +24,13 @@
 			<button  
 				id="saving-user-info"
 				v-on:click="saveChangesUserInfo()" 
-				class="local-shadow local-btn local-ml-2 save-changes-btn"
+				class="shadow local-btn local-ml-2 save-changes-btn"
 			>Save changes</button>
 			<button 
 				id=""
 				v-on:click="toggleModal()" 
 				style="float: right" 
-				class="local-shadow local-btn local-ml-2 btn-danger">
+				class="shadow local-btn local-ml-2 btn-info">
 			Delete account</button>
 		</div>
 
