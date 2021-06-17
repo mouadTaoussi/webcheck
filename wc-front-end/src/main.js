@@ -6,7 +6,7 @@ import './assets/fontawesome/css/all.css';
 import api_config from '.././api.config.js';
 // import './registerServiceWorker'
 import apolloProvider from './apollo.js';
-import { G2, Line } from '@antv/g2plot';
+// import { G2, Line } from '@antv/g2plot';
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;

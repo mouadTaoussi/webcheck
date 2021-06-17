@@ -5,6 +5,7 @@
 			class="average_response_time_day"
 		>
 			<average_response_chart 
+				v-bind:website_id="website.website_id" 
 				v-bind:website_name="website.website_name" 
 				v-bind:labels="website.labels"
 				v-bind:data="website.data">
@@ -22,6 +23,8 @@ export default {
 	props: ["getAverageResponseTimeForUserWebsites"],
 	components: {
 		average_response_chart
+	},
+	mounted(){
 	},
 	data() {
 		return {

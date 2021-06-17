@@ -20,7 +20,7 @@
 		      	<h3 class="text-left local-mb-4">Websites Logs</h3>
 		      	<div class="website-logs">
 		      		<websitelogs 
-			      		v-bind:logs="websitesLogs" 
+			      		v-bind:logs="websitesLogs"  
 			      		v-bind:logsToFilter="websitesLogs"
 			      		v-bind:websites="userWebsites"></websitelogs>
 	      		</div>
