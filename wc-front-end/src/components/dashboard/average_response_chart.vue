@@ -113,7 +113,7 @@
 			const data = [
 			  {
 			    "Date": "2010-01",
-			    "scales": 1998
+			    "scales": 1298
 			  },
 			  {
 			    "Date": "2010-02",
@@ -141,7 +141,23 @@
 			  },
 			  {
 			    "Date": "2010-08",
-			    "scales": 1818
+			    "scales": 1225
+			  },
+			  {
+			    "Date": "2010-08",
+			    "scales": 1118
+			  },
+			  {
+			    "Date": "2010-08",
+			    "scales": 1858
+			  },
+			  {
+			    "Date": "2010-08",
+			    "scales": 1418
+			  },
+			  {
+			    "Date": "2010-08",
+			    "scales": 1418
 			  }
 			]
 			const line = new Line(this.website_id, {
@@ -164,12 +180,12 @@
 			line.update({
 				theme: {
 					styleSheet: {
-						brandColor: "#9DF5CA",
+						brandColor: "#05c46b",
 						paletteQualitative10: [ 
-							"#9DF5CA", "#61DDAA", "#42C090", "#19A576", "#008A5D", "#006F45", "#00562F", "#003E19", "#002800",
+							"#05c46b", "#05c46b", "#05c46b", "#05c46b"
 						],
 						paletteQualitative20: [ 
-							"#9DF5CA", "#61DDAA", "#42C090", "#19A576", "#008A5D", "#006F45", "#00562F", "#003E19", "#002800",
+							"#05c46b", "#05c46b", "#05c46b", "#05c46b"
 						],
 					},
 				},
