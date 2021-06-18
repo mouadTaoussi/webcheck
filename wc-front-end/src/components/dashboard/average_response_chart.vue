@@ -109,57 +109,57 @@
 
 
 			//////////////// Charts Library: G2Plot ////////////////		
-			// const data = this.convertDataFormatToG2Plot();
-			const data = [
-			  {
-			    "Date": "2010-01",
-			    "scales": 1298
-			  },
-			  {
-			    "Date": "2010-02",
-			    "scales": 1850
-			  },
-			  {
-			    "Date": "2010-03",
-			    "scales": 1720
-			  },
-			  {
-			    "Date": "2010-04",
-			    "scales": 1818
-			  },
-			  {
-			    "Date": "2010-05",
-			    "scales": 1818
-			  },
-			  {
-			    "Date": "2010-06",
-			    "scales": 1818
-			  },
-			  {
-			    "Date": "2010-07",
-			    "scales": 1818
-			  },
-			  {
-			    "Date": "2010-08",
-			    "scales": 1225
-			  },
-			  {
-			    "Date": "2010-08",
-			    "scales": 1118
-			  },
-			  {
-			    "Date": "2010-08",
-			    "scales": 1858
-			  },
-			  {
-			    "Date": "2010-08",
-			    "scales": 1418
-			  },
-			  {
-			    "Date": "2010-08",
-			    "scales": 1418
-			  }
-			]
+			const data = this.convertDataFormatToG2Plot();
+			// const data = [
+			//   {
+			//     "Date": "2010-01",
+			//     "scales": 1298
+			//   },
+			//   {
+			//     "Date": "2010-02",
+			//     "scales": 1850
+			//   },
+			//   {
+			//     "Date": "2010-03",
+			//     "scales": 1720
+			//   },
+			//   {
+			//     "Date": "2010-04",
+			//     "scales": 1818
+			//   },
+			//   {
+			//     "Date": "2010-05",
+			//     "scales": 1818
+			//   },
+			//   {
+			//     "Date": "2010-06",
+			//     "scales": 1818
+			//   },
+			//   {
+			//     "Date": "2010-07",
+			//     "scales": 1818
+			//   },
+			//   {
+			//     "Date": "2010-08",
+			//     "scales": 1225
+			//   },
+			//   {
+			//     "Date": "2010-08",
+			//     "scales": 1118
+			//   },
+			//   {
+			//     "Date": "2010-08",
+			//     "scales": 1858
+			//   },
+			//   {
+			//     "Date": "2010-08",
+			//     "scales": 1418
+			//   },
+			//   {
+			//     "Date": "2010-08",
+			//     "scales": 1418
+			//   }
+			// ]
 			const line = new Line(this.website_id, {
 		      data,
 	  //     	meta: {
@@ -199,9 +199,10 @@
 				for (var i = 0; i < this.labels.length; i++) {
 					data.push({"Date": this.labels[i],"scales": this.data[i]});
 				}
-				console.log(data)
+
 				// return
-				return data;
+				// return data;
+				return [{"Date" : "12/21","scales": 1445},{"Date" : "13/21","scales": 1255},{"Date" : "14/21","scales": 1445}];
 			}
 		}
 	};
