@@ -31,7 +31,7 @@ class Migration implements Migration {
 	public async up(): Promise<void> {
 		// const website_ids = [];
 		// Get all users
-		const users = await UserModel.find({});
+		const users : any = await UserModel.find({});
 
 		// Create websitesResponsesTimeInDayModel and websiteAverageTimeInDayModel for each website
 		for (var i = 0; i < users.length; i++) {

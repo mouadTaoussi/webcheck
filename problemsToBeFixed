@@ -31,3 +31,10 @@ swedish palette - flatui
 In case you need to refer to this chat interaction in the future, please take note of the following Case ID: 1-3686000031310
 
 https://youtu.be/n0xfM6qUNUE
+
+
+//
+ Create developer facebook account and app and webcheck page in it 
+ Create functiond that handle each notification methods and wrappe them inside a classe in a separated file
+ Create a subdocument that contains permissions to know where thr user want to notify by migration script
+ Create a middleware function that comes between checking service and the notification methods and run them by permissions of the user

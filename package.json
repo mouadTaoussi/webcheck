@@ -7,8 +7,8 @@
     "start": "node ./dist/main",
     "dev": "nodemon ./dist/main",
     "compile": "tsc -p . --watch",
-    "start:migration": "node ./dist/ApplicationScripts/database.migration.js",
-    "start:mailing": "node ./dist/ApplicationScripts/mailing.service.js"
+    "start:migration": "node ./dist/Scripts/database.migration.js",
+    "start:mailing": "node ./dist/Scripts/mailing.service.js"
   },
   "repository": {
     "type": "git",

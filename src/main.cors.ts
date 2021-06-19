@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import application_config from '../main.config';
+import application_config from './main.config';
 
 export default function cors(request: Request, response:any, next:NextFunction){
 

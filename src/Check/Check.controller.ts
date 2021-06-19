@@ -28,14 +28,14 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		  this.vapidPrivateKey
 		);
 		// Request interceptor will startTime
-		axios.interceptors.request.use((config) => {
+		axios.interceptors.request.use((config: any) => {
 			config.metadata = { startTime: new Date().getTime()}
 		 	return config;
 		},(error)=>{
 			return Promise.reject(error);
 		});
 		// Response interceptor will set endTime & calculate the duration
-		axios.interceptors.response.use((response) => {
+		axios.interceptors.response.use((response: any) => {
 			response.config.metadata.endTime = new Date().getTime();
 			response.duration = response.config.metadata.endTime - response.config.metadata.startTime;
 			// response.duration = Math.floor((response.config.metadata.endTime - response.config.metadata.startTime)%1000)

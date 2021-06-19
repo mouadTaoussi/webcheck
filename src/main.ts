@@ -5,7 +5,7 @@ import "cookie-session";
 import { connect } from "mongoose";
 import application_config from "./main.config";
 import xss from 'xss';
-import cors from './Authentication/Authentication.corsPolicy';
+import cors from './main.cors';
 import helmet from "helmet";
 import bodyParser from 'body-parser';
 import 'reflect-metadata';
