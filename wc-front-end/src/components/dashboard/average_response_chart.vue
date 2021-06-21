@@ -197,7 +197,7 @@
 				// Convert data format to be readable by G2Plot library
 				const data = [];
 				for (var i = 0; i < this.labels.length; i++) {
-					data.push({"Date": this.labels[i],"response_time(ms)": this.data[i]});
+					data.push({"Date": this.labels[i],"scales": this.data[i]});
 				}
 
 				// return
