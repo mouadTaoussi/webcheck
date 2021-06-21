@@ -9,7 +9,7 @@ const type_graphql_1 = require("type-graphql");
 require("cookie-session");
 const mongoose_1 = require("mongoose");
 const main_config_1 = __importDefault(require("./main.config"));
-const Authentication_corsPolicy_1 = __importDefault(require("./Authentication/Authentication.corsPolicy"));
+const main_cors_1 = __importDefault(require("./main.cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const body_parser_1 = __importDefault(require("body-parser"));
 require("reflect-metadata");
@@ -38,8 +38,8 @@ async function runapp() {
     });
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
-    app.use('/auth', Authentication_corsPolicy_1.default, Authentication_routes_1.default);
-    app.use('/check', Authentication_corsPolicy_1.default, Check_routes_1.default);
+    app.use('/auth', main_cors_1.default, Authentication_routes_1.default);
+    app.use('/check', main_cors_1.default, Check_routes_1.default);
     mongoose_1.connect(main_config_1.default.database_connection, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (error) => {
         if (error) {
             console.log(error);
