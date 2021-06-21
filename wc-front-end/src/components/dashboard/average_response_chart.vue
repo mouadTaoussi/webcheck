@@ -201,8 +201,8 @@
 				}
 
 				// return
-				// return data;
-				return [{"Date" : "12/21","scales": 1445},{"Date" : "13/21","scales": 1255},{"Date" : "14/21","scales": 1445}];
+				return data;
+				// return [{"Date" : "12/21","scales": 1445},{"Date" : "13/21","scales": 1255},{"Date" : "14/21","scales": 1445}];
 			}
 		}
 	};
