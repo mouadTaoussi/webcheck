@@ -28,8 +28,9 @@ const application_config : Config  = {
 	port                 : process.env.PORT,
 	jwt_secret           : process.env.JWT_SECRET,
 	// front_end_origin     : "http://localhost:8080",
+	front_end_origin     : "*",
 	websites_limit       : 6,
-	front_end_origin     : "https://webcheck.vercel.app",
+	// front_end_origin     : "https://webcheck.vercel.app",
 }
 
 export default application_config;
