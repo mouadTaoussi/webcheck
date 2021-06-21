@@ -9,7 +9,7 @@ const application_config = {
     port_dev: process.env.PORT_DEV,
     port: process.env.PORT,
     jwt_secret: process.env.JWT_SECRET,
-    front_end_origin: "*",
     websites_limit: 6,
+    front_end_origin: "https://webcheck.vercel.app",
 };
 exports.default = application_config;

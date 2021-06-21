@@ -197,9 +197,9 @@
 				// Convert data format to be readable by G2Plot library
 				const data = [];
 				for (var i = 0; i < this.labels.length; i++) {
-					data.push({"Date": this.labels[i],"scales": this.data[i]});
+					data.push({"Date": this.labels[i],"scales": parseInt(this.data[i])});
+					console.log(typeof data[i].scales)
 				}
-
 				// return
 				return data;
 				// return [{"Date" : "12/21","scales": 1445},{"Date" : "13/21","scales": 1255},{"Date" : "14/21","scales": 1445}];
