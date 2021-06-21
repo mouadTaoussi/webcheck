@@ -28,7 +28,7 @@
 			  <div class="tab-pane fade" id="list-average-response-time-day" role="tabpanel" aria-labelledby="list-average-response-time-day-list">  
 		      	<h3 class="text-left local-mb-4">
 		      		<!-- Average response time for your Websites -->
-		      		Average response time
+		      		Average response time (mellieseconds)
 		      		<v style="font-size: 13px" class="local-badge info">BETA</v>
 		      	</h3>
 		      	<div class="average_response_time_day">
