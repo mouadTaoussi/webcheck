@@ -171,7 +171,7 @@
 			// },
 		      padding: 'auto',
 		      xField: 'Date',
-		      // yField: 'scales',
+		      yField: 'response time (ms)',
 		      xAxis: {
 		        // type: 'timeCat',
 		        tickCount: 5,
