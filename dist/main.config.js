@@ -1,5 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({ path: './.env' });
 const application_config = {
     email: process.env.EMAIL,
     password: process.env.PASSWORD,
@@ -9,7 +14,7 @@ const application_config = {
     port_dev: process.env.PORT_DEV,
     port: process.env.PORT,
     jwt_secret: process.env.JWT_SECRET,
+    front_end_origin: "http://localhost:8080",
     websites_limit: 6,
-    front_end_origin: "https://webcheck.vercel.app",
 };
 exports.default = application_config;

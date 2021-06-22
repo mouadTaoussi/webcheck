@@ -1,5 +1,5 @@
 <template>
-	<section class="header local-shadow">
+	<section class="header shadow">
 		<div class="header-grid">
 			<div id="header-column-1" class="brand">
 				

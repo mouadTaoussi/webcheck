@@ -11,18 +11,18 @@
 				></alert>
 			</div>
 			<div class="landingpage-content">
-				<h1 class="title poppins ">
+				<h1 class="title poppins">
 					Get notified whether<br> your websites are down or not!
 				</h1>
-				<p class="poppins ">
+				<p class="sub-title poppins">
 					You can get notified that your website just got down! to avoid losing traffic
 				</p>
 				<router-link to="/login">
-					<button class="cta local-btn local-btn-success local-mr-2 shadow">Get Started</button>
+					<button class="cta local-btn local-btn-light local-mr-2 shadow">Get Started</button>
 				</router-link>
-				<router-link to="">
+			<!-- 	<router-link to="">
 					<button class="cta local-btn local-btn-dark shadow">Learn more</button>
-				</router-link>
+				</router-link> -->
 				<!-- brs -->
 				<br>
 				<br>
@@ -60,8 +60,8 @@ export default {
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		background-color: #f2f5fa;/*#f9f9f9 rgba(0,0,0,.1)*/
-		height: 550px;
+		background-color:#0c2461 	;/* #f2f5fa  #f9f9f9 rgba(0,0,0,.1)*/
+		height: 650px;
 		border-top: var(--border);
 		border-bottom: var(--border);
 	}
@@ -78,8 +78,16 @@ export default {
 		color: rgba(0,0,0,.9);
 		/*opacity: .8;*/
 		font-weight: bold;
-		font-size: 50px;
+		font-size: 60px;
 	}
+	/* If The background is dark */
+	.title, .sub-title, #features-title{
+		color: white!important;
+	}
+	.bi-chevron-down {
+		fill: white;
+	}
+	/**/
 	.cta {
 		padding: 10px 30px 10px 30px;
 		font-size: 20px;

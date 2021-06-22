@@ -29,7 +29,7 @@ interface EmailService {
 class EmailService implements EmailService {
 	public async sendEmails(){
 		// Get all of the users 
-		const users = await UserModel.find({});
+		const users: any = await UserModel.find({});
 		// Send email to each one f them
 		for (var i = 0; i < users.length; i++) {
 			// code...
