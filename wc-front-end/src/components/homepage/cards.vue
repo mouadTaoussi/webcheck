@@ -49,10 +49,10 @@ export default {
 		display: grid;
 		grid-template-columns: 2fr 2fr 2fr;
 		grid-gap: 10px;
-		border-radius: 5px;
 		/*height: auto;*/
 	}
 	.cards-card {
+		border-radius: 5px!important;
 		border: var(--border);
 	}
 	.svg-reviewed {
