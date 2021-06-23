@@ -4,7 +4,7 @@
 			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
 			<h2>
 				<strong class="title text-white">
-					You Can Get a Full Report About Your Websites Performance And Speed
+					You Can Get a Full Report About Your <strong class="uptime-word">Websites Performance</strong> And Speed
 				</strong>
 			</h2>
 			<p class="text-white poppins">Get a Graph That Represents Your Websites Speed Over Last 10 Days!</p>
@@ -62,6 +62,10 @@ export default {
 	}
 	.title {
 		font-size: 40px;
+	}
+	.uptime-word {
+		color: white;
+		background-color: var(--primary-app);
 	}
 	@media only screen and (max-width: 600px) {
 		.previewapp {

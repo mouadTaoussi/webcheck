@@ -10,6 +10,7 @@
 :root {
   --primary-app : #0be881;
   --primary-app-darker : #05c46b;
+  --landingpage-color : #000853;
   /*--primary-app : #d83b01;*/
   --border      : .2px solid rgba(0,0,0,.1);
   --rectangle-above-title : red;

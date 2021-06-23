@@ -12,13 +12,13 @@
 			</div>
 			<div class="landingpage-content">
 				<h1 class="title poppins">
-					Get notified whether<br> your websites are down or not!
+					Monitor your website's <strong class="uptime-word">uptime</strong><br> and <strong class="downtime-word">downtime</strong>
 				</h1>
 				<p class="sub-title poppins">
 					You can get notified that your website just got down! to avoid losing traffic
 				</p>
 				<router-link to="/login">
-					<button class="cta local-btn local-btn-light local-mr-2 shadow">Get Started</button>
+					<button class="cta local-btn local-mr-2 shadow">Get Started</button>
 				</router-link>
 			<!-- 	<router-link to="">
 					<button class="cta local-btn local-btn-dark shadow">Learn more</button>
@@ -60,7 +60,7 @@ export default {
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		background-color:#0c2461 	;/* #f2f5fa  #f9f9f9 rgba(0,0,0,.1)*/
+		background-color: var(--landingpage-color);/* #f2f5fa  #f9f9f9 rgba(0,0,0,.1)*/
 		height: 650px;
 		border-top: var(--border);
 		border-bottom: var(--border);
@@ -89,11 +89,21 @@ export default {
 	}
 	/**/
 	.cta {
+		background-color: var(--primary-app);
+		color: white;
 		padding: 10px 30px 10px 30px;
 		font-size: 20px;
 	}
 	#features-title {
 		font-size: 12px;
+	}
+	.uptime-word {
+		color: white;
+		background-color: var(--primary-app);
+	}
+	.downtime-word {
+		color: white;
+		background-color: red;
 	}
 	@media only screen and (max-width: 600px) {
 		.title {

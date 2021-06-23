@@ -5,7 +5,7 @@
 			<!-- Feature one -->
 			<div>
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">Get Notified to your website <strong class="word">downtime</strong></h1>
+				<h1 class="feature-title poppins text-left">Get Notified to your website <strong class="downtime-word">downtime</strong></h1>
 				<p class="text-left poppins">
 					if one of your websites just goes down, then you'll get notified<br> as soon as possible! to fix the problem 
 				</p>
@@ -25,7 +25,7 @@
 			</div>
 			<div>
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">See your <strong class="word">websites logs</strong></h1>
+				<h1 class="feature-title poppins text-left">See your <strong class="uptime-word">websites logs</strong></h1>
 				<p class="text-left poppins">
 					You can get logs about your websites downtime logs, to see what's wrong<br> with your them!
 					and fix that problem. 
@@ -119,8 +119,13 @@ export default {
 	background-color: var(--primary-app-darker);
 	color: white;
 }
-.word {
-	color: var(--primary-app-darker);
+.uptime-word {
+	color: white;
+	background-color: var(--primary-app-darker);
+}
+.downtime-word {
+	color: white;
+	background-color: red;
 }
 @media only screen and (max-width: 800px) {
 	.features {
