@@ -3,7 +3,7 @@
 		<!-- <h1 class="text-center title poppins">With us you can ...</h1> -->
 		<div class="features">
 			<!-- Feature one -->
-			<div>
+			<div class="m-4">
 				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">Get Notified to your website <strong class="downtime-word">downtime</strong></h1>
 				<p class="text-left poppins">
@@ -21,9 +21,9 @@
 			</div>
 			<!-- Feature two -->
 			<div>
-				<div class="websitesStatus"></div>
+				<div class="websitesLogs"></div>
 			</div>
-			<div>
+			<div  class="m-4">
 				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">See your <strong class="uptime-word">websites logs</strong></h1>
 				<p class="text-left poppins">
@@ -38,9 +38,9 @@
 				</router-link>
 			</div>
 			<!-- Feature three -->
-			<div>
+			<div  class="m-4">
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">See your websites logs</h1>
+				<h1 class="feature-title poppins text-left">Track the <strong class="uptime-word">response time</strong> for your websites!</h1>
 				<p class="text-left poppins">
 					You can get logs about your websites downtime logs, to see what's wrong with your them!
 					and fix that problem. 
@@ -53,7 +53,7 @@
 				</router-link>
 			</div>
 			<div>
-				<div class="websitesStatus"></div>
+				<div class="WebsiteResponseTime"></div>
 			</div>
 		</div>
 	</section>
@@ -74,8 +74,8 @@ export default {
 
 <style lang="css" scoped>
 .local-container-10 {
-	width: 90%;
-	margin: 0 auto;
+	/*width: 90%;*/
+	/*margin: 0 auto;*/
 }
 .feature-title {
 	/*margin-top: 100px;*/
@@ -88,7 +88,17 @@ export default {
 	grid-gap: 20px;
 	grid-row-gap: 20px; 
 }
-.websitesStatus {
+.Notifications {
+	background-image: url('../.././assets/Notifications.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 100%;
+	height: 500px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.websitesLogs {
 	background-image: url('../.././assets/WebsitesLogs.svg');
 	background-repeat: no-repeat;
 	background-position: center;
@@ -98,13 +108,13 @@ export default {
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
-.Notifications {
-	background-image: url('../.././assets/Notifications.svg');
+.WebsiteResponseTime {
+	background-image: url('../.././assets/ResponseTimeGraph.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
 	width: 100%;
-	height: 500px;
+	height: 400px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
@@ -138,7 +148,7 @@ export default {
 	.feature-title {
 		margin-top: 10px;
 	}
-	.Notifications, .websitesStatus {
+	.Notifications, .websitesLogs {
 		display: none	
 	}
 

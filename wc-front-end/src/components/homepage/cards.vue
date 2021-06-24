@@ -1,26 +1,35 @@
 <template>
 	<section>
 		<!-- Will be a separate component -->
-		<div class="cards local-container-4">
+		<div class="cards mx-4">
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-reviewed"></div>
-				<h3>We'll check your websites every minute</h3>
-				<p class="poppins">
+				<h3>
+					<strong class="title">Monitor your websites every minute</strong>
+				</h3>
+				<p class="text poppins">
 					Our platform is designed to work for you to monitor your websites and notify you whenever a problem occurs.
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-windows"></div>
-				<h3>You'll be able to monitor max of 3 websites</h3>
-				<p class="poppins">
-					You can monitor 3 websites at the same time instead of creating another account and put one website.
+				<h3>
+					<strong class="title">Get logs about your <strong class="downtime-word-line">website downtime</strong>
+				</strong>
+				</h3>
+				<p class="text poppins">
+					You can get logs about your website downtime to help you target the problem and find appropriate solution!
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
 				<div class="svg-confirmation"></div>
-				<h3>Get notifications and emails about your websites status</h3>
-				<p class="poppins">
-					You'll receive Notifications and emails whenever a website just got down, with the reason to help you target your problem and fix it at the right time, instead of losing traffic!
+				<h3>
+					<strong class="title">
+						Get notified about your <strong class="downtime-word-line">website downtime</strong>
+					</strong>
+				</h3>
+				<p class="text poppins">
+					You'll get notified whenever a website just got down, to fix it, instead of losing traffic!
 				</p>
 			</div>
 		</div>
@@ -53,7 +62,14 @@ export default {
 	}
 	.cards-card {
 		border-radius: 5px!important;
-		border: var(--border);
+		/*border: var(--border);*/
+	}
+	.title {
+		font-size: rgba(0,0,0,.8);
+	}
+	.text {
+		color: rgba(0,0,0,.5);
+		font-size: 18px;
 	}
 	.svg-reviewed {
 		background-image: url('../.././assets/undraw_Reviewed_docs_re_9lmr.svg');
@@ -87,6 +103,12 @@ export default {
 		margin-top: 40px;
 		margin-bottom: 40px;
 
+	}
+	.uptime-word-line {
+		color: var(--primary-app);
+	}
+	.downtime-word-line {
+		color: red;
 	}
 	@media only screen and (max-width: 800px) {
 		section {
