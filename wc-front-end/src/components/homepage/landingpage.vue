@@ -106,6 +106,9 @@ export default {
 		background-color: red;
 	}
 	@media only screen and (max-width: 600px) {
+		.landingpage {
+			height: 450px;
+		}
 		.title {
 			font-size: 30px;
 		}

@@ -62,44 +62,45 @@ export default {
 	}
 	.cards-card {
 		border-radius: 5px!important;
+		text-align: left;
 		/*border: var(--border);*/
 	}
 	.title {
-		font-size: rgba(0,0,0,.8);
+		font-size: rgba(0,0,0,.9);
 	}
 	.text {
 		color: rgba(0,0,0,.5);
 		font-size: 18px;
 	}
 	.svg-reviewed {
-		background-image: url('../.././assets/undraw_Reviewed_docs_re_9lmr.svg');
+		background-image: url('../.././assets/MonitorWebsitesCards.svg');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
-		width: 100%;
-		height: 150px;
+		width: 115px;
+		height: 80px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 
 	}
 	.svg-windows {
-		background-image: url('../.././assets/undraw_windows_q9m0.svg');
+		background-image: url('../.././assets/WebsiteLogsCards.svg');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
-		width: 100%;
-		height: 150px;
+		width: 115px;
+		height: 80px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 
 	}
 	.svg-confirmation {
-		background-image: url('../.././assets/undraw_Confirmation_re_b6q5.svg');
+		background-image: url('../.././assets/WebsiteDownCards.svg');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
-		width: 100%;
-		height: 150px;
+		width: 115px;
+		height: 80px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 
