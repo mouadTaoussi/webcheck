@@ -29,6 +29,10 @@ npm install
 ```
 
 ### Create ``.env`` file and add those elements within your credentiels below:
+<p>But before that, you need to generate vapid keys for use in webpush protocol !!!</p>
+```
+web-push generate-vapid-keys [--json]
+```
 
 ```
 touch .env && nano .env
