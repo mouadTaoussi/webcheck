@@ -1,9 +1,6 @@
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-// dotenv.config({ path: './.env' });
-// dotenv.config({ path: './.env' });
-// console.log(process.env.EMAIL);
-// console.log(process.env.VAPID_PUBLIC_KEY);
+dotenv.config({ path: './.env' });
 
 type Config = {
 	email                : string | undefined,
@@ -29,8 +26,8 @@ const application_config : Config  = {
 	jwt_secret           : process.env.JWT_SECRET,
 	// front_end_origin     : "http://localhost:8080",
 	// front_end_origin     : "*",
-	websites_limit       : 6,
 	front_end_origin     : "https://webcheck.vercel.app",
+	websites_limit       : 6,
 }
 
 export default application_config;
