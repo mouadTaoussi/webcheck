@@ -8,6 +8,7 @@
 <h6 align="center">
 	<strong>An application that check website if it down and stopped working or not! and notify the website's owner to get it fixed ASAP 😎</strong>
 </h6>
+
 #  Get Up and running in local env
 
 ## Note : Front-end and the Back-end are deployed separately (vercel-heroku).
