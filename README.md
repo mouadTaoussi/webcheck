@@ -5,9 +5,9 @@
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreview.svg"/>
 </p>
 
-# WebCheck
-An application that check website if it down and stopped working or not! and notify the website's owner to get it fixed ASAP
-
+<h6 align="center">
+	<strong>An application that check website if it down and stopped working or not! and notify the website's owner to get it fixed ASAP 😎</strong>
+</h6>
 #  Get Up and running in local env
 
 ## Note : Front-end and the Back-end are deployed separately (vercel-heroku).
@@ -69,8 +69,8 @@ const application_config : Config  = {
 	// Edit those :
 	// front_end_origin     : "http://localhost:8080", <-- if you are in local development
 	// front_end_origin     : "*", <-- if you allowed all origins accecing your back-end server
-	// front_end_origin     : "https://yourfrontendappdomain.com", <-- if you deployed the frontend to a static page hosting service
-	// front_end_origin     : "", <-- if your frontend app and the back-end server are in the same host
+	// front_end_origin     : "https://yourfrontendappdomain.com", <-- if you deployed the frontend to a different hosting service
+	// front_end_origin     : "/", <-- if your frontend app and the back-end server are in the same host
 	websites_limit       : 6,
 }
 
