@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Authentication_service_1 = __importDefault(require("./Authentication.service"));
+const Check_service_1 = __importDefault(require("../Check/Check.service"));
 const jsonwebtoken_1 = require("jsonwebtoken");
 const nodemailer_1 = require("nodemailer");
 const bcrypt_1 = require("bcrypt");
 const uuid_1 = require("uuid");
 const main_config_1 = __importDefault(require(".././main.config"));
 const userService = new Authentication_service_1.default();
+const websiteService = new Check_service_1.default();
 class AuthenticationController {
     async getAuthenticatedUser(request, response) {
         const user = request.user;
@@ -57,8 +59,11 @@ class AuthenticationController {
             body.password = hashed_password;
             body.active = true;
             body.websitesCount = 1;
+            const initialWebsite = body.websites[0];
+            body.websites = [];
             const new_user = await userService.addUser(body);
             if (new_user.saved == true) {
+                const addingWebsite = await websiteService.addWebsite(new_user.user._id, initialWebsite);
                 const user_token = jsonwebtoken_1.sign({ id: new_user.user._id, email: new_user.user.email }, main_config_1.default.jwt_secret);
                 response.status(new_user.status).send({ registered: true, message: "Registered successfully!", user_token: user_token });
             }

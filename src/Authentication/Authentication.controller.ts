@@ -1,5 +1,6 @@
 import AuthenticationService from './Authentication.service';
-import { AuthenticationControllerInterface, UserBody, UserInterface, UserUpdate, subscriptionObject } from './Authentication.interface';
+import CheckWebsitesService from '../Check/Check.service';
+import { AuthenticationControllerInterface, websiteType, UserBody, UserInterface, UserUpdate, subscriptionObject } from './Authentication.interface';
 import { sign, verify, decode } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 import { Request,Response, NextFunction } from 'express';
@@ -8,6 +9,7 @@ import { v4 } from 'uuid';
 import application_config from ".././main.config";
 
 const userService = new AuthenticationService();
+const websiteService = new CheckWebsitesService();
 
 class AuthenticationController implements AuthenticationControllerInterface{
 
@@ -103,10 +105,23 @@ class AuthenticationController implements AuthenticationControllerInterface{
 			body.active        = true;
 			body.websitesCount = 1;
 
+			// Store the website in a constant
+			const initialWebsite : websiteType | any = body.websites[0];
+
+			// Remove the current website from the user Document
+			body.websites = [];
+			
 			// Store new user in the database
 			const new_user = await userService.addUser(body);
+
 			// Check whether saved or not
 			if (new_user.saved == true) {
+
+				// Add website by using its service to guarantee that would be added with other documents: 
+				//		<WebsiteLogSchema> 
+				//		<websitesResponsesTimeInDaySchema> 
+				//		<websiteAverageTimeInDaySchema>
+				const addingWebsite = await websiteService.addWebsite(new_user.user._id,initialWebsite);
 
 				// sign a token
 				const user_token = sign({ id:new_user.user._id,email: new_user.user.email } ,application_config.jwt_secret!);
