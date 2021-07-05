@@ -1,6 +1,6 @@
 {
   "name": "websitecheck",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "an app that check website if it down and stopped working or not",
   "main": "src/main.ts",
   "scripts": {
