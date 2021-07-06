@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoPreview.png"/>
+  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoOfReadme.svg"/>
 </p>
 <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreview.svg"/>
+  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreviewOfReadme.svg"/>
 </p>
 
 <h6 align="center">
