@@ -9,7 +9,7 @@
 </p> -->
 
 <h6 align="center">
-	<strong>An application that check website if it down and stopped working or not! and notify the website's owner to get it fixed ASAP 😎</strong>
+	<strong>An application that check website if it down and stopped working or not!<br> and it notifies the website's owner to get it fixed ASAP 😎</strong>
 </h6>
 
 #  Get Up and running in local env
