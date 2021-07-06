@@ -1,9 +1,9 @@
 <p align="center">
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoOfReadme.svg"/>
 </p>
-<p align="center">
+<!-- <p align="center">
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreviewOfReadme.svg"/>
-</p>
+</p> -->
 
 <h6 align="center">
 	<strong>An application that check website if it down and stopped working or not! and notify the website's owner to get it fixed ASAP 😎</strong>
