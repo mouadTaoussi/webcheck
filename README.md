@@ -1,3 +1,6 @@
+<br>
+<br>
+<br>
 <p align="center">
   <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoOfReadme.svg"/>
 </p>
