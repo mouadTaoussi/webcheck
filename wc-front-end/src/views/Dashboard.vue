@@ -14,6 +14,8 @@
 		      	<h3 class="text-left local-mb-4">Your Websites</h3>
 		      	<div class="websites-area">
 		      		<websites v-bind:websites="userWebsites"></websites>
+		      		<!-- No Data -->
+		      		<emptycontent v-if="!userWebsites"></emptycontent>
 		      	</div>
 		      </div>
 		      <div class="tab-pane fade" id="list-websites-logs" role="tabpanel" aria-labelledby="list-websites-logs-list">  
@@ -75,6 +77,7 @@ import websitelogs from '@/components/dashboard/websitelogs.vue';
 import average_response_time_websites from '@/components/dashboard/average_response_time_websites.vue'
 import useraccount from '@/components/dashboard/useraccount.vue';
 import settings from '@/components/dashboard/settings.vue';
+import emptycontent from '@/components/dashboard/emptycontent.vue';
 import api_config from '../.././api.config.js';
 
 export default {
@@ -87,7 +90,8 @@ export default {
   	websitelogs,
   	average_response_time_websites,
   	useraccount,
-  	settings
+  	settings,
+  	emptycontent
   },
 
   data () {

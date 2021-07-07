@@ -24,6 +24,8 @@
 					v-bind:log="log">	
 				</websitelog>
 			</div>
+			<!-- No Data -->
+			<emptycontent v-if="!logsToFilter"></emptycontent>
 		</section>
 	</section>
 </template>
@@ -32,6 +34,7 @@
 import websitelog from './websitelog.vue';
 import loadingspinner from '.././loadingspinner.vue';
 import api_config from "../../.././api.config.js";
+import emptycontent from "./emptycontent.vue"
 
 export default {
 
@@ -41,7 +44,8 @@ export default {
 
   components: {
   	websitelog,
-  	loadingspinner
+  	loadingspinner,
+  	emptycontent
   },
 
   data () {
