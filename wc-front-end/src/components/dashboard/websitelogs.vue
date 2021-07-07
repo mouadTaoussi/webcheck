@@ -25,7 +25,7 @@
 				</websitelog>
 			</div>
 			<!-- No Data -->
-			<emptycontent v-if="!logsToFilter"></emptycontent>
+			<emptycontent v-if="!logsToFilter || logsToFilter.length == 0"></emptycontent>
 		</section>
 	</section>
 </template>

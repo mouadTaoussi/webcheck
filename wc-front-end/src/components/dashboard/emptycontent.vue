@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<div class="svg"></div>
-		<p class="text-center">No content to show</p>
+		<p class="text-center poppins">No content to show</p>
 	</main>
 </template>
 

@@ -12,7 +12,7 @@
 			</average_response_chart>
 		</div>
 		<!-- No Data -->
-		<emptycontent v-if="!getAverageResponseTimeForUserWebsites"></emptycontent>
+		<emptycontent v-if="!getAverageResponseTimeForUserWebsites || getAverageResponseTimeForUserWebsites.length == 0"></emptycontent>
 	</section>
 </template>
 
