@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<!-- Add website modal -->
-		<addwebsite v-bind:index="this.index"></addwebsite>
+		<addwebsite v-bind:index="index"></addwebsite>
 
 		<div class="svg"></div>
 		<!-- <p class="text-center poppins">No content to show</p> -->
@@ -16,6 +16,9 @@
 
 	  name: 'emptycontent',
 
+	  // The index used to locate the targeted modal that we want to show, 
+	  // because <addwebsite> modal is replicated three times over the dashboard tabs 
+	  // <websites-logs-time>
 	  props: ['index'],
 
 	  components: {

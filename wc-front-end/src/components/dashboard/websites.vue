@@ -49,11 +49,11 @@
 	    }
 	  },
 	  mounted(){},
+	  
 	  methods : {
 	  	// To open the modal
 		toggleModal : ()=>{
 			const modal = document.querySelectorAll('.add-website-modal')[0];
-			console.log(modal)
 			if (modal.classList.contains('is-active')) {
 				modal.classList.remove('is-active')
 			}

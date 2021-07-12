@@ -23,26 +23,23 @@
 				></alert>
 				<!-- Content ... -->
 				<input
-					id="website_name"
 					v-model="newWebsite.name"
-					class="local-input form-control local-my-2"
+					class="website_name local-input form-control local-my-2"
 					placeholder="Your website name"
 					name="name"
 					type="text"
 				/>
 				<textarea
-					id="description"
 					v-model="newWebsite.description"
-					class="local-input form-control local-my-2"
+					class="description local-input form-control local-my-2"
 					placeholder="Put a short description for the website or the api"
 					name="description"
 					type="text"
 				></textarea>
 				<p class="text-left"></p>
 				<input
-					id="website"
 					v-model="newWebsite.website"
-					class="local-input form-control local-my-2"
+					class="website local-input form-control local-my-2"
 					placeholder="You can put the website link or the API link to keep tracking"
 					name="website_url"
 					type="text"
@@ -162,15 +159,15 @@
 			validateUserWebsite : function(){
 
 		  		if (this.newWebsite.name === "") {
-		  			document.querySelector('#website_name').style.borderColor = "red";
+		  			document.querySelectorAll('.website_name')[this.index].style.borderColor = "red";
 		  			return false;
 		  		}
 		  		else if (this.newWebsite.description === "") {
-		  			document.querySelector('#description').style.borderColor = "red";
+		  			document.querySelectorAll('.description')[this.index].style.borderColor = "red";
 		  			return false;
 		  		}
 		  		else if (this.newWebsite.website === "") {
-		  			document.querySelector('#website').style.borderColor = "red";
+		  			document.querySelectorAll('.website')[this.index].style.borderColor = "red";
 		  			return false;
 		  		}
 		  		else if ( 
@@ -192,8 +189,7 @@
 		  	},
 		  	// To Close the modal
 		  	toggleModal : function(){
-				const modal = document.querySelector('.add-website-modal')[this.index];
-				console.log(modal)
+				const modal = document.querySelectorAll('.add-website-modal')[this.index];
 				if (modal.classList.contains('is-active')) {
 					modal.classList.remove('is-active')
 				}
