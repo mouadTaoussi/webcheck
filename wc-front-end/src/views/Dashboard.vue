@@ -15,7 +15,7 @@
 		      	<div class="websites-area">
 		      		<websites v-bind:websites="userWebsites"></websites>
 		      		<!-- No Data -->
-		      		<emptycontent v-if="!userWebsites || userWebsites.length == 0"></emptycontent>
+		      		<emptycontent v-if="!userWebsites || userWebsites.length == 0" index="0"></emptycontent>
 		      	</div>
 		      </div>
 		      <div class="tab-pane fade" id="list-websites-logs" role="tabpanel" aria-labelledby="list-websites-logs-list">  

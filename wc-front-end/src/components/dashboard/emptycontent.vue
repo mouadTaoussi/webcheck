@@ -1,21 +1,45 @@
 <template>
 	<main>
+		<!-- Add website modal -->
+		<addwebsite v-bind:index="this.index"></addwebsite>
+
 		<div class="svg"></div>
-		<p class="text-center poppins">No content to show</p>
+		<!-- <p class="text-center poppins">No content to show</p> -->
+		 <button class="local-btn add-website-btn local-mr-2 shadow" v-on:click="toggleModal()">+ Add Website</button>
 	</main>
 </template>
 
 <script>
-export default {
+	import addwebsite from './addwebsite.vue';
 
-  name: 'emptycontent',
+	export default {
 
-  data () {
-    return {
+	  name: 'emptycontent',
 
-    }
-  }
-}
+	  props: ['index'],
+
+	  components: {
+	  	addwebsite
+	  },
+
+	  data () {
+	    return {
+
+	    }
+	  },
+	  methods : {
+			toggleModal : function(){
+				const modal = document.querySelectorAll('.add-website-modal')[this.index];
+				console.log(modal)
+				if (modal.classList.contains('is-active')) {
+					modal.classList.remove('is-active')
+				}
+				else if (!modal.classList.contains('is-active')){
+					modal.classList.add('is-active')	
+				}
+			},
+		}
+	}
 </script>
 
 <style lang="css" scoped>
@@ -27,5 +51,13 @@ export default {
 		height: 300px;
 		width: 400px;
 		margin: 0 auto!important;
+	}
+	/*.local-btn-success {
+		background-color: var(--primary-app);
+		color: white;
+	}*/
+	.add-website-btn {
+		background-color: var(--primary-app-darker);
+		color: white;
 	}
 </style>
