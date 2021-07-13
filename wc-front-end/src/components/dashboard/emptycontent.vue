@@ -1,16 +1,17 @@
 <template>
 	<main>
 		<!-- Add website modal -->
-		<addwebsite v-bind:index="index"></addwebsite>
+		<!-- <addwebsite v-bind:index="index"></addwebsite> -->
 
 		<div class="svg"></div>
 		<!-- <p class="text-center poppins">No content to show</p> -->
-		 <button class="local-btn add-website-btn local-mr-2 shadow" v-on:click="toggleModal()">+ Add Website</button>
+		<!-- <button class="local-btn add-website-btn local-mr-2 shadow" v-on:click="toggleModal()">+ Add Website</button> -->
+		<p class="text-center">No content to show</p>
+
 	</main>
 </template>
 
 <script>
-	import addwebsite from './addwebsite.vue';
 
 	export default {
 
@@ -19,10 +20,8 @@
 	  // The index used to locate the targeted modal that we want to show, 
 	  // because <addwebsite> modal is replicated three times over the dashboard tabs 
 	  // <websites-logs-time>
-	  props: ['index'],
 
 	  components: {
-	  	addwebsite
 	  },
 
 	  data () {
@@ -30,18 +29,6 @@
 
 	    }
 	  },
-	  methods : {
-			toggleModal : function(){
-				const modal = document.querySelectorAll('.add-website-modal')[this.index];
-				console.log(modal)
-				if (modal.classList.contains('is-active')) {
-					modal.classList.remove('is-active')
-				}
-				else if (!modal.classList.contains('is-active')){
-					modal.classList.add('is-active')	
-				}
-			},
-		}
 	}
 </script>
 
