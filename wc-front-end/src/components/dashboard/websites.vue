@@ -100,6 +100,7 @@
 	import website from './website.vue';
 	import addwebsite from './addwebsite.vue';
 	import api_config from "../../.././api.config.js";
+	import alert from '.././alert.vue';
 
 	export default {
 
@@ -109,6 +110,7 @@
 	  components: {
 	  	website,
 	  	addwebsite,
+	  	alert
 	  },
 
 	  data () { ////
