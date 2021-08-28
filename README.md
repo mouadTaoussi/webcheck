@@ -2,10 +2,10 @@
 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/LogoOfReadme.svg"/>
+  <img src="https://github.com/mouadTaoussi/webcheck/blob/master/wc-front-end/src/assets/LogoOfReadme.svg"/>
 </p>
 <!-- <p align="center">
-  <img src="https://github.com/mouadTaoussi/checkwebsite/blob/master/wc-front-end/src/assets/DashboardPreviewOfReadme.svg"/>
+  <img src="https://github.com/mouadTaoussi/webcheck/blob/master/wc-front-end/src/assets/DashboardPreviewOfReadme.svg"/>
 </p> -->
 
 <h4 align="center">
@@ -13,9 +13,9 @@
 </h4>
 
 <h3 align="center">
-  <a href="https://github.com/mouadTaoussi/checkwebsite/blob/master/CONTRIBUTING.md">Contribute</a>
+  <a href="https://github.com/mouadTaoussi/webcheck/blob/master/CONTRIBUTING.md">Contribute</a>
   <span> · </span>
-  <a href="https://github.com/mouadTaoussi/checkwebsite/blob/master/CODE_OF_CONDUCT.md">Code of conduct</a>
+  <a href="https://github.com/mouadTaoussi/webcheck/blob/master/CODE_OF_CONDUCT.md">Code of conduct</a>
 </h3>
 
 ---
