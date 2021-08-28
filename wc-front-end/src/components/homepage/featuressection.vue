@@ -12,9 +12,6 @@
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
 				</router-link>
-				<router-link to="">
-					<button class="float-left local-btn local-btn-dark shadow">Learn more</button>
-				</router-link>
 			</div>
 			<div>
 				<div class="Notifications"></div>
@@ -33,9 +30,6 @@
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
 				</router-link>
-				<router-link to="">
-					<button class="float-left local-btn local-btn-dark shadow">Learn more</button>
-				</router-link>
 			</div>
 			<!-- Feature three -->
 			<div  class="m-4">
@@ -47,9 +41,6 @@
 				</p>
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
-				</router-link>
-				<router-link to="">
-					<button class="float-left local-btn local-btn-dark shadow">Learn more</button>
 				</router-link>
 			</div>
 			<div>
