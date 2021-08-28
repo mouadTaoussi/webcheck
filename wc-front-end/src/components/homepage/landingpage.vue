@@ -22,7 +22,7 @@
 				</router-link>
 				<a href="https://github.com/mouadTaoussi/webcheck">
 					<button class="cta local-btn local-mr-2 local-btn-dark shadow">Github</button>
-				</router-link>
+				</a>
 			<!-- 	<router-link to="">
 					<button class="cta local-btn local-btn-dark shadow">Learn more</button>
 				</router-link> -->
