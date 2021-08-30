@@ -1,4 +1,12 @@
-##  Init the project in local env
+## Files structure
+
+| Website&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
+| ----------------------- | ------------------ |
+| [wc-front-end](https://github.com/mouadTaoussi/webcheck/tree/main/wc-front-end)| Front-end SPA of the app, Written in VueJS|
+| [src](https://github.com/mouadTaoussi/webcheck/tree/main/src)| Back-end API, Written in Typescript |
+| [dist](https://github.com/mouadTaoussi/webcheck/tree/main/dist)| Compiled code to Javascript of  the API server |
+
+## Init the project in local env
 
 ### Note : Front-end and the Back-end are deployed separately (vercel-heroku).
 <p>There are some of the configurations related to cors</p>
