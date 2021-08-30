@@ -28,21 +28,21 @@ You can now use an **Open source** application that fit your needs if you ever c
 
 ### Technologies
 #### Back-End side
-- Typecript
-- NodeJS
-- GraphQL / Apollo
-- ExpressJS
-- MongoDB / Mongoose
-- JSON Web Tokens
-- Nodemailer
-- [WebPush](https://github.com/web-push-libs/web-push)
-- [Node schedule](https://github.com/node-schedule/node-schedule)
+- **Typecript** : Back-end main language
+- **NodeJS** : Back-end runtime
+- **GraphQL / Apollo** : Main API Stack
+- **ExpressJS** : Used for Authentication
+- **MongoDB / Mongoose** : Data storage
+- **JSON Web Tokens** : Authentication
+- **Nodemailer** : Down time Notifications & Reset Password
+- **[WebPush](https://github.com/web-push-libs/web-push)** : Local notifications
+- **[Node schedule](https://github.com/node-schedule/node-schedule)** : Background Jobs
 #### Front-End side
-- VueJS
-- Bootstrap
-- Webpack
-- Apollo
-- [AntVG2Plot](https://g2plot.antv.vision/)
+- **VueJS** : Front-end SPA
+- **Bootstrap** : Initial styles
+- **Webpack** : Front-end bundle
+- **Apollo** : GraphQL API Client
+- **[AntVG2Plot](https://g2plot.antv.vision/)** : Charts
 
 ### Contributing
 If you found yourself about to give something to the project (eg: more orianted to open source, improve the app...) we are welcoming you! 😊<br />
