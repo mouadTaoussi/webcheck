@@ -7,7 +7,7 @@
 				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">Get Notified to your website <strong class="downtime-word">downtime</strong></h1>
 				<p class="text-left poppins">
-					if one of your websites just goes down, then you'll get notified<br> as soon as possible! to fix the problem 
+					if one of your websites just went down, you'll get notified<br> to fix the problem that caused the issue.
 				</p>
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
