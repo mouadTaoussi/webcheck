@@ -18,32 +18,32 @@
 			</div>
 			<div class="child poppins">
 				<p class="text-left text-white">
-					<router-link to="/login" tag="c">Log in</router-link>
+					<router-link to="/login" tag="a">Log in</router-link>
 				</p>
 				<p class="text-left text-white">
-					<router-link to="/register" tag="c">Register</router-link>
+					<router-link to="/register" tag="a">Register</router-link>
 				</p>
 				<p class="text-left text-white">
-					<router-link to="/resetPassword" tag="c"
+					<router-link to="/resetPassword" tag="a"
 						>Reset Password</router-link
 					>
 				</p>
 			</div>
 			<div class="child poppins">
 				<p class="text-left text-white">
-					<router-link to="/contact" tag="c">Contact</router-link>
+					<router-link to="/contact" tag="a">Contact</router-link>
 				</p>
 				<p class="text-left text-white">
-					<router-link to="/about" tag="c">About</router-link>
+					<router-link to="/about" tag="a">About</router-link>
 				</p>
 				<p class="text-left text-white">
-					<router-link to="/privacypolicy" tag="c"
+					<router-link to="/privacypolicy" tag="a"
 						>Privacy & Policy</router-link
 					>
 				</p>
 			</div>
 		</div>
-		<p class="text-center poppins text-white">devmt development.</p>
+		<p class="text-center poppins text-white">Created with <i class="fab fa-heart"></i>by <a href='github.com/mouadTaoussi'>Mouad Taoussi</a>.</p>
 	</section>
 </template>
 

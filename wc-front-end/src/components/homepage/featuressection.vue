@@ -5,7 +5,7 @@
 			<!-- Feature one -->
 			<div class="m-4">
 				<div class="rectangle-above-title"></div>
-				<h1 class="feature-title poppins text-left">Get Notified to your website <strong class="downtime-word">downtime</strong></h1>
+				<h1 class="feature-title poppins text-left">Get Notified to your website's <strong class="downtime-word">downtime</strong></h1>
 				<p class="text-left poppins">
 					if one of your websites just went down, you'll get notified<br> to fix the problem that caused the issue.
 				</p>
@@ -24,8 +24,7 @@
 				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">See your <strong class="uptime-word">websites logs</strong></h1>
 				<p class="text-left poppins">
-					You can get logs about your websites downtime logs, to see what's wrong<br> with your them!
-					and fix that problem. 
+					Get logs about your website's downtime, in order see what's wrong<br> with it!
 				</p>
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
@@ -36,8 +35,7 @@
 				<div class="rectangle-above-title"></div>
 				<h1 class="feature-title poppins text-left">Track the <strong class="uptime-word">response time</strong> for your websites!</h1>
 				<p class="text-left poppins">
-					You can get logs about your websites downtime logs, to see what's wrong with your them!
-					and fix that problem. 
+					Track the response time of your websites everyday. to see a big image of each of your website's performance.
 				</p>
 				<router-link to="/login">
 					<button class="cta float-left local-btn local-mr-2 shadow">Get Started</button>
