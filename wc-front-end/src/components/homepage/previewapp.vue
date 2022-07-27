@@ -4,10 +4,10 @@
 			<!-- <img class="previewapp-app" src="../.././assets/previewapp.png"> -->
 			<h2>
 				<strong class="title text-white">
-					You Can Get a Full Report About Your <strong class="uptime-word">Websites Performance</strong> And Speed
+					Get a Full Report About Your <strong class="uptime-word">Website's Performance</strong> And Speed
 				</strong>
 			</h2>
-			<p class="text-white poppins">Get a Graph That Represents Your Websites Speed Over Last 10 Days!</p>
+			<p class="text-white poppins">Get a graph that represents your website's speed over last 10 Days!</p>
 			<router-link to="/login">
 				<button class="local-btn bg-light text-dark local-shadow local-m-2">Log in</button>
 			</router-link>

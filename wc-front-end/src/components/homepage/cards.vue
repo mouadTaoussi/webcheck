@@ -8,7 +8,7 @@
 					<strong class="title">Monitor your websites every minute</strong>
 				</h3>
 				<p class="text poppins">
-					Our platform is designed to work for you to monitor your websites and notify you whenever a problem occurs.
+					Our platform is designed to monitor your websites and notify you whenever a problem occurs.
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
@@ -18,7 +18,7 @@
 				</strong>
 				</h3>
 				<p class="text poppins">
-					You can get logs about your website downtime to help you target the problem and find appropriate solution!
+					Get logs about your website downtime to help you targeting the problem and find appropriate solution!
 				</p>
 			</div>
 			<div class="local-card cards-card shadow local-p-4">
@@ -29,7 +29,7 @@
 					</strong>
 				</h3>
 				<p class="text poppins">
-					You'll get notified whenever a website just got down, to fix it, instead of losing traffic!
+					You'll get notified whenever a website just went down, to fix it, instead of losing traffic!
 				</p>
 			</div>
 		</div>
