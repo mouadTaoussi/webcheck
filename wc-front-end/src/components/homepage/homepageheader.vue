@@ -42,7 +42,7 @@
 						<i class="fab fa-github p-2"></i>
 					</a>
 
-					<a target="_blank" href="https://www.instagram.com/devmt_/">
+					<a target="_blank" href="https://www.instagram.com/mouadtaoussi_/">
 						<i class="fab fa-instagram p-2"></i>
 					</a>
 

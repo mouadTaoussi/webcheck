@@ -14,7 +14,9 @@
 	      <!-- brs -->
 	      <h4 class="text-left">Who am i?</h4>
 	      <p class="text-left">
-	        i'm a passionate software developer whose responsible about building that app and commeting to work and improve it for you!
+	        This SaaS was created by a passionate software developer who want to improve the experience while using it, and he handle the technical issues. 
+	        The Project is fully open source and anyone can contribute to it, so he can add the feature he want the most, to bring the project into prefessional.
+
 	      </p>
 	      <!-- brs -->
 	      <br>
@@ -22,16 +24,16 @@
 	       <!-- brs -->
 	      <h4 class="text-left">Contact</h4>
 	      <p class="text-left">
-	        Email: mouadtaoussi0@gmail.com
+	        Email: <a href="mailto:mouadtaoussi0@gmail.com">mouadtaoussi0@gmail.com</a>
 	      </p>
 	      <div class="float-left">
 	      	<a target="_blank" href='https://github.com/mouadTaoussi/'>
 				<i class="fab fa-github fa-2x text-dark p-2"></i>
 			</a>
-			<a target="_blank" href='https://www.instagram.com/devmt_/'>
+			<a target="_blank" href='https://www.instagram.com/mouadtaoussi_/'>
 				<i class="fab fa-instagram fa-2x text-dark p-2"></i>
 			</a>
-			<a target="_blank" href=''>
+			<a target="_blank" href='https://twitter.com/mouadTaoussi2'>
 				<i class="fab fa-twitter fa-2x text-dark p-2"></i>
 			</a>
 		  </div>

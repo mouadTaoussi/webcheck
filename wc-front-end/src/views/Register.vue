@@ -18,7 +18,7 @@
 					<div width="100px"  height="50px" class="brand-small-sevices"></div>
 				</router-link>
 				<h1 class="text-left local-mb-2">Register</h1>
-				<p class="text-left info-text poppins">You need to allow receiving notifications. after registering</p>
+				<p class="text-left info-text poppins">You have to allow receiving notifications. after successful registering!</p>
 				<!-- Alert -->
 				<alert 
 					v-bind:style="'display:' + alertStatus.display" 
