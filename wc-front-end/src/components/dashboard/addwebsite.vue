@@ -25,14 +25,14 @@
 				<input
 					v-model="newWebsite.name"
 					class="website_name local-input form-control local-my-2"
-					placeholder="Your website name"
+					placeholder="Enter website's name"
 					name="name"
 					type="text"
 				/>
 				<textarea
 					v-model="newWebsite.description"
 					class="description local-input form-control local-my-2"
-					placeholder="Put a short description for the website or the api"
+					placeholder="Write a short description about the website or the API"
 					name="description"
 					type="text"
 				></textarea>
@@ -40,7 +40,7 @@
 				<input
 					v-model="newWebsite.website"
 					class="website local-input form-control local-my-2"
-					placeholder="You can put the website link or the API link to keep tracking"
+					placeholder="paste website's URL or the API to keep track"
 					name="website_url"
 					type="text"
 				/>
