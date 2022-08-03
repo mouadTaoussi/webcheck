@@ -40,7 +40,7 @@
 				<input
 					v-model="newWebsite.website"
 					class="website local-input form-control local-my-2"
-					placeholder="paste website's URL or the API to keep track"
+					placeholder="Paste website's URL or the API to keep track"
 					name="website_url"
 					type="text"
 				/>

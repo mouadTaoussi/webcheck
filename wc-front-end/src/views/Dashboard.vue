@@ -51,7 +51,7 @@
 		      		></useraccount>
 	      		</div>
 			  </div>
-		      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+		     <!--  <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
 		      	<h3 class="text-left local-mb-4">Settings</h3>
 		      	<div class="user-settings">
 		      		<settings
@@ -60,7 +60,7 @@
 		      			v-bind:displayTheme="user.displayTheme"
 		      		></settings>
 	      		</div>
-			  </div>
+			  </div> -->
 		    </div>
 		  </div>
 		</div>
@@ -76,7 +76,7 @@ import websites from '@/components/dashboard/websites';
 import websitelogs from '@/components/dashboard/websitelogs.vue';
 import average_response_time_websites from '@/components/dashboard/average_response_time_websites.vue'
 import useraccount from '@/components/dashboard/useraccount.vue';
-import settings from '@/components/dashboard/settings.vue';
+// import settings from '@/components/dashboard/settings.vue';
 import emptycontent from '@/components/dashboard/emptycontent.vue';
 import api_config from '../.././api.config.js';
 
@@ -90,7 +90,7 @@ export default {
   	websitelogs,
   	average_response_time_websites,
   	useraccount,
-  	settings,
+  	// settings,
   	emptycontent
   },
 
