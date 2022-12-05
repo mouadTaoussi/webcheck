@@ -9,7 +9,7 @@
 </p> -->
 
 <h4 align="center">
-	<strong>An application that check website if it down and stopped working or not!<br> and it notifies the website's owner to get it fixed ASAP 😎</strong>
+	<strong>Application that monitors your website's downtime!<br> and it notifies the website's owner to get it fixed ASAP 😎</strong>
 </h4>
 
 <h3 align="center">
