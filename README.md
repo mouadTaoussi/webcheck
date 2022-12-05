@@ -21,7 +21,7 @@
 ---
 
 ### What is Webcheck ?
-You'll be able to put your website link and track it's downtime! when it down the app will notify you by a notification to your device (if you enabled notifications) as well as receiving emails.
+put your website link to monitor it's downtime! when it down the app will notify you by a notification to your device (if you enabled notifications) as well as receiving emails.
 Also you'll get every downtime log describing the reason about the issue that could happen.
 Finally you get the average response time each day during last 10 days!
 You can now use an **Open source** application that fit your needs if you ever caring about your **data** and **personnel data**.
