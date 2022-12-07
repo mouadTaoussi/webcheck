@@ -60,8 +60,8 @@ If you have an idea needs to be implemented in **Webcheck**, First Open up new i
 <!-- - If any similar PR already exists, mention it, -->
 
 #### Reporting an issue
-When you found an issue in the application, any kind, follow the same way above but with some changes:
-Labels should be **bug** and other labels related to the issue listed in the labels section, then you decide whether you'll work on it or not. 
+When you found an issue in the application, any kind, please follow the same way like above but with some changes:
+Labels should be **bug** and other labels related to the issue listed in the labels section, then you decide whether you'll work on it or not, by assigning yourself
 
 ### Code of conduct 
 Please read the [code of conduct](https://github.com/mouadTaoussi/webcheck/blob/main/CODE_OF_CONDUCT.md)
