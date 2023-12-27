@@ -27,7 +27,7 @@ npm install
 ```
 
 ### Create ``.env`` file and add those elements within your credentiels below:
-<p>But before that, you need to generate vapid keys for use in webpush protocol !!!</p>
+<p>But before that, you need to generate vapid keys for use in webpush protocol !</p>
 
 ```
 web-push generate-vapid-keys [--json]
@@ -81,7 +81,7 @@ const application_config : Config  = {
 app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
 ```
 
-## then comment out that snippet below:
+## then comment out this snippet below:
 
 ```js
 // app.get('/',(req:Request, res:Response)=>{
