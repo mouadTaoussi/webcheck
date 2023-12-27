@@ -17,7 +17,7 @@
 git clone https://github.com/mouadTaoussi/checkwebsite.git
 ```
 ```
-cd checkwebsite
+cd webcheck
 ```
 
 ### Install the dependencies

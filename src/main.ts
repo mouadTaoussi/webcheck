@@ -39,10 +39,14 @@ async function runapp(){
 	} });
 
 	// Routes
-	// app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
-	app.get('/',(req:Request, res:Response)=>{
-		res.redirect('https://webcheck.vercel.app');
-	});
+	if (application_config.port_dev == 'developement'){
+		app.use('/',express.static(  __dirname + "/../wc-front-end/dist"));
+	}else {
+		app.get('/',(req:Request, res:Response)=>{
+			res.redirect('https://webcheck.vercel.app');
+		});
+	}
+	
 	
 	app.use(helmet());
 	app.use(bodyParser.json());
