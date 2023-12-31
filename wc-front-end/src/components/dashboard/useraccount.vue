@@ -56,7 +56,7 @@
 		      </p>
 		      	<p class="text-left text-dark">
 					<strong class="cabin">
-			      		Thank you for utilising our service 😊
+			      		Thank you for using our service 😊
 			      	</strong>
 			    </p>
 		       <input 

@@ -15,9 +15,9 @@ class websiteResolver {
 	@Query(() => [websiteAverageTimeInDaySchema]) 
 	public async getAverageResponseTimeForUserWebsites(@Arg('user_token') user_token:string){
 		// Find the appropriate user that owns this token
-		const user = await verify(user_token, application_config.jwt_secret! );
+		const user:any = await verify(user_token, application_config.jwt_secret! );
 		// console.log(user)
-		const dataWebsites: { status:number, data:any } = await this.websiteService.getAverageTimeForWebsite(undefined, user.id)
+		const dataWebsites: { status:number, data:any } = await this.websiteService.getAverageTimeForWebsite(undefined, user.id) // @ERROR
 
 		// separate date and average time and put them in 2 arrays
 		for (var i = 0; i < dataWebsites.data.length; i++) {

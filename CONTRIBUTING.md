@@ -27,10 +27,15 @@ npm install
 ```
 
 ### Create ``.env`` file and add those elements within your credentiels below:
-<p>But before that, you need to generate vapid keys for use in webpush protocol !</p>
+<p>But before that, you need to generate vapid keys for use in webpush protocol</p>
 
 ```
 web-push generate-vapid-keys [--json]
+
+```
+<p>If it didn't work try this command</p>
+```
+./node_modules/.bin/web-push generate-vapid-keys
 ```
 
 ```

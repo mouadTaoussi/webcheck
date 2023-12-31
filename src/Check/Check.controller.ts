@@ -24,8 +24,8 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 		webpush.setGCMAPIKey('<Your GCM API Key Here>');
 		webpush.setVapidDetails(
 		  'mailto:example@yourdomain.org',
-		  this.vapidPublicKey,
-		  this.vapidPrivateKey
+		  this.vapidPublicKey!, // @ERROR
+		  this.vapidPrivateKey!
 		);
 		// Request interceptor will startTime
 		axios.interceptors.request.use((config: any) => {
@@ -161,7 +161,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 			    html: mailTemplate
 			});
 		}
-		catch(err){
+		catch(err: any){
 			console.log('Something went wrong with nodemailer')			
 			console.log(err.message);			
 		}
@@ -184,7 +184,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 					
 					// axios 
 					try {
-						const checking : AxiosResponse = await axios({
+						const checking /*: AxiosResponse*/ :any = await axios({
 						method : 'GET',
 						url : users.user[i].websites[o].website,
 						headers : {
@@ -193,11 +193,11 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 						}
 						})
 						// @TODO Push time in melliseconds
-						const responseTime: number = checking.duration;
+						const responseTime: number = checking.duration; // @ERROR
 						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 					}
 					// // if one of the websites is down
-					catch (error){
+					catch (error: any){
 						if (error.response) {
 						// set website[i].active to false
 						users.user[i].websites[o].active = false;
@@ -260,7 +260,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 				} /* if website[i].active is false */ else {
 					// axios
 					try {
-						const checking : AxiosResponse = await axios({
+						const checking : any = await axios({
 							method : 'GET',
 							url : users.user[i].websites[o].website,
 							headers : {
@@ -269,7 +269,7 @@ class CheckWebsiteController implements CheckWebsiteControllerInterface {
 							}
 						})
 						// @TODO Push time in melliseconds
-						const responseTime: number = checking.duration;
+						const responseTime: number = checking.duration; // @ERROR
 						const pushing = await websiteService.pushResponseTimeForWebsite(users.user[i].websites[o]._id,responseTime);
 						
 						//  // set website[i].active to false
