@@ -33,7 +33,9 @@ async function runapp() {
             credentials: true,
             methods: ["POST", "OPTIONS"],
         } });
-    app.use('/', express_1.default.static(__dirname + "/../wc-front-end/dist"));
+    app.get('/', (req, res) => {
+        res.redirect('https://webcheck.vercel.app');
+    });
     app.use(helmet_1.default());
     app.use(body_parser_1.default.json());
     app.use('/auth', main_cors_1.default, Authentication_routes_1.default);
